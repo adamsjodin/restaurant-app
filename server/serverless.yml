@@ -4,7 +4,21 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  profile: restaurant-admin
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::281856235143:role/serverless-dynamodb-role
+
+plugins: 
+  - serverless-webpack
+
+package: 
+  individually: true
 
 functions:
-  function1:
-    handler: index.handler
+  getMenu:
+    handler: function/getMenu/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/menu'
+          method: GET

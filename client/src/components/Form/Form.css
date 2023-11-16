@@ -1,0 +1,16 @@
+.form,
+.inputs {
+    display: grid;
+}
+.form {
+    gap: 2em;
+}
+.inputs {
+    grid-template-areas: 
+    "one two"
+    "three three"
+    "four four"
+    "five six";
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}

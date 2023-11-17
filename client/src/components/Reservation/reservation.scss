@@ -1,0 +1,17 @@
+@import '../../Styles/variables'; 
+
+.popup {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: 25%;
+  background-color: $background-color--popup;
+  color: $clr-text;
+  font-family: $font-family;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: start;
+  & :not(svg) {
+    text-align: center;
+  }
+}

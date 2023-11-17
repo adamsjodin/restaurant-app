@@ -30,7 +30,7 @@ function HoursIcon({ openHours }) {
     console.log(hour);
     return (
         <section className="hoursIcon">
-            <h3>{isOpen ? 'Open' : 'Closed'}</h3>
+            <h3 style={{color: isOpen ? '#00FF57' : '#FF0000'}}>{isOpen ? 'Open' : 'Closed'}</h3>
             <h3>Hours</h3>
             <motion.div animate={{rotate: openHours ? 180 : 0 }} transition={{duration: 0.1}}>
                 <IoIosArrowUp />

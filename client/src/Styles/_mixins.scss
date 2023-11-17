@@ -1,0 +1,50 @@
+@import 'variables';
+
+@mixin gridCenter {
+    display: grid;
+    place-content: center;
+  }
+  @mixin gridColumns($columns) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-auto-rows: auto;
+  }
+  @mixin flexCenter($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin flexSpaceBetween($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @mixin flexEvenly($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  @mixin flexStart($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: baseline;
+    align-items: flex-start;
+  }
+  
+  @mixin button-styles {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: SemiBold;
+    font-family: "Quicksand", sans-serif;
+    color: white;
+    border-radius: $border-radius;
+  }

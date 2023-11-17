@@ -25,9 +25,7 @@ function HoursIcon({ openHours }) {
         
         openClosed();
     },[hour]);
-
-
-    console.log(hour);
+    
     return (
         <section className="hoursIcon">
             <h3 style={{color: isOpen ? '#00FF57' : '#FF0000'}}>{isOpen ? 'Open' : 'Closed'}</h3>

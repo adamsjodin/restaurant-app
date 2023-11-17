@@ -1,8 +1,8 @@
 import './App.css'
 import Hours from './components/Hours/Hours'
 import Nav from './components/Menu/Nav'
-import NavIcon from './components/Menu/NavIcon'
 import Form from './components/Form/Form'
+import Home from './pages/Home/Home'
 
 function App() {
 
@@ -12,6 +12,8 @@ function App() {
       <Nav />
       <Hours />
       <Form />
+
+      <Home />
 
     </>
   )

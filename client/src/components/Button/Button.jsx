@@ -1,4 +1,4 @@
-
+import "./ButtonStyles.scss";
 
 function Button({ children, onClick, className }) {
 

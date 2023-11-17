@@ -1,0 +1,19 @@
+@import 'variables'; 
+@import 'mixins';
+
+body {
+  @extend .background-color__black;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.background-color__black {
+  background: linear-gradient($background-color--main, black);
+}
+
+.background-color__white {
+  background: linear-gradient($background-color--main, white);
+}
+

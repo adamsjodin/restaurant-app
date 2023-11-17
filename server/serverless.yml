@@ -17,8 +17,60 @@ package:
 
 functions:
   getMenu:
-    handler: function/getMenu/index.handler
+    handler: functions/getMenu/index.handler
     events: 
       - httpApi: 
           path: '/api/menu'
           method: GET
+  addToMenu:
+    handler: functions/addToMenu/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/menu'
+          method: POST
+  getUser:
+    handler: functions/getUser/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/{id}'
+          method: GET
+  addUser:
+    handler: functions/addUser/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/signup'
+          method: POST
+
+
+resources: 
+  Resources: 
+    menuDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: menuDb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: title
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: id 
+            KeyType: HASH
+          - AttributeName: title
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+    usersDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: usersDb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: role
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: id 
+            KeyType: HASH
+          - AttributeName: role
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST

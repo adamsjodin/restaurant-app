@@ -1,0 +1,14 @@
+.navIcon {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+
+    &--menu {
+        height: 0.25rem;
+        background-color: rgb(0, 0, 0);
+    }
+}

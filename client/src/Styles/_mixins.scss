@@ -48,3 +48,9 @@
     color: white;
     border-radius: $border-radius;
   }
+
+  @mixin bgImage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }

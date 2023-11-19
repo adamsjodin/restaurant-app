@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import menu from "../../testdata/menu.json";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import Offers from "../../components/Offers/Offers";
 
 function Home() {
   const menuQuery = useQuery({
@@ -14,16 +15,19 @@ function Home() {
   }
 
   return (
-    <ul className="menu">
-      {menuQuery.data.map((product) => (
-        <ProductCard key={product.id} props={product} />
-      ))}
-    </ul>
+    <>
+      <Offers />
+      <ul className="menu">
+        {menuQuery.data.map((product) => (
+          <ProductCard key={product.id} props={product} />
+        ))}
+      </ul>
+    </>
   );
 }
 
 function wait(duration) {
-  return new Promise(resolve => setTimeout(resolve, duration));
+  return new Promise((resolve) => setTimeout(resolve, duration));
 }
 
 export default Home;

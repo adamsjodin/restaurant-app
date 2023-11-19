@@ -1,5 +1,5 @@
 import { Truncate } from '@primer/react';
-import Button from '../Button/Button';
+import Button from '../../../../components/Button/Button';
 import './ProductCard.scss';
 import { FaInfo } from 'react-icons/fa';
 

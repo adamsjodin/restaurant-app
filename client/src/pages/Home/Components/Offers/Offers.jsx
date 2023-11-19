@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { wait } from "../../utils/functions"
-import offers from '../../testdata/offers.json'
+import { wait } from "../../../../utils/functions"
+import offers from '../../../../testdata/offers.json'
 import './Offers.scss';
 
 function Offers() {

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import menu from "../../testdata/menu.json";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import Offers from "../../components/Offers/Offers";
+import ProductCard from "./Components/ProductCard/ProductCard";
+import Offers from "./Components/Offers/Offers";
 
 function Home() {
   const menuQuery = useQuery({

@@ -5,7 +5,7 @@
     @include flexCenter(row);
     justify-content: flex-start;
     overflow-x: scroll;
-    padding: 2em;
+    padding: 2em 1em;
     gap: 1em;
 }
 .offer {

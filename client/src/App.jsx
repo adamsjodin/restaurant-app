@@ -3,6 +3,7 @@ import Hours from './components/Hours/Hours'
 import Nav from './components/Menu/Nav'
 import NavIcon from './components/Menu/NavIcon'
 import Form from './components/Form/Form'
+import Login from './components/Login/Login'
 
 function App() {
 
@@ -10,8 +11,8 @@ function App() {
     <>
 
       <Nav />
+      <Login />
       <Hours />
-      <Form />
 
     </>
   )

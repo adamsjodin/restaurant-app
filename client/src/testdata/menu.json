@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "title": "Classic Cheeseburger",
+    "title": "Classic burger",
     "description": "Juicy beef patty with melted cheddar, lettuce, tomato, and our special sauce.",
     "price": 8.99,
-    "imgUrl": "https://example.com/classic_cheeseburger.jpg",
+    "imgUrl": "/images/burger_classic.jpg",
     "categories": ["burgers"],
     "ingredients": [
       "beef patty",
@@ -19,7 +19,7 @@
     "title": "Caesar Salad",
     "description": "Fresh romaine lettuce, Caesar dressing, Parmesan cheese, and garlic croutons.",
     "price": 6.99,
-    "imgUrl": "https://example.com/caesar_salad.jpg",
+    "imgUrl": "/images/chicken_caesar.jpg",
     "categories": ["salads"],
     "ingredients": [
       "romaine lettuce",
@@ -33,16 +33,16 @@
     "title": "Margherita Pizza",
     "description": "Classic pizza with tomato sauce, fresh mozzarella, and basil.",
     "price": 10.99,
-    "imgUrl": "https://example.com/margherita_pizza.jpg",
+    "imgUrl": "/images/pizza_margarita.jpg",
     "categories": ["pizza"],
     "ingredients": ["tomato sauce", "fresh mozzarella", "basil"]
   },
   {
     "id": 4,
-    "title": "Spicy Chicken Sandwich",
+    "title": "Spicy Chicken Soup",
     "description": "Crispy chicken breast with spicy mayo, lettuce, and pickles.",
     "price": 9.49,
-    "imgUrl": "https://example.com/spicy_chicken_sandwich.jpg",
+    "imgUrl": "/images/chicken_soup.jpg",
     "categories": ["sandwiches"],
     "ingredients": ["crispy chicken breast", "spicy mayo", "lettuce", "pickles"]
   },
@@ -51,7 +51,7 @@
     "title": "BBQ Bacon Burger",
     "description": "Grilled beef patty topped with crispy bacon, cheddar cheese, and tangy BBQ sauce.",
     "price": 11.49,
-    "imgUrl": "https://example.com/bbq_bacon_burger.jpg",
+    "imgUrl": "/images/burger_tripleCheese.jpg",
     "categories": ["burgers"],
     "ingredients": [
       "grilled beef patty",
@@ -65,7 +65,7 @@
     "title": "Greek Salad",
     "description": "Crisp lettuce, tomatoes, cucumbers, feta cheese, olives, and Greek dressing.",
     "price": 7.99,
-    "imgUrl": "https://example.com/greek_salad.jpg",
+    "imgUrl": "/images/veg_quinoaBowl.jpg",
     "categories": ["salads"],
     "ingredients": [
       "lettuce",
@@ -81,16 +81,16 @@
     "title": "Pepperoni Pizza",
     "description": "Classic pizza with tomato sauce, mozzarella cheese, and pepperoni slices.",
     "price": 12.99,
-    "imgUrl": "https://example.com/pepperoni_pizza.jpg",
+    "imgUrl": "/images/pizza_meatOlives.jpg",
     "categories": ["pizza"],
     "ingredients": ["tomato sauce", "mozzarella cheese", "pepperoni"]
   },
   {
     "id": 8,
-    "title": "Veggie Delight Wrap",
+    "title": "Veggie Tacos",
     "description": "A flavorful wrap filled with grilled vegetables, hummus, and tzatziki sauce.",
     "price": 8.99,
-    "imgUrl": "https://example.com/veggie_delight_wrap.jpg",
+    "imgUrl": "/images/veg_tacos.jpg",
     "categories": ["wraps"],
     "ingredients": ["grilled vegetables", "hummus", "tzatziki sauce"]
   }

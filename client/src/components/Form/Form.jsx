@@ -1,25 +1,32 @@
 import Input from '../Input/Input'
 import { FormProvider, useForm } from 'react-hook-form'
-import { email_validation, firstName_validation, lastName_validation, num_validation, password_validation } from '../../utils/inputValidation';
-import './Form.css';
+import { email_validation, firstName_validation, lastName_validation, num_validation, password_validation, verifyPassword_validation } from '../../utils/inputValidation';
+import './Form.scss';
+import Button from '../Button/Button';
 
 function Form() {
     const methods = useForm();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("hej")
+    }
   return (
     <FormProvider {...methods}>
         <form
+            onSubmit={handleSubmit}
             autoComplete='on'
             className='form'
         >
-            <section className="inputs">
+            <section className="form__inputs">
                 <Input {...firstName_validation} placeholder="First name"/>
                 <Input {...lastName_validation} placeholder="Last name"/>
                 <Input {...email_validation} placeholder="Email"/>
                 <Input {...num_validation} placeholder="Phone" />
-                <Input {...password_validation} placeholder="Password" id="password" />
-                <Input {...password_validation} placeholder="Verify password" id="verify_password" />
+                <Input {...password_validation} placeholder="Password" />
+                <Input {...verifyPassword_validation} placeholder="Verify password" />
             </section>
-            <button type='submit'>Submit</button>
+            <Button type="submit">Confirm</Button>
         </form>
     </FormProvider>
   )

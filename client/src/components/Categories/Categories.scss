@@ -1,0 +1,40 @@
+@import '../../Styles/variables'; 
+
+.categories {
+  color: $clr-text;
+  font-family: $font-family;
+
+  & h3 {
+    font-size: $fs-h3;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 1rem 0;
+    
+    .card--category {
+      background-color: $background-color--popup;
+      font-size: $fs-smaller;
+      margin-right: .5rem;
+      
+      & div {
+        width: 6.25rem;
+        height: 5.3125rem;
+        overflow: hidden;
+        
+        & img {
+          width: 7.5rem;
+          margin: auto;
+        }
+      }
+      & p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}

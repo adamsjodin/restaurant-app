@@ -83,3 +83,24 @@ export const password_validation = {
     },
   },
 };
+export const verifyPassword_validation = {
+  name: "verify",
+  type: "password",
+  id: "verify",
+  placeholder: "",
+  validation: {
+    required: {
+      value: true,
+      message: "Password is required",
+    },
+    minLength: {
+      value: 8,
+      message: "Password must be at least 8 characters",
+    },
+    pattern: {
+      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/,
+      message:
+        "Password must contain at least 1 capital letter and a special symbol",
+    },
+  },
+};

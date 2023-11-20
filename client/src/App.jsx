@@ -2,6 +2,7 @@ import './App.css'
 import Hours from './components/Hours/Hours'
 import Nav from './components/Menu/Nav'
 import Form from './components/Form/Form'
+import Login from './components/Login/Login'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
 
@@ -9,9 +10,13 @@ function App() {
   const [form, setForm] = useState(false);
   const [home, setHome] = useState(false);
   const [hours, setHours] = useState(false);
+  const [login, setLogin] = useState(false);
   return (
     <section style={{ display: "grid", gap: "2em"}}>
       <Nav />
+      <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
+      {login ? <Login /> : "" }
+      <Login />
       <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>
       {hours ? <Hours /> : "" }
 

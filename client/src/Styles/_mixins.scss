@@ -36,15 +36,21 @@
   }
   
   @mixin button-styles {
-    display: inline-block;
-    padding: 10px 20px;
-    text-align: center;
+    display: grid;
+    place-content: center;
+    padding: .75em 1.25em;
     text-decoration: none;
     border: none;
     cursor: pointer;
-    font-size: 24px;
-    font-weight: SemiBold;
+    font-size: 1.5rem;
+    font-weight: 600;
     font-family: "Quicksand", sans-serif;
     color: white;
     border-radius: $border-radius;
+  }
+
+  @mixin bgImage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }

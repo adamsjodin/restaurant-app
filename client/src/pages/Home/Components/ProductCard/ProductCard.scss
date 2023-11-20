@@ -1,0 +1,57 @@
+@import '../../../../Styles/variables';
+@import '../../../../Styles/mixins';
+
+.menu {
+    @include gridColumns(100%);
+    gap: 1em;
+    padding: 2em 1em;
+}
+.product {
+    @include gridColumns(repeat(2, 1fr));
+    gap: 1em;
+    background-color: $background-color--card;
+    padding: 1em;
+    border-radius: 1rem;
+    position: relative;
+    & > *:not(.product__info div) {
+        font-weight: 600;
+    }
+    & > svg {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    &__image {
+        height: 150px;
+        @include bgImage;
+        border-radius: 1rem;
+    }
+    &__info {
+        @include flexSpaceBetween(column);
+        align-items: flex-start;
+        &--bottom {
+            width: 100%;
+            @include flexSpaceBetween(row)
+        }
+    }
+
+    h3 {
+        font-size: $fs-normal;
+    }
+}
+
+.product__info div {
+    font-weight: 300;
+    font-size: $fs-smaller;
+}
+
+.product .btn {
+    font-size: $fs-smaller;
+    padding: 0.5em 1em;
+}
+
+@media  screen and (min-width: 55em){
+    .menu {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

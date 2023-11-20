@@ -1,0 +1,40 @@
+@import '../../../../Styles/variables';
+@import '../../../../Styles/mixins';
+
+.offers {
+    @include flexCenter(row);
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding: 2em 1em;
+    gap: 1em;
+}
+.offer {
+    @include gridColumns(48% 52%);
+    min-width: 300px;
+    min-height: 180px;
+    background-color: $background-color--card;
+    overflow: hidden;
+    border-radius: 1em;
+    &__image {
+        min-height: 180px;
+        @include bgImage;
+    }
+    &__info {
+        @include flexSpaceBetween(column);
+        padding: 1em;
+        text-align: center;
+
+        &--desc {
+            font-size: $fs-smaller;
+        }
+        &--title,
+        &--price,
+        &--priceBox .priceBox--bundle {
+            font-weight: 600;
+        }
+    }
+}
+
+.priceBox--single {
+    font-size: $fs-smaller;
+}

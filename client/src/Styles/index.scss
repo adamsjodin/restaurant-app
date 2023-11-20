@@ -1,16 +1,21 @@
-@import 'variables'; 
-@import 'mixins';
+@import './variables'; 
+@import './mixins';
 
+* {
+  font-family: $font-family;
+}
 body {
   @extend .background-color__black;
   margin: 0;
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
+  background-color: black;
 }
 
 .background-color__black {
-  background: linear-gradient($background-color--main, black);
+  background: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
+  background-repeat: no-repeat;
 }
 
 .background-color__white {

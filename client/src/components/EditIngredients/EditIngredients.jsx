@@ -1,27 +1,27 @@
 import "./EditIngredientsStyles.scss";
-import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
+import { useQuery } from "@tanstack/react-query";
+import { wait } from "../../utils/functions";
+import toppings from '../../testdata/ingredients.json';
 
 function EditIngredients() {
-  const [ingredients, setIngredients] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/testdata/ingredients.json");
-      const data = await response.json();
-      setIngredients(data);
-    };
-
-    fetchData();
-  }, []);
+  const toppingsQuery = useQuery({
+    queryKey: ["toppings"],
+    queryFn: () => wait(500).then(() => [...toppings]),
+  })
+  
+  if(toppingsQuery.isLoading) return <h1>Loading...</h1>
+  if(toppingsQuery.isError) {
+    return <pre>{JSON.stringify(toppingsQuery.error)}</pre>
+  }
 
   return (
     <div className="container">
       <div className="editCard">
-        {ingredients.map((ingredient) => (
-            <li key={ingredient.id}>
+        {toppingsQuery.map((topping) => (
+            <li key={topping.id}>
             <input type="checkbox" className="editCard__ingredient" /> 
-            <span>{ingredient.name}</span>
+            <span>{topping.name}</span>
           </li>
         ))}
         

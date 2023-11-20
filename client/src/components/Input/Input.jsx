@@ -14,7 +14,7 @@ function Input({ type, id, placeholder, validation, name }) {
   useEffect(() => {
     if (!errors[name]) {
       const timeoutId = setTimeout(() => {
-        console.log(`Input: ${name}, Error:`, errors[name]);
+        console.log(`Input: ${name}, Error:`, errors);
       }, 3000);
 
       return () => clearTimeout(timeoutId);

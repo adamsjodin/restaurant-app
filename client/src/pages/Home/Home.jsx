@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import menu from "../../testdata/menu.json";
 import ProductCard from "./Components/ProductCard/ProductCard";
 import Offers from "./Components/Offers/Offers";
+import Categories from "./Components/Categories/Categories";
 
 function Home() {
   const menuQuery = useQuery({
@@ -17,6 +18,7 @@ function Home() {
   return (
     <>
       <Offers />
+      <Categories />
       <ul className="menu">
         {menuQuery.data.map((product) => (
           <ProductCard key={product.id} props={product} />

@@ -25,7 +25,7 @@ export default function Categories() {
   })
   return (
     <article className="categories">
-      <h3>Categoires</h3>
+      <h3>Categories</h3>
       <section className="categories-container">  
         {categoryEl && categoryEl}
       </section>

@@ -2,7 +2,6 @@ import './App.css'
 import Hours from './components/Hours/Hours'
 import Nav from './components/Menu/Nav'
 import Form from './components/Form/Form'
-import EditIngredients from './components/EditIngredients/EditIngredients'
 import Login from './components/Login/Login'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
@@ -17,7 +16,6 @@ function App() {
       <Nav />
       <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
       {login ? <Login /> : "" }
-      <Login />
       <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>
       {hours ? <Hours /> : "" }
 

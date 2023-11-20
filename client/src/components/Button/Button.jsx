@@ -4,7 +4,7 @@ function Button({ children, onClick, className }) {
 
   
     return (
-        <button className={`button-primary ${className || ''}`} type="button" onClick={onClick}>
+        <button className={`button--primary`} type="button" onClick={onClick}>
         {children}
       </button>
     );

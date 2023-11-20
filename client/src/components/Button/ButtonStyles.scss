@@ -1,5 +1,5 @@
-@import 'variables'; 
-@import 'mixins';
+@import 'src/styles/_variables';   
+@import 'src/styles/_mixins';   
 
 .button--primary {
     @include button-styles;

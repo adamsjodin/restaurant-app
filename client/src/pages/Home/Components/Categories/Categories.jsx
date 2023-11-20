@@ -3,12 +3,12 @@ import "./Categories.scss";
 
 export default function Categories() {
   const categories = [
-    {dish: "Pizza", img: "category_pizza.jpg"},
-    {dish: "Burger", img: "category_burger.jpg"},
-    {dish: "Pasta", img: "category_pasta.jpg"},
-    {dish: "Chicken", img: "category_chicken.jpg"},
-    {dish: "Vego", img: "category_veg.jpg"},
-    {dish: "Salads", img: "chicken_caesar.jpg"}
+    {dish: "Pizza", imgUrl: "/images/category_pizza.jpg"},
+    {dish: "Burger", imgUrl: "/images/category_burger.jpg"},
+    {dish: "Pasta", imgUrl: "/images/category_pasta.jpg"},
+    {dish: "Chicken", imgUrl: "/images/category_chicken.jpg"},
+    {dish: "Vego", imgUrl: "/images/category_veg.jpg"},
+    {dish: "Salads", imgUrl: "/images/chicken_caesar.jpg"}
   ]
 
   function sortCategories(category) {
@@ -17,8 +17,8 @@ export default function Categories() {
   }
   const categoryEl = categories.map((category, i) => {
     return (
-    <section onClick={() => sortCategories(category)} key={i} className="card--category">
-      <div><img src={"images/"+category.img}></img></div>
+    <section onClick={() => sortCategories(category)} key={i} className="category">
+      <figure className="category__image" style={{ backgroundImage: `url(${category.imgUrl})` }}></figure>
       <p>{category.dish}</p>
     </section>
     )
@@ -26,7 +26,7 @@ export default function Categories() {
   return (
     <article className="categories">
       <h3>Categories</h3>
-      <section className="categories-container">  
+      <section className="category-list">  
         {categoryEl && categoryEl}
       </section>
     </article>

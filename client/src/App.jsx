@@ -12,7 +12,7 @@ function App() {
   const [hours, setHours] = useState(false);
   const [login, setLogin] = useState(false);
   return (
-    <section style={{ display: "grid", gap: "2em"}}>
+    <section style={{ display: "grid"}}>
       <Nav />
       <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
       {login ? <Login /> : "" }

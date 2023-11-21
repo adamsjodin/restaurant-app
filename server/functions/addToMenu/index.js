@@ -5,7 +5,7 @@ const { nanoid } = require('nanoid')
 
 module.exports.handler = async (event) => {
   const item = JSON.parse(event.body)
-
+  //add title, description, price, imgUrl, categories, ingredients and allergens from frontend. 
   try {
     const id = nanoid()
     await db.put({

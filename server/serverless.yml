@@ -45,7 +45,7 @@ functions:
     events: 
       - httpApi: 
           path: '/api/login'
-          method: GET
+          method: POST
 
 
 
@@ -65,14 +65,14 @@ resources:
     usersDb:
       Type: AWS::DynamoDB::Table
       Properties: 
-        TableName: usersDb
+        TableName: userDb
         AttributeDefinitions:
-          - AttributeName: id
+          - AttributeName: email
             AttributeType: S
           - AttributeName: role
             AttributeType: S
         KeySchema: 
-          - AttributeName: id 
+          - AttributeName: email 
             KeyType: HASH
           - AttributeName: role
             KeyType: RANGE

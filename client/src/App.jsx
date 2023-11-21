@@ -14,7 +14,7 @@ function App() {
   const [login, setLogin] = useState(false);
   const [reservation, setReservation] = useState(false)
   return (
-    <section className='app-home' style={{ display: "grid", gap: "2em"}}>
+    <section style={{ display: "grid"}}>
       <Nav />
       <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
       {reservation ? <Reservation /> : "" }

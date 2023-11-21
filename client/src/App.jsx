@@ -3,6 +3,7 @@ import Hours from './components/Hours/Hours'
 import Nav from './components/Menu/Nav'
 import Form from './components/Form/Form'
 import Login from './components/Login/Login'
+import Reservation from './components/Reservation/Reservation'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
 
@@ -11,9 +12,12 @@ function App() {
   const [home, setHome] = useState(false);
   const [hours, setHours] = useState(false);
   const [login, setLogin] = useState(false);
+  const [reservation, setReservation] = useState(false)
   return (
     <section style={{ display: "grid"}}>
       <Nav />
+      <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
+      {reservation ? <Reservation /> : "" }
       <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
       {login ? <Login /> : "" }
       <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>

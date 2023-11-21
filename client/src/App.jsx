@@ -18,26 +18,22 @@ function App() {
   const [reservation, setReservation] = useState(false)
   return (
 
-    <div className='app'>
-    <Topbar />
-    <Signup />
-    <Footer />
-    </div>
-    // <section style={{ display: "grid" }}>
-    //   <Nav />
-    //   <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
-    //   {reservation ? <Reservation /> : ""}
-    //   <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
-    //   {login ? <Login /> : ""}
-    //   <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>
-    //   {hours ? <Hours /> : ""}
 
-    //   <button onClick={() => setForm(!form)}>{form ? "Hide" : "Show"} Form</button>
-    //   {form ? <Form /> : ""}
+    <section style={{ display: "grid" }}>
+      <Nav />
+      <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
+      {reservation ? <Reservation /> : ""}
+      <button onClick={() => setLogin(!login)}>{login ? "Hide" : "Show"} Login</button>
+      {login ? <Login /> : ""}
+      <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>
+      {hours ? <Hours /> : ""}
 
-    //   <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
-    //   {home ? <Home /> : ""}
-    // </section>
+      <button onClick={() => setForm(!form)}>{form ? "Hide" : "Show"} Form</button>
+      {form ? <Form /> : ""}
+
+      <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
+      {home ? <Home /> : ""}
+    </section>
   )
 }
 

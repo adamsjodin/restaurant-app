@@ -4,7 +4,7 @@ const { db } = require("../../services/db")
 module.exports.handler = async (event, context) => {
   try {
     const { Items } = await db.scan({
-      TableName: "menuDb",
+      TableName: "usersDb",
       FilterExpression: "attribute_exists(#DYNOBASE_id)",
       ExpressionAttributeNames: {
         "#DYNOBASE_id": "id"

@@ -28,18 +28,25 @@ functions:
       - httpApi: 
           path: '/api/menu'
           method: POST
-  getUser:
-    handler: functions/getUser/index.handler
-    events: 
-      - httpApi: 
-          path: '/api/{id}'
-          method: GET
   addUser:
     handler: functions/addUser/index.handler
     events: 
       - httpApi: 
-          path: '/api/signup'
+          path: '/api/user'
           method: POST
+  getAllUsers:
+    handler: functions/getAllUsers/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/members'
+          method: GET
+  getUser:
+    handler: functions/getUser/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/login'
+          method: GET
+
 
 
 resources: 
@@ -54,8 +61,6 @@ resources:
         KeySchema: 
           - AttributeName: id 
             KeyType: HASH
-          - AttributeName: title
-            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
     usersDb:
       Type: AWS::DynamoDB::Table

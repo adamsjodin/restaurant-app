@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "serverless-webpack": "^5.13.0"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.3"
   }
 }

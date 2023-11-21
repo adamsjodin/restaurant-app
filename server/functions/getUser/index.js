@@ -1,13 +1,15 @@
 const { sendResponse } = require('../../responses/index')
 const { db } = require("../../services/db")
 
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event) => {
+  const { userId } = JSON.parse(event.body)
   try {
     const { Items } = await db.scan({
-      TableName: "menuDb",
-      FilterExpression: "attribute_exists(#DYNOBASE_id)",
+      TableName: "userDb",
+      Key: { userId: userId },
+      FilterExpression: "attribute_exists(#DYNOBASE_userId)",
       ExpressionAttributeNames: {
-        "#DYNOBASE_id": "id"
+        "#DYNOBASE_userId": "userId"
       }
     }).promise();
     return sendResponse(200, { success: true, message: "Found function", menu: Items });

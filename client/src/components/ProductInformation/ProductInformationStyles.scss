@@ -1,0 +1,20 @@
+@import 'src/styles/_variables';   
+@import 'src/styles/_mixins';   
+
+
+// .product-information {
+//     gap: 1em;
+//     padding: 1em;
+//     border-radius: 1rem;
+//     background-color: black;
+// }
+
+.product-information ul {
+    list-style: none;
+}
+
+.info-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+} 

@@ -15,6 +15,12 @@
     justify-content: center;
     align-items: center;
   }
+
+  @mixin flexSpaceAround($direction) {
+      display: flex;
+      flex-direction: $direction;
+      justify-content: space-around;
+  }
   
   @mixin flexSpaceBetween($direction) {
     display: flex;

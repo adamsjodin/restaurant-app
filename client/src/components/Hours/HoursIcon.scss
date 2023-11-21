@@ -1,11 +1,11 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
 
 .hoursIcon {
-    background-color: rgb(0, 0, 0);
-    color: white;
+    background-color: transparent;
+    color: $clr-text;
     padding: 1rem 2rem;
-    font-family: 'Quicksand', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: $font-family;
+    @include flexCenter(row);
     gap: 1rem;
 }

@@ -32,7 +32,7 @@ function Nav() {
                     </ul>
                     <div className='nav--footer'>
                     <IoSettingsOutline className='nav--icon' />
-                        <h5>Kicki Lindstrand</h5>
+                        <h5>[Kicki Lindstrand]</h5>
                     <IoLogOutOutline className='nav--icon'/>
                     </div>
                 </div>

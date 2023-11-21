@@ -1,14 +1,16 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
 .navIcon {
-    cursor: pointer;
     width: 2rem;
     height: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    position: relative;
+    cursor: pointer;
+
+    @include flexSpaceAround(column);
 
     &--menu {
+        z-index: 2;
         height: 0.25rem;
-        background-color: rgb(0, 0, 0);
+        background-color: $clr-text;
     }
 }

@@ -2,11 +2,14 @@
 @import './src/Styles/mixins';
 
 .login {
-    height: 100vh;
     font-family: $font-family;
     color: $clr-text;
 
     @include flexCenter(column);
+
+    &--heading {
+        font-size: 1.5rem;
+    }
 
     &--input {
         border: none;
@@ -16,19 +19,27 @@
         background-color: transparent;
     }
 
+    &--btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5rem;
+    }
 
     &--btn {
-        background-color: $background-color--main;
         height: 38px;
         width: 185px;
+        background-color: $background-color--main;
         @include button-styles();
         @include flexCenter(column);
         font-size: 1rem;
-
+        margin-top: 2rem;
     }
 
     &--paragraph {
         color: $clr-text__red;
+        margin: 1rem;
     }
 }
 

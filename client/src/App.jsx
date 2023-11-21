@@ -6,6 +6,7 @@ import Login from './components/Login/Login'
 import Reservation from './components/Reservation/Reservation'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
+import Topbar from './components/Topbar/Topbar'
 
 function App() {
   const [form, setForm] = useState(false);
@@ -14,6 +15,7 @@ function App() {
   const [login, setLogin] = useState(false);
   const [reservation, setReservation] = useState(false)
   return (
+
     <section style={{ display: "grid"}}>
       <Nav />
       <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
@@ -23,13 +25,13 @@ function App() {
       <button onClick={() => setHours(!hours)}>{hours ? "Hide" : "Show"} Hours</button>
       {hours ? <Hours /> : "" }
 
-      <button onClick={() => setForm(!form)}>{form ? "Hide" : "Show"} Form</button>
-      {form ? <Form /> : "" }
+     <button onClick={() => setForm(!form)}>{form ? "Hide" : "Show"} Form</button>
+    {form ? <Form /> : "" }
 
-      <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
-      {home ? <Home /> : "" }
+    <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
+   {home ? <Home /> : "" }
 
-    </section>
+   </section>
   )
 }
 

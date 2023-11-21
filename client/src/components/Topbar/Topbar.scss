@@ -1,0 +1,31 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+.topbar {
+    display: flex;
+
+    &--nav {
+        width: 100vw;
+        z-index: 2;
+        margin: 1rem;
+        @include flexSpaceBetween(row);
+    }
+
+    &--img {
+        margin-top: 0.5rem;
+    }
+
+    &--search {
+        visibility: hidden;
+    }
+
+}
+
+@media screen and (min-width: 800px) {
+    
+        .topbar--search {
+            visibility: initial;
+            color: white;
+            font-size: 2rem;
+        } 
+  }

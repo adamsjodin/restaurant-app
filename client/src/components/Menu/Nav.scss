@@ -1,32 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500&family=Quicksand&family=Sansita&display=swap');
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
 
 .nav {
-    font-family: 'Quicksand', sans-serif;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    color: $clr-text;
+    font-family: $font-family;
+    padding: 0rem 2rem;
+    background-color: $background-color--popup;
+    position: absolute;
 
-    background-color: black;
-    color: white;
-    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 1rem;
 
     &--ul {
         list-style-type: none;
         text-align: start;
-        line-height: 3rem;
+        line-height: 4rem;
+        margin-top: auto;
     }
-
+    
     &--ul li {
+        cursor: pointer;
         display: flex;
         align-items: center;
         gap: 1rem;
     }
 
     &--icon {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
     }
 
     &--footer {
         display: flex;
-        align-items: center;
         justify-content: space-around;
+
+        margin-top: auto;
     }
 }
+
+@media screen and (min-width: 800px) {
+    .nav {
+        width: 22rem;
+    } 
+  }

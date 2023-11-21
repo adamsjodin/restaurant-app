@@ -36,7 +36,7 @@ function Hours() {
                         <li>Closed </li>
                     </ul>
                 </section>
-                <p>Please note that the kitchen closeing 30 minutes earlier. </p>
+                <p>Please note that the kitchen closing 30 minutes earlier. </p>
             </section>
         }
         </>

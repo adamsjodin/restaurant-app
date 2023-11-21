@@ -1,35 +1,52 @@
-import Input from '../Input/Input'
-import { FormProvider, useForm } from 'react-hook-form'
-import { email_validation, firstName_validation, lastName_validation, num_validation, password_validation, verifyPassword_validation } from '../../utils/inputValidation';
-import './Form.scss';
-import Button from '../Button/Button';
+import { useState } from "react";
+import { validateForm } from "../../utils/validation";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
+import "./Form.scss";
 
 function Form() {
-    const methods = useForm();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("hej")
+  function handleChange(field, value) {
+    setFormData({ ...formData, [field]: value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const errors = validateForm(formData);
+    if (Object.keys(errors).length === 0) {
+      console.log("Form submitted:", formData);
+    } else {
+      console.error("Form validation failed:", errors);
     }
+  }
   return (
-    <FormProvider {...methods}>
-        <form
-            onSubmit={handleSubmit}
-            autoComplete='on'
-            className='form'
-        >
-            <section className="form__inputs">
-                <Input {...firstName_validation} placeholder="First name"/>
-                <Input {...lastName_validation} placeholder="Last name"/>
-                <Input {...email_validation} placeholder="Email"/>
-                <Input {...num_validation} placeholder="Phone" />
-                <Input {...password_validation} placeholder="Password" />
-                <Input {...verifyPassword_validation} placeholder="Verify password" />
-            </section>
-            <Button type="submit">Confirm</Button>
-        </form>
-    </FormProvider>
-  )
+    <form onSubmit={handleSubmit} className="form">
+     <section className="form__inputs">
+      <Input
+        placeholder="Name"
+        value={formData.name}
+        onChange={(value) => handleChange("name", value)}
+      />
+      <Input
+        placeholder="Email"
+        value={formData.email}
+        onChange={(value) => handleChange("email", value)}
+      />
+      <Input
+        placeholder="Password"
+        type="password"
+        value={formData.password}
+        onChange={(value) => handleChange("password", value)}
+      />
+      </section>
+      <Button type="submit">Confirm</Button>
+    </form>
+  );
 }
 
-export default Form
+export default Form;

@@ -3,6 +3,7 @@ import menu from "../../testdata/menu.json";
 import ProductCard from "./Components/ProductCard/ProductCard";
 import Offers from "./Components/Offers/Offers";
 import Categories from "./Components/Categories/Categories";
+import Login from "../../components/Login/Login";
 
 function Home() {
   const menuQuery = useQuery({

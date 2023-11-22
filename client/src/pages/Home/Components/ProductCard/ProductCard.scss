@@ -4,7 +4,7 @@
 .menu {
     @include gridColumns(100%);
     gap: 1em;
-    padding: 2em 1em;
+    padding: 1em;
 }
 .product {
     @include gridColumns(repeat(2, 1fr));

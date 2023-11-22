@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import './Login.scss'
 
 function Login() {
+
     return (
-        <section className='login'>
+        <>
+        <section className="login background-color__black">
             <h2 className='login--heading'>Log in</h2>
             <input type="text" className='login--input' placeholder="Email" />
             <input type="text" className='login--input' placeholder="Password" />
@@ -12,6 +15,7 @@ function Login() {
             </section>
             <p>Continue as guest</p>
         </section>
+        </>
     );
 }
 

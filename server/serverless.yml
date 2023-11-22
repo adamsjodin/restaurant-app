@@ -17,31 +17,31 @@ package:
 
 functions:
   getMenu:
-    handler: functions/getMenu/index.handler
+    handler: functions/menuFunctions/getMenu/index.handler
     events: 
       - httpApi: 
           path: '/api/menu'
           method: GET
   addToMenu:
-    handler: functions/addToMenu/index.handler
+    handler: functions/menuFunctions/addToMenu/index.handler
     events: 
       - httpApi: 
           path: '/api/menu'
           method: POST
   addUser:
-    handler: functions/addUser/index.handler
+    handler: functions/userFunctions/addUser/index.handler
     events: 
       - httpApi: 
           path: '/api/user'
           method: POST
   getAllUsers:
-    handler: functions/getAllUsers/index.handler
+    handler: functions/userFunctions/getAllUsers/index.handler
     events: 
       - httpApi: 
           path: '/api/staff/members'
           method: GET
   getUser:
-    handler: functions/getUser/index.handler
+    handler: functions/userFunctions/getUser/index.handler
     events: 
       - httpApi: 
           path: '/api/login'
@@ -72,4 +72,28 @@ resources:
         KeySchema: 
           - AttributeName: email 
             KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    ordersDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: ordersDb
+        AttributeDefinitions:
+          - AttributeName: orderNr
+            AttributeType: S
+          - AttributeName: userID
+            AttributeType: S
+          - AttributeName: TimeStamp
+            AttributeType: N
+        KeySchema: 
+          - AttributeName: orderNr
+            KeyType: HASH
+          - AttributeName: userID
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: TimeStampIndex
+            KeySchema:
+              - AttributeName: TimeStamp
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
         BillingMode: PAY_PER_REQUEST

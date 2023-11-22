@@ -1,8 +1,9 @@
-const { sendResponse } = require('../../responses/index')
-const { db } = require('../../services/db')
+const { sendResponse } = require('../../../responses/index')
+const { db } = require('../../../services/db')
 const { nanoid } = require('nanoid')
 const bcrypt = require('bcryptjs')
 
+//Code from add user - not fixed! 
 
 module.exports.handler = async (event) => {
   //Add email, role (default: member), name, password, adress

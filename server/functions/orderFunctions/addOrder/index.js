@@ -1,31 +1,35 @@
 const { sendResponse } = require('../../../responses/index')
 const { db } = require('../../../services/db')
 const { nanoid } = require('nanoid')
-const bcrypt = require('bcryptjs')
 
-//Code from add user - not fixed! 
+
 
 module.exports.handler = async (event) => {
   //Add email, role (default: member), name, password, adress
-  const { email, role, name, password, adress } = JSON.parse(event.body)
-  //Hash password
-  const hashedPassword = bcrypt.hashSync(password, 10)
+  const { userID, products, status } = JSON.parse(event.body)
+  let totalPrice = 0
+  products.forEach(product => {
+    totalPrice += product.price
+  });
+  
+  //Add current time
+  const timeStamp = Math.floor(new Date().getTime() / 1000)
   //Add id from nanoid
-  const id = nanoid()
+  const orderNr = nanoid()
   const params = {
-    TableName: 'userDb',
+    TableName: 'ordersDb',
     Item: { 
-      email: email,
-      role: role,
-      id: id,
-      name: name,
-      password: hashedPassword,
-      adress: adress
+      orderNr: orderNr,
+      userID: userID,
+      products: products,
+      totalPrice: totalPrice,
+      status: status,
+      timeStamp: timeStamp
     }
   }
   try {
     await db.put(params).promise()
-    return sendResponse(200, { sucess: true, message: `User added` })
+    return sendResponse(200, { sucess: true, message: `Order added at ${timeStamp}` })
 } catch (error) {
-  return sendResponse(500, {success: false, error: error, message: 'Could not add user'})
+  return sendResponse(500, {success: false, error: error, message: 'Could not add order'})
 }};

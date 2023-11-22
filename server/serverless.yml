@@ -46,7 +46,24 @@ functions:
       - httpApi: 
           path: '/api/login'
           method: POST
-
+  addOrder:
+    handler: functions/orderFunctions/addOrder/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/cart'
+          method: POST
+  getAllOrders:
+    handler: functions/orderFunctions/getAllOrders/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/orders'
+          method: GET
+  getMyOrders:
+    handler: functions/orderFunctions/getMyOrders/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/history'
+          method: GET
 
 
 resources: 

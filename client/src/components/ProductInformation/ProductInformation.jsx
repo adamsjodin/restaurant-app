@@ -6,11 +6,11 @@ function ProductInformation({ props, onClick }) {
   return (
     <article className="product-info">
       <figure
-        className="product__image"
+        className="product-info__image"
         style={{ backgroundImage: `url(${props.imgUrl})` }}
       ></figure>
-      <section className="product__info">
-        <h2>{props.title}</h2>
+      <section className="product-info__info">
+        <h3>{props.title}</h3>
         <p>{props.description}</p>
         <h3>Allergens:</h3>
         <ul>
@@ -19,6 +19,7 @@ function ProductInformation({ props, onClick }) {
           ))}
         </ul>
         <Button className="add">Add +</Button>
+        <h3 className="product-info__price">{props.price} kr</h3>
       </section>
       <FaInfo className="info-btn" onClick={onClick} />
     </article>

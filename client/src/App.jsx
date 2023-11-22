@@ -32,7 +32,6 @@ function App() {
       <button onClick={() => setForm(!form)}>{form ? "Hide" : "Show"} Form</button>
       {form ? <Form /> : ""}
 
-
       <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
       {home ? <Home /> : ""}
    </section> */}

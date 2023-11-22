@@ -1,0 +1,29 @@
+@import "src/styles/_variables";
+@import "src/styles/_mixins";
+
+
+.pre-checkout {
+    border-top: 2px solid white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 55%;
+}
+
+.pre-checkout h2 {
+    margin: 2rem;
+    font-size: $fs-h1;
+}
+.pre-checkout__items {
+    margin: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+}

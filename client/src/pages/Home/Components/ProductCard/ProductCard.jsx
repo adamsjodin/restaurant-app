@@ -3,20 +3,27 @@ import Button from "../../../../components/Button/Button";
 import "./ProductCard.scss";
 import { FaInfo } from "react-icons/fa";
 import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import anime from 'animejs/lib/anime.es.js';
 
 function ProductCard({ props }) {
   const { title, description, price, imgUrl } = props;
 
   const [showInfo, setShowInfo] = useState(false);
+  const cardRef = useRef(null);
+  
 
   const handleClick = () => {
-    setShowInfo(!showInfo);
+    
+      setShowInfo(!showInfo);
+    
   };
 
+  
   return (
-    <article className="product">
+    <>
       {!showInfo && (
+    <article className="product" ref={cardRef}>
         <>
           <figure
             className="product__image"
@@ -34,11 +41,11 @@ function ProductCard({ props }) {
           </section>
           <FaInfo onClick={handleClick} />
         </>
+      </article>
       )}
+      {showInfo && <ProductInformation className="productInformation" props={props} onClick={handleClick} />}
 
-      {showInfo && <ProductInformation props={props} onClick={handleClick} />}
-    </article>
-  );
+  </>);
 }
 
 export default ProductCard;

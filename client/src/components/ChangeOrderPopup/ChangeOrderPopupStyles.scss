@@ -1,0 +1,27 @@
+@import '../../Styles/variables';
+
+.change-order {
+    margin-top: 1rem;
+    padding: 4rem;
+    background-color: $background-color--card;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.change-order h2 {
+    font-size: $fs-h2;
+}
+
+.change-order p {
+    margin: 1rem;
+}
+
+.change-order .btn {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    font-size: $fs-h3;
+}

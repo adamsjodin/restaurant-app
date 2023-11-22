@@ -7,6 +7,9 @@ import Reservation from './components/Reservation/Reservation'
 import Home from './pages/Home/Home'
 import { useState } from 'react'
 import Topbar from './components/Topbar/Topbar'
+import ChangeOrderPopup from './components/ChangeOrderPopup/ChangeOrderPopup'
+import CheckoutConfirmation from './components/CheckoutConfirmation/CheckoutConfirmation'
+import PreCheckoutConfirmation from './components/PreCheckoutConfirmation/PreCheckoutConfirmation'
 
 function App() {
   const [form, setForm] = useState(false);
@@ -30,7 +33,10 @@ function App() {
 
     <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
    {home ? <Home /> : "" }
-
+    <ChangeOrderPopup />
+    {/* <CheckoutConfirmation /> */}
+    {/* <PreCheckoutConfirmation /> */}
+    {/* <ChangeOrderPopup /> */}
    </section>
   )
 }

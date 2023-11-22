@@ -2,11 +2,11 @@
 @import './src/Styles/mixins';
 
 .hours {
-    background-color: transparent;
     color: $clr-text;
     padding: 1rem 2rem;
-
     font-family: $font-family;
+    background-color: black;
+    
     @include flexSpaceBetween(column);
     
     &--lists {
@@ -15,8 +15,11 @@
         display: flex;
         justify-content: center;
     }
-
+    
     &--ul {
         list-style-type: none;
     }
 }
+    p {
+        text-align: center;
+    }

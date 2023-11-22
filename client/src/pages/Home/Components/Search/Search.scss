@@ -1,0 +1,32 @@
+.search__input {
+  min-width: 50%;
+  padding: 0.5em;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  transition: border-color 0.3s ease-in-out;
+  &::placeholder {
+    color: white;
+  }
+  &:focus-visible {
+    outline: none;
+    border-color: green;
+  }
+  &:focus-visible::placeholder {
+    color: transparent;
+  }
+  &.error {
+    input {
+      border-color: red;
+    }
+  }
+}
+.search__icon {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+.search__icon #search {
+  width: 2em;
+  height: 2em;
+}

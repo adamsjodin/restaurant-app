@@ -2,10 +2,11 @@
 @import './src/Styles/mixins';
 
 .hoursIcon {
-    background-color: transparent;
+    background-color: $background-color--popup;
     color: $clr-text;
     padding: 1rem 2rem;
     font-family: $font-family;
     @include flexCenter(row);
     gap: 1rem;
+
 }

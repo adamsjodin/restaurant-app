@@ -62,18 +62,14 @@ resources:
           - AttributeName: id 
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
-    usersDb:
+    userDb:
       Type: AWS::DynamoDB::Table
       Properties: 
         TableName: userDb
         AttributeDefinitions:
           - AttributeName: email
             AttributeType: S
-          - AttributeName: role
-            AttributeType: S
         KeySchema: 
           - AttributeName: email 
             KeyType: HASH
-          - AttributeName: role
-            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST

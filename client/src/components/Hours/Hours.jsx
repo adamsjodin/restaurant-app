@@ -8,7 +8,7 @@ function Hours() {
     const [openHours, setOpenHours] = useState(false)
 
     return (
-        <>
+        <div className="hours-wrapper">
         {
             openHours && 
             <section className="hours">
@@ -39,7 +39,7 @@ function Hours() {
         <div onClick={() => setOpenHours(!openHours)}>
             <HoursIcon openHours={openHours} />
         </div>
-        </>
+        </div>
     );
 }
 

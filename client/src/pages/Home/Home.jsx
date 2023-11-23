@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { wait } from "../../utils/functions";
+import { CiSearch } from "react-icons/ci";
 import menu from "../../testdata/menu.json";
 import ProductCard from "./Components/ProductCard/ProductCard";
 import Offers from "./Components/Offers/Offers";
 import Categories from "./Components/Categories/Categories";
 import Search from "./Components/Search/Search";
-import { CiSearch } from "react-icons/ci";
+
 
 function Home() {
   const [isSearching, setIsSearching] = useState(false);
@@ -51,6 +52,8 @@ function Home() {
           </ul>
         </section>
       )}
+      
+      
     </>
   );
 }

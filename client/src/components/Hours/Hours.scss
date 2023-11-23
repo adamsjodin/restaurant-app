@@ -1,6 +1,12 @@
 @import './src/Styles/variables';
 @import './src/Styles/mixins';
 
+.hours-wrapper {
+    position: sticky;
+    bottom: 0;
+    border-radius: 40px 40px 0 0;
+    overflow: hidden;
+}
 .hours {
     color: $clr-text;
     padding: 1rem 2rem;

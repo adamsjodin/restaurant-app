@@ -11,7 +11,6 @@ import { CiSearch } from "react-icons/ci";
 function Home() {
   const [isSearching, setIsSearching] = useState(false);
   const handleSearchIconClick = () => {
-    console.log(isSearching);
     setIsSearching(!isSearching);
   };
 
@@ -39,15 +38,18 @@ function Home() {
       <div className="search__icon" onClick={handleSearchIconClick}>
         <CiSearch />
       </div>
-      
+
       {isSearching ? (
         <Search menuItems={menuItems} isSearching={isSearching} />
       ) : (
-        <ul className="menu">
-          {menuItems.map((product) => (
-            <ProductCard key={product.id} props={product} />
-          ))}
-        </ul>
+        <section className="menu">
+          <h3 className="menu__title">Products</h3>
+          <ul className="menu__list">
+            {menuItems.map((product) => (
+              <ProductCard key={product.id} props={product} />
+            ))}
+          </ul>
+        </section>
       )}
     </>
   );

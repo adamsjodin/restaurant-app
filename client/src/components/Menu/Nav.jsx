@@ -10,9 +10,9 @@ import { SlCalender } from "react-icons/sl";
 import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import NavIcon from './NavIcon';
+import { Link } from 'react-router-dom';
 
 function Nav() {
-
     const [openNav, setOpenNav] = useState(false);
 
     return (
@@ -28,7 +28,9 @@ function Nav() {
                         <li><FaWpforms className='nav--icon'/> My orders</li>
                         <li><SlCalender className='nav--icon'/> Make reservation</li>
                         <li><MdOutlineContactPage className='nav--icon'/> Contact</li>
-                        <li><IoIosInformationCircleOutline className='navContent--icon'/> About</li>
+                        <li onClick={() => setOpenNav(!openNav)}><IoIosInformationCircleOutline className='navContent--icon'/> 
+                           <Link to={'/about'}>About</Link>
+                        </li>
                     </ul>
                     <div className='nav--footer'>
                     <IoSettingsOutline className='nav--icon' />

@@ -47,7 +47,7 @@ const Search = ({ menuItems, isSearching }) => {
           </motion.div>
         )}
       </AnimatePresence>
-      <ul className='menu'>
+      <ul className='menu__list results'>
         {filterMenuItems().map((item) => (
           <ProductCard key={item.id} props={item} />
         ))}

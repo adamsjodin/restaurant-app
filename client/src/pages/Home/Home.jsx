@@ -22,14 +22,14 @@ function Home() {
 
   const menuItems = menuQuery.data || [];
 
-  if (menuQuery.isLoading) return <h1>Loading...</h1>;
+  if (menuQuery.isLoading) return <h1 style={{ minHeight: "100vh" }}>Food is coming...</h1>;
   if (menuQuery.isError) {
     return <pre>{JSON.stringify(menuQuery.error)}</pre>;
   }
 
   return (
     <>
-      {isSearching ? null : (
+      {isSearching ?  null : (
         <>
           <Offers />
           <Categories />

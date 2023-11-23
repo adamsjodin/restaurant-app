@@ -1,0 +1,47 @@
+
+@import '../../Styles/variables';
+@import '../../Styles/mixins';
+
+.btn {
+  @include button-styles;
+  transition: all .5s ease;
+}
+.button--primary {
+    background-color: $clr-btn__primary;
+  
+    &:hover {
+      background-color: $clr-btn__white;
+      color: $clr-btn__primary;
+    }
+  }
+  
+  .button--secondary {
+    background-color: $clr-btn__white;
+    color: black;
+  
+    &:hover {
+      background-color: black;
+      color: $clr-btn__white;
+    }
+  }
+  
+  .button--third {
+    background-color: $clr-btn__red;
+    color: $clr-btn__white;
+  
+    &:hover {
+      background-color: $clr-btn__white;
+      color: $clr-btn__red;
+    }
+  }
+
+  .button--add {
+    background-color: $clr-btn__add;
+    color: black;
+
+    &:hover {
+      background-color: $clr-btn__white;
+      color: $clr-btn__add;
+    }
+  }
+  

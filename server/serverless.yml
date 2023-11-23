@@ -4,7 +4,113 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  profile: restaurant-admin
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::281856235143:role/serverless-dynamodb-role
+
+plugins: 
+  - serverless-webpack
+
+package: 
+  individually: true
 
 functions:
-  function1:
-    handler: index.handler
+  getMenu:
+    handler: functions/menuFunctions/getMenu/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/menu'
+          method: GET
+  addToMenu:
+    handler: functions/menuFunctions/addToMenu/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/menu'
+          method: POST
+  addUser:
+    handler: functions/userFunctions/addUser/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/user'
+          method: POST
+  getAllUsers:
+    handler: functions/userFunctions/getAllUsers/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/members'
+          method: GET
+  getUser:
+    handler: functions/userFunctions/getUser/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/login'
+          method: POST
+  addOrder:
+    handler: functions/orderFunctions/addOrder/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/cart'
+          method: POST
+  getAllOrders:
+    handler: functions/orderFunctions/getAllOrders/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/orders'
+          method: GET
+  getMyOrders:
+    handler: functions/orderFunctions/getMyOrders/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/history'
+          method: GET
+
+
+resources: 
+  Resources: 
+    menuDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: menuDb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: id 
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    userDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: userDb
+        AttributeDefinitions:
+          - AttributeName: email
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: email 
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    ordersDb:
+      Type: AWS::DynamoDB::Table
+      Properties: 
+        TableName: ordersDb
+        AttributeDefinitions:
+          - AttributeName: orderNr
+            AttributeType: S
+          - AttributeName: userID
+            AttributeType: S
+          - AttributeName: TimeStamp
+            AttributeType: N
+        KeySchema: 
+          - AttributeName: orderNr
+            KeyType: HASH
+          - AttributeName: userID
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: TimeStampIndex
+            KeySchema:
+              - AttributeName: TimeStamp
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST

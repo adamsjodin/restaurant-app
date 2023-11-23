@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Wings Wednesday",
+        "description": "Eat as many wings you can on Wednesdays",
+        "price": 199,
+        "bundle": false,
+        "bundleText": "",
+        "imgUrl": "/images/chicken_wings.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Gluten-free",
+        "description": "Don't forget we can make every meal gluten-free",
+        "price": 0,
+        "bundle": false,
+        "bundleText": "",
+        "imgUrl": "/images/oven.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Slider Sunday",
+        "description": "A big table of sliders with different flavors",
+        "price": [120, 50],
+        "bundle": true,
+        "bundleText": "3 for",
+        "imgUrl": "/images/sliders.jpg"
+    }
+]

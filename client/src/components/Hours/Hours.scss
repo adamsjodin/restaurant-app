@@ -1,0 +1,25 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+.hours {
+    color: $clr-text;
+    padding: 1rem 2rem;
+    font-family: $font-family;
+    background-color: black;
+    
+    @include flexSpaceBetween(column);
+    
+    &--lists {
+        margin: 1rem;
+        gap: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+    
+    &--ul {
+        list-style-type: none;
+    }
+}
+    p {
+        text-align: center;
+    }

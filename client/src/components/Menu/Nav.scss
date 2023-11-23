@@ -1,0 +1,52 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+.nav {
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    color: $clr-text;
+    font-family: $font-family;
+    padding: 0rem 2rem;
+    background-color: $background-color--popup;
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1rem;
+
+    &--ul {
+        list-style-type: none;
+        text-align: start;
+        line-height: 4rem;
+        margin-top: auto;
+    }
+    
+    &--ul li {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &--icon {
+        font-size: 1.4rem;
+    }
+
+    &--footer {
+        display: flex;
+        justify-content: space-around;
+
+        margin-top: auto;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .nav {
+        width: 22rem;
+        background-color: rgba(0, 0, 0, 0.92);
+    } 
+  }

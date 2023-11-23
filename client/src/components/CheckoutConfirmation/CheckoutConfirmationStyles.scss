@@ -1,0 +1,117 @@
+@import "src/styles/_variables";
+@import "src/styles/_mixins";
+
+.checkout-confirmation {
+  text-align: center;
+  min-height: 100wh;
+}
+
+.checkout-confirmation h2 {
+  font-size: $fs-h1;
+  padding: 3rem;
+}
+
+.checkout-confirmation p {
+  margin: 2.5rem 5rem 3.5rem;
+}
+
+.checkout-confirmation__timeline {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  .line {
+    border-left: 2px dotted white;
+    height:30em;
+  }
+  .items {
+    display: grid;
+    gap: 1em;
+  }
+}
+
+.checkout-confirmation__timeline-item {
+  position: relative;
+}
+
+.checkout-confirmation__timeline-content {
+  border: 1px solid white;
+  position: relative;
+  padding: 1.5rem;
+  min-height: 5.1rem;
+  border-radius: 4px;
+  font-size: $fs-smaller;
+}
+
+.checkout-confirmation__timeline-content::before {
+  content: "";
+  position: absolute;
+  width: 1.2rem;
+  height: 1.2rem;
+  left: -2.7rem;
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+// .checkout-confirmation__timeline-content::before {
+//   content: "";
+//   position: absolute;
+//   left: -4.6rem;
+//   top: 0;
+//   height: 125%;
+//   width: 2px;
+//   border-left: 2px dotted white;
+// }
+
+.checkout-confirmation__close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+}
+
+@media screen and (min-width: 800px) {
+  .checkout-confirmation__timeline-content {
+    border: 1px solid white;
+    position: relative;
+    min-height: 0rem;
+    border-radius: 4px;
+    margin: 2rem;
+    margin-top: 4rem;
+    font-size: $fs-smaller;
+  }
+
+  .checkout-confirmation__timeline {
+    display: flex;
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+  .checkout-confirmation__timeline-item::after {
+    content: "";
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    top: -0.5rem;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+
+  .checkout-confirmation__timeline-item::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    left: 0rem;
+    width: 99%;
+    border-top: 2px dotted white;
+  }
+
+  .checkout-confirmation__timeline-content::before {
+    display: none;
+  }
+
+  .checkout-confirmation__timeline-content::after {
+    display: none;
+  }
+}

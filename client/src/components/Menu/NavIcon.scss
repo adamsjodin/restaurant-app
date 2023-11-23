@@ -1,0 +1,16 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+.navIcon {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    @include flexSpaceAround(column);
+
+    &--menu {
+        z-index: 2;
+        height: 0.1rem;
+        background-color: $clr-text;
+    }
+}

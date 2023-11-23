@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "<!--\r title: 'AWS NodeJS Example'\r description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'\r layout: Doc\r framework: v3\r platform: AWS\r language: nodeJS\r priority: 1\r authorLink: 'https://github.com/serverless'\r authorName: 'Serverless, inc.'\r authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'\r -->",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-webpack": "^5.13.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "nanoid": "^5.0.3"
+  }
+}

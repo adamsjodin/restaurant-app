@@ -1,0 +1,102 @@
+[
+      {
+        "id": 1,
+        "name": "Tomato Sauce",
+        "category": "Sauces"
+      },
+      {
+        "id": 2,
+        "name": "Mozzarella Cheese",
+        "category": "Cheeses"
+      },
+      {
+        "id": 3,
+        "name": "Pepperoni",
+        "category": "Meats"
+      },
+      {
+        "id": 4,
+        "name": "Mushrooms",
+        "category": "Vegetables"
+      },
+      {
+        "id": 5,
+        "name": "Green Peppers",
+        "category": "Vegetables"
+      },
+      {
+        "id": 6,
+        "name": "Onions",
+        "category": "Vegetables"
+      },
+      {
+        "id": 7,
+        "name": "Black Olives",
+        "category": "Vegetables"
+      },
+      {
+        "id": 8,
+        "name": "Italian Sausage",
+        "category": "Meats"
+      },
+      {
+        "id": 9,
+        "name": "Ham",
+        "category": "Meats"
+      },
+      {
+        "id": 10,
+        "name": "Pineapple",
+        "category": "Fruits"
+      },
+      {
+        "id": 11,
+        "name": "Tomato Sauce",
+        "category": "Sauces"
+      },
+      {
+        "id": 12,
+        "name": "Mozzarella Cheese",
+        "category": "Cheeses"
+      },
+      {
+        "id": 13,
+        "name": "Pepperoni",
+        "category": "Meats"
+      },
+      {
+        "id": 14,
+        "name": "Mushrooms",
+        "category": "Vegetables"
+      },
+      {
+        "id": 15,
+        "name": "Green Peppers",
+        "category": "Vegetables"
+      },
+      {
+        "id": 16,
+        "name": "Onions",
+        "category": "Vegetables"
+      },
+      {
+        "id": 17,
+        "name": "Black Olives",
+        "category": "Vegetables"
+      },
+      {
+        "id": 18,
+        "name": "Italian Sausage",
+        "category": "Meats"
+      },
+      {
+        "id": 19,
+        "name": "Ham",
+        "category": "Meats"
+      },
+      {
+        "id": 20,
+        "name": "Pineapple",
+        "category": "Fruits"
+      }
+    ]

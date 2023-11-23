@@ -1,0 +1,13 @@
+.form,
+.form__inputs {
+    display: grid;
+}
+.form {
+    gap: 2em;
+    padding: 1em;
+
+    &__inputs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+    }
+}

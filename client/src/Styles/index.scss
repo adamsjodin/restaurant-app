@@ -1,0 +1,28 @@
+@import './variables'; 
+@import './mixins';
+
+* {
+  font-family: $font-family;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+body {
+  @extend .background-color__black;
+  margin: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: black;
+  position: relative;
+}
+
+.background-color__black {
+  background: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
+  background-repeat: no-repeat;
+}
+
+.background-color__white {
+  background: linear-gradient($background-color--main, white);
+}
+

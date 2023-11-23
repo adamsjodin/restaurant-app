@@ -4,6 +4,10 @@
 * {
   font-family: $font-family;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
 body {
   @extend .background-color__black;
   margin: 0;

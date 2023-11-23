@@ -1,3 +1,6 @@
+.results {
+  padding: 1em;
+}
 .search__input {
   min-width: 50%;
   padding: 0.5em;
@@ -25,6 +28,7 @@
   position: absolute;
   top: 1em;
   right: 1em;
+  z-index: 100;
 }
 .search__icon #search {
   width: 2em;

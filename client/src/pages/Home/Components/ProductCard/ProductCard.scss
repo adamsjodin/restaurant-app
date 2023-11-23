@@ -2,9 +2,18 @@
 @import '../../../../Styles/mixins';
 
 .menu {
+    padding: 1em;
+
+    h3 {
+        font-family: $font-family;
+        font-size: $fs-h3;
+        font-weight: 600;
+    }
+}
+.menu__list {
     @include gridColumns(100%);
     gap: 1em;
-    padding: 1em;
+    padding-block: 1em;
 }
 .product {
     @include gridColumns(repeat(2, 1fr));
@@ -22,7 +31,7 @@
         right: 10px;
     }
     &__image {
-        height: 150px;
+        height: 125px;
         @include bgImage;
         border-radius: 1rem;
     }

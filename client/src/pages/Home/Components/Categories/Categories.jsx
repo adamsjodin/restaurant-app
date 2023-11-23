@@ -24,11 +24,11 @@ export default function Categories() {
     )
   })
   return (
-    <article className="categories">
+    <section className="categories">
       <h3>Categories</h3>
-      <section className="category-list">  
+      <ul className="category-list">  
         {categoryEl && categoryEl}
-      </section>
-    </article>
+      </ul>
+    </section>
   )
 }

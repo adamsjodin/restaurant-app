@@ -1,10 +1,9 @@
+import { useRef, useState } from "react";
 import { Truncate } from "@primer/react";
-import Button from "../../../../components/Button/Button";
-import "./ProductCard.scss";
 import { FaInfo } from "react-icons/fa";
+import Button from "../../../../components/Button/Button";
 import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
-import { useEffect, useRef, useState } from "react";
-import anime from 'animejs/lib/anime.es.js';
+import "./ProductCard.scss";
 
 function ProductCard({ props }) {
   const { title, description, price, imgUrl } = props;
@@ -14,9 +13,7 @@ function ProductCard({ props }) {
   
 
   const handleClick = () => {
-    
       setShowInfo(!showInfo);
-    
   };
 
   

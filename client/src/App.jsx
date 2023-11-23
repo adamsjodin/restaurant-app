@@ -8,6 +8,8 @@ import Home from './pages/Home/Home'
 import Topbar from './components/Topbar/Topbar'
 import Footer from './components/Footer/Footer'
 import Signup from './components/Signup/Signup'
+import PreCheckoutConfirmation from './components/PreCheckoutConfirmation/PreCheckoutConfirmation'
+import CheckoutConfirmation from './components/CheckoutConfirmation/CheckoutConfirmation'
 /* import { useState } from 'react' */
 
 function App() {
@@ -18,8 +20,8 @@ function App() {
   const [reservation, setReservation] = useState(false) */
   return (
     <main style={{ position: 'relative'}}>
-    <Topbar />
-    <Home />
+    {/* <Topbar />
+    <Home /> */}
     {/* <section style={{ display: "grid"}}>
       <Nav />
       <button onClick={() => setReservation(!reservation)}>{reservation ? "Hide" : "Show"} Reservation</button>
@@ -35,6 +37,8 @@ function App() {
       <button onClick={() => setHome(!home)}>{home ? "Hide" : "Show"} Home</button>
       {home ? <Home /> : ""}
    </section> */}
+   {/* <CheckoutConfirmation /> */}
+   <PreCheckoutConfirmation />
     </main>
   )
 }

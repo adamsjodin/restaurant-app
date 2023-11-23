@@ -1,29 +1,56 @@
 @import "src/styles/_variables";
 @import "src/styles/_mixins";
 
-
 .pre-checkout {
-    border-top: 2px solid white;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    height: 55%;
+  border-top: 2px solid white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  height: 55%;
 }
 
-.pre-checkout h2 {
-    margin: 2rem;
-    font-size: $fs-h1;
-}
 .pre-checkout__items {
-    margin: 1.5rem;
-    display: flex;
-    justify-content: space-around;
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }
 
-.btn {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3rem;
+.pre-checkout__btns {
+  @include flexCenter(column);
+  gap: 2em;
+  button {
+    min-width: 20rem;
+  }
+}
+
+.pre-checkout__top {
+  @include gridCenter();
+  gap: 2em;
+  padding-block: 2em;
+  h2 {
+    font-size: $fs-h1;
+  }
+}
+
+@media screen and (min-width: 55em) {
+  .pre-checkout {
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 5rem 0;
+    position: unset;
+  }
+
+  .pre-checkout__top {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pre-checkout__items {
+    justify-content: space-between;
+    min-width: 15rem;
+  }
+
 }

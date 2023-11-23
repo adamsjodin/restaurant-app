@@ -1,10 +1,10 @@
-const { sendResponse } = require('../../responses/index')
-const { db } = require("../../services/db")
+const { sendResponse } = require('../../../responses/index')
+const { db } = require("../../../services/db")
 
 module.exports.handler = async (event, context) => {
   try {
     const { Items } = await db.scan({
-      TableName: "userDb",
+      TableName: "menuDb",
       FilterExpression: "attribute_exists(#DYNOBASE_id)",
       ExpressionAttributeNames: {
         "#DYNOBASE_id": "id"

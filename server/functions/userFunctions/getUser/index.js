@@ -1,10 +1,9 @@
-const { sendResponse } = require('../../responses/index')
-const { db } = require("../../services/db")
+const { sendResponse } = require('../../../responses/index')
+const { db } = require("../../../services/db")
 const bcrypt = require('bcryptjs')
 
 module.exports.handler = async (event) => {
   const { email, password } = JSON.parse(event.body)
-  //Send email, password and role when logging in. Not possible... Check for role must happen later! Think again...  
   const params = {
     TableName: "userDb",
     Key: {

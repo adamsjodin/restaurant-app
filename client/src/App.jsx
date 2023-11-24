@@ -5,7 +5,7 @@ import AnimatedRoutes from "./components/Animations/AnimatedRoutes";
 import './App.css'
 import Hours from './components/Hours/Hours';
 import Footer from './components/Footer/Footer';
-import Signup from './components/Signup/Signup';
+import CheckoutConfirmation from './components/CheckoutConfirmation/CheckoutConfirmation';
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
       <main>
         <AnimatedRoutes />
       </main>
+      <CheckoutConfirmation />
       { window.innerWidth < 600 ? <Hours /> : <Footer />}
     </>
   );

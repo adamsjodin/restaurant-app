@@ -1,3 +1,6 @@
+.search {
+  min-height: 80vh;
+}
 .results {
   padding: 1em;
 }
@@ -28,7 +31,7 @@
   position: absolute;
   top: 1em;
   right: 1em;
-  z-index: 100;
+  z-index: 1;
 }
 .search__icon #search {
   width: 2em;

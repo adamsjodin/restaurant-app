@@ -69,7 +69,7 @@ functions:
     events: 
       - httpApi: 
           path: '/api/history'
-          method: GET
+          method: POST
 
 
 resources: 

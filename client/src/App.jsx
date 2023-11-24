@@ -5,6 +5,7 @@ import AnimatedRoutes from "./components/Animations/AnimatedRoutes";
 import './App.css'
 import Hours from './components/Hours/Hours';
 import Footer from './components/Footer/Footer';
+import Signup from './components/Signup/Signup';
 
 
 function App() {

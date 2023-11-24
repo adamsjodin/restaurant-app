@@ -6,7 +6,6 @@
 
     &--nav {
         width: 100vw;
-        z-index: 2;
         margin: 1rem;
         @include flexSpaceBetween(row);
     }

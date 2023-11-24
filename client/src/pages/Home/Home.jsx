@@ -7,6 +7,7 @@ import Offers from "./Components/Offers/Offers";
 import Categories from "./Components/Categories/Categories";
 import Search from "./Components/Search/Search";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import OrderHistory from "../../components/OrderHistory/OrderHistory";
 
 
 function Home() {
@@ -36,6 +37,7 @@ function Home() {
     <>
       {isSearching ?  null : (
         <>
+          {/* <OrderHistory /> */}
           <Offers />
           <Categories setSelectedCategory={setSelectedCategory} />
         </>

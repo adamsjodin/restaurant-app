@@ -21,7 +21,10 @@ body {
   background: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
   background-repeat: no-repeat;
 }
-
+.bg__black-reverse {
+  background: linear-gradient(192deg, black 50%, hsl(180, 100%, 20%) 100%);
+  background-repeat: no-repeat;
+}
 .background-color__white {
   background: linear-gradient($background-color--main, white);
 }

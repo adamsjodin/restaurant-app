@@ -25,13 +25,15 @@ function CheckoutConfirmation() {
       height: "4vh"
     },
     open: {
-      height: "25vh"
+      height: "25vh",
+      width: "100%",
+      zIndex: "1000000"
     }
   }
 
   return (
-    <motion.article className="checkout-confirmation background-color__black"
-      variants={screenWidth > 600 ? overlayVariants : null}
+    <motion.article className={"checkout-confirmation " + (screenWidth > 600 ? "bg__black-reverse" : "background-color__black")}
+      variants={overlayVariants}
       animate={overlayOpen ? "open" : "closed" }
       transition={{ duration: 1 }}
     >

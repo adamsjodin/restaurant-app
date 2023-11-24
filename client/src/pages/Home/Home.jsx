@@ -21,6 +21,7 @@ function Home() {
     queryKey: ["menu"],
     queryFn: getProducts,
   });
+
   const menuItems = menuQuery?.data?.menu || [];
 
   if (menuQuery.isLoading) return <h1 style={{ minHeight: "100vh" }}>Food is coming...</h1>;
@@ -28,7 +29,7 @@ function Home() {
     return <pre>{JSON.stringify(menuQuery.error)}</pre>;
   }
 
-  const filteredItems = selectedCategory 
+  const filteredItems = selectedCategory
   ? menuItems.filter((product) => product.categories.includes(selectedCategory)) : menuItems
 
   return (

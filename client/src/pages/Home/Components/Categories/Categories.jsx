@@ -3,6 +3,7 @@ import "./Categories.scss";
 
 export default function Categories({ setSelectedCategory }) {
   const categories = [
+    {dish: "All", imgUrl: "/images/oven.jpg"},
     {dish: "Pizza", imgUrl: "/images/category_pizza.jpg"},
     {dish: "Burgers", imgUrl: "/images/category_burger.jpg"},
     {dish: "Pasta", imgUrl: "/images/category_pasta.jpg"},

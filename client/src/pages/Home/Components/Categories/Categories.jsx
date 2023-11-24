@@ -1,10 +1,10 @@
 
 import "./Categories.scss";
 
-export default function Categories() {
+export default function Categories({ setSelectedCategory }) {
   const categories = [
     {dish: "Pizza", imgUrl: "/images/category_pizza.jpg"},
-    {dish: "Burger", imgUrl: "/images/category_burger.jpg"},
+    {dish: "Burgers", imgUrl: "/images/category_burger.jpg"},
     {dish: "Pasta", imgUrl: "/images/category_pasta.jpg"},
     {dish: "Chicken", imgUrl: "/images/category_chicken.jpg"},
     {dish: "Vego", imgUrl: "/images/category_veg.jpg"},
@@ -12,8 +12,7 @@ export default function Categories() {
   ]
 
   function sortCategories(category) {
-    //filter from menu - need to pass to productlist. Sent state as prop? 
-    console.log(category.dish)
+    setSelectedCategory(category.dish.toLowerCase());
   }
   const categoryEl = categories.map((category, i) => {
     return (

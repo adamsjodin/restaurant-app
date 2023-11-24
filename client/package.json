@@ -15,6 +15,7 @@
     "@tanstack/react-query-devtools": "^5.8.4",
     "@vis.gl/react-google-maps": "^0.3.3",
     "animejs": "^3.2.1",
+    "axios": "^1.6.2",
     "framer-motion": "^10.16.5",
     "google-map-react": "^2.2.1",
     "react": "^18.2.0",

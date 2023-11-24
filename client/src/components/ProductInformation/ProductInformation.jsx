@@ -13,15 +13,15 @@ function ProductInformation({ props, onClick }) {
         <h3>{props.title}</h3>
         <p>{props.description}</p>
         <h3>Allergens:</h3>
-        <ul>
+        <ul className="allergens">
           {props.ingredients.map((ingredient, id) => (
             <li key={id}>{ingredient}</li>
           ))}
         </ul>
-        <Button className="add">Add +</Button>
-        <h3 className="product-info__price">{props.price} kr</h3>
       </section>
       <FaInfo className="info-btn" onClick={onClick} />
+      <Button className="add">Add +</Button>
+      <h3 className="product-info__price">{props.price} kr</h3>
     </article>
   );
 }

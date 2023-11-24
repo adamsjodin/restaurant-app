@@ -48,6 +48,7 @@
 
 @media screen and (min-width: 800px) {
     .signup {
+        background-color: $background-color--card;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

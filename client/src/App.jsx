@@ -5,7 +5,9 @@ import AnimatedRoutes from "./components/Animations/AnimatedRoutes";
 import './App.css'
 import Hours from './components/Hours/Hours';
 import Footer from './components/Footer/Footer';
-import CheckoutConfirmation from './components/CheckoutConfirmation/CheckoutConfirmation';
+import Settings from "./components/Settings/Settings";
+import Categories from "./pages/Home/Components/Categories/Categories";
+import ProductCard from "./pages/Home/Components/ProductCard/ProductCard";
 
 
 function App() {
@@ -17,7 +19,6 @@ function App() {
       <main>
         <AnimatedRoutes />
       </main>
-      <CheckoutConfirmation />
       { window.innerWidth < 600 ? <Hours /> : <Footer />}
     </>
   );

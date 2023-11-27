@@ -4,6 +4,8 @@ import { FaInfo } from "react-icons/fa";
 import Button from "../../../../components/Button/Button";
 import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
 import "./ProductCard.scss";
+import { motion } from "framer-motion";
+import { IoMdClose } from "react-icons/io";
 
 function ProductCard({ props }) {
   const { title, description, price, imgUrl } = props;
@@ -16,17 +18,19 @@ function ProductCard({ props }) {
       setShowInfo(!showInfo);
   };
 
-  
   return (
     <>
       {!showInfo && (
-    <article className="product" ref={cardRef}>
+    <motion.article 
+    className="product" ref={cardRef}>
         <>
-          <figure
+          <motion.figure
             className="product__image"
             style={{ backgroundImage: `url(${imgUrl})` }}
-          ></figure>
-          <section className="product__info">
+          ></motion.figure>
+          <motion.section 
+
+          className="product__info">
             <h3>{title}</h3>
             <Truncate inline title={description}>
               {description}
@@ -35,10 +39,10 @@ function ProductCard({ props }) {
               <h3>{price} kr</h3>
               <Button className="add">Add +</Button>
             </section>
-          </section>
-          <FaInfo onClick={handleClick} />
+          </motion.section>
+        <FaInfo onClick={handleClick}/>
         </>
-      </article>
+      </motion.article>
       )}
       {showInfo && <ProductInformation className="productInformation" props={props} onClick={handleClick} />}
 

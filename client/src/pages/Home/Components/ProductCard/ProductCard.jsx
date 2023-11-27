@@ -19,7 +19,9 @@ function ProductCard({ props }) {
   
   return (
     <>
-      {!showInfo && (
+      { showInfo ? (
+        <ProductInformation className="productInformation" props={props} onClick={handleClick} />
+      ): (
     <article className="product" ref={cardRef}>
         <>
           <figure
@@ -40,8 +42,6 @@ function ProductCard({ props }) {
         </>
       </article>
       )}
-      {showInfo && <ProductInformation className="productInformation" props={props} onClick={handleClick} />}
-
   </>);
 }
 

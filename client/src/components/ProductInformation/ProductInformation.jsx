@@ -4,10 +4,10 @@ import "./ProductInformationStyles.scss";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 
-function ProductInformation({ props, onClick }) {
+function ProductInformation({ props, onClick, showInfo }) {
   return (
-    <motion.article 
-    className="product-info">
+    <>
+    <motion.article className="product-info">
       <figure
         className="product-info__image"
         style={{ backgroundImage: `url(${props.imgUrl})` }}
@@ -22,13 +22,12 @@ function ProductInformation({ props, onClick }) {
           ))}
         </ul>
       </section>
-      {/* {showInfo ? <IoMdClose onClick={handleClick}/> : <FaInfo onClick={handleClick} />} */}
+      {showInfo ? <IoMdClose onClick={onClick}/> : <FaInfo onClick={onClick} />}
 
-      <IoMdClose className="info-btn" onClick={onClick} />
-    </motion.article>
       <Button className="add">Add +</Button>
       <h3 className="product-info__price">{props.price} kr</h3>
-    </article>
+    </motion.article>
+    </>
   );
 }
 

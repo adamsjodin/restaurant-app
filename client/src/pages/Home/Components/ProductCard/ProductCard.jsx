@@ -5,7 +5,6 @@ import Button from "../../../../components/Button/Button";
 import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
 import "./ProductCard.scss";
 import { motion } from "framer-motion";
-import { IoMdClose } from "react-icons/io";
 
 function ProductCard({ props }) {
   const { title, description, price, imgUrl } = props;
@@ -21,7 +20,7 @@ function ProductCard({ props }) {
   return (
     <>
       { showInfo ? (
-        <ProductInformation className="productInformation" props={props} onClick={handleClick} />
+        <ProductInformation className="productInformation" props={props} onClick={handleClick} showInfo={showInfo} />
       ) : (
     <motion.article className="product" ref={cardRef}>
         <>

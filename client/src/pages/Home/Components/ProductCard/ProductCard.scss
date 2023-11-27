@@ -77,3 +77,19 @@
     }
 
 }
+
+.product--cart{
+    margin: 1rem;
+}
+
+.cart-wrapper {
+    @include flexCenter(row);
+    gap: 2em;
+    .btn {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        font-size: 0.6rem;
+        margin: 0;
+    }
+}

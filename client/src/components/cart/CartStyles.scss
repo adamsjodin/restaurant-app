@@ -1,0 +1,16 @@
+@import '../../Styles/variables';
+
+.cart {
+    height: 100vh;
+    text-align: center;
+        button{
+        margin:auto;
+        margin-top: 1rem;
+    }
+
+    h1 {
+        font-size: $fs-h1;
+        padding-bottom: 1rem;
+    }
+}
+

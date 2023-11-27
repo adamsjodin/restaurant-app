@@ -5,6 +5,7 @@
   display: grid;
   gap: 1em;
   background-color: $background-color--card;
+  color: $clr-text;
   padding: 1em;
   border-radius: 1rem;
   text-align: center;
@@ -50,4 +51,21 @@
     right: 1rem;
     bottom: 1rem;
   }
+}
+.info-btn {
+  font-size: 1.5rem;
+}
+
+@media  screen and (min-width: 800px){
+  .product-info {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    z-index: 1;
+    background-color: $background-color--popup;
+    border: 1px white solid;
+    transition-delay: 2s;
+  }
+
+
 }

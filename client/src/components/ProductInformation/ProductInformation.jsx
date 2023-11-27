@@ -1,10 +1,13 @@
 import Button from "../Button/Button";
 import { FaInfo } from "react-icons/fa";
 import "./ProductInformationStyles.scss";
+import { motion } from "framer-motion";
+import { IoMdClose } from "react-icons/io";
 
 function ProductInformation({ props, onClick }) {
   return (
-    <article className="product-info">
+    <motion.article 
+    className="product-info">
       <figure
         className="product-info__image"
         style={{ backgroundImage: `url(${props.imgUrl})` }}
@@ -19,7 +22,10 @@ function ProductInformation({ props, onClick }) {
           ))}
         </ul>
       </section>
-      <FaInfo className="info-btn" onClick={onClick} />
+      {/* {showInfo ? <IoMdClose onClick={handleClick}/> : <FaInfo onClick={handleClick} />} */}
+
+      <IoMdClose className="info-btn" onClick={onClick} />
+    </motion.article>
       <Button className="add">Add +</Button>
       <h3 className="product-info__price">{props.price} kr</h3>
     </article>

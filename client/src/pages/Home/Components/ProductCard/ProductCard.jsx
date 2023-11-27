@@ -20,9 +20,10 @@ function ProductCard({ props }) {
 
   return (
     <>
-      {!showInfo && (
-    <motion.article 
-    className="product" ref={cardRef}>
+      { showInfo ? (
+        <ProductInformation className="productInformation" props={props} onClick={handleClick} />
+      ) : (
+    <motion.article className="product" ref={cardRef}>
         <>
           <motion.figure
             className="product__image"
@@ -44,8 +45,6 @@ function ProductCard({ props }) {
         </>
       </motion.article>
       )}
-      {showInfo && <ProductInformation className="productInformation" props={props} onClick={handleClick} />}
-
   </>);
 }
 

@@ -28,7 +28,6 @@ function ProductInformation({ props, onClick, showInfo }) {
       <Button className="add">Add +</Button>
       <h3 className="product-info__price">{props.price} kr</h3>
     </motion.article>
-    </>
   );
 }
 

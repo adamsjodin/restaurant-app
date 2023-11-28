@@ -1,0 +1,37 @@
+.categories {
+  padding-inline-start: 1em;
+  color: hsl(0, 0%, 100%);
+  font-family: "Quicksand", sans-serif;
+}
+.categories h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: left;
+}
+.categories .category-list {
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: scroll;
+  gap: 1em;
+  padding-block: 1em;
+}
+.categories .category-list .category {
+  font-size: 0.8rem;
+}
+.categories .category-list .category__image {
+  width: 6rem;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 1em;
+}
+.categories .category-list .category p {
+  max-width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}/*# sourceMappingURL=Categories.css.map */

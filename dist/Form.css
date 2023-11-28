@@ -1,0 +1,13 @@
+.form,
+.form__inputs {
+  display: grid;
+}
+
+.form {
+  gap: 2em;
+  padding: 1em;
+}
+.form__inputs {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}/*# sourceMappingURL=Form.css.map */

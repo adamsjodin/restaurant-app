@@ -1,0 +1,1 @@
+{"version":3,"sources":["../client/src/pages/Splash/Splash.scss","../client/src/Styles/_mixins.scss","Splash.css"],"names":[],"mappings":"AAGA;EACE,aAAA;ECDE,aAAA;EACA,qBAAA;EDEF,kBAAA;AEDF;AFGE;EACE,QAAA;EACA,YAAA;EACA,4CAAA;EACA,4BAAA;EACA,sBAAA;EACA,2BAAA;EACA,sBAAA;EACA,uBAAA;EACA,iCAAA;AEDJ;;AFKA;EACE;IACE,mBAAA;EEFF;EFIA;IACE,YAAA;IACA,yBAAA;EEFF;AACF","file":"Splash.css"}

@@ -54,6 +54,9 @@ function Home() {
 
   return (
     <>
+
+    { openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart}/> : (
+      <>
       {isSearching ? null : (
         <>
           <Offers />
@@ -88,7 +91,8 @@ function Home() {
           {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + " "}SEK
         </Button>
       )}
-        { openCart && <Cart />}
+      </>
+    )}
       <ReactQueryDevtools />
     </>
   );

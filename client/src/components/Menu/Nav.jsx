@@ -16,6 +16,12 @@ import LogoutConf from "./LogoutConf";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+
+//TODO! 
+//1. Add settings component
+//2. Fix signup component
+//3. Fix styling
+
 function Nav() {
   const [openNav, setOpenNav] = useState(false);
   const [userId, setUserId] = useState(null)
@@ -60,7 +66,7 @@ function Nav() {
     console.log("test")
   }, [userId])
 
-//Next step - reload menu when login-state changes
+
 
   return (
     <>

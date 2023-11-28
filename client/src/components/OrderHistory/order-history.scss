@@ -1,0 +1,43 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+
+.order-history {
+  padding: 5rem;
+  color: $clr-text;
+  background-color: $background-color--main;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 500;
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    padding: 2rem
+  }
+  &__container {
+    background-color: $background-color--card;
+  }
+  &__tabs {
+    display: flex;
+    background-color: transparent;
+    p {
+      padding: 1rem 3rem;
+      border-radius: 20px 20px 0 0;
+         
+    }
+  }
+  &__card {
+    background-color: $background-color--popup;
+    margin: 1rem;
+    border: 1px solid black;
+    display: flex;
+    img {
+      max-width: 30%;
+    }
+    &__info-section {
+      margin: auto
+    }
+  }
+}

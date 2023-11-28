@@ -55,6 +55,13 @@ function Home() {
         <Cart onClick={handleCartBtnClick} />
       ) : (
         <>
+          <Offers />
+          <Categories setSelectedCategory={setSelectedCategory} />
+        </>
+      )}
+      <div className="search__icon" onClick={handleSearchIconClick}>
+        <CiSearch />
+      </div>
           {isSearching ? null : (
             <>
               <Offers />

@@ -4,7 +4,7 @@ import "./ProductInformationStyles.scss";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 
-function ProductInformation({ props, onClick }) {
+function ProductInformation({ props, onClick, showInfo }) {
   return (
     <motion.article className="product-info">
       <motion.figure
@@ -23,8 +23,12 @@ function ProductInformation({ props, onClick }) {
         <Button className="add">Add +</Button>
         <h3 className="product-info__price">{props.price} kr</h3>
       </motion.section>
-      <IoMdClose className="info-btn" onClick={onClick} />
+      {showInfo ? <IoMdClose onClick={onClick}/> : <FaInfo onClick={onClick} />}
+
+      <Button className="add">Add +</Button>
+      <h3 className="product-info__price">{props.price} kr</h3>
     </motion.article>
+    </>
   );
 }
 

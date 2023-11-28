@@ -15,7 +15,8 @@ export function getProducts() {
 
 
 export function getOrderHistory() {
-  const userID = "Ayb0OFc4VkaRuSa-g3Am2"
+  const userID = JSON.parse(localStorage.getItem("userId"))
+  console.log("userID: " + userID)
   return axios.post(
     "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
     { userID: userID }

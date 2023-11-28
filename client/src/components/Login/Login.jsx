@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Login.scss'
 import Signup from "../Signup/Signup"
 
-function Login() {
+function Login({state}) {
     const [loginObj, setLoginObj] = useState({
         email: "",
         password: ""
@@ -13,15 +13,15 @@ function Login() {
     const [showSignup, setShowSignup] = useState(false)
     const [error, setError] = useState(false)
 
-
-    function handleSubmit() {
+    useEffect(() => {
         setLoginObj({
             email: email,
             password: password
         })
-        axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", loginObj)
+    }, [email, password])
+    async function handleSubmit() {
+        await axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", loginObj)
         .then((res) => {
-            console.log(res.data)
           checkRole(res.data)
         })
         .catch((error) => {
@@ -29,18 +29,21 @@ function Login() {
           console.error("Error login in user: ", error);
         })
     }
+    
 
     function checkRole(data) {
         if (data.success) {
             setError(false)
-            console.log("success")
             let userInfo = JSON.parse(data.body)
             if (userInfo.role === "member") {
                 console.log(userInfo.role)
                 localStorage.setItem("userId", JSON.stringify(userInfo.id))
                 localStorage.setItem("userName", JSON.stringify(userInfo.name))
+                state(false)
             } else if (userInfo.role === "staff") {
+                console.log(userInfo.role)
                 console.log("Navigate to staff page")
+                state(false)
                 //Insert navigate here. 
             }
         } else {

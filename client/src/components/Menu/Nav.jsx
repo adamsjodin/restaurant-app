@@ -1,15 +1,18 @@
 import "./Nav.scss";
 import { useEffect, useState } from "react";
-
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
-
 import { SlHome } from "react-icons/sl";
 import { FaWpforms } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { MdOutlineContactPage } from "react-icons/md";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import NavIcon from "./NavIcon";
+import Login from "../Login/Login"
+import Signup from "../Signup/Signup"
+import OrderHistory from "../OrderHistory/OrderHistory"
+import Reservation from "../Reservation/Reservation"
+import LogoutConf from "./LogoutConf";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -17,6 +20,11 @@ function Nav() {
   const [openNav, setOpenNav] = useState(false);
   const [userId, setUserId] = useState(null)
   const [userName, setUserName] = useState(null)
+  const [showLogin, setShowLogin] = useState(false)
+  const [showSignup, setShowSignup] = useState(false)
+  const [showOrderHistory, setShowOrderHistory] = useState(false)
+  const [showReservation, setShowReservation] = useState(false)
+  const [showLogoutConf, setShowLogoutConf] = useState(false)
 
   useEffect(() => {
     const usId = localStorage.getItem("userId")
@@ -30,7 +38,7 @@ function Nav() {
       setUserId(null)
       setUserName(null)
     }
-  }, [])
+  }, [showLogin, openNav])
   const sideBar = {
     open: {
       transform: "translateX(0)",
@@ -45,52 +53,67 @@ function Nav() {
   function handleLogout() {
     localStorage.setItem("userId", "")
     localStorage.setItem("userName", "")
-    setOpenNav(false)
+    setShowLogoutConf(false)
   }
 
+  useEffect(() => {
+    console.log("test")
+  }, [userId])
 
-//Next step - generate different menues for logged in / not logged in
+//Next step - reload menu when login-state changes
 
   return (
     <>
+
       <div onClick={() => setOpenNav(!openNav)}>
         <NavIcon openNav={openNav} />
       </div>
-      <motion.div
+      
+      {openNav && <motion.div
         className="nav"
         variants={sideBar}
         animate={openNav ? "open" : "closed"}
         transition={{ duration: 0.5 }}
+        onClick={() => setOpenNav(!openNav)}
       >
         
         
         <ul className="nav--ul">
         
-          <li onClick={() => setOpenNav(!openNav)}>
+          <li>
             <SlHome className="nav--icon" />
             <Link to={"/"}>Home</Link>
           </li>
-          <li onClick={() => setOpenNav(!openNav)}>
+          {userName && <li onClick={() => setShowOrderHistory(true)}>
             <FaWpforms className="nav--icon" /> My orders
-          </li>
-          <li onClick={() => setOpenNav(!openNav)}>
+          </li>}
+          <li onClick={() => setShowReservation(true)}>
             <SlCalender className="nav--icon" /> Make reservation
           </li>
-          <li onClick={() => setOpenNav(!openNav)}>
+          <li>
             <MdOutlineContactPage className="nav--icon" />
             <Link to={"/contact"}>Contact</Link>
           </li>
-          <li onClick={() => setOpenNav(!openNav)}>
+          <li>
             <IoIosInformationCircleOutline className="navContent--icon" />
             <Link to={"/about"}>About</Link>
           </li>
         </ul>
-        <div className="nav--footer">
+        {userName && <div className="nav--footer">
           <IoSettingsOutline className="nav--icon" />
-          <h5>{userName && userName + userId}</h5>
-          <IoLogOutOutline className="nav--icon" onClick={() => {handleLogout()}} />
-        </div>
-      </motion.div>
+          <h5>{userName && JSON.parse(userName)}</h5>
+          <IoLogOutOutline className="nav--icon" onClick={() => {setShowLogoutConf(true)}} />
+        </div>}
+        {!userName && <div className="nav--footer">
+          <h5 onClick={() => setShowLogin(true)}>Log in</h5>
+          <h5 onClick={() => setShowSignup(true)}>Sign up</h5>
+        </div>}
+      </motion.div>}
+      {showLogin && <Login state={() => setShowLogin()} />}
+      {showSignup && <Signup />}
+      {showOrderHistory && <OrderHistory action={() => setShowOrderHistory()} />}
+      {showReservation && <Reservation action={() => setShowReservation()} />}
+      {showLogoutConf && <LogoutConf action={() => handleLogout()} state={() => setShowLogoutConf()}/>}
     </>
   );
 }

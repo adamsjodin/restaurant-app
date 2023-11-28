@@ -11,6 +11,7 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showSignup, setShowSignup] = useState(false)
+    const [error, setError] = useState(false)
 
 
     function handleSubmit() {
@@ -24,21 +25,26 @@ function Login() {
           checkRole(res.data)
         })
         .catch((error) => {
+            setError(true)
           console.error("Error login in user: ", error);
         })
     }
 
     function checkRole(data) {
         if (data.success) {
+            setError(false)
             console.log("success")
             let userInfo = JSON.parse(data.body)
             if (userInfo.role === "member") {
-                console.log("member")
+                console.log(userInfo.role)
                 localStorage.setItem("userId", JSON.stringify(userInfo.id))
                 localStorage.setItem("userName", JSON.stringify(userInfo.name))
-
+            } else if (userInfo.role === "staff") {
+                console.log("Navigate to staff page")
+                //Insert navigate here. 
             }
-
+        } else {
+            setError(true)
         }
     }
 
@@ -47,7 +53,8 @@ function Login() {
         <section className="login background-color__black">
             <h2 className='login--heading'>Log in</h2>
             <input type="text" className='login--input' placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-            <input type="text" className='login--input' placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password" className='login--input' placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            {error && <p>Something went wrong, try again!</p>}
             <section className='login--btns'>
                 <button className='login--btn' onClick={() => handleSubmit() }>Log in</button>
                 <p className='login--paragraph' onClick={() => setShowSignup(true)}>Sign up</p>

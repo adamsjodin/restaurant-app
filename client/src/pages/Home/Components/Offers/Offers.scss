@@ -15,7 +15,6 @@
     background-color: $background-color--card;
     overflow: hidden;
     border-radius: 1em;
-    color: $clr-text;
     &__image {
         min-height: 180px;
         @include bgImage;

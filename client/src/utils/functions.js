@@ -28,12 +28,3 @@ export function getOrderHistory() {
     })
 }
 
-export function logInUser(userInfo) {
-  axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", userInfo)
-  .then((res) => {
-    return res.data
-  })
-  .catch((error) => {
-    console.error("Error login in user: ", error);
-  })
-}

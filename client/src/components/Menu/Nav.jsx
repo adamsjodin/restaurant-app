@@ -1,5 +1,5 @@
 import "./Nav.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -15,7 +15,22 @@ import { motion } from "framer-motion";
 
 function Nav() {
   const [openNav, setOpenNav] = useState(false);
+  const [userId, setUserId] = useState(null)
+  const [userName, setUserName] = useState(null)
 
+  useEffect(() => {
+    const usId = localStorage.getItem("userId")
+    if (usId) {
+      setUserId(usId)
+    }
+    const usNa = localStorage.getItem("userName")
+    if (usNa) {
+      setUserName(usNa)
+    } else {
+      setUserId(null)
+      setUserName(null)
+    }
+  }, [])
   const sideBar = {
     open: {
       transform: "translateX(0)",
@@ -26,6 +41,15 @@ function Nav() {
       opacity: 0
     },
   };
+
+  function handleLogout() {
+    localStorage.setItem("userId", "")
+    localStorage.setItem("userName", "")
+    setOpenNav(false)
+  }
+
+
+//Next step - generate different menues for logged in / not logged in
 
   return (
     <>
@@ -38,7 +62,10 @@ function Nav() {
         animate={openNav ? "open" : "closed"}
         transition={{ duration: 0.5 }}
       >
+        
+        
         <ul className="nav--ul">
+        
           <li onClick={() => setOpenNav(!openNav)}>
             <SlHome className="nav--icon" />
             <Link to={"/"}>Home</Link>
@@ -60,8 +87,8 @@ function Nav() {
         </ul>
         <div className="nav--footer">
           <IoSettingsOutline className="nav--icon" />
-          <h5>[Kicki Lindstrand]</h5>
-          <IoLogOutOutline className="nav--icon" />
+          <h5>{userName && userName + userId}</h5>
+          <IoLogOutOutline className="nav--icon" onClick={() => {handleLogout()}} />
         </div>
       </motion.div>
     </>

@@ -9,6 +9,7 @@ import Search from "./Components/Search/Search";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Button from "../../components/Button/Button";
 import Cart from "../../components/cart/Cart";
+import Login from "../../components/Login/Login"
 
 function Home() {
   const [isSearching, setIsSearching] = useState(false);
@@ -54,7 +55,7 @@ function Home() {
 
   return (
     <>
-
+    <Login />
     { openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart}/> : (
       <>
       {isSearching ? null : (

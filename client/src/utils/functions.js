@@ -13,7 +13,7 @@ export function getProducts() {
     })
 }
 
-//Getting all orders, next step is to get from only one user. Getting cors-problem when trying to post. 
+
 export function getOrderHistory() {
   const userID = "Ayb0OFc4VkaRuSa-g3Am2"
   return axios.post(
@@ -26,4 +26,14 @@ export function getOrderHistory() {
     .catch((error) => {
       console.error("Error fetching order history: ", error);
     })
+}
+
+export function logInUser(userInfo) {
+  axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", userInfo)
+  .then((res) => {
+    return res.data
+  })
+  .catch((error) => {
+    console.error("Error login in user: ", error);
+  })
 }

@@ -2,8 +2,17 @@
 
 .cart {
     height: 100vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    z-index: 100000;
+    display: grid;
+    place-content: center;
     text-align: center;
-        button{
+
+    button {
         margin:auto;
         margin-top: 1rem;
     }

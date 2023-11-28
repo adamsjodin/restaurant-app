@@ -3,7 +3,7 @@ import ProductCard from "../../pages/Home/Components/ProductCard/ProductCard";
 import Button from "../Button/Button";
 import "./CartStyles.scss";
 
-function Cart({ onClick }) {
+function Cart({ onClick, setOpenCart, openCart }) {
   const [storedCartData, setStoredCartData] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
@@ -73,7 +73,7 @@ function Cart({ onClick }) {
       {newArray.map((product) => (
         <ProductCard key={product.id} props={{ ...product }} className="cart" cartInfo={true} increase={() => handleIncrease(product.id)} decrease={() => handleDecrease(product.id)}/>
       ))}
-      <Button className="secondary" onClick={() => onClick()}>
+      <Button className="secondary" onClick={() => setOpenCart(!openCart)}>
         Add more
       </Button>
       <Button>Go to Checkout</Button>

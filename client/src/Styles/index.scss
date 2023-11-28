@@ -1,6 +1,10 @@
 @import './variables'; 
 @import './mixins';
 
+#root {
+  min-height: 100vh;
+}
+
 * {
   font-family: $font-family;
 }

@@ -5,6 +5,7 @@ import AnimatedRoutes from "./components/Animations/AnimatedRoutes";
 import './App.css'
 import Hours from './components/Hours/Hours';
 import Footer from './components/Footer/Footer';
+import Signup from './components/Signup/Signup';
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
         <Topbar />
       </header>
       <main>
-        <AnimatedRoutes />
+        <Signup />
+        {/* <AnimatedRoutes /> */}
       </main>
-      { window.innerWidth < 600 ? <Hours /> : <Footer />}
+      {/* { window.innerWidth < 600 ? <Hours /> : <Footer />} */}
     </>
   );
 }

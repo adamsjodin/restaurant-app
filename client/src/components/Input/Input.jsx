@@ -1,14 +1,15 @@
 import "./Input.scss";
 
-function Input({ placeholder, type = 'text', value, onChange }) {
+function Input({ placeholder, type = 'text', value, name, handleChange }) {
   return (
     <>
       <input
         placeholder={placeholder}
         type={type}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={handleChange}
         className="input"
+        name={name}
       />
     </>
   )

@@ -6,13 +6,12 @@ import { IoMdClose } from "react-icons/io";
 
 function ProductInformation({ props, onClick, showInfo }) {
   return (
-    <>
     <motion.article className="product-info">
-      <figure
+      <motion.figure
         className="product-info__image"
         style={{ backgroundImage: `url(${props.imgUrl})` }}
-      ></figure>
-      <section className="product-info__info">
+      ></motion.figure>
+      <motion.section className="product-info__info">
         <h3>{props.title}</h3>
         <p>{props.description}</p>
         <h3>Allergens:</h3>
@@ -21,7 +20,9 @@ function ProductInformation({ props, onClick, showInfo }) {
             <li key={id}>{ingredient}</li>
           ))}
         </ul>
-      </section>
+        <Button className="add">Add +</Button>
+        <h3 className="product-info__price">{props.price} kr</h3>
+      </motion.section>
       {showInfo ? <IoMdClose onClick={onClick}/> : <FaInfo onClick={onClick} />}
 
       <Button className="add">Add +</Button>

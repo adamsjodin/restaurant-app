@@ -19,7 +19,6 @@ import Settings from "../Settings/Settings";
 
 
 //TODO! 
-//1. Add settings component
 //2. Fix signup component
 //3. Fix styling
 

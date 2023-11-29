@@ -10,7 +10,7 @@ module.exports.handler = async (event) => {
   const { userID, products, status } = JSON.parse(event.body)
   let totalPrice = 0
   products.forEach(product => {
-    totalPrice += product.price
+    totalPrice += product.price*product.quantity
   });
   
   //Add current time

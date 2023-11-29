@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './Search.scss';
 import ProductCard from '../ProductCard/ProductCard';
 
-const Search = ({ menuItems, isSearching }) => {
+const Search = ({ menuItems, isSearching, actions }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
@@ -49,7 +49,7 @@ const Search = ({ menuItems, isSearching }) => {
       </AnimatePresence>
       <ul className='menu__list results'>
         {filterMenuItems().map((item) => (
-          <ProductCard key={item.id} props={item} />
+          <ProductCard key={item.id} props={item} onClick={actions} />
         ))}
       </ul>
     </div>

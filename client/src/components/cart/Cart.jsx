@@ -27,6 +27,7 @@ function Cart({ onClick, setCart, cart, updateTotals }) {
   return (
     <section className="cart">
       <h1>Your order:</h1>
+      <section className="cart__products">
       {cart.map((product) => (
         <ProductCard
           key={product.id}
@@ -38,10 +39,13 @@ function Cart({ onClick, setCart, cart, updateTotals }) {
           totalPrice={product.quantity * product.price}
         />
       ))}
-      <Button className="secondary" onClick={() => onClick()}>
-        Add more
-      </Button>
-      <Button>Go to Checkout</Button>
+      </section>
+      <section className="cart__actions">
+        <Button className="secondary" onClick={() => setOpenCart(!openCart)}>
+          Add more
+        </Button>
+        <Button>Go to Checkout</Button>
+      </section>
     </section>
   );
 }

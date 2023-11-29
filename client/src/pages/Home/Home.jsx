@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../utils/functions";
 import { CiSearch } from "react-icons/ci";
-import ProductCard from "./Components/ProductCard/ProductCard";
+
+import { getProducts } from "../../utils/functions";
 import Offers from "./Components/Offers/Offers";
 import Categories from "./Components/Categories/Categories";
 import Search from "./Components/Search/Search";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Button from "../../components/Button/Button";
 import Cart from "../../components/cart/Cart";
+import CartButton from "./Components/CartButton/CartButton";
+import RenderMenu from "./Components/RenderMenu/RenderMenu";
 
 
 function Home() {
-  const [isSearching, setIsSearching] = useState(false);
+  const [isSearching, toggleIsSearching] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
-  const [openCart, setOpenCart] = useState(false);
+  const [openCart, toggleOpenCart] = useState(false);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -25,7 +23,6 @@ function Home() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // Update totalQuantity and totalPrice when cart changes
     const newTotalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
     const newTotalPrice = cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0);
 
@@ -37,24 +34,23 @@ function Home() {
     const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
   
     if (existingItemIndex !== -1) {
-      // If the item already exists, update the quantity
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += 1;
       setCart(updatedCart);
     } else {
-      // If the item doesn't exist, add it to the cart
       setCart([...cart, { ...item, quantity: 1 }]);
     }
     // setCart([])
   };
 
   const handleSearchIconClick = () => {
-    setIsSearching(!isSearching);
+    toggleIsSearching(!isSearching);
   };
 
   const handleCartBtnClick = () => {
-    setOpenCart(!openCart);
+    toggleOpenCart(!openCart);
   };
+
   const menuQuery = useQuery({
     queryKey: ["menu"],
     queryFn: getProducts,
@@ -63,15 +59,13 @@ function Home() {
   const menuItems = menuQuery?.data?.menu || [];
 
   if (menuQuery.isLoading)
-    return <h1 style={{ minHeight: "100vh" }}>Food is coming...</h1>;
+    return <h1 style={{ minHeight: "100vh", padding: "2em" }}>Food is coming...</h1>;
   if (menuQuery.isError) {
     return <pre>{JSON.stringify(menuQuery.error)}</pre>;
   }
 
   const filteredItems = selectedCategory
-    ? menuItems.filter((product) =>
-        product.categories.includes(selectedCategory)
-      )
+    ? menuItems.filter((product) => product.categories.includes(selectedCategory))
     : menuItems;
 
 
@@ -79,7 +73,8 @@ function Home() {
   return (
     <>
     { openCart ? <Cart
-          onClick={setOpenCart}
+          openCart={openCart}
+          setOpenCart={toggleOpenCart}
           setCart={setCart}
           cart={cart}
           updateTotals={(newTotalQuantity, newTotalPrice) => {
@@ -91,41 +86,27 @@ function Home() {
       {isSearching
        ? null : (
         <>
-          <Offers />
-          <Categories setSelectedCategory={setSelectedCategory} />
+          {isSearching ? null : (
+            <>
+              <Offers />
+              <Categories setSelectedCategory={setSelectedCategory} />
+            </>
+          )}
+
+          <div className="search__icon" onClick={handleSearchIconClick}>
+            <CiSearch />
+          </div>
+
+          {isSearching ? (
+            <Search menuItems={menuItems} isSearching={isSearching} actions={addToCart} />
+          ) : (
+            <>
+              <RenderMenu filteredItems={filteredItems} addToCart={addToCart} />
+            </>
+          )}
+          <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} totalQuantity={totalQuantity} totalPrice={totalPrice} />
         </>
       )}
-
-      <div className="search__icon" onClick={handleSearchIconClick}>
-        <CiSearch />
-      </div>
-
-      {isSearching ? (
-        <Search menuItems={menuItems} isSearching={isSearching} />
-      ) : (
-        <section className="menu">
-          <h3 className="menu__title">Products</h3>
-          <ul className="menu__list">
-            {filteredItems.map((product) => (
-              <ProductCard
-                key={product.id}
-                props={product}
-                onClick={addToCart}
-              />
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {cart.length > 0 && (
-        <Button className="cart" onClick={handleCartBtnClick}>
-          {totalQuantity + " "}Items ||{" "}
-          {totalPrice + " "}SEK
-        </Button>
-      )}
-      </>
-    )}
-      <ReactQueryDevtools />
     </>
   );
 }

@@ -3,12 +3,17 @@ import Input from "../Input/Input";
 import ReservationConfirmation from "./ReservationConfirmation";
 import "./reservation.scss"
 import { useState } from "react";
+import Calendar from 'react-calendar'
+
 
 export default function Reservation() {
   const [showConfirmation, setShowConfirmaion] = useState(false)
   const [guests, setGuests] = useState(1)
 
   return (
+    <>
+    
+      <Calendar />
     <article className="reservation">
       <img src="./logos/claddagh.png" ></img>
       <p>For reservations more than ten people please send us an email.</p>
@@ -17,6 +22,8 @@ export default function Reservation() {
             autoComplete='on'
             className='form'
         >
+          <div className='form__calendar'>
+          </div>
             <section className="form__inputs">
                 <input className="input" placeholder="Date"/>
                 <input className="input" placeholder="Time"/>
@@ -36,5 +43,6 @@ export default function Reservation() {
       <button onClick={() => setShowConfirmaion(true)} className="btn button--primary">Confirm reservation</button>
       {showConfirmation && <ReservationConfirmation action={setShowConfirmaion} guests={guests} /> }
     </article>
+      </>
   )
 }

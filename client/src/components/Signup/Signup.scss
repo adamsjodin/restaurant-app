@@ -11,6 +11,17 @@
     align-items: center;
     margin: 1rem;
 
+    &--form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &--errors {
+        color: $clr-btn__red;
+        font-size: 0.8rem;
+    }
+
     &--heading {
         padding: 1rem;
         font-size: 1.5rem;
@@ -46,6 +57,11 @@
         justify-content: center;
         margin: 1rem;
     }
+
+    &--submitted {
+        color: $clr-text__green;
+        font-size: 1.5rem;
+    }
 }
 
 @media screen and (min-width: 800px) {
@@ -56,7 +72,7 @@
         transform: translate(-50%, -50%);
         border: 1px solid white;
         border-radius: 20px;
-        height: 570px;
+        height: 530px;
         width: 500px;
         z-index: 1;
     }

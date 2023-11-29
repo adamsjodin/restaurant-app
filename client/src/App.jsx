@@ -6,6 +6,8 @@ import Hours from './components/Hours/Hours';
 import Footer from './components/Footer/Footer';
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
+import Signup from "./components/Signup/Signup";
+import Reservation from "./components/Reservation/Reservation";
 
 
 function App() {
@@ -29,9 +31,11 @@ function App() {
         <Topbar />
       </header>
       <main>
-        <AnimatedRoutes />
+        {/* <Reservation /> */}
+        <Signup />
+        {/* <AnimatedRoutes /> */}
       </main>
-      { window.innerWidth < 600 ? <Hours /> : <Footer />}
+      {/* { window.innerWidth < 600 ? <Hours /> : <Footer />} */}
     </>
   );
 }

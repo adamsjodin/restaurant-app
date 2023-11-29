@@ -4,6 +4,7 @@ import OrderHistoryCard from "./OrderHistoryCard";
 import "./order-history.scss";
 import { useState } from "react";
 
+
 export default function OrderHistory() {
   const [orderStatus, setOrderStatus] = useState("active");
 
@@ -16,7 +17,9 @@ export default function OrderHistory() {
   const orderItems = orderQuery?.data?.orders || [];
 
   if (orderQuery.isLoading)
-    return <h1 style={{ minHeight: "100vh", padding: "2em" }}>Orders loading...</h1>;
+    return (
+      <h1 style={{ minHeight: "100vh", padding: "2em" }}>Orders loading...</h1>
+    );
   if (orderQuery.isError) {
     return <pre>{JSON.stringify(orderQuery.error)}</pre>;
   }
@@ -42,22 +45,34 @@ export default function OrderHistory() {
   }
 
   return (
-    <article className="order-history">
-      <h1>My orders</h1>
-      <section className="order-history__container">
-        <section className="order-history__tabs">
-          <p onClick={() => setOrderStatus("active")} className={orderStatus === "active" ? "active" : ""}>Active</p>
-          <p onClick={() => setOrderStatus("done")} className={orderStatus === "done" ? "active" : ""}>Previous</p>
+    <>
+      <article className="order-history">
+        <h1>My orders</h1>
+        <section className="order-history__container">
+          <section className="order-history__tabs">
+            <p
+              onClick={() => setOrderStatus("active")}
+              className={orderStatus === "active" ? "active" : ""}
+            >
+              Active
+            </p>
+            <p
+              onClick={() => setOrderStatus("done")}
+              className={orderStatus === "done" ? "active" : ""}
+            >
+              Previous
+            </p>
+          </section>
+          {orderItems.length > 0 ? (
+            checkActive(orderItems)
+          ) : (
+            <p>No order history available.</p>
+          )}
+          <section className="order-history__orders">
+            {orderStatus === "active" ? activeEl : doneEl}
+          </section>
         </section>
-        {orderItems.length > 0 ? (
-          checkActive(orderItems)
-        ) : (
-          <p>No order history available.</p>
-        )}
-        <section className="order-history__orders">
-          {orderStatus === "active" ? activeEl : doneEl}
-        </section>
-      </section>
-    </article>
+      </article>
+    </>
   );
 }

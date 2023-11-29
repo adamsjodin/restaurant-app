@@ -1,11 +1,11 @@
 import Button from "../../../../components/Button/Button";
 
-export default function CartButton({ cart, handleCartBtnClick }) {
+export default function CartButton({ cart, handleCartBtnClick, totalQuantity, totalPrice }) {
   if (cart.length > 0) {
     return (
       <Button className="cart" onClick={handleCartBtnClick}>
-        {cart.length + " "}Items |{" "}
-        {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + " "} kr
+        {totalQuantity + " "}Items |{" "}
+        {totalPrice.toFixed(2) + " "} kr
       </Button>
     );
   }

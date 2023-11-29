@@ -11,15 +11,18 @@
 }
 a {
   text-decoration: none;
-  color: white;
+  color: $clr-text;
+}
+p {
+  font-size: $fs-small;
 }
 body {
   @extend .background-color__black;
   margin: 0;
   min-height: 100vh;
   box-sizing: border-box;
-  background-color: black;
   position: relative;
+  background-color: black;
 }
 
 .background-color__black {
@@ -32,10 +35,6 @@ body {
 }
 .background-color__white {
   background: linear-gradient($background-color--main, white);
-}
-
-::view-transition-group {
-  animation-delay: 1s;
 }
 
 @media screen and (min-width: 55em) {

@@ -46,6 +46,7 @@ function Nav() {
       setUserName(null)
     }
   }, [showLogin, openNav])
+
   const sideBar = {
     open: {
       transform: "translateX(0)",
@@ -76,7 +77,7 @@ function Nav() {
         <NavIcon openNav={openNav} />
       </div>
       
-      {openNav && <motion.div
+      <motion.div
         className="nav"
         variants={sideBar}
         animate={openNav ? "open" : "closed"}
@@ -106,22 +107,22 @@ function Nav() {
             <Link to={"/about"}>About</Link>
           </li>
         </ul>
-        {userName && <div className="nav--footer">
+        {userName ? <div className="nav--footer">
           <IoSettingsOutline className="nav--icon" onClick={() => {setShowSettings(true)}} />
           <h5>{userName && JSON.parse(userName)}</h5>
           <IoLogOutOutline className="nav--icon" onClick={() => {setShowLogoutConf(true)}} />
-        </div>}
-        {!userName && <div className="nav--footer">
+        </div> :
+        <div className="nav--footer">
           <h5 onClick={() => setShowLogin(true)}>Log in</h5>
           <h5 onClick={() => setShowSignup(true)}>Sign up</h5>
         </div>}
-      </motion.div>}
-      {showLogin && <Login state={() => setShowLogin()} />}
+      </motion.div>
+      {showLogin && <Login state={setShowLogin} />}
       {showSignup && <Signup />}
-      {showOrderHistory && <OrderHistory action={() => setShowOrderHistory()} />}
-      {showReservation && <Reservation action={() => setShowReservation()} />}
-      {showLogoutConf && <LogoutConf action={() => handleLogout()} state={() => setShowLogoutConf()}/>}
-      {showSettings && <Settings action={() => setShowSettings()} />}
+      {showOrderHistory && <OrderHistory action={setShowOrderHistory} />}
+      {showReservation && <Reservation action={setShowReservation} />}
+      {showLogoutConf && <LogoutConf action={handleLogout} state={setShowLogoutConf}/>}
+      {showSettings && <Settings action={setShowSettings} />}
     </>
   );
 }

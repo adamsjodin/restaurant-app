@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 import './Signup.scss';
 import axios from 'axios';
 
-function Signup() {
+function Signup(state) {
 
     const [signup, setSignup] = useState({
         firstName: '',
@@ -37,7 +37,7 @@ function Signup() {
                     password: '',
                     verifyPassword: '',
                 })
-
+                state(false)
                 return res;
             })
             .catch(err => console.log(err));

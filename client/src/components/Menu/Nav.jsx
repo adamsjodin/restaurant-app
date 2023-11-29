@@ -27,12 +27,15 @@ function Nav() {
   const [openNav, setOpenNav] = useState(false);
   const [userId, setUserId] = useState(null)
   const [userName, setUserName] = useState(null)
-  const [showLogin, setShowLogin] = useState(false)
-  const [showSignup, setShowSignup] = useState(false)
-  const [showOrderHistory, setShowOrderHistory] = useState(false)
-  const [showReservation, setShowReservation] = useState(false)
-  const [showLogoutConf, setShowLogoutConf] = useState(false)
-  const [showSettings, setShowSettings] = useState(false)
+
+  const [show, setShow] = useState({
+    showLogin: false,
+    showSignup: false,
+    showOrderHistory: false,
+    showReservation: false,
+    showLogoutConf: false,
+    showSettings: false
+  })
 
   useEffect(() => {
     const usId = localStorage.getItem("userId")
@@ -46,7 +49,7 @@ function Nav() {
       setUserId(null)
       setUserName(null)
     }
-  }, [showLogin, openNav])
+  }, [show, openNav])
 
   const sideBar = {
     open: {
@@ -62,7 +65,7 @@ function Nav() {
   function handleLogout() {
     localStorage.setItem("userId", "")
     localStorage.setItem("userName", "")
-    setShowLogoutConf(false)
+    setShow({...show, showLogoutConf: true})
   }
 
   useEffect(() => {
@@ -93,10 +96,10 @@ function Nav() {
             <SlHome className="nav--icon" />
             <Link to={"/"}>Home</Link>
           </li>
-          {userName && <li onClick={() => setShowOrderHistory(true)}>
+          {userName && <li onClick={() => setShow({...show, showOrderHistory: true})}>
             <FaWpforms className="nav--icon" /> My orders
           </li>}
-          <li onClick={() => setShowReservation(true)}>
+          <li onClick={() => setShow({...show, showReservation: true})}>
             <SlCalender className="nav--icon" /> Make reservation
           </li>
           <li>
@@ -109,21 +112,21 @@ function Nav() {
           </li>
         </ul>
         {userName ? <div className="nav--footer">
-          <IoSettingsOutline className="nav--icon" onClick={() => {setShowSettings(true)}} />
+          <IoSettingsOutline className="nav--icon" onClick={() => {setShow({...show, showSettings: true})}} />
           <h5>{userName && JSON.parse(userName)}</h5>
-          <IoLogOutOutline className="nav--icon" onClick={() => {setShowLogoutConf(true)}} />
+          <IoLogOutOutline className="nav--icon" onClick={() => {setShow({...show, showLogoutConf: true})}} />
         </div> :
         <div className="nav--footer">
-          <h5 onClick={() => setShowLogin(true)}>Log in</h5>
-          <h5 onClick={() => setShowSignup(true)}>Sign up</h5>
+          <h5 onClick={() => setShow({...show, showLogin: true})}>Log in</h5>
+          <h5 onClick={() => setShow({...show, showSignup: true})}>Sign up</h5>
         </div>}
       </motion.div>
-      {showLogin && <Login state={setShowLogin} />}
-      {showSignup && <Signup />}
-      {showOrderHistory && <OrderHistory action={setShowOrderHistory} />}
-      {showReservation && <Reservation action={setShowReservation} />}
-      {showLogoutConf && <LogoutConf action={handleLogout} state={setShowLogoutConf}/>}
-      {showSettings && <Settings action={setShowSettings} />}
+      {show.showLogin && <Login state={setShow.showLogin} />}
+      {show.showSignup && <Signup />}
+      {show.showOrderHistory && <OrderHistory action={setShow.showOrderHistory} />}
+      {show.showReservation && <Reservation action={setShow.showReservation} />}
+      {show.showLogoutConf && <LogoutConf action={handleLogout} state={setShow.showLogoutConf}/>}
+      {show.showSettings && <Settings action={setShow.showSettings} />}
     </>
   );
 }

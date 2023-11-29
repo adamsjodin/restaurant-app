@@ -1,6 +1,7 @@
 import ReservationConfirmation from "./ReservationConfirmation";
 import "./reservation.scss"
 import { useState } from "react";
+import Calendar from 'react-calendar'
 import { MdClose } from "react-icons/md";
 
 export default function Reservation({action}) {
@@ -8,6 +9,9 @@ export default function Reservation({action}) {
   const [guests, setGuests] = useState(1)
 
   return (
+    <>
+    
+      <Calendar />
     <article className="reservation">
 			<MdClose onClick={() => action(false)} />
       <img src="./logos/claddagh.png" ></img>
@@ -17,6 +21,8 @@ export default function Reservation({action}) {
             autoComplete='on'
             className='form'
         >
+          <div className='form__calendar'>
+          </div>
             <section className="form__inputs">
                 <input className="input" placeholder="Date"/>
                 <input className="input" placeholder="Time"/>
@@ -36,5 +42,6 @@ export default function Reservation({action}) {
       <button onClick={() => setShowConfirmaion(true)} className="btn button--primary">Confirm reservation</button>
       {showConfirmation && <ReservationConfirmation action={setShowConfirmaion} guests={guests} /> }
     </article>
+      </>
   )
 }

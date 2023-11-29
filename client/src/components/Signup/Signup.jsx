@@ -2,20 +2,21 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import './Signup.scss';
+import { validateForm } from "../../utils/validation";
 import axios from 'axios';
+function Signup(handleChange) {
 
-function Signup(state) {
-
+    const [formErrors, setFormErrors] = useState({});
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    
     const [signup, setSignup] = useState({
-        firstName: '',
-        lastName: '',
+        name: '',
         email: '',
         phone: '',
-        role: 'member',
         password: '',
-        verifyPassword: '',
+        role: 'member',
     });
-
+    
     function handleChange(e) {
         const { name, value } = e.target;
         setSignup((prevState) => ({
@@ -23,24 +24,32 @@ function Signup(state) {
             [name]: value,
         }));
     };
-
-    function handleSubmit(e) {
+    
+    const handleSubmit = (e) => {
+        
         e.preventDefault();
-        axios.post('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/user', signup)
-            .then(res => {
+        const errors = validateForm(signup);
+        
+        if (Object.keys(errors).length === 0) {
 
-                setSignup({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phone: '',
-                    password: '',
-                    verifyPassword: '',
+            axios.post('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/user', signup)
+                .then(res => {
+                    setSignup({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        password: '',
+                    });
+                    setFormErrors({});
+                    setFormSubmitted(true);
+                    
+                    return res;
                 })
-                state(false)
-                return res;
-            })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
+        } else {
+            setFormSubmitted(false);
+            setFormErrors(errors);
+        }
     };
 
     return (
@@ -48,14 +57,49 @@ function Signup(state) {
             <section className='signup'>
                 <h2 className='signup--heading'>Sign up</h2>
 
-                <form onSubmit={handleSubmit}>
+                <form className='signup--form' onSubmit={handleSubmit}>
 
-                    <Input className='signup--input-text' type="text" placeholder='First name' name='firstName' value={signup.firstName} onChange={handleChange} />
-                    <Input className='signup--input-text' type="text" placeholder='Last name' name='lastName' value={signup.lastName} onChange={handleChange} />
-                    <Input className='signup--input-text' type="text" placeholder='Email' name='email' value={signup.email} onChange={handleChange} />
-                    <Input className='signup--input-text' type="text" placeholder='Phone' name='phone' value={signup.phone} onChange={handleChange} />
-                    <Input className='signup--input-text' type="password" placeholder='Password' name='password' value={signup.password} onChange={handleChange} />
-                    <Input className='signup--input-text' type="password" placeholder='Verify password' name='verifyPassword' value={signup.verifyPassword} onChange={handleChange} />
+                    <Input 
+                        className='signup--input-text'
+                        type="text" 
+                        placeholder='Name' 
+                        name='name' 
+                        value={signup.name} 
+                        onChange={handleChange}
+                        errorMessage={formErrors.name}
+                        />
+                        {formErrors.name && <h4 className='signup--errors'>{formErrors.name}</h4>}
+                    <Input 
+                        className='signup--input-text'
+                        type="text" 
+                        placeholder='Email' 
+                        name='email' 
+                        value={signup.email} 
+                        onChange={handleChange}
+                        errorMessage={formErrors.email}
+                        />
+                        {formErrors.email && <h4 className='signup--errors'>{formErrors.email}</h4>}
+
+                    <Input 
+                        className='signup--input-text'
+                        type="text" 
+                        placeholder='Phone' 
+                        name='phone' 
+                        value={signup.phone} 
+                        onChange={handleChange}
+                        />
+                        {formErrors.phone && <h4 className='signup--errors'>{formErrors.phone}</h4>}
+
+                    <Input 
+                        className='signup--input-text'
+                        type="password" 
+                        placeholder='Password' 
+                        name='password' 
+                        value={signup.password} 
+                        onChange={handleChange}
+                        errorMessage={formErrors.password}
+                        />
+                        {formErrors.password && <h4 className='signup--errors'>{formErrors.password}</h4>}
 
                     <section className='signup--input-container'>
                         <div className='signup--input-checkbox-container'>
@@ -75,6 +119,10 @@ function Signup(state) {
                         <div className='signup--btn'>
                             <Button type='submit'>Confirm sign up</Button>
                         </div>
+                        {
+                            formSubmitted && 
+                            <h2 className='signup--submitted'>Thank you for signing up!</h2>
+                        }
                     </section>
                 </form>
             </section>

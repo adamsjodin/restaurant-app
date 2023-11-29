@@ -25,6 +25,12 @@
   padding: 3rem
 }
 
+.form__calendar {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.5rem;
+}
+
 .reservation div {
   border-radius: 50%;
   display: flex;

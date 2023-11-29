@@ -2,11 +2,15 @@ import './Settings.scss'
 import '../Signup/Signup.scss'
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import { MdClose } from "react-icons/md";
 
 
-function Settings() {
+function Settings({action}) {
+
+
     return (
-        <section className='settings'>
+        <section className='settings overlay background-color__black'>
+            <MdClose onClick={() => action(false)} />
             <section className='settings--info'>
             <h2 className='settings--heading'>Settings</h2>
                 <Input className='settings--input-text' type="text" placeholder='First name' />

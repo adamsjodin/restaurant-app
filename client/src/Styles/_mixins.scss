@@ -60,3 +60,20 @@
     background-size: cover;
     background-position: center;
   }
+
+  @mixin overlay-style {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500000;
+    min-height: 100vh;
+    background: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
+    background-repeat: no-repeat;
+  }
+
+  @mixin close-btn-position {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }

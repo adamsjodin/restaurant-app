@@ -15,6 +15,7 @@ import Reservation from "../Reservation/Reservation"
 import LogoutConf from "./LogoutConf";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Settings from "../Settings/Settings";
 
 
 //TODO! 
@@ -31,6 +32,7 @@ function Nav() {
   const [showOrderHistory, setShowOrderHistory] = useState(false)
   const [showReservation, setShowReservation] = useState(false)
   const [showLogoutConf, setShowLogoutConf] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
 
   useEffect(() => {
     const usId = localStorage.getItem("userId")
@@ -106,7 +108,7 @@ function Nav() {
           </li>
         </ul>
         {userName && <div className="nav--footer">
-          <IoSettingsOutline className="nav--icon" />
+          <IoSettingsOutline className="nav--icon" onClick={() => {setShowSettings(true)}} />
           <h5>{userName && JSON.parse(userName)}</h5>
           <IoLogOutOutline className="nav--icon" onClick={() => {setShowLogoutConf(true)}} />
         </div>}
@@ -120,6 +122,7 @@ function Nav() {
       {showOrderHistory && <OrderHistory action={() => setShowOrderHistory()} />}
       {showReservation && <Reservation action={() => setShowReservation()} />}
       {showLogoutConf && <LogoutConf action={() => handleLogout()} state={() => setShowLogoutConf()}/>}
+      {showSettings && <Settings action={() => setShowSettings()} />}
     </>
   );
 }

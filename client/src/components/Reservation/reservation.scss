@@ -68,5 +68,15 @@
     font-size: 1.25rem;
     margin: 2rem
   }
+  div {
+    display: flex;
+    max-width: 31.25rem;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    button {
+      margin: .5rem
+    }
+  }
 
 }

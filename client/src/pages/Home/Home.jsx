@@ -10,18 +10,37 @@ import Cart from "../../components/cart/Cart";
 import CartButton from "./Components/CartButton/CartButton";
 import RenderMenu from "./Components/RenderMenu/RenderMenu";
 
+
 function Home() {
   const [isSearching, toggleIsSearching] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   const [openCart, toggleOpenCart] = useState(false);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    const newTotalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    const newTotalPrice = cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0);
+
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
+  }, [cart]);
+  
   const addToCart = (item) => {
-    setCart((prevCart) => {
-      const newCart = [...prevCart, item];
-      localStorage.setItem("cart", JSON.stringify(newCart));
-      return newCart;
-    });
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+  
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...item, quantity: 1 }]);
+    }
+    // setCart([])
   };
 
   const handleSearchIconClick = () => {
@@ -49,11 +68,23 @@ function Home() {
     ? menuItems.filter((product) => product.categories.includes(selectedCategory))
     : menuItems;
 
+
+  
   return (
     <>
-      {openCart ? (
-        <Cart cart={cart} setCart={setCart} setOpenCart={toggleOpenCart} openCart={openCart} />
-      ) : (
+    { openCart ? <Cart
+          openCart={openCart}
+          setOpenCart={toggleOpenCart}
+          setCart={setCart}
+          cart={cart}
+          updateTotals={(newTotalQuantity, newTotalPrice) => {
+            setTotalQuantity(newTotalQuantity);
+            setTotalPrice(newTotalPrice);
+          }}
+        /> : (
+      <>
+      {isSearching
+       ? null : (
         <>
           {isSearching ? null : (
             <>
@@ -73,8 +104,7 @@ function Home() {
               <RenderMenu filteredItems={filteredItems} addToCart={addToCart} />
             </>
           )}
-
-          <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} />
+          <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} totalQuantity={totalQuantity} totalPrice={totalPrice} />
         </>
       )}
     </>

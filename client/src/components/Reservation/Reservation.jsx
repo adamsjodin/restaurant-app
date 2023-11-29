@@ -1,15 +1,15 @@
-import Form from "../Form/Form";
-import Input from "../Input/Input";
 import ReservationConfirmation from "./ReservationConfirmation";
 import "./reservation.scss"
 import { useState } from "react";
+import { MdClose } from "react-icons/md";
 
-export default function Reservation() {
+export default function Reservation({action}) {
   const [showConfirmation, setShowConfirmaion] = useState(false)
   const [guests, setGuests] = useState(1)
 
   return (
     <article className="reservation">
+			<MdClose onClick={() => action(false)} />
       <img src="./logos/claddagh.png" ></img>
       <p>For reservations more than ten people please send us an email.</p>
       {/*insert new form here*/}

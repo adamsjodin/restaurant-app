@@ -18,7 +18,8 @@ module.exports.handler = async (event) => {
         imgUrl: item.imgUrl,
         categories: item.categories,
         ingredients: item.ingredients,
-        allergens: item.allergens
+        allergens: item.allergens,
+        quantity: 0
       }
     }).promise()
   return sendResponse(200, { sucess: true, message: `Dish added to menu` })

@@ -7,6 +7,7 @@
 
 * {
   font-family: $font-family;
+  color: white;
 }
 a {
   text-decoration: none;
@@ -31,6 +32,10 @@ body {
 }
 .background-color__white {
   background: linear-gradient($background-color--main, white);
+}
+
+::view-transition-group {
+  animation-delay: 1s;
 }
 
 @media screen and (min-width: 55em) {

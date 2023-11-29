@@ -3,15 +3,14 @@
 
 
 .settings {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    color: $clr-text;
+    @include overlay-style;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1rem;
-
+    justify-content: space-evenly;
+    svg {
+        @include close-btn-position
+    }
     &--info {
         display: flex;
         flex-direction: column;

@@ -1,15 +1,17 @@
 @import '../../Styles/variables'; 
+@import '../../Styles/mixins';
 
 .reservation {
+  @include overlay-style;
   display: flex;
   flex-direction: column;
   align-content: center;
-  max-width: 80%;
-  margin: auto;
-  color: $clr-text;
   min-height: 100vh;
   justify-content: space-between;
   text-align: center;
+  svg {
+    @include close-btn-position
+  }
   img {
     max-width: 12.8125rem;
     margin: 2rem auto;
@@ -61,8 +63,9 @@
   font-family: $font-family;
   padding: 2rem;
   border-radius: 20px;
-  & :not(svg) {
-    text-align: center;
+  z-index: 50;
+  svg {
+    @include close-btn-position
   }
   h3 {
     font-size: 1.25rem;

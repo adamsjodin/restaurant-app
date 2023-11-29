@@ -4,7 +4,6 @@ import Input from '../Input/Input';
 import './Signup.scss';
 import { validateForm } from "../../utils/validation";
 import axios from 'axios';
-
 function Signup(handleChange) {
 
     const [formErrors, setFormErrors] = useState({});

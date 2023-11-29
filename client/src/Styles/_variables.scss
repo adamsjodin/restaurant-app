@@ -1,6 +1,9 @@
 $background-color--main: hsl(180, 100%, 20%);
 $background-color--popup: hsl(0, 100%, 0%);
 $background-color--card: hsla(0, 0%, 100%, 0.1);
+$bg-main: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
+$bg-main-reverse: linear-gradient(192deg, black 50%, hsl(180, 100%, 20%) 100%);
+$bg-staff: linear-gradient(192deg, $background-color--main 0%, #fff 41.22%);
 
 $clr-text: hsl(0, 0%, 100%);
 $clr-text__green: hsl(140, 100%, 50%);

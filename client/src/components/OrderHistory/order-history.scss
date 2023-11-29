@@ -3,41 +3,56 @@
 
 
 .order-history {
-  padding: 5rem;
+  min-height: 100vh;
+  width: 100%;
+  @include gridCenter;
   color: $clr-text;
-  background-color: $background-color--main;
+  background: $bg-main;
+  padding-inline: 1em;
   position: absolute;
   left: 0;
-  right: 0;
   top: 0;
-  z-index: 500;
+  z-index: 100000;
+  font-weight: 600;
   h1 {
     text-align: center;
-    font-size: 24px;
+    font-size: $fs-h1;
     padding: 2rem
   }
-  &__container {
-    background-color: $background-color--card;
-  }
   &__tabs {
-    display: flex;
+    @include gridColumns(repeat(2, 1fr));
     background-color: transparent;
     p {
+      background-color: transparent;
       padding: 1rem 3rem;
       border-radius: 20px 20px 0 0;
-         
+    }
+    p.active {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
+  &__orders {
+    min-height: 490px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: grid;
+    gap: 1em;
+    padding: 1em;
+  }
   &__card {
+    height: 142px;
     background-color: $background-color--popup;
-    margin: 1rem;
-    border: 1px solid black;
-    display: flex;
-    img {
-      max-width: 30%;
+    @include gridCenter;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+
+    svg {
+      fill: red;
     }
-    &__info-section {
-      margin: auto
+    svg.active {
+      fill: limegreen;
     }
   }
 }

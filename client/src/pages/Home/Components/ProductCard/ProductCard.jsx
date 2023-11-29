@@ -6,7 +6,15 @@ import ProductInformation from "../../../../components/ProductInformation/Produc
 import "./ProductCard.scss";
 import { motion } from "framer-motion";
 
-function ProductCard({ props, onClick, className, cartInfo, increase, decrease }) {
+function ProductCard({
+  props,
+  onClick,
+  className,
+  cartInfo,
+  increase,
+  decrease,
+  totalPrice,
+}) {
   const { title, description, price, imgUrl, quantity } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
 
@@ -19,8 +27,13 @@ function ProductCard({ props, onClick, className, cartInfo, increase, decrease }
 
   return (
     <>
-      { showInfo ? (
-        <ProductInformation className="productInformation" props={props} onClick={handleClick} showInfo={showInfo} />
+      {showInfo ? (
+        <ProductInformation
+          className="productInformation"
+          props={props}
+          onClick={handleClick}
+          showInfo={showInfo}
+        />
       ) : (
         <motion.article className={dynamicStyle} ref={cardRef}>
           <>
@@ -32,9 +45,13 @@ function ProductCard({ props, onClick, className, cartInfo, increase, decrease }
               <h3>{title}</h3>
               {cartInfo ? (
                 <div className="cart-wrapper">
-                  <Button className="add" onClick={decrease}>-</Button>{" "}
+                  <Button className="add" onClick={decrease}>
+                    -
+                  </Button>{" "}
                   <p>Quantity:{" " + quantity}</p>{" "}
-                  <Button className="add" onClick={increase}>+</Button>{" "}
+                  <Button className="add" onClick={increase}>
+                    +
+                  </Button>{" "}
                 </div>
               ) : (
                 <Truncate inline title={description}>
@@ -42,13 +59,15 @@ function ProductCard({ props, onClick, className, cartInfo, increase, decrease }
                 </Truncate>
               )}
               <section className="product__info--bottom">
-                <h3>{price} kr</h3>
                 {cartInfo ? (
-                  <></>
+                  <h3>{totalPrice} kr</h3>
                 ) : (
-                  <Button className="add" onClick={() => onClick(props)}>
-                    Add +
-                  </Button>
+                  <>
+                    <h3>{price} kr</h3>
+                    <Button className="add" onClick={() => onClick(props)}>
+                      Add +
+                    </Button>
+                  </>
                 )}
               </section>
             </motion.section>

@@ -5,8 +5,24 @@ const bcrypt = require('bcryptjs')
 
 
 module.exports.handler = async (event) => {
-  //Add email, role (default: member), name, password, adress
-  const { email, role, name, password, adress } = JSON.parse(event.body)
+  //Add email, role (default: member), name, password, phone
+  const { email, role, name, password, phone } = JSON.parse(event.body)
+  try {
+    const existingUser = await db.get({
+      TableName: 'userDb',
+      Key: {
+        email: email,
+      },
+    }).promise();
+
+    if (existingUser.Item) {
+      // User with the given email already exists
+      return sendResponse(400, { success: false, message: 'User with this email already exists' });
+    }
+  } catch (error) {
+    return sendResponse(500, { success: false, error: error, message: 'Error checking existing user' });
+  }
+  
   //Hash password
   const hashedPassword = bcrypt.hashSync(password, 10)
   //Add id from nanoid
@@ -19,7 +35,7 @@ module.exports.handler = async (event) => {
       id: id,
       name: name,
       password: hashedPassword,
-      adress: adress
+      phone: phone
     }
   }
   try {

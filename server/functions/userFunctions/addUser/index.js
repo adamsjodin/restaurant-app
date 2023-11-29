@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 
 module.exports.handler = async (event) => {
   //Add email, role (default: member), name, password, adress
-  const { email, role, name, password, adress } = JSON.parse(event.body)
+  const { email, role, name, password, phone } = JSON.parse(event.body)
   //Hash password
   const hashedPassword = bcrypt.hashSync(password, 10)
   //Add id from nanoid
@@ -19,7 +19,7 @@ module.exports.handler = async (event) => {
       id: id,
       name: name,
       password: hashedPassword,
-      adress: adress
+      phone: phone
     }
   }
   try {

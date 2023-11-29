@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CiSearch } from "react-icons/ci";
 
@@ -82,9 +82,6 @@ function Home() {
             setTotalPrice(newTotalPrice);
           }}
         /> : (
-      <>
-      {isSearching
-       ? null : (
         <>
           {isSearching ? null : (
             <>
@@ -108,7 +105,7 @@ function Home() {
         </>
       )}
     </>
-  );
+  )
 }
 
 export default Home;

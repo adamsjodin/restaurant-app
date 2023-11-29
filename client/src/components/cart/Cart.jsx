@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import ProductCard from "../../pages/Home/Components/ProductCard/ProductCard";
 import Button from "../Button/Button";
 import "./CartStyles.scss";
 
-function Cart({ onClick, setCart, cart, updateTotals }) {
+function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   function handleIncrease(item) {
     item.quantity++;
     setCart([...cart]); // Ensure that you're creating a new array reference to trigger a re-render

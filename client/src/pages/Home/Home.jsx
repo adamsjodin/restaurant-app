@@ -21,9 +21,30 @@ function Home() {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    // Update totalQuantity and totalPrice when cart changes
+    const newTotalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    const newTotalPrice = cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0);
+
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
+  }, [cart]);
+  
   const addToCart = (item) => {
-    setCart([...cart, item]);
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+  
+    if (existingItemIndex !== -1) {
+      // If the item already exists, update the quantity
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      // If the item doesn't exist, add it to the cart
+      setCart([...cart, { ...item, quantity: 1 }]);
+    }
     // setCart([])
   };
 
@@ -53,11 +74,22 @@ function Home() {
       )
     : menuItems;
 
+
+  
   return (
     <>
-    { openCart ? <Cart setOpenCart={setOpenCart} openCart={openCart}/> : (
+    { openCart ? <Cart
+          onClick={setOpenCart}
+          setCart={setCart}
+          cart={cart}
+          updateTotals={(newTotalQuantity, newTotalPrice) => {
+            setTotalQuantity(newTotalQuantity);
+            setTotalPrice(newTotalPrice);
+          }}
+        /> : (
       <>
-      {isSearching ? null : (
+      {isSearching
+       ? null : (
         <>
           <Offers />
           <Categories setSelectedCategory={setSelectedCategory} />
@@ -87,8 +119,8 @@ function Home() {
 
       {cart.length > 0 && (
         <Button className="cart" onClick={handleCartBtnClick}>
-          {cart.length + " "}Items ||{" "}
-          {cart.reduce((acc, item) => acc + item.price, 0).toFixed(2) + " "}SEK
+          {totalQuantity + " "}Items ||{" "}
+          {totalPrice + " "}SEK
         </Button>
       )}
       </>

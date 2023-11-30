@@ -4,11 +4,18 @@ import Input from '../Input/Input';
 import './Signup.scss';
 import { validateForm } from "../../utils/validation";
 import axios from 'axios';
+import { MdClose } from 'react-icons/md';
+
 function Signup(handleChange) {
 
     const [formErrors, setFormErrors] = useState({});
     const [formSubmitted, setFormSubmitted] = useState(false);
-    
+    const [termsChecked, setTermsChecked] = useState(false);
+
+    const handleTermsChange = () => {
+        setTermsChecked(!termsChecked);
+    };
+
     const [signup, setSignup] = useState({
         name: '',
         email: '',
@@ -30,7 +37,7 @@ function Signup(handleChange) {
         e.preventDefault();
         const errors = validateForm(signup);
         
-        if (Object.keys(errors).length === 0) {
+        if (Object.keys(errors).length === 0 && termsChecked ) {
 
             axios.post('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/user', signup)
                 .then(res => {
@@ -54,7 +61,8 @@ function Signup(handleChange) {
 
     return (
         <>
-            <section className='signup'>
+            <section className='signup background-color__black'>
+            <MdClose onClick={() => action(false)} />
                 <h2 className='signup--heading'>Sign up</h2>
 
                 <form className='signup--form' onSubmit={handleSubmit}>
@@ -103,8 +111,16 @@ function Signup(handleChange) {
 
                     <section className='signup--input-container'>
                         <div className='signup--input-checkbox-container'>
-                            <input className='signup--input-checkbox' id="terms" type="checkbox" />
+                            <Input
+                                className='signup--input-checkbox'
+                                id="terms"
+                                type="checkbox"
+                                checked={termsChecked}
+                                onChange={handleTermsChange}
+                            />
                             <label htmlFor="terms">I agree the terms and conditions</label>
+                            {!termsChecked && <h4 className='signup--errors'>Please agree to the terms and conditions</h4>}
+
                         </div>
 
                         <div className='signup--input-checkbox-container'>

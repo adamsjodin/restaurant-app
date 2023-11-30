@@ -2,14 +2,16 @@
 @import './src/Styles/mixins';
 
 .signup {
-    position: absolute;
-    top: 20%;
-    color: $clr-text;
+    @include overlay-style;
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    margin: 1rem;
+    justify-content: space-evenly;
+    z-index: 6000000;
+    svg {
+        @include close-btn-position
+    }
 
     &--form {
         display: flex;

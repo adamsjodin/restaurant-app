@@ -83,13 +83,17 @@
 }
 
 .cart-wrapper {
-    @include flexCenter(row);
-    gap: 2em;
+    @include flexCenter(column);
+    gap: 0.5em;
     .btn {
         width: 1.2rem;
         height: 1.2rem;
         border-radius: 50%;
         font-size: 0.6rem;
         margin: 0;
+    }
+    .cart-quantity{
+        @include flexCenter(row);
+    gap: 2em;
     }
 }

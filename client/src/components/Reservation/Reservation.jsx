@@ -1,7 +1,6 @@
 import ReservationConfirmation from "./ReservationConfirmation";
 import "./reservation.scss"
 import { useState } from "react";
-import Calendar from 'react-calendar'
 import { MdClose } from "react-icons/md";
 
 export default function Reservation({action}) {
@@ -10,9 +9,7 @@ export default function Reservation({action}) {
 
   return (
     <>
-    
-      <Calendar />
-    <article className="reservation">
+        <article className="reservation">
 			<MdClose onClick={() => action(false)} />
       <img src="./logos/claddagh.png" ></img>
       <p>For reservations more than ten people please send us an email.</p>

@@ -13,15 +13,19 @@ function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   }
 
   function handleDecrease(item) {
-    if (item.quantity > 0) {
+    if (item.quantity <= 1) {
+      const updatedCart = cart.filter((cartItem) => cartItem.id !== item.id);
+      setCart(updatedCart);
+    } else {
       item.quantity--;
       setCart([...cart]);
+    }
       updateTotals(
         cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
         cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0)
       );
     }
-  }
+  
 
   return (
     <section className="cart">

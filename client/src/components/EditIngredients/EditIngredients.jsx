@@ -27,7 +27,7 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
       return { ...prevValues, [ingredient]: newValue };
     });
   
-    // Update changedCheckboxes immediately without relying on useEffect
+    
     setChangedCheckboxes((prevChanged) => ({
       ...prevChanged,
       [ingredient]: !changedCheckboxes[ingredient],

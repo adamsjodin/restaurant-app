@@ -9,7 +9,7 @@ function Offers() {
         queryFn: () => wait(500).then(() => [...offers]),
     })
 
-    if(offersQuery.isLoading) return <h2>Loading...</h2>
+    if(offersQuery.isLoading) return <h2 style={{ padding: "2em"}}>Loading...</h2>
     if(offersQuery.isError) {
         return <pre>{JSON.stringify(offersQuery.error)}</pre>
     }

@@ -1,0 +1,41 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+.contact {
+    height: 100vh;
+    @include flexCenter(column);
+    text-align: center;
+    color: $clr-text;
+
+    &--heading {
+        font-size: 1.3rem;
+        margin: 1rem;
+    }
+
+    &--location {
+        margin: 1rem;
+        &-google {
+            padding: 0.5rem;
+            height: 25vh;
+            width: 95vw;
+        }
+    }
+    &--social {
+        margin-top: 5rem;
+        font-size: 2rem;
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+
+    .contact--location-google {
+        height: 50vh;
+        width: 100vw;
+
+    }
+    .contact--social {
+        display: none;
+    }
+}

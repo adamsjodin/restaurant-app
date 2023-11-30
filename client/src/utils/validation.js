@@ -1,20 +1,26 @@
 const validateForm = (formData) => {
     const errors = {};
   
+    const {name, email, phone, password} = formData;
     // Example validation for name, email, and password
-    if (!formData.name.trim()) {
+    if (!name.trim()) {
       errors.name = 'Name is required';
     }
   
-    if (!formData.email.trim()) {
+    if (!email.trim()) {
       errors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.email = 'Invalid email address';
     }
+    if (!phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (phone.length < 10) {
+      errors.phone = 'Phone number must be 10 characters';
+    }
   
-    if (!formData.password.trim()) {
+    if (!password.trim()) {
       errors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
+    } else if (password.length < 6) {
       errors.password = 'Password must be at least 6 characters';
     }
   

@@ -1,59 +1,71 @@
-@import "src/styles/_variables";
-@import "src/styles/_mixins";
+@import "../../Styles/variables";
+@import "../../Styles/mixins";
 
 .product-info {
+  display: grid;
   gap: 1em;
   background-color: $background-color--card;
+  color: $clr-text;
   padding: 1em;
   border-radius: 1rem;
-  position: relative;
   text-align: center;
+  position: relative;
 
   &__image {
     height: 170px;
     width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
+    margin: 0 auto;
     @include bgImage;
     border-radius: 1rem;
   }
 
   & > svg {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 0.625em;
+    right: 0.625em;
   }
-}
-
-.product-info__info {
-  & > ul {
-    list-style: none;
-    font-size: $fs-smaller;
-    // margin-top: 1rem;
-    & > li {
-      margin-top: 0.2rem;
+  &__info {
+    padding-bottom: 3em;
+    & > ul {
+      @include gridColumns(repeat(3, 1fr));
+      gap: 1em;
+      list-style: none;
+      font-size: $fs-smaller;
+      padding-inline: 1rem;
+    }
+    & > p {
+      padding: 1rem 2rem;
+      font-size: $fs-smaller;
     }
   }
-  & > p {
-    margin: 1rem;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+
+  &__price {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+  }
+  .btn {
     font-size: $fs-smaller;
+    padding: 0.5em 1em;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
   }
 }
-
-.product-info .btn {
-  font-size: $fs-smaller;
-  padding: 0.5em 1em;
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
+.info-btn {
+  font-size: 1.5rem;
 }
 
-.product-info__price {
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
+@media  screen and (min-width: 800px){
+  .product-info {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    z-index: 1;
+    background-color: $background-color--popup;
+    border: 1px white solid;
+    transition-delay: 2s;
+  }
+
+
 }

@@ -6,7 +6,6 @@
 
     &--nav {
         width: 100vw;
-        z-index: 2;
         margin: 1rem;
         @include flexSpaceBetween(row);
     }
@@ -19,6 +18,11 @@
         visibility: hidden;
     }
 
+}
+
+.popop {
+    position: sticky;
+    bottom: 50%;
 }
 
 @media screen and (min-width: 800px) {

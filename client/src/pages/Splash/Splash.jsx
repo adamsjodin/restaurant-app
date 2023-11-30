@@ -1,8 +1,22 @@
+import "./Splash.scss";
 
-function Splash() {
+import { AnimatePresence, motion } from "framer-motion";
+
+const SplashPage = () => {
   return (
-    <div>Splash</div>
-  )
-}
+    <AnimatePresence>
+      <div className="splash">
 
-export default Splash
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: '210px'}}
+          transition={{ delay: 1, duration: 2, ease: "easeOut" }}
+          className="splash__container"
+        >
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
+
+export default SplashPage;

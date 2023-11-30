@@ -1,0 +1,58 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+
+.order-history {
+  min-height: 100vh;
+  width: 100%;
+  @include gridCenter;
+  color: $clr-text;
+  background: $bg-main;
+  padding-inline: 1em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  font-weight: 600;
+  h1 {
+    text-align: center;
+    font-size: $fs-h1;
+    padding: 2rem
+  }
+  &__tabs {
+    @include gridColumns(repeat(2, 1fr));
+    background-color: transparent;
+    p {
+      background-color: transparent;
+      padding: 1rem 3rem;
+      border-radius: 20px 20px 0 0;
+    }
+    p.active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+  &__orders {
+    min-height: 490px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: grid;
+    gap: 1em;
+    padding: 1em;
+  }
+  &__card {
+    height: 142px;
+    background-color: $background-color--popup;
+    @include gridCenter;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 2em;
+    padding: 1em;
+
+    svg {
+      fill: red;
+    }
+    svg.active {
+      fill: limegreen;
+    }
+  }
+}

@@ -5,11 +5,12 @@ const { nanoid } = require('nanoid')
 
 
 module.exports.handler = async (event) => {
-  //Add email, role (default: member), name, password, adress
+  //Add userID, products, status (? or status:active by default here )
+
   const { userID, products, status } = JSON.parse(event.body)
   let totalPrice = 0
   products.forEach(product => {
-    totalPrice += product.price
+    totalPrice += product.price*product.quantity
   });
   
   //Add current time
@@ -24,12 +25,15 @@ module.exports.handler = async (event) => {
       products: products,
       totalPrice: totalPrice,
       status: status,
-      timeStamp: timeStamp
+      TimeStamp: timeStamp
     }
   }
+  //Convert unix timestamp to regular time: 
+  const date = new Date(timeStamp * 1000)
+
   try {
     await db.put(params).promise()
-    return sendResponse(200, { sucess: true, message: `Order added at ${timeStamp}` })
+    return sendResponse(200, { sucess: true, message: `Order added at ${date}` })
 } catch (error) {
   return sendResponse(500, {success: false, error: error, message: 'Could not add order'})
 }};

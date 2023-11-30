@@ -56,6 +56,12 @@ functions:
     handler: functions/orderFunctions/getAllOrders/index.handler
     events: 
       - httpApi: 
+          path: '/api/staff/orders/all'
+          method: GET
+  getLatestOrders:
+    handler: functions/orderFunctions/getLatestOrders/index.handler
+    events: 
+      - httpApi: 
           path: '/api/staff/orders'
           method: GET
   getMyOrders:
@@ -63,7 +69,7 @@ functions:
     events: 
       - httpApi: 
           path: '/api/history'
-          method: GET
+          method: POST
 
 
 resources: 

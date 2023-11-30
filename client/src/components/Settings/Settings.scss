@@ -1,0 +1,83 @@
+@import './src/Styles/variables';
+@import './src/Styles/mixins';
+
+
+.settings {
+    @include overlay-style;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    svg {
+        @include close-btn-position
+    }
+    &--info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        }
+
+    &--heading {
+        font-size: 1.5rem;
+        margin: 1rem;
+    }
+
+    // &--input-text {
+    //     border: none;
+    //     border-bottom: 1px white solid;
+    //     padding: 0.5rem 1rem;
+    //     background-color: transparent;
+    //     margin: 0.3rem;
+
+    //     &:focus-visible {
+    //         outline: none;
+    //         border-color: green;
+    //       }
+    // }
+
+    &--btn {
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    &--cardInfo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        &-text {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+
+        &-box {
+            border: 1px white solid;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            margin: 0.3rem;
+            width: 100px;
+       &:focus-visible {
+           outline: none;
+           border-color: green;
+         }
+        }
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .settings {
+        background-color: $background-color--card;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid white;
+        border-radius: 20px;
+        height: 650px;
+        width: 500px;
+        z-index: 1;
+    }
+}

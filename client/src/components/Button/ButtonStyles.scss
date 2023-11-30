@@ -44,4 +44,16 @@
       color: $clr-btn__add;
     }
   }
+
+  .button--cart {
+    background: $clr-btn__primary;
+    position: sticky;
+    bottom: 10%;
+    margin: 0 auto;
+  
+    &:hover {
+      background-color: $clr-btn__white;
+      color: $clr-btn__primary;
+    }
+  }
   

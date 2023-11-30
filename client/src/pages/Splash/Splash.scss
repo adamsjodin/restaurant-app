@@ -1,0 +1,30 @@
+@import '../../Styles/variables';
+@import '../../Styles/mixins';
+
+.splash {
+  height: 100vh;
+  @include gridCenter;
+  position: relative;
+
+  &__container {
+    width: 0;
+    height: 70px;
+    background-image: url('/logos/claddagh.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    animation: showBorders 4s ease 1s;
+  }
+}
+
+@keyframes showBorders {
+  from {
+    border-color: white;
+  }
+  to {
+    border: none;
+    border-color: transparent;
+  }
+}

@@ -9,8 +9,11 @@ import Search from "./Components/Search/Search";
 import Cart from "../../components/cart/Cart";
 import CartButton from "./Components/CartButton/CartButton";
 import RenderMenu from "./Components/RenderMenu/RenderMenu";
+import EditIngredients from "../../components/EditIngredients/EditIngredients";
 
 function Home() {
+  const [editIngredients, toggleEditIngredients] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [state, setState] = useState({
     isSearching: false,
     openCart: false,
@@ -55,9 +58,18 @@ function Home() {
     } else {
       setCart([...cart, { ...item, quantity: 1 }]);
     }
-    // setCart([])
   };
 
+
+  const handleEditBtnClick = (product) => {
+    setSelectedProduct(product);
+    console.log(cart);
+  };
+
+  const handleToggleEditIngredients = () => {
+    toggleEditIngredients(!editIngredients);
+  };
+  
   const menuQuery = useQuery({
     queryKey: ["menu"],
     queryFn: getProducts,
@@ -122,12 +134,18 @@ function Home() {
             />
           ) : (
             <>
-              <RenderMenu filteredItems={filteredItems} addToCart={addToCart} />
+              <RenderMenu filteredItems={filteredItems} editIngredients={handleEditBtnClick}
+            toggleEditIngredients={handleToggleEditIngredients} />
+              
+          {editIngredients && (
+            <EditIngredients product={selectedProduct} addToCart={addToCart} toggleEditIngredients={handleToggleEditIngredients} />
+          )}
             </>
           )}
           {state.totalQuantity > 0 ? (
             <CartButton
               cart={cart}
+              addToCart={addToCart}
               handleCartBtnClick={() =>
                 setState((prev) => ({ ...prev, openCart: !state.openCart }))
               }

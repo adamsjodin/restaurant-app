@@ -4,6 +4,8 @@ import Input from '../Input/Input';
 import './Signup.scss';
 import { validateForm } from "../../utils/validation";
 import axios from 'axios';
+import { MdClose } from 'react-icons/md';
+
 function Signup(handleChange) {
 
     const [formErrors, setFormErrors] = useState({});
@@ -59,7 +61,8 @@ function Signup(handleChange) {
 
     return (
         <>
-            <section className='signup'>
+            <section className='signup background-color__black'>
+            <MdClose onClick={() => action(false)} />
                 <h2 className='signup--heading'>Sign up</h2>
 
                 <form className='signup--form' onSubmit={handleSubmit}>

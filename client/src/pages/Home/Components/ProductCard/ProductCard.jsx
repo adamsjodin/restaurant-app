@@ -10,13 +10,16 @@ function ProductCard({
   props,
   onClick,
   className,
+  toggleEditIngredients,
   cartInfo,
   increase,
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity } = props;
+  const { title, description, price, imgUrl, quantity, changes, message } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
+
+  const changesEntries = changes ? Object.entries(changes) : [];
 
   const [showInfo, setShowInfo] = useState(false);
   const cardRef = useRef(null);
@@ -45,13 +48,21 @@ function ProductCard({
               <h3>{title}</h3>
               {cartInfo ? (
                 <div className="cart-wrapper">
+                  <div className="cart-quantity">
                   <Button className="add" onClick={decrease}>
                     -
                   </Button>{" "}
                   <p>Quantity:{" " + quantity}</p>{" "}
                   <Button className="add" onClick={increase}>
                     +
-                  </Button>{" "}
+                  </Button>{" "}</div>
+                  <div className="cart-changes">
+                  {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
+                    <p key={ingredient}>
+                      {changed ? "Add" : "Remove"} {ingredient}
+                    </p>
+                  ))}
+                  {message && <p>Message: {message}</p>}</div>
                 </div>
               ) : (
                 <Truncate inline title={description}>
@@ -64,7 +75,13 @@ function ProductCard({
                 ) : (
                   <>
                     <h3>{price} kr</h3>
-                    <Button className="add" onClick={() => onClick(props)}>
+                    <Button
+                      className="add"
+                      onClick={() => {
+                        onClick(props);
+                        toggleEditIngredients();
+                      }}
+                    >
                       Add +
                     </Button>
                   </>

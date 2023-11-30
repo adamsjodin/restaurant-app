@@ -52,7 +52,7 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
 
 
   return (
-    <div className="container">
+    <div className="popup">
       <div className="editCard">
         <ul>
           {totalList.map((ingredient, index) => (

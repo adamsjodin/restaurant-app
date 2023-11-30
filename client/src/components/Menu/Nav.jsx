@@ -114,7 +114,7 @@ function Nav() {
             <IoLogOutOutline
               className="nav--icon"
               onClick={() => {
-                setShow({ ...show, showLogoutConf: !show.showLogoutConf });
+                setShow({ ...show, showLogoutConf: !show.showLogoutConf, openNav: !show.openNav });
               }}
             />
           </div>

@@ -5,7 +5,6 @@ import Hours from "./components/Hours/Hours";
 import Footer from "./components/Footer/Footer";
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
-import Signup from "./components/Signup/Signup";
 
 function App() {
   const [showSplash, setShowSplash] = useState(

@@ -61,7 +61,6 @@ function Home() {
     
   };
 
-
   const handleEditBtnClick = (product) => {
     setSelectedProduct(product);
     console.log(cart);
@@ -146,7 +145,6 @@ function Home() {
           {state.totalQuantity > 0 ? (
             <CartButton
               cart={cart}
-              addToCart={addToCart}
               handleCartBtnClick={() =>
                 setState((prev) => ({ ...prev, openCart: !state.openCart }))
               }

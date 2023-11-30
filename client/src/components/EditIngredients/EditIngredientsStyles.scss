@@ -15,7 +15,7 @@
 .editCard {
     color: white;
     max-height: 15rem;
-    @include gridColumns(2);
+    @include gridCenter;
     text-align: start;
     
       overflow: auto;
@@ -44,7 +44,6 @@
 
 .editCard__input {
     color: white;
-    max-width: 5.3rem;
     border: none;
     background-color:transparent;
     border-bottom: 1px solid #fff;

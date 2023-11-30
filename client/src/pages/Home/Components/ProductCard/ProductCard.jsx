@@ -19,6 +19,8 @@ function ProductCard({
   const { title, description, price, imgUrl, quantity, changes, message } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
 
+  const changesEntries = changes ? Object.entries(changes) : [];
+
   const [showInfo, setShowInfo] = useState(false);
   const cardRef = useRef(null);
 
@@ -55,7 +57,7 @@ function ProductCard({
                     +
                   </Button>{" "}</div>
                   <div className="cart-changes">
-                  {Object.entries(changes).map(([ingredient, changed]) => (
+                  {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
                     <p key={ingredient}>
                       {changed ? "Add" : "Remove"} {ingredient}
                     </p>

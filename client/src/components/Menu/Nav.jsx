@@ -61,7 +61,7 @@ function Nav() {
   function handleLogout() {
     localStorage.setItem("userId", "");
     localStorage.setItem("userName", "");
-    setShow({ ...show, showLogoutConf: true });
+    setShow({ ...show, showLogoutConf: false });
   }
 
   function closeNav() {
@@ -130,7 +130,9 @@ function Nav() {
         )}
       </motion.div>
 
-      {show.showLogin && <Login state={show.showLogin} />}
+      {show.showLogin && <Login state={() =>
+            setShow({ ...show, showLogin: !show.showLogin })
+          } />}
       {show.showSignup && <Signup />}
       {show.showOrderHistory && (
         <OrderHistory

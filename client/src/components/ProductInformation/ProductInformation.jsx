@@ -16,7 +16,7 @@ function ProductInformation({ props, onClick, showInfo }) {
         <p>{props.description}</p>
         <h3>Allergens:</h3>
         <ul className="allergens">
-          {props.ingredients.map((ingredient, id) => (
+          {props.allergens.map((ingredient, id) => (
             <li key={id}>{ingredient}</li>
           ))}
         </ul>

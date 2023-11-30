@@ -5,7 +5,7 @@ import "./CartStyles.scss";
 function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   function handleIncrease(item) {
     item.quantity++;
-    setCart([...cart]); 
+    setCart([...cart]);
     updateTotals(
       cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
       cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0)

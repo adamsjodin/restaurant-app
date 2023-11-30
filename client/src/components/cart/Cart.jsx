@@ -5,7 +5,7 @@ import "./CartStyles.scss";
 function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   function handleIncrease(item) {
     item.quantity++;
-    setCart([...cart]); // Ensure that you're creating a new array reference to trigger a re-render
+    setCart([...cart]);
     updateTotals(
       cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
       cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0)
@@ -15,7 +15,7 @@ function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   function handleDecrease(item) {
     if (item.quantity > 0) {
       item.quantity--;
-      setCart([...cart]); // Ensure that you're creating a new array reference to trigger a re-render
+      setCart([...cart]);
       updateTotals(
         cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
         cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0)

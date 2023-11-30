@@ -58,6 +58,7 @@ function Home() {
     } else {
       setCart([...cart, { ...item, quantity: 1 }]);
     }
+    
   };
 
 

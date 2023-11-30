@@ -23,8 +23,8 @@ function Login({state}) {
                 <button className='login--btn' onClick={() => handleLogin({setError, loginObj, state}) }>Log in</button>
                 <p className='login--paragraph' onClick={() => setShowSignup(true)}>Sign up</p>
             </section>
-            {showSignup && <Signup />}
-            <p>Continue as guest</p>
+            {showSignup && <Signup action={() => {setShowSignup()}} />}
+            <p onClick={() => {state(false)}}>Continue as guest</p>
         </section>
         </>
     );

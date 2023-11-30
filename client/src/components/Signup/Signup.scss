@@ -63,7 +63,11 @@
     &--submitted {
         color: $clr-text__green;
         font-size: 1.5rem;
+        &--red {
+            color: $clr-btn__red
+        }
     }
+
 }
 
 @media screen and (min-width: 800px) {

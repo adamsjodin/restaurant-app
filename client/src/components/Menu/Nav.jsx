@@ -133,7 +133,9 @@ function Nav() {
       {show.showLogin && <Login state={() =>
             setShow({ ...show, showLogin: !show.showLogin })
           } />}
-      {show.showSignup && <Signup />}
+      {show.showSignup && <Signup action={() => 
+        setShow({ ...show, showSignup: !show.showSignup }) 
+        }/>}
       {show.showOrderHistory && (
         <OrderHistory
           action={() =>

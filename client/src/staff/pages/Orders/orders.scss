@@ -1,0 +1,37 @@
+@import "../../../Styles/mixins";
+@import "../../../Styles/variables";
+
+.orders {
+  background-color: $bg-staff;
+  h1 {
+    text-align: center;
+    padding: 2rem;
+    font-size: $fs-h3;
+  }
+  .order-history__card {
+    position: relative;
+    height: unset;
+    @include gridColumns(repeat(3, 1fr));
+    svg:not(:first-child) {
+      @include close-btn-position;
+      right: 1rem;
+      left: unset;
+    }
+    p {
+      text-align: left;
+    }
+    hr {
+      opacity: .5;
+      margin: .5rem 0
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 90%;
+      button {
+        font-size: .75rem;
+      }
+    }
+  }
+}

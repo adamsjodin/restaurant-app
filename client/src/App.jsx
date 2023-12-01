@@ -6,8 +6,6 @@ import Footer from "./components/Footer/Footer";
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
 
-
-
 function App() {
   const [showSplash, setShowSplash] = useState(
     localStorage.getItem("splashShown") !== "true"

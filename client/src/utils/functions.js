@@ -85,14 +85,14 @@ export async function changeOrderStatus(orderInfo) {
 }
 
 export async function getUserDetails(userId) {
-  await axios.post(
-    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
-    { userID: userId }
-  )
-    .then((res) => {
-      console.log(res.data.body)
-      return res.data.body})
-    .catch((error) => {
+  try {
+    const response = await axios.post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
+      { userID: userId }
+    )
+    return response.data.body;
+  }  
+  catch(error) {
       console.error("Error fetching order history: ", error);
-    })
+    }
 }

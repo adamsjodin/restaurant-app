@@ -9,6 +9,7 @@ import { changeOrderStatus, getUserDetails } from "../../../utils/functions"
 
 export default function OrdersCard({ order }) {
   const [showInfo, setShowInfo] = useState(false)
+  const [userData, setUserData] = useState("")
   const convertedDate = new Date(order.TimeStamp * 1000).toString();
   const productEl = order.products.map((product, i) => {
     return <section key={i}><p>{product.quantity}st {product.title} </p> <p>Notes:</p>{product.changes.map((change, i) => {return <p key={i}>{change}</p>})}<hr></hr></section>
@@ -20,16 +21,21 @@ export default function OrdersCard({ order }) {
     newStatus: "done"
   }
 //Kunna göra orders active igen? 
-//TODO! Hämta och visa på rätt sätt... 
 
-function getInfo() {
-  setShowInfo(!showInfo)
-  const data = JSON.stringify(getUserDetails(order.userID))
-  console.log(data.name)
+async function getInfo() {
+  try {
+    const userData = await getUserDetails(order.userID);
+    setUserData(userData)
+    setShowInfo(true)
+  } catch (error) {
+    console.error("Error getting user details in getInfo(): ", error);
+  }
 }
-  
+
+const userEl = <section className="popup popup--staff"><IoMdClose onClick={() => setShowInfo(!showInfo)} /><p>Name: {userData.name}</p><p>Mail: {userData.email}</p><p>Phone: {userData.phone}</p></section> 
   return (
     <section className="order-history__card">
+      {showInfo ? userEl : ""}
       <div><FaCircle className={order.status === 'active' ? 'active' : ""}/></div>
       <div>
         <p>Order number: {order.orderNr}</p>
@@ -40,7 +46,7 @@ function getInfo() {
         <p>{convertedDate.substring(4, 21)}</p>
         <Button onClick={() => changeOrderStatus(orderInfo)} children={order.status === 'active' ? 'Done' : 'Delivered'} className={order.status === 'active' ? 'add' : 'third'} ></Button>
       </div>
-      {showInfo ? <IoMdClose onClick={() => setShowInfo(!showInfo)} /> : <FaInfo onClick={() => getInfo()} />}
+      {!showInfo && <FaInfo onClick={() => getInfo()} />}
     </section>
   );
 }

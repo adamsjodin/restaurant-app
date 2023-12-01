@@ -5,21 +5,32 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import { MdClose } from "react-icons/md";
 import Button from "../Button/Button";
+import Input from '../Input/Input';
 
 export default function Reservation({action}) {
   const [showConfirmation, setShowConfirmaion] = useState(false)
   const [guests, setGuests] = useState(1)
 
-  return (
+  const [date, setDate] = useState(new Date());
+  
+  const showDate = (currentDate) => {
+    setDate(currentDate)
+  }
+
+  const [name, setName] = useState('')
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+    return (
     <>
-    
-     {/*  <Calendar /> */}
     <article className="reservation">
 			<MdClose onClick={() => action(false)} />
       <img src="./logos/claddagh.png" ></img>
       <p>For reservations more than ten people please send us an email.</p>
       {/*insert new form here*/}
 
+      <Calendar onChange={showDate} value={date.toDateString()}/>
       <form
             autoComplete='on'
             className='form'
@@ -27,11 +38,10 @@ export default function Reservation({action}) {
           <div className='form__calendar'>
           </div>
             <section className="form__inputs">
-                <input className="input" placeholder="Date"/>
-                <input className="input" placeholder="Time"/>
-                <input className="input" placeholder="Email"/>
-                <input className="input" placeholder="Name" />
-                <input className="input" placeholder="Phone" />
+                <Input className="input" placeholder="Name" onChange={handleChange}/>
+                <Input className="input" placeholder="Email"/>
+                <Input className="input" placeholder="Phone" />
+                <Input className="input" placeholder="Time" />
             </section>
         </form>
 
@@ -43,7 +53,12 @@ export default function Reservation({action}) {
         </section>
       </section>
       <Button onClick={() => setShowConfirmaion(true)}>Confirm reservation</Button>
-      {showConfirmation && <ReservationConfirmation action={setShowConfirmaion} guests={guests} /> }
+      {showConfirmation && <ReservationConfirmation 
+        action={setShowConfirmaion} 
+        guests={guests} 
+        date={date.toDateString()}
+        name={name}
+        /> }
     </article>
       </>
   )

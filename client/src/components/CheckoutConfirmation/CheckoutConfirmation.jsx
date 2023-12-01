@@ -15,10 +15,6 @@ const screenWidth = window.innerWidth;
 
 function CheckoutConfirmation() {
   const [overlayOpen, setOverlayOpen] = useState(false);
-
-  function handleOverlay() {
-    setOverlayOpen(!overlayOpen);
-  }
   
   const overlayVariants = {
     closed: {
@@ -39,7 +35,7 @@ function CheckoutConfirmation() {
     >
     <IoIosArrowDown
         className="checkout-confirmation__close"
-        onClick={handleOverlay}
+        onClick={setOverlayOpen(!overlayOpen)}
       />
     { overlayOpen ? 
       <>

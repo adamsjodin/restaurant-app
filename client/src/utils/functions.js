@@ -28,7 +28,7 @@ export async function getAllOrders() {
 export async function getOrderHistory() {
   const userID = JSON.parse(localStorage.getItem("userId"))
   console.log("userID: " + userID)
-  return axios.post(
+  await axios.post(
     "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
     { userID: userID }
   )
@@ -82,4 +82,19 @@ export async function changeOrderStatus(orderInfo) {
   .catch((error) => {
     console.error("Error change status: ", error);
   })
+}
+
+export async function getUserDetails(userId) {
+  await axios.post(
+    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
+    { userID: userId }
+  )
+    .then((res) => {
+        console.log(res.data)
+      return res.data
+
+    })
+    .catch((error) => {
+      console.error("Error fetching order history: ", error);
+    })
 }

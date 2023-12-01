@@ -28,6 +28,12 @@ functions:
       - httpApi: 
           path: '/api/menu'
           method: POST
+  updateMenu:
+    handler: functions/menuFunctions/updateMenu/index.handler
+    events: 
+      - httpApi:
+          path: '/api/menu'
+          method: PUT
   addUser:
     handler: functions/userFunctions/addUser/index.handler
     events: 

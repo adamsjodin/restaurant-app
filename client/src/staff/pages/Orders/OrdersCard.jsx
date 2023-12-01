@@ -3,7 +3,7 @@ import Button from "../../../components/Button/Button";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import { FaInfo } from "react-icons/fa";
-import { changeOrderStatus } from "../../../utils/functions"
+import { changeOrderStatus, getUserDetails } from "../../../utils/functions"
 
 
 
@@ -20,6 +20,12 @@ export default function OrdersCard({ order }) {
     newStatus: "done"
   }
 //Kunna göra orders active igen? 
+
+function getInfo() {
+  setShowInfo(!showInfo)
+  const data = getUserDetails(order.userID)
+  console.log(JSON.stringify(data))
+}
   
   return (
     <section className="order-history__card">
@@ -33,7 +39,7 @@ export default function OrdersCard({ order }) {
         <p>{convertedDate.substring(4, 21)}</p>
         <Button onClick={() => changeOrderStatus(orderInfo)} children={order.status === 'active' ? 'Done' : 'Delivered'} className={order.status === 'active' ? 'add' : 'third'} ></Button>
       </div>
-      {showInfo ? <IoMdClose onClick={() => setShowInfo(!showInfo)} /> : <FaInfo onClick={() => setShowInfo(!showInfo)} />}
+      {showInfo ? <IoMdClose onClick={() => setShowInfo(!showInfo)} /> : <FaInfo onClick={() => getInfo()} />}
     </section>
   );
 }

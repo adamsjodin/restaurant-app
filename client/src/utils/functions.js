@@ -13,6 +13,17 @@ export function getProducts() {
     })
 }
 
+export async function getAllOrders() {
+  return axios.get(
+    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders"
+  )
+    .then((res) => {
+      return res.data
+    })
+    .catch((error) => {
+      console.error("Error fetching order history: ", error);
+    })
+}
 
 export function getOrderHistory() {
   const userID = JSON.parse(localStorage.getItem("userId"))

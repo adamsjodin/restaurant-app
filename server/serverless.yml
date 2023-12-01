@@ -64,6 +64,12 @@ functions:
       - httpApi: 
           path: '/api/staff/orders'
           method: GET
+  changeOrderStatus:
+    handler: functions/orderFunctions/changeOrderStatus/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/orders'
+          method: PUT
   getMyOrders:
     handler: functions/orderFunctions/getMyOrders/index.handler
     events: 

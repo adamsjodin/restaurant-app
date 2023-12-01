@@ -10,9 +10,9 @@ module.exports.handler = async (event) => {
     Key: {
       id: id
     },
-    UpdateExpression: 'SET #title = :newValue',
+    UpdateExpression: 'SET #price = :newValue',
     ExpressionAttributeNames: {
-      '#title': 'title',
+      '#price': 'price',
     },
     ExpressionAttributeValues: {
       ':newValue': newValue,

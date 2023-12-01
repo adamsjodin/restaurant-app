@@ -90,10 +90,8 @@ export async function getUserDetails(userId) {
     { userID: userId }
   )
     .then((res) => {
-        console.log(res.data)
-      return res.data
-
-    })
+      console.log(res.data.body)
+      return res.data.body})
     .catch((error) => {
       console.error("Error fetching order history: ", error);
     })

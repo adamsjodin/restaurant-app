@@ -20,11 +20,12 @@ export default function OrdersCard({ order }) {
     newStatus: "done"
   }
 //Kunna göra orders active igen? 
+//TODO! Hämta och visa på rätt sätt... 
 
 function getInfo() {
   setShowInfo(!showInfo)
-  const data = getUserDetails(order.userID)
-  console.log(JSON.stringify(data))
+  const data = JSON.stringify(getUserDetails(order.userID))
+  console.log(data.name)
 }
   
   return (

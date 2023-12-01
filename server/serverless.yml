@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   profile: restaurant-admin
+  deploymentMethod: direct
   region: eu-north-1
   iam:
     role: arn:aws:iam::281856235143:role/serverless-dynamodb-role

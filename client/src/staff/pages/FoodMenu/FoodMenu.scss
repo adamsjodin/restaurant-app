@@ -4,4 +4,17 @@
 .foodMenu {
     height: 100vh;
     background: $bg-staff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__form {
+        color: black;
+        &-input {
+        color: black;
+        }
+        &-btn {            
+            color: black;
+        }
+    }
 }

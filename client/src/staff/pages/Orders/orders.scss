@@ -2,13 +2,23 @@
 @import "../../../Styles/variables";
 
 .orders {
-  background-color: $bg-staff;
+  background: $bg-staff;
+  img {
+    padding: 2rem;
+    margin: auto;
+  }
+  *{
+    color: #007D7D;
+  }
   h1 {
     text-align: center;
     padding: 2rem;
-    font-size: $fs-h3;
+    font-size: $fs-h2;
+    font-weight: 700;
   }
   .order-history__card {
+    padding-top: 3rem;
+    background: rgba(217, 217, 217, 0.50);
     position: relative;
     height: unset;
     @include gridColumns(repeat(3, 1fr));
@@ -19,6 +29,7 @@
     }
     p {
       text-align: left;
+      font-size: $fs-smaller;
     }
     hr {
       opacity: .5;
@@ -28,9 +39,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 90%;
+      min-height: 100%;
       button {
         font-size: .75rem;
+        border-radius: 5px;
+        font-weight: 700;
+      }
+      .button--third {
+        color: white
       }
     }
   }

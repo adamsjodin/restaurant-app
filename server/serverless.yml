@@ -70,6 +70,12 @@ functions:
       - httpApi: 
           path: '/api/staff/orders'
           method: PUT
+  getUserStaff:
+    handler: functions/userFunctions/getUserStaff/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/userinfo'
+          method: POST
   getMyOrders:
     handler: functions/orderFunctions/getMyOrders/index.handler
     events: 

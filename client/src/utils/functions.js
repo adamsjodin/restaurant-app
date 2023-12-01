@@ -25,7 +25,7 @@ export async function getAllOrders() {
     })
 }
 
-export function getOrderHistory() {
+export async function getOrderHistory() {
   const userID = JSON.parse(localStorage.getItem("userId"))
   console.log("userID: " + userID)
   return axios.post(
@@ -73,3 +73,13 @@ function checkRole({ data, setError, state }) {
   }
 }
 
+export async function changeOrderStatus(orderInfo) {
+  await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
+  .then((res) => {
+    const data = res.data;
+    return data
+  })
+  .catch((error) => {
+    console.error("Error change status: ", error);
+  })
+}

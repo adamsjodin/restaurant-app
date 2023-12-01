@@ -3,6 +3,8 @@ import Button from "../../../components/Button/Button";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import { FaInfo } from "react-icons/fa";
+import { changeOrderStatus } from "../../../utils/functions"
+
 
 
 export default function OrdersCard({ order }) {
@@ -11,6 +13,14 @@ export default function OrdersCard({ order }) {
   const productEl = order.products.map((product, i) => {
     return <section key={i}><p>{product.quantity}st {product.title} </p> <p>Notes:</p>{product.changes.map((change, i) => {return <p key={i}>{change}</p>})}<hr></hr></section>
   })
+
+  const orderInfo = {
+    orderNr: order.orderNr,
+    userID: order.userID,
+    newStatus: "done"
+  }
+//Kunna göra orders active igen? 
+  
   return (
     <section className="order-history__card">
       <div><FaCircle className={order.status === 'active' ? 'active' : ""}/></div>
@@ -21,9 +31,9 @@ export default function OrdersCard({ order }) {
       </div>
       <div>
         <p>{convertedDate.substring(4, 21)}</p>
-        <Button children={"Done"} className={"add"}></Button>
+        <Button onClick={() => changeOrderStatus(orderInfo)} children={order.status === 'active' ? 'Done' : 'Delivered'} className={order.status === 'active' ? 'add' : 'third'} ></Button>
       </div>
-      {showInfo ? <IoMdClose /> : <FaInfo />}
+      {showInfo ? <IoMdClose onClick={() => setShowInfo(!showInfo)} /> : <FaInfo onClick={() => setShowInfo(!showInfo)} />}
     </section>
   );
 }

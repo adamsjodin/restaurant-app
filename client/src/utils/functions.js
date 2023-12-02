@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+/* QUERY FUNCTIONS */
+
 export function wait(duration) {
   return new Promise((resolve) => setTimeout(resolve, duration));
 }
-
 
 export function getProducts() {
   return axios
@@ -52,6 +53,7 @@ export async function handleLogin({ setError, loginObj, state }) {
   })
 }
 
+/*  */
 
 function checkRole({ data, setError, state }) {
   if (data.success) {
@@ -73,3 +75,61 @@ function checkRole({ data, setError, state }) {
   }
 }
 
+/* STATES */
+
+export function booleanStates() {
+  return {
+    showLogin: false,
+    showSignup: false,
+    showOrderHistory: false,
+    showReservation: false,
+    showLogoutConf: false,
+    showSettings: false,
+    openNav: false,
+  };
+}
+
+export function toggleState(prevState, param) {
+  if (param in prevState) {
+    return { ...prevState, [param]: !prevState[param] };
+  }
+
+  let nestedState = { ...prevState };
+  let nestedObj = nestedState;
+
+  const keys = param.split(".");
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!nestedObj[keys[i]]) {
+      nestedObj[keys[i]] = {};
+    }
+    nestedObj = nestedObj[keys[i]];
+  }
+
+  nestedObj[keys[keys.length - 1]] = !nestedObj[keys[keys.length - 1]];
+
+  return nestedState;
+}
+
+export function doubleState(setState, param) {
+  setState((prevState) => {
+    const nextState = toggleState(prevState, 'openNav');
+    return toggleState(nextState, param);
+  });
+}
+
+/*  */
+
+/* Motion variants */
+
+export const sideBarVariants = {
+  open: {
+    transform: "translateX(0)",
+    opacity: 1,
+  },
+  closed: {
+    transform: "translateX(-100%)",
+    opacity: 0,
+  },
+};
+
+/*  */

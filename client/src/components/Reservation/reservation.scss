@@ -9,7 +9,15 @@
   text-align: center;
   padding: 1rem;
   
-
+  .form__inputs {
+    & > * {
+      max-width: 45%;
+    }
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
   svg {
     @include close-btn-position;
   }
@@ -63,11 +71,9 @@
 }
 
 .react-calendar {
+  width: 20em !important;
+  aspect-ratio: 1;
   background-color: $background-color--popup !important;
-
-  // &__month-view__days__day:hover {
-  //   background-color: $background-color--card !important;
-  // }
   &__navigation__arrow:hover,
   &__navigation__label:hover {
     background-color: $background-color--card !important;

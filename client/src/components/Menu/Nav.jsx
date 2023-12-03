@@ -13,7 +13,7 @@ import {
   MdOutlineContactPage,
   IoIosInformationCircleOutline,
 } from "../../utils/iconExports";
-import { sideBarVariants, booleanStates, toggleState, doubleState } from "../../utils/functions";
+import { sideBarVariants, booleanStates, doubleState, oneState } from "../../utils/functions";
 
 import NavIcon from "./NavIcon";
 import Login from "../Login/Login";
@@ -48,7 +48,7 @@ function Nav() {
 
   return (
     <>
-      <div className="toggleNav" onClick={() => setState((prevState) => toggleState(prevState, "openNav"))}>
+      <div className="toggleNav" onClick={() => oneState(setState, 'openNav')}>
         <NavIcon openNav={state.openNav} />
       </div>
       <motion.div
@@ -58,7 +58,7 @@ function Nav() {
         transition={{ duration: 0.5 }}
       >
         <ul className="nav--ul">
-          <li onClick={() => setState((prevState) => toggleState(prevState, "openNav"))}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <SlHome className="nav--icon" />
             <Link to={"/"}>Home</Link>
           </li>
@@ -74,11 +74,11 @@ function Nav() {
           >
             <SlCalender className="nav--icon" /> Make reservation
           </li>
-          <li onClick={() => setState((prevState) => toggleState(prevState, "openNav"))}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <MdOutlineContactPage className="nav--icon" />
             <Link to={"/contact"}>Contact</Link>
           </li>
-          <li onClick={() => setState((prevState) => toggleState(prevState, "openNav"))}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <IoIosInformationCircleOutline className="navContent--icon" />
             <Link to={"/about"}>About</Link>
           </li>
@@ -87,7 +87,7 @@ function Nav() {
           <div className="nav--footer">
             <IoSettingsOutline
               className="nav--icon"
-              onClick={() => setState((prevState) => toggleState(prevState, "showSettings"))}
+              onClick={() => oneState(setState, 'showSettings')}
             />
             <h5>{userName && JSON.parse(userName)}</h5>
             <IoLogOutOutline
@@ -97,25 +97,25 @@ function Nav() {
           </div>
         ) : (
           <div className="nav--footer">
-            <h5 onClick={() => setState((prevState) => toggleState(prevState, "showLogin"))}>Log in</h5>
-            <h5 onClick={() => setState((prevState) => toggleState(prevState, "showSignup"))}>Sign up</h5>
+            <h5 onClick={() => doubleState(setState, 'showLogin')}>Log in</h5>
+            <h5 onClick={() => doubleState(setState, 'showSignup')}>Sign up</h5>
           </div>
         )}
       </motion.div>
 
-      {state.showLogin && <Login state={() => setState((prevState) => toggleState(prevState, "showLogin"))} />}
-      {state.showSignup && <Signup action={() => setState((prevState) => toggleState(prevState, "showSignup"))} />}
+      {state.showLogin && <Login state={() => oneState(setState, 'showLogin')} />}
+      {state.showSignup && <Signup action={() => oneState(setState, 'showSignup')} />}
       {state.showOrderHistory && (
-        <OrderHistory action={() => setState((prevState) => toggleState(prevState, "showOrderHistory"))} />
+        <OrderHistory action={() => oneState(setState, 'showOrderHistory')} />
       )}
       {state.showReservation && (
-        <Reservation action={() => setState((prevState) => toggleState(prevState, "showReservation"))} />
+        <Reservation action={() => oneState(setState, 'showReservation')} />
       )}
       {state.showLogoutConf && (
-        <LogoutConf action={handleLogout} state={() => setState((prevState) => toggleState(prevState, "showLogoutConf"))} />
+        <LogoutConf action={handleLogout} state={() => oneState(setState, 'showLogoutConf')} />
       )}
       {state.showSettings && (
-        <Settings action={() => setState((prevState) => toggleState(prevState, "showSettings"))} />
+        <Settings action={() => oneState(setState, 'showSettings')} />
       )}
     </>
   );

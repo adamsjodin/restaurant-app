@@ -110,6 +110,11 @@ export function toggleState(prevState, param) {
   return nestedState;
 }
 
+export function oneState(setState, param) {
+  setState((prevState) => {
+    return toggleState(prevState, param);
+  })
+}
 export function doubleState(setState, param) {
   setState((prevState) => {
     const nextState = toggleState(prevState, 'openNav');

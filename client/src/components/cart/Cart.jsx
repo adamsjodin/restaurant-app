@@ -13,35 +13,52 @@ function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
   }
 
   function handleDecrease(item) {
-    if (item.quantity <= 1) {
-      const updatedCart = cart.filter((cartItem) => cartItem.id !== item.id);
+    const updatedCart = [...cart];
+    const itemIndex = updatedCart.findIndex(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (itemIndex !== -1) {
+      const updatedItem = {
+        ...updatedCart[itemIndex],
+        quantity: Math.max(0, updatedCart[itemIndex].quantity - 1),
+      };
+
+      if (updatedItem.quantity === 0) {
+        updatedCart.splice(itemIndex, 1);
+      } else {
+        updatedCart[itemIndex] = updatedItem;
+      }
+
       setCart(updatedCart);
-    } else {
-      item.quantity--;
-      setCart([...cart]);
-    }
       updateTotals(
-        cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
-        cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0)
+        updatedCart.reduce(
+          (sum, cartItem) => sum + (cartItem.quantity || 0),
+          0
+        ),
+        updatedCart.reduce(
+          (sum, cartItem) => sum + (cartItem.quantity * cartItem.price || 0),
+          0
+        )
       );
     }
-  
+  }
 
   return (
     <section className="cart">
       <h1>Your order:</h1>
       <section className="cart__products">
-      {cart.map((product) => (
-        <ProductCard
-          key={product.id}
-          props={{ ...product }}
-          className="cart"
-          cartInfo={true}
-          increase={() => handleIncrease(product)}
-          decrease={() => handleDecrease(product)}
-          totalPrice={product.quantity * product.price}
-        />
-      ))}
+        {cart.map((product, i) => (
+          <ProductCard
+            key={i}
+            props={{ ...product }}
+            className="cart"
+            cartInfo={true}
+            increase={() => handleIncrease(product)}
+            decrease={() => handleDecrease(product)}
+            totalPrice={product.quantity * product.price}
+          />
+        ))}
       </section>
       <section className="cart__actions">
         <Button className="secondary" onClick={() => setOpenCart(!openCart)}>

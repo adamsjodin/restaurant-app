@@ -16,7 +16,9 @@ function ProductCard({
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity, changes, message } = props;
+  const { title, description, price, imgUrl, quantity, changes, message } =
+    props;
+ 
   const dynamicStyle = className ? `product product--${className}` : "product";
 
   const changesEntries = changes ? Object.entries(changes) : [];
@@ -49,20 +51,22 @@ function ProductCard({
               {cartInfo ? (
                 <div className="cart-wrapper">
                   <div className="cart-quantity">
-                  <Button className="add" onClick={decrease}>
-                    -
-                  </Button>{" "}
-                  <p>Quantity:{" " + quantity}</p>{" "}
-                  <Button className="add" onClick={increase}>
-                    +
-                  </Button>{" "}</div>
+                    <Button className="add" onClick={decrease}>
+                      -
+                    </Button>{" "}
+                    <p>Quantity:{" " + quantity}</p>{" "}
+                    <Button className="add" onClick={increase}>
+                      +
+                    </Button>{" "}
+                  </div>
                   <div className="cart-changes">
-                  {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
-                    <p key={ingredient}>
-                      {changed ? "Add" : "Remove"} {ingredient}
-                    </p>
-                  ))}
-                  {message && <p>Message: {message}</p>}</div>
+                    {changesEntries.map(([ingredient, changed]) => (
+                      <p key={ingredient}>
+                        {changed ? "Add" : "Remove"} {ingredient}
+                      </p>
+                    ))}
+                    {message && <p>Message: {message}</p>}
+                  </div>
                 </div>
               ) : (
                 <Truncate inline title={description}>

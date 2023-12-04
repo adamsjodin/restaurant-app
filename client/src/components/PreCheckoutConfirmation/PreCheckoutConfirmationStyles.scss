@@ -5,6 +5,8 @@
   display: none;
 }
 .pre-checkout {
+  background-color: black;
+  z-index: 50;
   border-top: 2px solid white;
   position: absolute;
   bottom: 0;
@@ -15,9 +17,8 @@
 }
 
 .pre-checkout__items {
-  margin: 1.5rem;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column
 }
 
 .pre-checkout__btns {
@@ -38,6 +39,12 @@
   h2 {
     font-size: $fs-h1;
   }
+}
+
+.pre-checkout__infowrapper{
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-around;
 }
 
 @media screen and (min-width: 55em) {

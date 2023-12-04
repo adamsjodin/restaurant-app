@@ -1,6 +1,14 @@
 @import '../../../../Styles/variables';
 @import '../../../../Styles/mixins';
 
+
+.editFoodOverlay {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    z-index: 1;
+}
+
 .menu {
     
     padding: 1em;

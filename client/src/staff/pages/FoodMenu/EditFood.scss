@@ -1,0 +1,49 @@
+@import "../../../Styles/variables";
+@import "../../../Styles/mixins";
+
+.editFood {
+    background-color: rgb(74, 38, 38);
+    height: 12rem;
+    width: 20rem;
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: $clr-btn__primary;
+    
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;
+        &-input {
+            color: white;
+            background-color: transparent;
+            margin: 0.5rem;
+            border: none;
+            border-bottom: 1px solid white;
+
+            &:focus-visible {
+                outline: none;
+                border-color: green;
+              }
+
+            &::placeholder {
+                color: rgb(99, 95, 95);
+            }
+        }
+        &-btn {           
+            padding: 0.2rem 1rem; 
+            border: none;
+            color: rgb(255, 255, 255);
+            background-color: $clr-btn__primary;
+            border: 1px solid white;
+        }
+        &-close {
+            cursor: pointer;
+            padding: 0.5rem 0rem 0rem 0.5rem;
+            font-size: 1.1rem;
+        }
+        &-msg {
+            color: $clr-text__red;
+        }
+    }
+}

@@ -22,24 +22,38 @@ let orderItems = [
   },
 ];
 
-function PreCheckoutConfirmation({ props }) {
+function PreCheckoutConfirmation({ cart, toggleOpenCheckout, openCheckout, toggleOpenPreCheckout, openPreCheckout, }) {
+
+ 
+
+  console.log(cart);
   return (
     <article className="pre-checkout">
       <div className="pre-checkout__items-wrapper">
         <div className="pre-checkout__top">
-        <h2>Your order</h2>
-        <p>[total price]</p></div>
-        {orderItems.map((item) => (
-          <section className="pre-checkout__items" key={item.id}>
+          <h2>Your order</h2>
+          <p>[total price]</p>
+        </div>
+        {cart.map((item, i) => (
+          <section className="pre-checkout__items" key={i}>
+            <div className="pre-checkout__infowrapper">
             <p>{item.quantity}</p>
             <p>{item.title}</p>
-            <p>{item.price}</p>
+            <p>{item.price}</p></div>
+            {Object.entries(item.changes || {}).map(([ingredient, changed]) => (
+              <p key={ingredient}>
+                {changed ? "Add" : "Remove"} {ingredient}
+              </p>
+            ))}
           </section>
         ))}
       </div>
       <div className="pre-checkout__btns">
         <Button>Looks good</Button>
-        <Button className="secondary">Edit my order [countdown]</Button>
+        <Button className="secondary" onClick={() => {
+  toggleOpenCheckout(!openCheckout);
+  toggleOpenPreCheckout(!openPreCheckout);
+}}>Edit my order [countdown]</Button>
       </div>
     </article>
   );

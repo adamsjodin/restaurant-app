@@ -10,12 +10,16 @@ import Cart from "../../components/cart/Cart";
 import CartButton from "./Components/CartButton/CartButton";
 import RenderMenu from "./Components/RenderMenu/RenderMenu";
 import EditIngredients from "../../components/EditIngredients/EditIngredients";
+import PreCheckoutConfirmation from "../../components/PreCheckoutConfirmation/PreCheckoutConfirmation";
+import CheckoutConfirmation from "../../components/CheckoutConfirmation/CheckoutConfirmation";
 
 
 function Home() {
   const [isSearching, toggleIsSearching] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [openCart, toggleOpenCart] = useState(false);
+  const [openPreCheckout, toggleOpenPreCheckout] = useState(false);
+  const [openCheckout, toggleOpenCheckout] = useState(false);
   const [editIngredients, toggleEditIngredients] = useState(false);
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   useEffect(() => {
@@ -100,49 +104,61 @@ function Home() {
   
     return (
       <>
-        {openCart ? (
-          <Cart
-            openCart={openCart}
-            setOpenCart={toggleOpenCart}
-            setCart={setCart}
-            cart={cart}
-            updateTotals={(newTotalQuantity, newTotalPrice) => {
-              setTotalQuantity(newTotalQuantity);
-              setTotalPrice(newTotalPrice);
-            }}
-          />
+        {openCheckout ? (
+          <CheckoutConfirmation />
         ) : (
           <>
-            {isSearching ? null : (
+            {openPreCheckout && (
+              <PreCheckoutConfirmation cart={cart} toggleOpenCheckout={toggleOpenCheckout} toggleOpenPreCheckout={toggleOpenPreCheckout} />
+            )}
+            {!openPreCheckout && (
               <>
-                <Offers />
-                <Categories setSelectedCategory={setSelectedCategory} />
+                {openCart ? (
+                  <Cart
+                    openCart={openCart}
+                    toggleOpenCart={toggleOpenCart}
+                    toggleOpenPreCheckout={toggleOpenPreCheckout}
+                    setCart={setCart}
+                    cart={cart}
+                    updateTotals={(newTotalQuantity, newTotalPrice) => {
+                      setTotalQuantity(newTotalQuantity);
+                      setTotalPrice(newTotalPrice);
+                    }}
+                  />
+                ) : (
+                  <>
+                    {isSearching ? null : (
+                      <>
+                        <Offers />
+                        <Categories setSelectedCategory={setSelectedCategory} />
+                      </>
+                    )}
+        
+                    <div className="search__icon" onClick={handleSearchIconClick}>
+                      <CiSearch />
+                    </div>
+        
+                    {isSearching ? (
+                      <Search menuItems={menuItems} isSearching={isSearching} actions={addToCart} />
+                    ) : (
+                      <>
+                        <RenderMenu
+                          filteredItems={filteredItems}
+                          editIngredients={handleEditBtnClick}
+                          toggleEditIngredients={handleToggleEditIngredients}
+                        />
+                        {editIngredients && (
+                          <EditIngredients product={selectedProduct} addToCart={addToCart} toggleEditIngredients={handleToggleEditIngredients} />
+                        )}
+                      </>
+                    )}
+                    <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} totalQuantity={totalQuantity} totalPrice={totalPrice} />
+                  </>
+                )}
               </>
             )}
-  
-            <div className="search__icon" onClick={handleSearchIconClick}>
-              <CiSearch />
-            </div>
-  
-            {isSearching ? (
-              <Search menuItems={menuItems} isSearching={isSearching} actions={addToCart} />
-            ) : (
-              <>
-                <RenderMenu
-            filteredItems={filteredItems}
-            editIngredients={handleEditBtnClick}
-            toggleEditIngredients={handleToggleEditIngredients}
-          />
-          {editIngredients && (
-            <EditIngredients product={selectedProduct} addToCart={addToCart} toggleEditIngredients={handleToggleEditIngredients} />
-          )}
-              </>
-            )}
-            <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} totalQuantity={totalQuantity} totalPrice={totalPrice} />
           </>
         )}
       </>
-    );
-  }
-  
+    )};
   export default Home;

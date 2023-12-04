@@ -2,7 +2,15 @@ import ProductCard from "../../pages/Home/Components/ProductCard/ProductCard";
 import Button from "../Button/Button";
 import "./CartStyles.scss";
 
-function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
+function Cart({
+  openCart,
+  toggleOpenCart,
+  toggleOpenPreCheckout,
+  openPreCheckout,
+  setCart,
+  cart,
+  updateTotals,
+}) {
   function handleIncrease(item) {
     item.quantity++;
     setCart([...cart]);
@@ -61,10 +69,17 @@ function Cart({ openCart, setOpenCart, setCart, cart, updateTotals }) {
         ))}
       </section>
       <section className="cart__actions">
-        <Button className="secondary" onClick={() => setOpenCart(!openCart)}>
+        <Button className="secondary" onClick={() => toggleOpenCart(!openCart)}>
           Add more
         </Button>
-        <Button>Go to Checkout</Button>
+        <Button
+          onClick={() => {
+            toggleOpenPreCheckout(!openPreCheckout);
+            toggleOpenCart(!openCart);
+          }}
+        >
+          Go to Checkout
+        </Button>
       </section>
     </section>
   );

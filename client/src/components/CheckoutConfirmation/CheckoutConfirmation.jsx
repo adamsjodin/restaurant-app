@@ -14,7 +14,7 @@ const checkoutSteps = [
 const screenWidth = window.innerWidth;
 
 function CheckoutConfirmation() {
-  const [overlayOpen, setOverlayOpen] = useState(false);
+  const [overlayOpen, setOverlayOpen] = useState(true);
 
   function handleOverlay() {
     setOverlayOpen(!overlayOpen);
@@ -25,7 +25,7 @@ function CheckoutConfirmation() {
       height: "4vh"
     },
     open: {
-      height: "25vh",
+      height: "100vh",
       width: "100%",
       zIndex: "1000000"
     }

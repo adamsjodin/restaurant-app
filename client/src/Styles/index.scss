@@ -26,6 +26,11 @@ body {
   background-color: black;
 }
 
+.staff-body {
+  background: $bg-staff;
+  min-height: 100vh;
+}
+
 .background-color__black {
   background: linear-gradient(192deg, $background-color--main 0%, #000 41.22%);
   background-repeat: no-repeat;

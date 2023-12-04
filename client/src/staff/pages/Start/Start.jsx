@@ -5,9 +5,6 @@ import './Start.scss'
 function Start() {
   return (
     <section className='start'>
-      <figure>
-        <img src="/logos/claddagh.png" alt="Claddagh - Food & Bar" />
-      </figure>
       <section>  
         <Link to="/staff/orders"><button className='start--btn'>Orders</button></Link>
         <button className='start--btn'>Table reservations</button>

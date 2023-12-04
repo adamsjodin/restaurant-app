@@ -1,8 +1,9 @@
-@import './variables'; 
-@import './mixins';
+@import "./variables";
+@import "./mixins";
 
 #root {
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
 }
 
 * {
@@ -48,7 +49,4 @@ body {
   .categories .category-list {
     overflow: unset;
   }
-
 }
-
-

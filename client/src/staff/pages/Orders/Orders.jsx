@@ -1,18 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { getOrderHistory } from "../../utils/functions";
-import OrderHistoryCard from "./OrderHistoryCard";
-import "./order-history.scss";
+import { getAllOrders } from "../../../utils/functions";
+import OrdersCard from "./OrdersCard";
+import "./orders.scss";
 import { useState } from "react";
-import { MdClose } from 'react-icons/md';
+import logo from "/logos/claddagh.png"
 
-
-export default function OrderHistory({action}) {
-  const [orderStatus, setOrderStatus] = useState("active");
-
-  //Fetching code
+export default function Orders() {
+   const [orderStatus, setOrderStatus] = useState("active");
+     //Fetching code
   const orderQuery = useQuery({
-    queryKey: ["order-history"],
-    queryFn: getOrderHistory,
+    queryKey: ["orders"],
+    queryFn: getAllOrders,
   });
 
   const orderItems = orderQuery?.data?.orders || [];
@@ -38,31 +36,32 @@ export default function OrderHistory({action}) {
           : doneOrders.push(order)
       );
     activeEl = activeOrders.map((order) => (
-      <OrderHistoryCard key={order.orderNr} order={order} />
+      <OrdersCard key={order.orderNr} order={order} />
     ));
     doneEl = doneOrders.map((order) => (
-      <OrderHistoryCard key={order.orderNr} order={order} />
+      <OrdersCard key={order.orderNr} order={order} />
     ));
   }
-
-  return (
-    <>
-      <article className="order-history">
-      <MdClose onClick={() => action(false)} />
-        <h1>My orders</h1>
+   
+   const date = "<- 2023-11-30 ->"
+   
+   return (
+      <article className="orders">
+      <img src={logo}></img> 
+        <h1>{date}</h1>
         <section className="order-history__container">
           <section className="order-history__tabs">
             <p
               onClick={() => setOrderStatus("active")}
               className={orderStatus === "active" ? "active" : ""}
             >
-              Active
+              In progress
             </p>
             <p
               onClick={() => setOrderStatus("done")}
               className={orderStatus === "done" ? "active" : ""}
             >
-              Previous
+              History
             </p>
           </section>
           {orderItems.length > 0 ? (
@@ -75,6 +74,9 @@ export default function OrderHistory({action}) {
           </section>
         </section>
       </article>
-    </>
-  );
+  )
 }
+
+
+
+

@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+/* QUERY FUNCTIONS */
+
 export function wait(duration) {
   return new Promise((resolve) => setTimeout(resolve, duration));
 }
-
 
 export function getProducts() {
   return axios
@@ -13,11 +14,22 @@ export function getProducts() {
     })
 }
 
+export async function getAllOrders() {
+  return axios.get(
+    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders"
+  )
+    .then((res) => {
+      return res.data
+    })
+    .catch((error) => {
+      console.error("Error fetching order history: ", error);
+    })
+}
 
-export function getOrderHistory() {
+export async function getOrderHistory() {
   const userID = JSON.parse(localStorage.getItem("userId"))
   console.log("userID: " + userID)
-  return axios.post(
+  await axios.post(
     "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
     { userID: userID }
   )
@@ -42,6 +54,32 @@ export async function handleLogin({ setError, loginObj, state }) {
 }
 
 
+export async function changeOrderStatus(orderInfo) {
+  await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
+  .then((res) => {
+    const data = res.data;
+    return data
+  })
+  .catch((error) => {
+    console.error("Error change status: ", error);
+  })
+}
+
+export async function getUserDetails(userId) {
+  try {
+    const response = await axios.post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
+      { userID: userId }
+    )
+    return response.data.body;
+  }  
+  catch(error) {
+      console.error("Error fetching order history: ", error);
+    }
+}
+
+/*  */
+
 function checkRole({ data, setError, state }) {
   if (data.success) {
       setError(false)
@@ -62,3 +100,66 @@ function checkRole({ data, setError, state }) {
   }
 }
 
+/* STATES */
+
+export function booleanStates() {
+  return {
+    showLogin: false,
+    showSignup: false,
+    showOrderHistory: false,
+    showReservation: false,
+    showLogoutConf: false,
+    showSettings: false,
+    openNav: false,
+  };
+}
+
+export function toggleState(prevState, param) {
+  if (param in prevState) {
+    return { ...prevState, [param]: !prevState[param] };
+  }
+
+  let nestedState = { ...prevState };
+  let nestedObj = nestedState;
+
+  const keys = param.split(".");
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!nestedObj[keys[i]]) {
+      nestedObj[keys[i]] = {};
+    }
+    nestedObj = nestedObj[keys[i]];
+  }
+
+  nestedObj[keys[keys.length - 1]] = !nestedObj[keys[keys.length - 1]];
+
+  return nestedState;
+}
+
+export function oneState(setState, param) {
+  setState((prevState) => {
+    return toggleState(prevState, param);
+  })
+}
+export function doubleState(setState, param) {
+  setState((prevState) => {
+    const nextState = toggleState(prevState, 'openNav');
+    return toggleState(nextState, param);
+  });
+}
+
+/*  */
+
+/* Motion variants */
+
+export const sideBarVariants = {
+  open: {
+    transform: "translateX(0)",
+    opacity: 1,
+  },
+  closed: {
+    transform: "translateX(-100%)",
+    opacity: 0,
+  },
+};
+
+/*  */

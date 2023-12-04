@@ -5,6 +5,8 @@ import Button from "../../../../components/Button/Button";
 import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
 import "./ProductCard.scss";
 import { motion } from "framer-motion";
+import EditFood from "../../../../staff/pages/FoodMenu/EditFood";
+
 
 function ProductCard({
   props,
@@ -20,18 +22,31 @@ function ProductCard({
     props;
  
   const dynamicStyle = className ? `product product--${className}` : "product";
-
   const changesEntries = changes ? Object.entries(changes) : [];
 
   const [showInfo, setShowInfo] = useState(false);
   const cardRef = useRef(null);
 
+  const [showEditFood, setShowEditFood] = useState(false);
+
+  const handleShowEditFood = () => {
+    setShowEditFood(!showEditFood)
+  };
+
+  const handleCloseEditFood = () => {
+    setShowEditFood(false) 
+  };
+  
   const handleClick = () => {
     setShowInfo(!showInfo);
   };
 
   return (
     <>
+    <div className="editFoodOverlay">
+    {showEditFood && <EditFood onClose={handleCloseEditFood} />}
+    </div>
+
       {showInfo ? (
         <ProductInformation
           className="productInformation"
@@ -79,7 +94,17 @@ function ProductCard({
                 ) : (
                   <>
                     <h3>{price} kr</h3>
-                    <Button
+                    {
+                      className === 'staff' ? 
+                      <Button
+                      className="add"
+                      onClick={handleShowEditFood}
+                    >
+                      Edit
+                    </Button>
+                      :                     
+                      
+                      <Button
                       className="add"
                       onClick={() => {
                         onClick(props);
@@ -88,6 +113,8 @@ function ProductCard({
                     >
                       Add +
                     </Button>
+                    }
+
                   </>
                 )}
               </section>

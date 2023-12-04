@@ -4,7 +4,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import { IoSettingsOutline, IoLogOutOutline, SlHome, SlCalender, FaWpforms, MdOutlineContactPage, IoIosInformationCircleOutline } from '../../utils/iconExports'
+import {
+  IoSettingsOutline,
+  IoLogOutOutline,
+  SlHome,
+  SlCalender,
+  FaWpforms,
+  MdOutlineContactPage,
+  IoIosInformationCircleOutline,
+} from "../../utils/iconExports";
+import { sideBarVariants, booleanStates, doubleState, oneState } from "../../utils/functions";
 
 import NavIcon from "./NavIcon";
 import Login from "../Login/Login";
@@ -14,90 +23,62 @@ import Reservation from "../Reservation/Reservation";
 import LogoutConf from "./LogoutConf";
 import Settings from "../Settings/Settings";
 
-//TODO!
-//1. Add settings component
-//2. Fix signup component
-//3. Fix styling
-
 function Nav() {
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState(null);
-
-  const [show, setShow] = useState({
-    showLogin: false,
-    showSignup: false,
-    showOrderHistory: false,
-    showReservation: false,
-    showLogoutConf: false,
-    showSettings: false,
-    openNav: false,
-  });
+  const [state, setState] = useState(booleanStates());
 
   useEffect(() => {
     const usId = localStorage.getItem("userId");
-    if (usId) {
-      setUserId(usId);
-    }
     const usNa = localStorage.getItem("userName");
-    if (usNa) {
+    if (usId && usNa) {
+      setUserId(usId);
       setUserName(usNa);
     } else {
       setUserId(null);
       setUserName(null);
     }
-  }, [show]);
-
-  const sideBar = {
-    open: {
-      transform: "translateX(0)",
-      opacity: 1,
-    },
-    closed: {
-      transform: "translateX(-100%)",
-      opacity: 0,
-    },
-  };
+  }, [state]);
 
   function handleLogout() {
     localStorage.setItem("userId", "");
     localStorage.setItem("userName", "");
-    setShow({ ...show, showLogoutConf: false });
-  }
-
-  function closeNav() {
-    setShow({ ...show, openNav: !show.openNav })
+    setState({ ...state, showLogoutConf: false });
   }
 
   return (
     <>
-      <div onClick={() => setShow({ ...show, openNav: !show.openNav })}>
-        <NavIcon openNav={show.openNav} />
+      <div className="toggleNav" onClick={() => oneState(setState, 'openNav')}>
+        <NavIcon openNav={state.openNav} />
       </div>
-
       <motion.div
         className="nav"
-        variants={sideBar}
-        animate={show.openNav ? "open" : "closed"}
+        variants={sideBarVariants}
+        animate={state.openNav ? "open" : "closed"}
         transition={{ duration: 0.5 }}
       >
         <ul className="nav--ul">
-          <li onClick={closeNav}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <SlHome className="nav--icon" />
             <Link to={"/"}>Home</Link>
           </li>
           {userName && (
-            <li onClick={() => setShow({ ...show, showOrderHistory: !show.showOrderHistory, openNav: !show.openNav })}>
+            <li
+              onClick={() => doubleState(setState, 'showOrderHistory')}
+            >
               <FaWpforms className="nav--icon" /> My orders
             </li>
           )}
-          <li onClick={() => setShow({ ...show, showReservation: !show.showReservation, openNav: !show.openNav })}>
+          <li
+            onClick={() => doubleState(setState, 'showReservation')}
+          >
             <SlCalender className="nav--icon" /> Make reservation
           </li>
-          <li onClick={closeNav}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <MdOutlineContactPage className="nav--icon" />
             <Link to={"/contact"}>Contact</Link>
           </li>
-          <li onClick={closeNav}>
+          <li onClick={() => oneState(setState, 'openNav')}>
             <IoIosInformationCircleOutline className="navContent--icon" />
             <Link to={"/about"}>About</Link>
           </li>
@@ -106,60 +87,35 @@ function Nav() {
           <div className="nav--footer">
             <IoSettingsOutline
               className="nav--icon"
-              onClick={() => {
-                setShow({ ...show, showSettings: !show.showSettings });
-              }}
+              onClick={() => oneState(setState, 'showSettings')}
             />
             <h5>{userName && JSON.parse(userName)}</h5>
             <IoLogOutOutline
               className="nav--icon"
-              onClick={() => {
-                setShow({ ...show, showLogoutConf: !show.showLogoutConf, openNav: !show.openNav });
-              }}
+              onClick={() => doubleState(setState, 'showLogoutConf')}
             />
           </div>
         ) : (
           <div className="nav--footer">
-            <h5 onClick={() => setShow({ ...show, showLogin: !show.showLogin })}>
-              Log in
-            </h5>
-            <h5 onClick={() => setShow({ ...show, showSignup: !show.showSignup })}>
-              Sign up
-            </h5>
+            <h5 onClick={() => doubleState(setState, 'showLogin')}>Log in</h5>
+            <h5 onClick={() => doubleState(setState, 'showSignup')}>Sign up</h5>
           </div>
         )}
       </motion.div>
 
-      {show.showLogin && <Login state={() =>
-            setShow({ ...show, showLogin: !show.showLogin })
-          } />}
-      {show.showSignup && <Signup />}
-      {show.showOrderHistory && (
-        <OrderHistory
-          action={() =>
-            setShow({ ...show, showOrderHistory: !show.showOrderHistory })
-          }
-        />
+      {state.showLogin && <Login state={() => oneState(setState, 'showLogin')} />}
+      {state.showSignup && <Signup action={() => oneState(setState, 'showSignup')} />}
+      {state.showOrderHistory && (
+        <OrderHistory action={() => oneState(setState, 'showOrderHistory')} />
       )}
-      {show.showReservation && (
-        <Reservation
-          action={() =>
-            setShow({ ...show, showReservation: !show.showReservation })
-          }
-        />
+      {state.showReservation && (
+        <Reservation action={() => oneState(setState, 'showReservation')} />
       )}
-      {show.showLogoutConf && (
-        <LogoutConf
-          action={handleLogout}
-          state={() =>
-            setShow({ ...show, showLogoutConf: !show.showLogoutConf })
-          }
-        />
+      {state.showLogoutConf && (
+        <LogoutConf action={handleLogout} state={() => oneState(setState, 'showLogoutConf')} />
       )}
-      {show.showSettings && (
-        <Settings
-          action={() => setShow({ ...show, showSettings: !show.showSettings })}
-        />
+      {state.showSettings && (
+        <Settings action={() => oneState(setState, 'showSettings')} />
       )}
     </>
   );

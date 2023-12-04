@@ -1,6 +1,9 @@
 @import "src/styles/_variables";
 @import "src/styles/_mixins";
 
+.pre-checkout.hidden {
+  display: none;
+}
 .pre-checkout {
   background-color: black;
   z-index: 50;
@@ -10,11 +13,10 @@
   left: 0;
   right: 0;
   text-align: center;
-  min-height: 100vh;
+  height: 70%;
 }
 
 .pre-checkout__items {
-  // margin: 1.5rem;
   display: flex;
   flex-direction: column
 }
@@ -24,6 +26,9 @@
   gap: 2em;
   button {
     min-width: 20rem;
+  }
+  span {
+    color: black;
   }
 }
 

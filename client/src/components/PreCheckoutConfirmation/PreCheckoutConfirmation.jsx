@@ -1,42 +1,42 @@
+import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
-
-let orderItems = [
-  {
-    id: 1,
-    title: "Classic burger",
-    price: 8.99,
-    quantity: 2,
-  },
-  {
-    id: 2,
-    title: "Pizza Margerita",
-    price: 6.99,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    title: "Ceasar sallad",
-    price: 13.99,
-    quantity: 1,
-  },
-];
+import Countdown from "./Countdown/Countdown";
 
 function PreCheckoutConfirmation({ cart, toggleOpenCheckout, openCheckout, toggleOpenPreCheckout, openPreCheckout, }) {
+  const [isPopupVisible, setIsPopupVisible] = useState(true);
+  const [isCountdownActive, setIsCountdownActive] = useState(true);
 
- 
+  const handleCountdownTimeout = () => {
+    setIsPopupVisible(false);
+  };
 
-  console.log(cart);
+  const handleButtonClick = () => {
+    setIsCountdownActive(false);
+    setIsPopupVisible(false);
+    toggleOpenCheckout(!openCheckout);
+    toggleOpenPreCheckout(!openPreCheckout);
+  };
+
+  useEffect(() => {
+    if (isPopupVisible) {
+      setIsCountdownActive(true);
+    }
+  }, [isPopupVisible]);
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   return (
-    <article className="pre-checkout">
+    <article
+      className={`pre-checkout ${isPopupVisible ? "visible" : "hidden"}`}
+    >
       <div className="pre-checkout__items-wrapper">
         <div className="pre-checkout__top">
           <h2>Your order</h2>
-          <p>[total price]</p>
+          <p>Total Price: ${totalPrice.toFixed(2)}</p>
         </div>
         {cart.map((item, i) => (
           <section className="pre-checkout__items" key={i}>
-            <div className="pre-checkout__infowrapper">
             <p>{item.quantity}</p>
             <p>{item.title}</p>
             <p>{item.price}</p></div>
@@ -50,10 +50,13 @@ function PreCheckoutConfirmation({ cart, toggleOpenCheckout, openCheckout, toggl
       </div>
       <div className="pre-checkout__btns">
         <Button>Looks good</Button>
-        <Button className="secondary" onClick={() => {
-  toggleOpenCheckout(!openCheckout);
-  toggleOpenPreCheckout(!openPreCheckout);
-}}>Edit my order [countdown]</Button>
+        <Button className="secondary" onClick={handleButtonClick}>
+          Edit my order{" "}
+          <Countdown
+            onTimeout={handleCountdownTimeout}
+            isCountdownActive={isCountdownActive}
+          />
+        </Button>
       </div>
     </article>
   );

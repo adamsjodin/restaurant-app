@@ -1,0 +1,27 @@
+@import "../../../Styles/variables";
+@import "../../../Styles/mixins";
+
+.start {
+    height: 100vh;
+    background: $bg-staff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    
+    &--btn {
+        background-color: $clr-text__staff;
+        border: none;
+        border-radius: 5px;
+        padding: 0.5rem 2rem;
+        margin: 1rem;
+        width: 13rem;
+        
+        &:hover {
+            background-color: $clr-btn__white;
+            color: $clr-text__staff;
+            border: 1px solid $clr-text__staff;
+        }
+    }
+}

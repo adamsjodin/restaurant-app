@@ -39,7 +39,7 @@ function CheckoutConfirmation() {
     >
     <IoIosArrowDown
         className="checkout-confirmation__close"
-        onClick={handleOverlay}
+        onClick={setOverlayOpen(!overlayOpen)}
       />
     { overlayOpen ? 
       <>

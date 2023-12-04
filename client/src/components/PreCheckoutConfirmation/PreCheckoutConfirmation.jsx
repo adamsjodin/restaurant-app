@@ -3,13 +3,7 @@ import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
 
-const cart = [
-  { "id": 1, "title": "Classic burger", "price": 8.99, "quantity": 2 },
-  { "id": 2, "title": "Pizza Margherita", "price": 6.99, "quantity": 1 },
-  { "id": 3, "title": "Caesar salad", "price": 13.99, "quantity": 1 }
-]
-
-function PreCheckoutConfirmation() {
+function PreCheckoutConfirmation({ cart, toggleOpenCheckout, openCheckout, toggleOpenPreCheckout, openPreCheckout, }) {
   const [isPopupVisible, setIsPopupVisible] = useState(true);
   const [isCountdownActive, setIsCountdownActive] = useState(true);
 
@@ -20,6 +14,8 @@ function PreCheckoutConfirmation() {
   const handleButtonClick = () => {
     setIsCountdownActive(false);
     setIsPopupVisible(false);
+    toggleOpenCheckout(!openCheckout);
+    toggleOpenPreCheckout(!openPreCheckout);
   };
 
   useEffect(() => {
@@ -43,7 +39,12 @@ function PreCheckoutConfirmation() {
           <section className="pre-checkout__items" key={i}>
             <p>{item.quantity}</p>
             <p>{item.title}</p>
-            <p>{item.price}</p>
+            <p>{item.price}</p></div>
+            {Object.entries(item.changes || {}).map(([ingredient, changed]) => (
+              <p key={ingredient}>
+                {changed ? "Add" : "Remove"} {ingredient}
+              </p>
+            ))}
           </section>
         ))}
       </div>

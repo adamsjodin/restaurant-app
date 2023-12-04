@@ -10,55 +10,68 @@ import Cart from "../../components/cart/Cart";
 import CartButton from "./Components/CartButton/CartButton";
 import RenderMenu from "./Components/RenderMenu/RenderMenu";
 import EditIngredients from "../../components/EditIngredients/EditIngredients";
+import PreCheckoutConfirmation from "../../components/PreCheckoutConfirmation/PreCheckoutConfirmation";
+import CheckoutConfirmation from "../../components/CheckoutConfirmation/CheckoutConfirmation";
+
 
 function Home() {
+  const [isSearching, toggleIsSearching] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [openCart, toggleOpenCart] = useState(false);
+  const [openPreCheckout, toggleOpenPreCheckout] = useState(false);
+  const [openCheckout, toggleOpenCheckout] = useState(false);
   const [editIngredients, toggleEditIngredients] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [state, setState] = useState({
-    isSearching: false,
-    openCart: false,
-    selectedCategory: null,
-    totalQuantity: 0,
-    totalPrice: 0,
-  });
-
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    const newTotalQuantity = cart.reduce(
-      (sum, item) => sum + (item.quantity || 0),
-      0
-    );
-    const newTotalPrice = cart.reduce(
-      (sum, item) => sum + (item.quantity * item.price || 0),
-      0
-    );
+    const newTotalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+    const newTotalPrice = cart.reduce((sum, item) => sum + (item.quantity * item.price || 0), 0);
 
-    setState((prev) => ({
-      ...prev,
-      totalQuantity: newTotalQuantity,
-      totalPrice: newTotalPrice,
-    }));
+    setTotalQuantity(newTotalQuantity);
+    setTotalPrice(newTotalPrice);
   }, [cart]);
+  
+
 
   const addToCart = (item) => {
-    const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
-
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      updatedCart[existingItemIndex].quantity += 1;
-      setCart(updatedCart);
-    } else {
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+    const updatedCart = [...cart];
+    let foundItemWithoutChanges = false;
+  
+    if (existingItemIndex !== -1 && Object.keys(item.changes).length > 0) {
       setCart([...cart, { ...item, quantity: 1 }]);
+    } else {
+      updatedCart.forEach((cartItem, index) => {
+        if (cartItem.id === item.id && (!cartItem.changes || Object.keys(cartItem.changes).length === 0)) {
+          foundItemWithoutChanges = true;
+          updatedCart[index].quantity += 1;
+        }
+      });
+  
+      if (!foundItemWithoutChanges) {
+        setCart([...cart, { ...item, quantity: 1 }]);
+      } else {
+        setCart(updatedCart);
+      }
     }
+  };
     
+   
+  
+
+
+  const handleSearchIconClick = () => {
+    toggleIsSearching(!isSearching);
+  };
+
+  const handleCartBtnClick = () => {
+    toggleOpenCart(!openCart);
   };
 
   const handleEditBtnClick = (product) => {
@@ -69,7 +82,7 @@ function Home() {
   const handleToggleEditIngredients = () => {
     toggleEditIngredients(!editIngredients);
   };
-  
+
   const menuQuery = useQuery({
     queryKey: ["menu"],
     queryFn: getProducts,
@@ -78,84 +91,74 @@ function Home() {
   const menuItems = menuQuery?.data?.menu || [];
 
   if (menuQuery.isLoading)
-    return (
-      <h1 style={{ minHeight: "100vh", padding: "2em" }}>Food is coming...</h1>
-    );
+    return <h1 style={{ minHeight: "100vh", padding: "2em" }}>Food is coming...</h1>;
   if (menuQuery.isError) {
     return <pre>{JSON.stringify(menuQuery.error)}</pre>;
   }
 
-  const filteredItems = state.selectedCategory
-    ? menuItems.filter((product) =>
-        product.categories.includes(state.selectedCategory)
-      )
+  const filteredItems = selectedCategory
+    ? menuItems.filter((product) => product.categories.includes(selectedCategory))
     : menuItems;
 
-  return (
-    <>
-      {state.openCart ? (
-        <Cart
-          openCart={state.openCart}
-          setOpenCart={() =>
-            setState((prev) => ({ ...prev, openCart: !state.openCart }))
-          }
-          setCart={setCart}
-          cart={cart}
-          updateTotals={(newTotalQuantity, newTotalPrice) =>
-            setState((prev) => ({
-              ...prev,
-              totalQuantity: newTotalQuantity,
-              totalPrice: newTotalPrice,
-            }))
-          }
-        />
-      ) : (
-        <>
-          {state.isSearching ? null : (
-            <>
-              <Offers />
-              <Categories
-                setSelectedCategory={(category) =>
-                  setState((prev) => ({ ...prev, selectedCategory: category }))
-                }
-              />
-            </>
-          )}
 
-          <div className="search__icon" onClick={() => setState((prev) => ({ ...prev, isSearching: !state.isSearching }))}>
-            <CiSearch />
-          </div>
-
-          {state.isSearching ? (
-            <Search
-              menuItems={menuItems}
-              isSearching={state.isSearching}
-              actions={addToCart}
-            />
-          ) : (
-            <>
-              <RenderMenu filteredItems={filteredItems} editIngredients={handleEditBtnClick}
-            toggleEditIngredients={handleToggleEditIngredients} />
-              
-          {editIngredients && (
-            <EditIngredients product={selectedProduct} addToCart={addToCart} toggleEditIngredients={handleToggleEditIngredients} />
-          )}
-            </>
-          )}
-          {state.totalQuantity > 0 ? (
-            <CartButton
-              cart={cart}
-              handleCartBtnClick={() =>
-                setState((prev) => ({ ...prev, openCart: !state.openCart }))
-              }
-              totalQuantity={state.totalQuantity}
-              totalPrice={state.totalPrice}
-            />
-          ) : null}
-        </>
-      )}
-    </>
-  );
-}
-
-export default Home;
+  
+    return (
+      <>
+        {openCheckout ? (
+          <CheckoutConfirmation />
+        ) : (
+          <>
+            {openPreCheckout && (
+              <PreCheckoutConfirmation cart={cart} toggleOpenCheckout={toggleOpenCheckout} toggleOpenPreCheckout={toggleOpenPreCheckout} />
+            )}
+            {!openPreCheckout && (
+              <>
+                {openCart ? (
+                  <Cart
+                    openCart={openCart}
+                    toggleOpenCart={toggleOpenCart}
+                    toggleOpenPreCheckout={toggleOpenPreCheckout}
+                    setCart={setCart}
+                    cart={cart}
+                    updateTotals={(newTotalQuantity, newTotalPrice) => {
+                      setTotalQuantity(newTotalQuantity);
+                      setTotalPrice(newTotalPrice);
+                    }}
+                  />
+                ) : (
+                  <>
+                    {isSearching ? null : (
+                      <>
+                        <Offers />
+                        <Categories setSelectedCategory={setSelectedCategory} />
+                      </>
+                    )}
+        
+                    <div className="search__icon" onClick={handleSearchIconClick}>
+                      <CiSearch />
+                    </div>
+        
+                    {isSearching ? (
+                      <Search menuItems={menuItems} isSearching={isSearching} actions={addToCart} />
+                    ) : (
+                      <>
+                        <RenderMenu
+                          filteredItems={filteredItems}
+                          editIngredients={handleEditBtnClick}
+                          toggleEditIngredients={handleToggleEditIngredients}
+                        />
+                        {editIngredients && (
+                          <EditIngredients product={selectedProduct} addToCart={addToCart} toggleEditIngredients={handleToggleEditIngredients} />
+                        )}
+                      </>
+                    )}
+                    <CartButton cart={cart} handleCartBtnClick={handleCartBtnClick} totalQuantity={totalQuantity} totalPrice={totalPrice} />
+                  </>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </>
+    )};
+  export default Home;

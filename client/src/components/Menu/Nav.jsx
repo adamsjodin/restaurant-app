@@ -103,7 +103,7 @@ function Nav() {
         )}
       </motion.div>
 
-      {state.showLogin && <Login state={() => oneState(setState, 'showLogin')} />}
+      {state.showLogin && <Login loginState={() => oneState(setState, 'showLogin')} />}
       {state.showSignup && <Signup action={() => oneState(setState, 'showSignup')} />}
       {state.showOrderHistory && (
         <OrderHistory action={() => oneState(setState, 'showOrderHistory')} />

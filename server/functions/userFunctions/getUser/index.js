@@ -18,7 +18,7 @@ module.exports.handler = async (event) => {
         id: result.Item.id,
         role: result.Item.role,
         name: result.Item.name,
-        adress: result.Item.adress,
+        phone: result.Item.phone,
         email: result.Item.email
       }) 
     });

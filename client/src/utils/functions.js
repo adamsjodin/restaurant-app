@@ -26,10 +26,10 @@ export async function getAllOrders() {
     })
 }
 
-export function getOrderHistory() {
+export async function getOrderHistory() {
   const userID = JSON.parse(localStorage.getItem("userId"))
   console.log("userID: " + userID)
-  return axios.post(
+  await axios.post(
     "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
     { userID: userID }
   )
@@ -51,6 +51,31 @@ export async function handleLogin({ setError, loginObj, state }) {
       setError(true)
     console.error("Error login in user: ", error);
   })
+}
+
+
+export async function changeOrderStatus(orderInfo) {
+  await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
+  .then((res) => {
+    const data = res.data;
+    return data
+  })
+  .catch((error) => {
+    console.error("Error change status: ", error);
+  })
+}
+
+export async function getUserDetails(userId) {
+  try {
+    const response = await axios.post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
+      { userID: userId }
+    )
+    return response.data.body;
+  }  
+  catch(error) {
+      console.error("Error fetching order history: ", error);
+    }
 }
 
 /*  */

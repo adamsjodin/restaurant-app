@@ -3,6 +3,7 @@ import { getAllOrders } from "../../../utils/functions";
 import OrdersCard from "./OrdersCard";
 import "./orders.scss";
 import { useState } from "react";
+import logo from "/logos/claddagh.png"
 
 export default function Orders() {
    const [orderStatus, setOrderStatus] = useState("active");
@@ -45,34 +46,34 @@ export default function Orders() {
    const date = "<- 2023-11-30 ->"
    
    return (
-    <article className="orders">
-
-      <h1>{date}</h1>
-      <section className="order-history__container">
-        <section className="order-history__tabs">
-          <p
-            onClick={() => setOrderStatus("active")}
-            className={orderStatus === "active" ? "active" : ""}
-          >
-            In progress
-          </p>
-          <p
-            onClick={() => setOrderStatus("done")}
-            className={orderStatus === "done" ? "active" : ""}
-          >
-            History
-          </p>
+      <article className="orders">
+      <img src={logo}></img> 
+        <h1>{date}</h1>
+        <section className="order-history__container">
+          <section className="order-history__tabs">
+            <p
+              onClick={() => setOrderStatus("active")}
+              className={orderStatus === "active" ? "active" : ""}
+            >
+              In progress
+            </p>
+            <p
+              onClick={() => setOrderStatus("done")}
+              className={orderStatus === "done" ? "active" : ""}
+            >
+              History
+            </p>
+          </section>
+          {orderItems.length > 0 ? (
+            checkActive(orderItems)
+          ) : (
+            <p>No order history available.</p>
+          )}
+          <section className="order-history__orders">
+            {orderStatus === "active" ? activeEl : doneEl}
+          </section>
         </section>
-        {orderItems.length > 0 ? (
-          checkActive(orderItems)
-        ) : (
-          <p>No order history available.</p>
-        )}
-        <section className="order-history__orders">
-          {orderStatus === "active" ? activeEl : doneEl}
-        </section>
-      </section>
-    </article>
+      </article>
   )
 }
 

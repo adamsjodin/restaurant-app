@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   profile: restaurant-admin
+  deploymentMethod: direct
   region: eu-north-1
   iam:
     role: arn:aws:iam::281856235143:role/serverless-dynamodb-role
@@ -28,6 +29,12 @@ functions:
       - httpApi: 
           path: '/api/menu'
           method: POST
+  updateMenu:
+    handler: functions/menuFunctions/updateMenu/index.handler
+    events: 
+      - httpApi:
+          path: '/api/menu'
+          method: PUT
   addUser:
     handler: functions/userFunctions/addUser/index.handler
     events: 
@@ -70,6 +77,12 @@ functions:
       - httpApi: 
           path: '/api/staff/orders'
           method: PUT
+  getUserStaff:
+    handler: functions/userFunctions/getUserStaff/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/userinfo'
+          method: POST
   getMyOrders:
     handler: functions/orderFunctions/getMyOrders/index.handler
     events: 

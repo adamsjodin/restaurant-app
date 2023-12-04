@@ -5,6 +5,9 @@ import Hours from "./components/Hours/Hours";
 import Footer from "./components/Footer/Footer";
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
+import ProductCard from "./pages/Home/Components/ProductCard/ProductCard";
+import Home from "./pages/Home/Home";
+import FoodMenu from "./staff/pages/FoodMenu/FoodMenu";
 
 function App() {
   const [showSplash, setShowSplash] = useState(
@@ -30,6 +33,7 @@ function App() {
         <Topbar />
       </header>
       <main>
+        {/* <FoodMenu /> */}
         <AnimatedRoutes />
       </main>
       {window.innerWidth < 600 ? <Hours /> : <Footer />}

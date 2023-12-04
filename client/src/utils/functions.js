@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+/* QUERY FUNCTIONS */
+
 export function wait(duration) {
   return new Promise((resolve) => setTimeout(resolve, duration));
 }
-
 
 export function getProducts() {
   return axios
@@ -53,26 +54,6 @@ export async function handleLogin({ setError, loginObj, state }) {
 }
 
 
-function checkRole({ data, setError, state }) {
-  if (data.success) {
-      setError(false)
-      let userInfo = JSON.parse(data.body)
-      if (userInfo.role === "member") {
-          console.log(userInfo.role)
-          localStorage.setItem("userId", JSON.stringify(userInfo.id))
-          localStorage.setItem("userName", JSON.stringify(userInfo.name))
-          state(false)
-      } else if (userInfo.role === "staff") {
-          console.log(userInfo.role)
-          console.log("Navigate to staff page")
-          state(false)
-          //Insert navigate here. 
-      }
-  } else {
-      setError(true)
-  }
-}
-
 export async function changeOrderStatus(orderInfo) {
   await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
   .then((res) => {
@@ -96,3 +77,89 @@ export async function getUserDetails(userId) {
       console.error("Error fetching order history: ", error);
     }
 }
+
+/*  */
+
+function checkRole({ data, setError, state }) {
+  if (data.success) {
+      setError(false)
+      let userInfo = JSON.parse(data.body)
+      if (userInfo.role === "member") {
+          console.log(userInfo.role)
+          localStorage.setItem("userId", JSON.stringify(userInfo.id))
+          localStorage.setItem("userName", JSON.stringify(userInfo.name))
+          state(false)
+      } else if (userInfo.role === "staff") {
+          console.log(userInfo.role)
+          console.log("Navigate to staff page")
+          state(false)
+          //Insert navigate here. 
+      }
+  } else {
+      setError(true)
+  }
+}
+
+/* STATES */
+
+export function booleanStates() {
+  return {
+    showLogin: false,
+    showSignup: false,
+    showOrderHistory: false,
+    showReservation: false,
+    showLogoutConf: false,
+    showSettings: false,
+    openNav: false,
+  };
+}
+
+export function toggleState(prevState, param) {
+  if (param in prevState) {
+    return { ...prevState, [param]: !prevState[param] };
+  }
+
+  let nestedState = { ...prevState };
+  let nestedObj = nestedState;
+
+  const keys = param.split(".");
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!nestedObj[keys[i]]) {
+      nestedObj[keys[i]] = {};
+    }
+    nestedObj = nestedObj[keys[i]];
+  }
+
+  nestedObj[keys[keys.length - 1]] = !nestedObj[keys[keys.length - 1]];
+
+  return nestedState;
+}
+
+export function oneState(setState, param) {
+  setState((prevState) => {
+    return toggleState(prevState, param);
+  })
+}
+export function doubleState(setState, param) {
+  setState((prevState) => {
+    const nextState = toggleState(prevState, 'openNav');
+    return toggleState(nextState, param);
+  });
+}
+
+/*  */
+
+/* Motion variants */
+
+export const sideBarVariants = {
+  open: {
+    transform: "translateX(0)",
+    opacity: 1,
+  },
+  closed: {
+    transform: "translateX(-100%)",
+    opacity: 0,
+  },
+};
+
+/*  */

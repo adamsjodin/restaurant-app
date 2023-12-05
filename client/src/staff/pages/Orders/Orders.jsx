@@ -22,8 +22,6 @@ export default function Orders() {
     return <pre>{JSON.stringify(orderQuery.error)}</pre>;
   }
 
-  //TODO : RELOAD FETCH WHEN ORDERSTATUS CHANGES! 
-
   
   const activeOrders = [];
   const doneOrders = [];

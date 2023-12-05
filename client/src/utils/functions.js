@@ -117,7 +117,7 @@ export function booleanStates() {
     openCart: false,
     openPreCheckout: false,
     openCheckout: false,
-    checkoutOpen: true
+    checkoutOpen: true,
     staffLogin: false,
   };
 }

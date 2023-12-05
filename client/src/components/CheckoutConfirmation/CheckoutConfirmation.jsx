@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./CheckoutConfirmationStyles.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion } from "framer-motion";
-import { booleanStates, oneState, overlayVariants } from "../../utils/functions";
+import { booleanStates, oneState, overlayVariants, CheckoutTimeline } from "../../utils/functions";
 
 const checkoutSteps = [
-  "Order accepted [time] [data]",
+  "Order accepted",
   "Preparing your food",
   "Food is in the oven",
   "Quality check",
@@ -23,33 +23,33 @@ function CheckoutConfirmation() {
       animate={state.checkoutOpen ? "open" : "closed" }
       transition={{ duration: 1 }}
     >
-    <IoIosArrowDown
-        className="checkout-confirmation__close"
+      <IoIosArrowDown
+        className={"checkout-confirmation__close " + (state.checkoutOpen ? "open" : "")}
         onClick={() => oneState(setState, 'checkoutOpen')}
       />
-    { state.checkoutOpen ? 
-      <>
-      <h2>Thank You!</h2>
-      <p>
-        Your order was successfully accepted and will be ready in
-        [] minutes.{" "}
-      </p>
-      <ol className="checkout-confirmation__timeline">
-        <div className="line">
-          { checkoutSteps.map((step, index) => (
-            <aside key={index}></aside>
-          ))}
-        </div>
-        <div className="items">
-        { checkoutSteps.map((step, index) => (
-          <li className="checkout-confirmation__timeline-content" key={index}>
-            {step}
-          </li>
-        ))}
-        </div>
-      </ol>
-      </>
-    : null }
+      {state.checkoutOpen ? 
+        <>
+          <h2>Thank You!</h2>
+          <p>
+            Your order will be ready soon! <br></br>
+            Check the progress below...
+          </p>
+          <ol className="checkout-confirmation__timeline">
+            <div className="line">
+              { checkoutSteps.map((step, index) => (
+                <aside key={index} style={CheckoutTimeline(index)}></aside>
+              ))}
+            </div>
+            <div className="items">
+              { checkoutSteps.map((step, index) => (
+                <li className="checkout-confirmation__timeline-content" key={index} style={CheckoutTimeline(index)}>
+                  {step}
+                </li>
+              ))}
+            </div>
+          </ol>
+        </>
+      : null }
     </motion.article>
   );
 }

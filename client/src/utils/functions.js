@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 /* QUERY FUNCTIONS */
 
@@ -10,54 +11,60 @@ export function getProducts() {
   return axios
     .get("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu")
     .then((res) => {
-      return res.data
-    })
+      return res.data;
+    });
 }
 
 export async function getAllOrders() {
-  return axios.get(
-    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders"
-  )
+  return axios
+    .get(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders"
+    )
     .then((res) => {
-      return res.data
+      return res.data;
     })
     .catch((error) => {
       console.error("Error fetching order history: ", error);
-    })
+    });
 }
 
 export async function getOrderHistory() {
-  const userID = JSON.parse(localStorage.getItem("userId"))
-  console.log("userID: " + userID)
-  await axios.post(
-    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
-    { userID: userID }
-  )
+  const userID = JSON.parse(localStorage.getItem("userId"));
+  console.log("userID: " + userID);
+  await axios
+    .post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
+      { userID: userID }
+    )
     .then((res) => {
-      return res.data
+      return res.data;
     })
     .catch((error) => {
       console.error("Error fetching order history: ", error);
-    })
+    });
 }
 
 export async function handleLogin({ setError, loginObj, setState }) {
-  await axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", loginObj)
-  .then((res) => {
-    const data = res.data;
-    checkRole({data, setError, setState})
-  })
-  .catch((error) => {
-      setError(true)
-    console.error("Error login in user: ", error);
-  })
+  await axios
+    .post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login",
+      loginObj
+    )
+    .then((res) => {
+      const data = res.data;
+      checkRole({ data, setError, setState });
+    })
+    .catch((error) => {
+      setError(true);
+      console.error("Error login in user: ", error);
+    });
 }
 
 export const postOrder = async (setCart) => {
   const order = JSON.parse(localStorage.getItem("cart")) || [];
-  const userID = JSON.parse(localStorage.getItem("userId")) || "guestId";
+  const userID = localStorage.getItem("userId");
   const orderObj = {
-    userID: userID,
+    userID: userID ? userID : "guest",
     status: "active",
     products: order,
   };
@@ -77,16 +84,19 @@ export const postOrder = async (setCart) => {
     });
 };
 
-
 export async function changeOrderStatus(orderInfo) {
-  await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
-  .then((res) => {
-    const data = res.data;
-    return data
-  })
-  .catch((error) => {
-    console.error("Error change status: ", error);
-  })
+  await axios
+    .put(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders",
+      orderInfo
+    )
+    .then((res) => {
+      const data = res.data;
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error change status: ", error);
+    });
 }
 
 export async function getUserDetails(userId) {
@@ -94,35 +104,54 @@ export async function getUserDetails(userId) {
     const response = await axios.post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/userinfo",
       { userID: userId }
-    )
+    );
     return response.data.body;
-  }  
-  catch(error) {
-      console.error("Error fetching order history: ", error);
-    }
+  } catch (error) {
+    console.error("Error fetching order history: ", error);
+  }
 }
 
 /*  */
 
 function checkRole({ data, setError, setState }) {
   if (data.success) {
-      setError(false)
-      let userInfo = JSON.parse(data.body)
-      if (userInfo.role === "member") {
-          console.log(userInfo.role)
-          localStorage.setItem("userId", JSON.stringify(userInfo.id))
-          localStorage.setItem("userName", JSON.stringify(userInfo.name))
-      } else if (userInfo.role === "staff") {
-          console.log(userInfo.role)
-          console.log("Navigate to staff page")
-          setState((prevState) => {
-            return toggleState(prevState, 'staffLogin');
-          })
-          localStorage.setItem("role", "staff")
-          window.location.reload()
-      }
+    setError(false);
+    let userInfo = JSON.parse(data.body);
+    if (userInfo.role === "member") {
+      console.log(userInfo.role);
+      localStorage.setItem("userId", JSON.stringify(userInfo.id));
+      localStorage.setItem("userName", JSON.stringify(userInfo.name));
+    } else if (userInfo.role === "staff") {
+      console.log(userInfo.role);
+      console.log("Navigate to staff page");
+      setState((prevState) => {
+        return toggleState(prevState, "staffLogin");
+      });
+      localStorage.setItem("role", "staff");
+      window.location.reload();
+    }
   } else {
-      setError(true)
+    setError(true);
+  }
+}
+
+export function CheckoutTimeline(index) {
+  const [elapsedTime, setElapsedTime] = useState(0);
+
+  useEffect(() => {
+    const countdownInterval = setInterval(() => {
+      setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
+    }, 1000);
+
+    return () => clearInterval(countdownInterval);
+  }, []);
+
+  if (index === Math.floor(elapsedTime / 60)) {
+    return { borderColor: "rgb(0, 150, 102)" };
+  } else if (index < Math.floor(elapsedTime / 60)) {
+    return { backgroundColor: "rgb(0, 150, 102)" };
+  } else {
+    return {};
   }
 }
 
@@ -143,6 +172,7 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
+    checkoutCountdown: true,
   };
 }
 
@@ -170,11 +200,11 @@ export function toggleState(prevState, param) {
 export function oneState(setState, param) {
   setState((prevState) => {
     return toggleState(prevState, param);
-  })
+  });
 }
 export function doubleState(setState, param) {
   setState((prevState) => {
-    const nextState = toggleState(prevState, 'openNav');
+    const nextState = toggleState(prevState, "openNav");
     return toggleState(nextState, param);
   });
 }
@@ -182,7 +212,7 @@ export function doubleStateNew(setState, param1, param2) {
   setState((prevState) => {
     const nextState = toggleState(prevState, param1);
     return toggleState(nextState, param2);
-  })
+  });
 }
 
 /*  */
@@ -202,13 +232,13 @@ export const sideBarVariants = {
 
 export const overlayVariants = {
   closed: {
-    height: "4vh"
+    height: "4vh",
   },
   open: {
     height: "100vh",
     width: "100%",
-    zIndex: "1000000"
-  }
-}
+    zIndex: "1000000",
+  },
+};
 
 /*  */

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import './Signup.scss';
-import { validateForm } from "../../utils/validation";
 import axios from 'axios';
+import './Signup.scss';
 import { MdClose } from 'react-icons/md';
+import { validateForm } from "../../utils/validation";
+import { Button, Input } from '../exports';
 
 function Signup({action}) {
 
@@ -35,7 +34,7 @@ function Signup({action}) {
         }));
         setMessage("")
         setShowErrorMsg(false)
-    };
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault();

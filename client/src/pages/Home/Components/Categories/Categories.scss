@@ -1,11 +1,11 @@
 @import '../../../../Styles/variables';
 @import '../../../../Styles/mixins';
 
-.categories .category-list {
+.categories__list {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.categories .category-list::-webkit-scrollbar {
+.categories__list::-webkit-scrollbar {
   display: none;
 }
 .categories {
@@ -20,7 +20,7 @@
     text-align: left;
   }
 
-  .category-list {
+  &__list {
     max-width: 100%;
     @include flexCenter(row);
     justify-content: flex-start;

@@ -12,7 +12,7 @@ function App() {
   const [showSplash, setShowSplash] = useState(
     localStorage.getItem("splashShown") !== "true"
   );
-  const [state, setState] = useState(localStorage.getItem("role"))
+  const staff = localStorage.getItem("role") === "staff";
 
   useEffect(() => {
     if (showSplash) {
@@ -29,7 +29,7 @@ function App() {
     <SplashPage />
   ) : (
     <>
-    {state === "staff" ? <AnimatedRoutesStaff /> : 
+    {staff ? <AnimatedRoutesStaff /> : 
     <>
       <header>
         <Topbar /> 

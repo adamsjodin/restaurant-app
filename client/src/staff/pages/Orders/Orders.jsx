@@ -3,7 +3,6 @@ import { getAllOrders } from "../../../utils/functions";
 import OrdersCard from "./OrdersCard";
 import "./orders.scss";
 import { useState } from "react";
-import logo from "/logos/claddagh.png"
 
 export default function Orders() {
    const [orderStatus, setOrderStatus] = useState("active");
@@ -23,7 +22,9 @@ export default function Orders() {
     return <pre>{JSON.stringify(orderQuery.error)}</pre>;
   }
 
-  //Sorting active/done - can probably be refactored a lot!
+  //TODO : RELOAD FETCH WHEN ORDERSTATUS CHANGES! 
+
+  
   const activeOrders = [];
   const doneOrders = [];
   let activeEl = "";
@@ -47,7 +48,6 @@ export default function Orders() {
    
    return (
       <article className="orders">
-      <img src={logo}></img> 
         <h1>{date}</h1>
         <section className="order-history__container">
           <section className="order-history__tabs">

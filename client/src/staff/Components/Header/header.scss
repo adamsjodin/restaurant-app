@@ -1,0 +1,12 @@
+.topbar__staff {
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  position: sticky;
+
+  &__menu {
+    position: absolute;
+    left: 1rem;
+    top: 3rem
+  }
+}

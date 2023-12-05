@@ -5,11 +5,14 @@ import Hours from "./components/Hours/Hours";
 import Footer from "./components/Footer/Footer";
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
+import AnimatedRoutesStaff from "./components/Animations/AnimatedRoutesStaff";
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(
     localStorage.getItem("splashShown") !== "true"
   );
+  const [state, setState] = useState(localStorage.getItem("role"))
 
   useEffect(() => {
     if (showSplash) {
@@ -26,13 +29,17 @@ function App() {
     <SplashPage />
   ) : (
     <>
+    {state === "staff" ? <AnimatedRoutesStaff /> : 
+    <>
       <header>
-        <Topbar />
+        <Topbar /> 
       </header>
       <main>
         <AnimatedRoutes />
       </main>
-      {window.innerWidth < 600 ? <Hours /> : <Footer />}
+      {window.innerWidth < 600 ? <Hours /> : <Footer />} 
+      </>
+      }
     </>
   );
 }

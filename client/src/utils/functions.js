@@ -41,11 +41,11 @@ export async function getOrderHistory() {
     })
 }
 
-export async function handleLogin({ setError, loginObj, state }) {
+export async function handleLogin({ setError, loginObj, setState }) {
   await axios.post("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login", loginObj)
   .then((res) => {
     const data = res.data;
-    checkRole({data, setError, state})
+    checkRole({data, setError, setState})
   })
   .catch((error) => {
       setError(true)
@@ -80,7 +80,7 @@ export async function getUserDetails(userId) {
 
 /*  */
 
-function checkRole({ data, setError, state }) {
+function checkRole({ data, setError, setState }) {
   if (data.success) {
       setError(false)
       let userInfo = JSON.parse(data.body)
@@ -88,12 +88,14 @@ function checkRole({ data, setError, state }) {
           console.log(userInfo.role)
           localStorage.setItem("userId", JSON.stringify(userInfo.id))
           localStorage.setItem("userName", JSON.stringify(userInfo.name))
-          state(false)
       } else if (userInfo.role === "staff") {
           console.log(userInfo.role)
           console.log("Navigate to staff page")
-          state(false)
-          //Insert navigate here. 
+          setState((prevState) => {
+            return toggleState(prevState, 'staffLogin');
+          })
+          localStorage.setItem("role", "staff")
+          window.location.reload()
       }
   } else {
       setError(true)
@@ -116,6 +118,7 @@ export function booleanStates() {
     openPreCheckout: false,
     openCheckout: false,
     checkoutOpen: true
+    staffLogin: false,
   };
 }
 

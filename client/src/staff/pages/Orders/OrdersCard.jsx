@@ -8,13 +8,35 @@ import { changeOrderStatus, getUserDetails } from "../../../utils/functions"
 
 
 export default function OrdersCard({ order }) {
+
+  function checkChanges(changes) {
+    let changesEl = ""
+    if (!changes || Object.keys(changes).length === 0) {
+      changesEl = ""
+    }
+  
+    else {
+      changesEl = <div>
+          {Object.entries(changes).map(([key, value]) => (
+            <p key={key}>
+              {value === true ? `Added ${key}` : `Removed ${key}`}
+            </p>
+          ))}
+      </div>
+    }
+    return changesEl
+  }
+  
+
   const [showInfo, setShowInfo] = useState(false)
   const [userData, setUserData] = useState("")
   const convertedDate = new Date(order.TimeStamp * 1000).toString();
   const productEl = order.products.map((product, i) => {
-    return <section key={i}><p>{product.quantity}st {product.title} </p> <p>Notes:</p><hr></hr></section>
+    return <section key={i}><p>{product.quantity}st {product.title} </p> {checkChanges(product.changes)}{product.message && <p>Notes: {product.message} </p>}<hr></hr></section>
   })
-  // {product.changes && product.changes.map((change, i) => {return <p key={i}>{change}</p>})}
+
+    
+   
 
   const orderInfo = {
     orderNr: order.orderNr,

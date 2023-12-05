@@ -6,7 +6,6 @@ import Orders from "../../staff/pages/Orders/Orders";
 import Reservations from "../../staff/pages/Reservations/Reservations";
 import TableSettings from "../../staff/pages/TableSettings/TableSettings";
 import Members from "../../staff/pages/Members/Members";
-import Hours from "../../staff/pages/OpeningHours/OpeningHours";
 import Header from "../../staff/Components/Header/Header";
 import OpeningHours from "../../staff/pages/OpeningHours/OpeningHours";
 

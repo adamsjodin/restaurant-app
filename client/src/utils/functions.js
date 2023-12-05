@@ -27,18 +27,17 @@ export async function getAllOrders() {
 }
 
 export async function getOrderHistory() {
-  const userID = JSON.parse(localStorage.getItem("userId"))
-  console.log("userID: " + userID)
-  await axios.post(
-    "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
-    { userID: userID }
-  )
-    .then((res) => {
-      return res.data
-    })
-    .catch((error) => {
+  try {
+    const userID = JSON.parse(localStorage.getItem("userId"))
+    const response = await axios.post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
+      { userID: userID }
+    )
+      return response.data
+    } catch (error) {
       console.error("Error fetching order history: ", error);
-    })
+      throw error
+    }
 }
 
 export async function handleLogin({ setError, loginObj, setState }) {
@@ -102,6 +101,16 @@ export async function getUserDetails(userId) {
     }
 }
 
+export async function getAllUsers() {
+  try {
+    const response = await axios.get("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/members")
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error("Error in getting users")
+  }
+}
+
 /*  */
 
 function checkRole({ data, setError, setState }) {
@@ -109,12 +118,9 @@ function checkRole({ data, setError, setState }) {
       setError(false)
       let userInfo = JSON.parse(data.body)
       if (userInfo.role === "member") {
-          console.log(userInfo.role)
           localStorage.setItem("userId", JSON.stringify(userInfo.id))
           localStorage.setItem("userName", JSON.stringify(userInfo.name))
       } else if (userInfo.role === "staff") {
-          console.log(userInfo.role)
-          console.log("Navigate to staff page")
           setState((prevState) => {
             return toggleState(prevState, 'staffLogin');
           })

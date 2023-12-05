@@ -1,5 +1,4 @@
 import ProductCard from '../../../pages/Home/Components/ProductCard/ProductCard';
-import './FoodMenu.scss'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import EditFood from './EditFood';

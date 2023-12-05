@@ -2,50 +2,36 @@ import { useState } from "react";
 import "./CheckoutConfirmationStyles.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion } from "framer-motion";
+import { booleanStates, oneState, overlayVariants } from "../../utils/functions";
 
 const checkoutSteps = [
-  "1. Order accepted [time] [data]",
-  "2. Preparing your food",
-  "3. Food is in the oven",
-  "4. Quality check",
-  "5. Out for delivery"
+  "Order accepted [time] [data]",
+  "Preparing your food",
+  "Food is in the oven",
+  "Quality check",
+  "Ready for pickup"
 ]
 
 const screenWidth = window.innerWidth;
 
 function CheckoutConfirmation() {
-  const [overlayOpen, setOverlayOpen] = useState(true);
-
-  function handleOverlay() {
-    setOverlayOpen(!overlayOpen);
-  }
-  
-  const overlayVariants = {
-    closed: {
-      height: "4vh"
-    },
-    open: {
-      height: "100vh",
-      width: "100%",
-      zIndex: "1000000"
-    }
-  }
+  const [state, setState] = useState(booleanStates());
 
   return (
     <motion.article className={"checkout-confirmation " + (screenWidth > 600 ? "bg__black-reverse" : "background-color__black")}
       variants={overlayVariants}
-      animate={overlayOpen ? "open" : "closed" }
+      animate={state.checkoutOpen ? "open" : "closed" }
       transition={{ duration: 1 }}
     >
     <IoIosArrowDown
         className="checkout-confirmation__close"
-        onClick={setOverlayOpen(!overlayOpen)}
+        onClick={() => oneState(setState, 'checkoutOpen')}
       />
-    { overlayOpen ? 
+    { state.checkoutOpen ? 
       <>
       <h2>Thank You!</h2>
       <p>
-        Your order was successfully accepted and will be [ready or delivered] in
+        Your order was successfully accepted and will be ready in
         [] minutes.{" "}
       </p>
       <ol className="checkout-confirmation__timeline">

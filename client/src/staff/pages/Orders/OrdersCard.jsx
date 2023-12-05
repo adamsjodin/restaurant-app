@@ -12,18 +12,13 @@ export default function OrdersCard({ order }) {
 
   async function updateOrderStatus() {
     try {
-      // Använd orderNr, userID och newStatus från order-objektet
       const { orderNr, userID, status } = order;
       const newStatus = status === 'active' ? 'done' : 'active';
-
-      // Anropa din API med de nödvändiga parametrarna
       await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", {
         orderNr,
         userID,
         newStatus,
       });
-
-      // Uppdatera cachade data med mutate-funktionen
       mutate();
     } catch (error) {
       console.error("Error updating order status: ", error);

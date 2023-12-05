@@ -77,16 +77,16 @@ export const postOrder = async (setCart) => {
 };
 
 
-export async function changeOrderStatus(orderInfo) {
-  await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
-  .then((res) => {
-    const data = res.data;
-    return data
-  })
-  .catch((error) => {
-    console.error("Error change status: ", error);
-  })
-}
+// export async function changeOrderStatus(orderInfo) {
+//   await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
+//   .then((res) => {
+//     const data = res.data;
+//     return data
+//   })
+//   .catch((error) => {
+//     console.error("Error change status: ", error);
+//   })
+// }
 
 export async function getUserDetails(userId) {
   try {

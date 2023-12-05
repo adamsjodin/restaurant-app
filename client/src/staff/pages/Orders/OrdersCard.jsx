@@ -12,15 +12,16 @@ export default function OrdersCard({ order }) {
   const [userData, setUserData] = useState("")
   const convertedDate = new Date(order.TimeStamp * 1000).toString();
   const productEl = order.products.map((product, i) => {
-    return <section key={i}><p>{product.quantity}st {product.title} </p> <p>Notes:</p>{product.changes.map((change, i) => {return <p key={i}>{change}</p>})}<hr></hr></section>
+    return <section key={i}><p>{product.quantity}st {product.title} </p> <p>Notes:</p><hr></hr></section>
   })
+  // {product.changes && product.changes.map((change, i) => {return <p key={i}>{change}</p>})}
 
   const orderInfo = {
     orderNr: order.orderNr,
     userID: order.userID,
     newStatus: "done"
   }
-//Kunna göra orders active igen? 
+
 
 async function getInfo() {
   try {
@@ -28,11 +29,11 @@ async function getInfo() {
     setUserData(userData)
     setShowInfo(true)
   } catch (error) {
-    console.error("Error getting user details in getInfo(): ", error);
+    console.error("Error getting user details: ", error);
   }
 }
 
-const userEl = <section className="popup popup--staff"><IoMdClose onClick={() => setShowInfo(!showInfo)} /><p>Name: {userData.name}</p><p>Mail: {userData.email}</p><p>Phone: {userData.phone}</p></section> 
+const userEl = <section className="popup popup--staff"><IoMdClose onClick={() => setShowInfo(!showInfo)} /><h2>User details</h2><p>Name: {userData.name}</p><p>Mail: {userData.email}</p><p>Phone: {userData.phone}</p></section> 
   return (
     <section className="order-history__card">
       {showInfo ? userEl : ""}

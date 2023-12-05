@@ -20,7 +20,7 @@ export default function OrdersCard({ order }) {
     userID: order.userID,
     newStatus: "done"
   }
-//Kunna göra orders active igen? 
+
 
 async function getInfo() {
   try {
@@ -28,11 +28,11 @@ async function getInfo() {
     setUserData(userData)
     setShowInfo(true)
   } catch (error) {
-    console.error("Error getting user details in getInfo(): ", error);
+    console.error("Error getting user details: ", error);
   }
 }
 
-const userEl = <section className="popup popup--staff"><IoMdClose onClick={() => setShowInfo(!showInfo)} /><p>Name: {userData.name}</p><p>Mail: {userData.email}</p><p>Phone: {userData.phone}</p></section> 
+const userEl = <section className="popup popup--staff"><IoMdClose onClick={() => setShowInfo(!showInfo)} /><h2>User details</h2><p>Name: {userData.name}</p><p>Mail: {userData.email}</p><p>Phone: {userData.phone}</p></section> 
   return (
     <section className="order-history__card">
       {showInfo ? userEl : ""}

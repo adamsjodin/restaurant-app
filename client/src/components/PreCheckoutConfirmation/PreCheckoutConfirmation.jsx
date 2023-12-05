@@ -2,15 +2,19 @@ import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
-import { oneState, doubleStateNew } from "../../utils/functions";
+import { oneState, doubleStateNew, toggleState, postOrder } from "../../utils/functions";
 
-function PreCheckoutConfirmation({ cart, setAppState, appState }) {
+
+function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
   const [isCountdownActive, setIsCountdownActive] = useState(true);
+
 
   const handleButtonClick = () => {
     setIsCountdownActive(false);
     doubleStateNew(setAppState, "openPreCheckout", "openCheckout");
+    postOrder(setCart);
   };
+
 
   useEffect(() => {
     if (appState.openPreCheckout) {
@@ -25,7 +29,9 @@ function PreCheckoutConfirmation({ cart, setAppState, appState }) {
 
   return (
     <article
-      className={`pre-checkout ${appState.openPreCheckout ? "visible" : "hidden"}`}
+      className={`pre-checkout ${
+        appState.openPreCheckout ? "visible" : "hidden"
+      }`}
     >
       <div className="pre-checkout__items-wrapper">
         <div className="pre-checkout__top">
@@ -47,10 +53,20 @@ function PreCheckoutConfirmation({ cart, setAppState, appState }) {
       </div>
       <div className="pre-checkout__btns">
         <Button onClick={handleButtonClick}>Looks good</Button>
-        <Button className="secondary">
+        <Button
+          className="secondary"
+          onClick={() => {
+            setIsCountdownActive(false);
+            oneState(setAppState, "openPreCheckout");
+            oneState(setAppState, "openCart");
+          }}
+        >
           Edit my order{" "}
           <Countdown
-            onTimeout={() => oneState(setAppState, 'openPreCheckout')}
+            onTimeout={() => {
+              oneState(setAppState, "openPreCheckout");
+              postOrder(setCart);
+            }}
             isCountdownActive={isCountdownActive}
           />
         </Button>

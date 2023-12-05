@@ -136,6 +136,7 @@ function Home() {
           {state.openCheckout && <CheckoutConfirmation />}
           {state.openPreCheckout && (
             <PreCheckoutConfirmation
+              setCart={setCart}
               cart={cart}
               setAppState={setState}
               appState={state}

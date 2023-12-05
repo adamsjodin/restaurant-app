@@ -53,6 +53,30 @@ export async function handleLogin({ setError, loginObj, setState }) {
   })
 }
 
+export const postOrder = async (setCart) => {
+  const order = JSON.parse(localStorage.getItem("cart")) || [];
+  const userID = JSON.parse(localStorage.getItem("userId")) || "guestId";
+  const orderObj = {
+    userID: userID,
+    status: "active",
+    products: order,
+  };
+  console.log(orderObj);
+  await axios
+    .post(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/cart",
+      orderObj
+    )
+    .then((res) => {
+      console.log(res.data);
+      setCart([]);
+    })
+
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 
 export async function changeOrderStatus(orderInfo) {
   await axios.put("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/orders", orderInfo)
@@ -117,7 +141,7 @@ export function booleanStates() {
     openCart: false,
     openPreCheckout: false,
     openCheckout: false,
-    checkoutOpen: true
+    checkoutOpen: true,
     staffLogin: false,
   };
 }

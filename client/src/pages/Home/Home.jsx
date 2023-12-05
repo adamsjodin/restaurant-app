@@ -3,33 +3,23 @@ import { useQuery } from "@tanstack/react-query";
 import { CiSearch } from "react-icons/ci";
 
 import { getProducts, booleanStates, oneState } from "../../utils/functions";
-import Offers from "./Components/Offers/Offers";
-import Categories from "./Components/Categories/Categories";
-import Search from "./Components/Search/Search";
-import CartButton from "./Components/CartButton/CartButton";
-import RenderMenu from "./Components/RenderMenu/RenderMenu";
-
-import Cart from "../../components/cart/Cart";
-import EditIngredients from "../../components/EditIngredients/EditIngredients";
-import PreCheckoutConfirmation from "../../components/PreCheckoutConfirmation/PreCheckoutConfirmation";
-import CheckoutConfirmation from "../../components/CheckoutConfirmation/CheckoutConfirmation";
+import { CartButton, Categories, Offers, RenderMenu, Search } from "./Components/HomeExports";
+import { Cart, EditIngredients, PreCheckoutConfirmation, CheckoutConfirmation } from "../../components/exports";
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [editIngredients, toggleEditIngredients] = useState(false);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [state, setState] = useState(booleanStates());
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const [state, setState] = useState(booleanStates())
-
-  useEffect(() => {
     const newTotalQuantity = cart.reduce(
       (sum, item) => sum + (item.quantity || 0),
       0
@@ -109,7 +99,10 @@ function Home() {
         </>
       )}
 
-      <div className="search__icon" onClick={() => oneState(setState, 'isSearching')}>
+      <div
+        className="search__icon"
+        onClick={() => oneState(setState, "isSearching")}
+      >
         <CiSearch />
       </div>
 
@@ -157,7 +150,7 @@ function Home() {
       )}
       <CartButton
         cart={cart}
-        handleOpenCart={() => oneState(setState, 'openCart')}
+        handleOpenCart={() => oneState(setState, "openCart")}
         totalQuantity={totalQuantity}
         totalPrice={totalPrice}
       />

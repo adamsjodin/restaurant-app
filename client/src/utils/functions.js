@@ -111,6 +111,11 @@ export function booleanStates() {
     showLogoutConf: false,
     showSettings: false,
     openNav: false,
+    isSearching: false,
+    openCart: false,
+    openPreCheckout: false,
+    openCheckout: false,
+    checkoutOpen: true
   };
 }
 
@@ -146,6 +151,12 @@ export function doubleState(setState, param) {
     return toggleState(nextState, param);
   });
 }
+export function doubleStateNew(setState, param1, param2) {
+  setState((prevState) => {
+    const nextState = toggleState(prevState, param1);
+    return toggleState(nextState, param2);
+  })
+}
 
 /*  */
 
@@ -161,5 +172,16 @@ export const sideBarVariants = {
     opacity: 0,
   },
 };
+
+export const overlayVariants = {
+  closed: {
+    height: "4vh"
+  },
+  open: {
+    height: "100vh",
+    width: "100%",
+    zIndex: "1000000"
+  }
+}
 
 /*  */

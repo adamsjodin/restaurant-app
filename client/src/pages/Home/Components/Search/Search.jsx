@@ -33,9 +33,9 @@ const Search = ({ menuItems, isSearching, actions }) => {
         {isSearching && (
           <motion.div
             className="search-input-container"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: "40%" }}
-            exit={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: '-100%' }}
+            animate={{ opacity: 1, x: "100%" }}
+            exit={{ opacity: 0, x: '-100%' }}
           >
             <input
               type="text"

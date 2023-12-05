@@ -1,16 +1,10 @@
 import ProductCard from "../../pages/Home/Components/ProductCard/ProductCard";
+import { oneState, doubleStateNew } from "../../utils/functions";
 import Button from "../Button/Button";
 import "./CartStyles.scss";
 
-function Cart({
-  openCart,
-  toggleOpenCart,
-  toggleOpenPreCheckout,
-  openPreCheckout,
-  setCart,
-  cart,
-  updateTotals,
-}) {
+function Cart({ setCart, cart, updateTotals, setAppState }) {
+
   function handleIncrease(item) {
     item.quantity++;
     setCart([...cart]);
@@ -69,14 +63,14 @@ function Cart({
         ))}
       </section>
       <section className="cart__actions">
-        <Button className="secondary" onClick={() => toggleOpenCart(!openCart)}>
+        <Button
+          className="secondary"
+          onClick={() => oneState(setAppState, "openCart")}
+        >
           Add more
         </Button>
         <Button
-          onClick={() => {
-            toggleOpenPreCheckout(!openPreCheckout);
-            toggleOpenCart(!openCart);
-          }}
+          onClick={() => doubleStateNew(setAppState, "openCart", "openPreCheckout")}
         >
           Go to Checkout
         </Button>

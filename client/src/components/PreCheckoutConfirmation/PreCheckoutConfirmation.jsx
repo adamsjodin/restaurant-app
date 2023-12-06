@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
-import { oneState, doubleStateNew, toggleState, postOrder } from "../../utils/functions";
+import { oneState, doubleStateNew, postOrder } from "../../utils/functions";
 
 
 function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
@@ -15,6 +15,10 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
     postOrder(setCart);
   };
 
+  const handleEditClick = () => {
+    setIsCountdownActive(false);
+    doubleStateNew(setAppState, 'openPreCheckout', 'openCart');
+  }
 
   useEffect(() => {
     if (appState.openPreCheckout) {
@@ -55,11 +59,7 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
         <Button onClick={handleButtonClick}>Looks good</Button>
         <Button
           className="secondary"
-          onClick={() => {
-            setIsCountdownActive(false);
-            oneState(setAppState, "openPreCheckout");
-            oneState(setAppState, "openCart");
-          }}
+          onClick={handleEditClick}
         >
           Edit my order{" "}
           <Countdown
@@ -68,6 +68,7 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
               postOrder(setCart);
             }}
             isCountdownActive={isCountdownActive}
+            duration={1}
           />
         </Button>
       </div>

@@ -1,12 +1,14 @@
-import "./App.css";
-import Topbar from "./components/Topbar/Topbar";
-import AnimatedRoutes from "./components/Animations/AnimatedRoutes";
-import Hours from "./components/Hours/Hours";
-import Footer from "./components/Footer/Footer";
-import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
-import AnimatedRoutesStaff from "./staff/Components/Animations/AnimatedRoutesStaff"
+import "./App.css";
+import SplashPage from "./pages/Splash/Splash";
 
+import {
+  AnimatedRoutes,
+  AnimatedRoutesStaff,
+  TopBar,
+  Hours,
+  Footer,
+} from "./components/exports";
 
 function App() {
   const [showSplash, setShowSplash] = useState(
@@ -29,17 +31,19 @@ function App() {
     <SplashPage />
   ) : (
     <>
-    {staff ? <AnimatedRoutesStaff /> : 
-    <>
-      <header>
-        <Topbar /> 
-      </header>
-      <main>
-        <AnimatedRoutes />
-      </main>
-      {window.innerWidth < 600 ? <Hours /> : <Footer />} 
-      </>
-      }
+      {staff ? (
+        <AnimatedRoutesStaff />
+      ) : (
+        <>
+          <header>
+            <TopBar />
+          </header>
+          <main>
+            <AnimatedRoutes />
+          </main>
+          {window.innerWidth < 600 ? <Hours /> : <Footer />}
+        </>
+      )}
     </>
   );
 }

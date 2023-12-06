@@ -9,9 +9,6 @@ import { Map, APIProvider, AdvancedMarker } from '@vis.gl/react-google-maps';
 const apiKeyGoogle = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
 const apiIdGoogle = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_MAPS_ID;
 
-// console.log(apiUrl);
-// console.log(apiKey);
-
 function Contact() {
 
   const position = {

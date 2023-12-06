@@ -1,11 +1,11 @@
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Truncate } from "@primer/react";
 import { FaInfo } from "react-icons/fa";
-import Button from "../../../../components/Button/Button";
-import ProductInformation from "../../../../components/ProductInformation/ProductInformation";
 import "./ProductCard.scss";
-import { motion } from "framer-motion";
+
 import EditFood from "../../../../staff/pages/FoodMenu/EditFood";
+import { Button, ProductInformation } from "../../../../components/exports";
 
 
 function ProductCard({
@@ -23,9 +23,9 @@ function ProductCard({
   const changesEntries = changes ? Object.entries(changes) : [];
 
   const [showInfo, setShowInfo] = useState(false);
+  const [showEditFood, setShowEditFood] = useState(false);
   const cardRef = useRef(null);
 
-  const [showEditFood, setShowEditFood] = useState(false);
 
   const handleShowEditFood = () => {
     setShowEditFood(!showEditFood)
@@ -81,7 +81,7 @@ function ProductCard({
                   </div>
                 </div>
               ) : (
-                <Truncate inline title={description}>
+                <Truncate inline="true" title={description}>
                   {description}
                 </Truncate>
               )}

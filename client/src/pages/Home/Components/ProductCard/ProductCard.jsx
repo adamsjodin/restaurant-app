@@ -18,7 +18,8 @@ function ProductCard({
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity, changes, message } = props;
+  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
+
   const dynamicStyle = className ? `product product--${className}` : "product";
   const changesEntries = changes ? Object.entries(changes) : [];
 
@@ -32,18 +33,18 @@ function ProductCard({
   };
 
   const handleCloseEditFood = () => {
-    setShowEditFood(false) 
+    setShowEditFood(false)
   };
-  
+
   const handleClick = () => {
     setShowInfo(!showInfo);
   };
 
   return (
     <>
-    <div className="editFoodOverlay">
-    {showEditFood && <EditFood onClose={handleCloseEditFood} />}
-    </div>
+      <div className="editFoodOverlay">
+        {showEditFood && <EditFood onClose={handleCloseEditFood} />}
+      </div>
 
       {showInfo ? (
         <ProductInformation
@@ -64,26 +65,27 @@ function ProductCard({
               {cartInfo ? (
                 <div className="cart-wrapper">
                   <div className="cart-quantity">
-                  <Button className="add" onClick={decrease}>
-                    -
-                  </Button>{" "}
-                  <p>Quantity:{" " + quantity}</p>{" "}
-                  <Button className="add" onClick={increase}>
-                    +
-                  </Button>{" "}</div>
+                    <Button className="add" onClick={decrease}>
+                      -
+                    </Button>{" "}
+                    <p>Quantity:{" " + quantity}</p>{" "}
+                    <Button className="add" onClick={increase}>
+                      +
+                    </Button>{" "}</div>
                   <div className="cart-changes">
-                  {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
-                    <p key={ingredient}>
-                      {changed ? "Add" : "Remove"} {ingredient}
-                    </p>
-                  ))}
-                  {message && <p>Message: {message}</p>}</div>
+                    {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
+                      <p key={ingredient}>
+                        {changed ? "Add" : "Remove"} {ingredient}
+                      </p>
+                    ))}
+                    {message && <p>Message: {message}</p>}</div>
                 </div>
               ) : (
                 <Truncate inline title={description}>
                   {description}
                 </Truncate>
               )}
+              {outOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
               <section className="product__info--bottom">
                 {cartInfo ? (
                   <h3>{totalPrice} kr</h3>
@@ -91,24 +93,25 @@ function ProductCard({
                   <>
                     <h3>{price} kr</h3>
                     {
-                      className === 'staff' ? 
-                      <Button
-                      className="add"
-                      onClick={handleShowEditFood}
-                    >
-                      Edit
-                    </Button>
-                      :                     
+                      className === 'staff' ?
                       
-                      <Button
-                      className="add"
-                      onClick={() => {
-                        onClick(props);
-                        toggleEditIngredients();
-                      }}
-                    >
-                      Add +
-                    </Button>
+                        <Button
+                          className="add"
+                          onClick={handleShowEditFood}
+                        >
+                          Edit
+                        </Button>
+                        :
+
+                        <Button
+                          className="add"
+                          onClick={() => {
+                            onClick(props);
+                            toggleEditIngredients();
+                          }}
+                        >
+                          Add +
+                        </Button>
                     }
 
                   </>

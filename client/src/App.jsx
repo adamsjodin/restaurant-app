@@ -29,14 +29,15 @@ function App() {
     <SplashPage />
   ) : (
     <>
-      <header>
+      {/* <header>
         <Topbar />
-      </header>
+      </header> */}
       <main>
-        {/* <FoodMenu /> */}
-        <AnimatedRoutes />
+        {/* <Home /> */}
+        <FoodMenu />
+        {/* <AnimatedRoutes /> */}
       </main>
-      {window.innerWidth < 600 ? <Hours /> : <Footer />}
+      {/* {window.innerWidth < 600 ? <Hours /> : <Footer />} */}
     </>
   );
 }

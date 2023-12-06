@@ -1,27 +1,47 @@
 import axios from 'axios'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './EditFood.scss'
-import Input from '../../../components/Input/Input'
 import { IoMdClose } from "react-icons/io";
 
 function EditFood({ onClose }) {
 
+    const [getOutOfOrder, setGetOutOfOrder] = useState('')
+    const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
+
+    useEffect(() => {
+        axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu')
+            .then(res => {
+                setGetOutOfOrder(res.data.menu[1].outOfOrder);
+            })
+            .catch(err => console.error(err))
+    }, [updateMenuMsg])
+
+    //  {
+    //     getMenu && getMenu.map((data) => (
+    //         setGetOutOfOrder(data.getOutOfOrder)
+    //     ))
+    // } 
+    console.log(getOutOfOrder);
+
+    //price and title gets removed if not entered
 
     const [updateMenu, setUpdateMenu] = useState({
-        id: '0ge163U7_O5n5bJp-p99S',
-        newValue: '',
-        price: '',
-        outOfOrder: false
+        id: '5oo9fRt0t644ZbX7djtGZ',
+        title: 'Quattro Formaggi',
+        price: '120',
+        outOfOrder: getOutOfOrder
     });
 
-    const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
 
     const updateMsg = () => {
         setUpdateMenuMsg(true)
     };
 
     const handleMenuUpdate = (e) => {
-        setUpdateMenu({ ...updateMenu, [e.target.name]: e.target.value })
+        const { name, value, type, checked } = e.target;
+        const updatedValue = type === 'checkbox' ? checked : value;
+
+        setUpdateMenu({ ...updateMenu, [name]: updatedValue })
     };
 
     const handleCloseBtn = () => {
@@ -29,19 +49,21 @@ function EditFood({ onClose }) {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
         axios.put('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu', updateMenu)
             .then(res => {
-                setUpdateMenu({
-                    id: '0ge163U7_O5n5bJp-p99S',
-                    newValue: '',
-                    price: ''
-                })
+                console.log('updated db', updateMenu);
                 updateMsg();
                 return res;
             })
             .catch(err => console.error(err))
-    };
+        // .finally(() => {
+        //     setUpdateMenu({
+        //         id: '',
+        //         title: '',
+        //         price: ''
+        //     });
+        // });
+    }
 
     return (
         <>
@@ -53,9 +75,17 @@ function EditFood({ onClose }) {
                     <input
                         className='editFood__form-input'
                         type="text"
+                        placeholder='ID'
+                        name='id'
+                        value='id'
+                        onChange={handleMenuUpdate}
+                    />
+                    <input
+                        className='editFood__form-input'
+                        type="text"
                         placeholder='Title'
-                        name='newValue'
-                        value={updateMenu.newValue}
+                        name='title'
+                        value={updateMenu.title}
                         onChange={handleMenuUpdate}
                     />
                     <input
@@ -72,6 +102,7 @@ function EditFood({ onClose }) {
                             type="checkbox"
                             placeholder='Out of order'
                             name='outOfOrder'
+                            checked={updateMenu.outOfOrder}
                             value={updateMenu.outOfOrder}
                             onChange={handleMenuUpdate}
                             id='outOfOrder'

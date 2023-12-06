@@ -1,0 +1,7 @@
+@import "../../Styles/variables";
+@import "../../Styles/mixins";
+
+.staff-body {
+  background: $bg-staff;
+  min-height: 100vh;
+}

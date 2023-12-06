@@ -6,20 +6,21 @@ import { useState } from "react";
 
 export default function Orders() {
    const [orderStatus, setOrderStatus] = useState("active");
+   const [changeStatus, setChangeStatus] = useState(false)
      //Fetching code
-  const orderQuery = useQuery({
+  const { data, error, isError, isLoading} = useQuery({
     queryKey: ["orders"],
     queryFn: getAllOrders,
   });
+  
+  const orderItems = data?.orders || [];
 
-  const orderItems = orderQuery?.data?.orders || [];
-
-  if (orderQuery.isLoading)
+  if (isLoading)
     return (
       <h1 style={{ minHeight: "100vh", padding: "2em" }}>Orders loading...</h1>
     );
-  if (orderQuery.isError) {
-    return <pre>{JSON.stringify(orderQuery.error)}</pre>;
+  if (isError) {
+    return <pre>{JSON.stringify(error)}</pre>;
   }
 
   
@@ -35,10 +36,10 @@ export default function Orders() {
           : doneOrders.push(order)
       );
     activeEl = activeOrders.map((order) => (
-      <OrdersCard key={order.orderNr} order={order} />
+      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
     doneEl = doneOrders.map((order) => (
-      <OrdersCard key={order.orderNr} order={order} />
+      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
   }
    

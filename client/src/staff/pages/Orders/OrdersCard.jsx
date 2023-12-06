@@ -7,7 +7,7 @@ import { getUserDetails } from "../../../utils/functions";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-export default function OrdersCard({ order }) {
+export default function OrdersCard({ order, action, state }) {
   const { mutate } = useMutation(updateOrderStatus);
 
   async function updateOrderStatus() {
@@ -20,6 +20,7 @@ export default function OrdersCard({ order }) {
         newStatus,
       });
       mutate();
+      action(!state)
     } catch (error) {
       console.error("Error updating order status: ", error);
     }

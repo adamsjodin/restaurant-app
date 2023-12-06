@@ -3,9 +3,8 @@
 
 .checkout-confirmation {
   text-align: center;
-  min-height: 100vh;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   h2 {
     font-size: $fs-h1;
@@ -24,9 +23,7 @@
   .line {
     height: 30em;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flexSpaceBetween(column);
     padding-block: 2em;
     &::before {
       content: "";

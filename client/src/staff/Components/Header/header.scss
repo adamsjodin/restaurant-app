@@ -1,0 +1,10 @@
+.topbar__staff {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+  svg {
+    width: 1.5em;
+    height: 1.5em
+  }
+}

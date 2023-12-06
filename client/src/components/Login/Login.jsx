@@ -1,16 +1,22 @@
 import { useState } from 'react';
 import './Login.scss'
 import Signup from "../Signup/Signup"
-import { handleLogin } from '../../utils/functions';
+import { handleLogin, booleanStates, oneState } from '../../utils/functions';
 
-function Login({state}) {
+function Login({loginState}) {
     const [loginObj, setLoginObj] = useState({
         email: "",
         password: ""
     })
     const [showSignup, setShowSignup] = useState(false)
     const [error, setError] = useState(false)
+    const [state, setState] = useState(booleanStates())
+
     
+    function loginFunction() {
+        handleLogin({setError, loginObj, setState})
+        loginState(false)
+    }
 
     return (
         <>
@@ -20,11 +26,11 @@ function Login({state}) {
             <input type="password" className='login--input' placeholder="Password" onChange={(e) => setLoginObj({...loginObj, password: e.target.value})}/>
             {error && <p>Something went wrong, try again!</p>}
             <section className='login--btns'>
-                <button className='login--btn' onClick={() => handleLogin({setError, loginObj, state}) }>Log in</button>
+                <button className='login--btn' onClick={() => loginFunction() }>Log in</button>
                 <p className='login--paragraph' onClick={() => setShowSignup(true)}>Sign up</p>
             </section>
             {showSignup && <Signup action={() => {setShowSignup()}} />}
-            <p onClick={() => {state(false)}}>Continue as guest</p>
+            <p onClick={() => {loginState(false)}}>Continue as guest</p>
         </section>
         </>
     );

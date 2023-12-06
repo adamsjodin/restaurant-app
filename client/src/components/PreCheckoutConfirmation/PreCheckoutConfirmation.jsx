@@ -2,37 +2,36 @@ import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
+import { oneState, doubleStateNew, toggleState, postOrder } from "../../utils/functions";
 
-const cart = [
-  { "id": 1, "title": "Classic burger", "price": 8.99, "quantity": 2 },
-  { "id": 2, "title": "Pizza Margherita", "price": 6.99, "quantity": 1 },
-  { "id": 3, "title": "Caesar salad", "price": 13.99, "quantity": 1 }
-]
 
-function PreCheckoutConfirmation() {
-  const [isPopupVisible, setIsPopupVisible] = useState(true);
+function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
   const [isCountdownActive, setIsCountdownActive] = useState(true);
 
-  const handleCountdownTimeout = () => {
-    setIsPopupVisible(false);
-  };
 
   const handleButtonClick = () => {
     setIsCountdownActive(false);
-    setIsPopupVisible(false);
+    doubleStateNew(setAppState, "openPreCheckout", "openCheckout");
+    postOrder(setCart);
   };
 
+
   useEffect(() => {
-    if (isPopupVisible) {
+    if (appState.openPreCheckout) {
       setIsCountdownActive(true);
     }
-  }, [isPopupVisible]);
+  }, [appState.openPreCheckout]);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
     <article
-      className={`pre-checkout ${isPopupVisible ? "visible" : "hidden"}`}
+      className={`pre-checkout ${
+        appState.openPreCheckout ? "visible" : "hidden"
+      }`}
     >
       <div className="pre-checkout__items-wrapper">
         <div className="pre-checkout__top">
@@ -44,15 +43,30 @@ function PreCheckoutConfirmation() {
             <p>{item.quantity}</p>
             <p>{item.title}</p>
             <p>{item.price}</p>
+            {Object.entries(item.changes || {}).map(([ingredient, changed]) => (
+              <p className="changes" key={ingredient}>
+                {changed ? "Add" : "Remove"} {ingredient}
+              </p>
+            ))}
           </section>
         ))}
       </div>
       <div className="pre-checkout__btns">
-        <Button>Looks good</Button>
-        <Button className="secondary" onClick={handleButtonClick}>
+        <Button onClick={handleButtonClick}>Looks good</Button>
+        <Button
+          className="secondary"
+          onClick={() => {
+            setIsCountdownActive(false);
+            oneState(setAppState, "openPreCheckout");
+            oneState(setAppState, "openCart");
+          }}
+        >
           Edit my order{" "}
           <Countdown
-            onTimeout={handleCountdownTimeout}
+            onTimeout={() => {
+              oneState(setAppState, "openPreCheckout");
+              postOrder(setCart);
+            }}
             isCountdownActive={isCountdownActive}
           />
         </Button>

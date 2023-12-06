@@ -5,14 +5,14 @@ import Hours from "./components/Hours/Hours";
 import Footer from "./components/Footer/Footer";
 import SplashPage from "./pages/Splash/Splash";
 import { useEffect, useState } from "react";
-import ProductCard from "./pages/Home/Components/ProductCard/ProductCard";
-import Home from "./pages/Home/Home";
-import FoodMenu from "./staff/pages/FoodMenu/FoodMenu";
+import AnimatedRoutesStaff from "./components/Animations/AnimatedRoutesStaff";
+
 
 function App() {
   const [showSplash, setShowSplash] = useState(
     localStorage.getItem("splashShown") !== "true"
   );
+  const staff = localStorage.getItem("role") === "staff";
 
   useEffect(() => {
     if (showSplash) {
@@ -29,15 +29,17 @@ function App() {
     <SplashPage />
   ) : (
     <>
-      {/* <header>
-        <Topbar />
-      </header> */}
+    {staff ? <AnimatedRoutesStaff /> : 
+    <>
+      <header>
+        <Topbar /> 
+      </header>
       <main>
-        {/* <Home /> */}
-        <FoodMenu />
-        {/* <AnimatedRoutes /> */}
+        <AnimatedRoutes />
       </main>
-      {/* {window.innerWidth < 600 ? <Hours /> : <Footer />} */}
+      {window.innerWidth < 600 ? <Hours /> : <Footer />} 
+      </>
+      }
     </>
   );
 }

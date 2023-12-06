@@ -19,7 +19,6 @@ function ProductCard({
   totalPrice,
 }) {
   const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
-
   const dynamicStyle = className ? `product product--${className}` : "product";
   const changesEntries = changes ? Object.entries(changes) : [];
 
@@ -78,7 +77,8 @@ function ProductCard({
                         {changed ? "Add" : "Remove"} {ingredient}
                       </p>
                     ))}
-                    {message && <p>Message: {message}</p>}</div>
+                    {message && <p>Message: {message}</p>}
+                  </div>
                 </div>
               ) : (
                 <Truncate inline title={description}>

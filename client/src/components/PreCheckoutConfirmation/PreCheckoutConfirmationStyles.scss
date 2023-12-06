@@ -5,6 +5,8 @@
   display: none;
 }
 .pre-checkout {
+  background-color: black;
+  z-index: 50;
   border-top: 2px solid white;
   position: absolute;
   bottom: 0;
@@ -15,9 +17,19 @@
 }
 
 .pre-checkout__items {
-  margin: 1.5rem;
-  display: flex;
-  justify-content: space-around;
+  @include gridColumns(repeat(3, 1fr));
+  gap: 1em;
+  padding-block: 1.5em;
+  max-width: 80%;
+  margin-inline: auto;
+
+  .changes {
+    grid-column: span 3;
+  }
+}
+
+.pre-checkout__items:not(:last-of-type) {
+  border-bottom: 1px solid white;
 }
 
 .pre-checkout__btns {
@@ -40,6 +52,12 @@
   }
 }
 
+.pre-checkout__infowrapper {
+  margin: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
 @media screen and (min-width: 55em) {
   .pre-checkout {
     display: flex;
@@ -58,5 +76,4 @@
     justify-content: space-between;
     min-width: 15rem;
   }
-
 }

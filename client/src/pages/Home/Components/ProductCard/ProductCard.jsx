@@ -84,7 +84,7 @@ function ProductCard({
                   </div>
                 </div>
               ) : (
-                <Truncate inline title={description}>
+                <Truncate inline="true" title={description}>
                   {description}
                 </Truncate>
               )}

@@ -16,6 +16,7 @@ const screenWidth = window.innerWidth;
 
 function CheckoutConfirmation() {
   const [state, setState] = useState(booleanStates());
+  
 
   return (
     <motion.article className={"checkout-confirmation " + (screenWidth > 600 ? "bg__black-reverse" : "background-color__black")}

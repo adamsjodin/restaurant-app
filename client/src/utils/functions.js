@@ -172,7 +172,6 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
-    checkoutCountdown: true,
   };
 }
 

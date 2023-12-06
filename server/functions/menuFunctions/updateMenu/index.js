@@ -3,20 +3,33 @@ const { db } = require('../../../services/db');
 
 module.exports.handler = async (event) => {
   // Id and new status sent in the request body
-  const { id, newValue } = JSON.parse(event.body);
+  // const { id, price, title, outOfOrder } = JSON.parse(event.body);
+  const { id, ...updateAttributes } = JSON.parse(event.body);
+
+  const updateExpressionParts = [];
+  const expressionAttributeNames = {};
+  const expressionAttributeValues = {};
+
+  Object.entries(updateAttributes).forEach(([key, value]) => {
+    const attributePlaceholder = `#${key}`;
+    const attributeValuePlaceholder = `:${key}`;
+
+    updateExpressionParts.push(`${attributePlaceholder} = ${attributeValuePlaceholder}`);
+    expressionAttributeNames[attributePlaceholder] = key;
+    expressionAttributeValues[attributeValuePlaceholder] = value;
+  });
+  
+  const updateExpression = 'SET ' + updateExpressionParts.join(', ');
+
 
   const params = {
     TableName: 'menuDb',
     Key: {
       id: id
     },
-    UpdateExpression: 'SET #price = :newValue',
-    ExpressionAttributeNames: {
-      '#price': 'price',
-    },
-    ExpressionAttributeValues: {
-      ':newValue': newValue,
-    },
+    UpdateExpression: updateExpression,
+    ExpressionAttributeNames: expressionAttributeNames,
+    ExpressionAttributeValues: expressionAttributeValues,
     ReturnValues: 'ALL_NEW'
   };
 

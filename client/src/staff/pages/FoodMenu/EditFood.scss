@@ -3,7 +3,6 @@
 
 .editFood {
     background-color: rgb(74, 38, 38);
-    height: 12rem;
     width: 20rem;
     border-radius: 10px;
     border: 1px solid white;
@@ -32,6 +31,7 @@
         }
         &-btn {           
             padding: 0.2rem 1rem; 
+            margin: 0.5rem;
             border: none;
             color: rgb(255, 255, 255);
             background-color: $clr-btn__primary;
@@ -44,6 +44,7 @@
         }
         &-msg {
             color: $clr-text__red;
+            padding: 0.5rem
         }
     }
 }

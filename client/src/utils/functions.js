@@ -112,7 +112,6 @@ export async function getUserDetails(userId) {
 export async function getAllUsers() {
   try {
     const response = await axios.get("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/members")
-    console.log(response.data)
     return response.data
   } catch (error) {
     console.error("Error in getting users")

@@ -4,24 +4,30 @@ import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
 
 function EditFood({ onClose }) {
-
-    const [getOutOfOrder, setGetOutOfOrder] = useState('')
+    const [getOutOfOrder, setGetOutOfOrder] = useState(false)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
 
     useEffect(() => {
-        axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu')
-            .then(res => {
-                setGetOutOfOrder(res.data.menu[1].outOfOrder);
-            })
-            .catch(err => console.error(err))
-    }, [updateMenuMsg])
+        fetchData();
+      }, [updateMenuMsg]);
+      
+
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu');
+          const data = response.data.menu[0].outOfOrder;
+          setGetOutOfOrder(data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
 
     //  {
     //     getMenu && getMenu.map((data) => (
     //         setGetOutOfOrder(data.getOutOfOrder)
     //     ))
     // } 
-    console.log(getOutOfOrder);
+   
 
     //price and title gets removed if not entered
 
@@ -42,6 +48,7 @@ function EditFood({ onClose }) {
         const updatedValue = type === 'checkbox' ? checked : value;
 
         setUpdateMenu({ ...updateMenu, [name]: updatedValue })
+        setGetOutOfOrder(updatedValue)
     };
 
     const handleCloseBtn = () => {
@@ -102,8 +109,7 @@ function EditFood({ onClose }) {
                             type="checkbox"
                             placeholder='Out of order'
                             name='outOfOrder'
-                            checked={updateMenu.outOfOrder}
-                            value={updateMenu.outOfOrder}
+                            checked={getOutOfOrder}
                             onChange={handleMenuUpdate}
                             id='outOfOrder'
                         />

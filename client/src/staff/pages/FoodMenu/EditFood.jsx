@@ -15,7 +15,7 @@ function EditFood({ onClose }) {
       const fetchData = async () => {
         try {
           const response = await axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu');
-          const data = response.data.menu[0].outOfOrder;
+          const data = response.data.menu[1].outOfOrder;
           setGetOutOfOrder(data);
         } catch (error) {
           console.error('Error fetching data:', error);

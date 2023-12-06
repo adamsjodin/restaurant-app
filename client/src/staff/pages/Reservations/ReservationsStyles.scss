@@ -1,0 +1,22 @@
+@import "../../../Styles/mixins";
+@import "../../../Styles/variables";
+
+.reservations {
+  * {
+    color: #007d7d;
+    text-align: center;
+  }
+
+  .reservations__tabs {
+    @include flexSpaceAround(row);
+  }
+
+  p {
+    padding: 1rem 3rem;
+    border-radius: 20px 20px 0 0;
+    background-color: transparent;
+  }
+  p.seated, p.waiting, p.done {
+    background-color: rgba(185, 184, 184, 0.5);
+  }
+}

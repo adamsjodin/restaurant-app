@@ -1,14 +1,14 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from 'framer-motion';
-import FoodMenu from "../../staff/pages/FoodMenu/FoodMenu";
-import Start from '../../staff/pages/Start/Start';
-import Orders from "../../staff/pages/Orders/Orders";
-import Reservations from "../../staff/pages/Reservations/Reservations";
-import TableSettings from "../../staff/pages/TableSettings/TableSettings";
-import Members from "../../staff/pages/Members/Members";
-import Hours from "../../staff/pages/OpeningHours/OpeningHours";
-import Header from "../../staff/Components/Header/Header";
-import OpeningHours from "../../staff/pages/OpeningHours/OpeningHours";
+import FoodMenu from "../../pages/FoodMenu/FoodMenu";
+import Start from '../../pages/Start/Start';
+import Orders from "../../pages/Orders/Orders";
+import Reservations from "../../pages/Reservations/Reservations";
+import TableSettings from "../../pages/TableSettings/TableSettings";
+import Members from "../../pages/Members/Members";
+import Header from "../Header/Header";
+import OpeningHours from "../../pages/OpeningHours/OpeningHours";
+import "../../Styles/staff.scss"
 
 function AnimatedRoutesStaff() {
     const location = useLocation();

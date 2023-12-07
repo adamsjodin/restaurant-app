@@ -7,37 +7,12 @@ function EditFood({ props, onClose, state }) {
     const [getOutOfOrder, setGetOutOfOrder] = useState(props.outOfOrder)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
 
-    // useEffect(() => {
-    //     fetchData();
-    //   }, [updateMenuMsg]);
-      
-
-    //   const fetchData = async () => {
-    //     try {
-    //       const response = await axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu');
-    //       const data = response.data.menu[1].outOfOrder;
-    //       setGetOutOfOrder(data);
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //     }
-    //   };
-
-    //  {
-    //     getMenu && getMenu.map((data) => (
-    //         setGetOutOfOrder(data.getOutOfOrder)
-    //     ))
-    // } 
-   
-
-    //price and title gets removed if not entered
-
     const [updateMenu, setUpdateMenu] = useState({
         id: props.id,
         title: props.title,
         price: props.price,
         outOfOrder: getOutOfOrder
     });
-
 
     const updateMsg = () => {
         setUpdateMenuMsg(true)
@@ -46,8 +21,8 @@ function EditFood({ props, onClose, state }) {
 
     const handleMenuUpdate = (e) => {
         const { name, value, type, checked } = e.target;
-        const updatedValue = type === 'checkbox' ? checked : value;
-
+        const updatedValue = type === 'checkbox' ? checked : e.target.value;
+        setGetOutOfOrder(updatedValue)
         setUpdateMenu({ ...updateMenu, [name]: updatedValue })
         setGetOutOfOrder(updatedValue)
     };
@@ -55,7 +30,6 @@ function EditFood({ props, onClose, state }) {
     const handleCloseBtn = () => {
         onClose();
     };
-
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.put('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu', updateMenu)
@@ -65,13 +39,6 @@ function EditFood({ props, onClose, state }) {
                 return res;
             })
             .catch(err => console.error(err))
-        // .finally(() => {
-        //     setUpdateMenu({
-        //         id: '',
-        //         title: '',
-        //         price: ''
-        //     });
-        // });
     }
 
     return (
@@ -86,18 +53,11 @@ function EditFood({ props, onClose, state }) {
                     <button className='editFood__form-btn' onClick={() => handleCloseBtn()}>Close</button>
                 </div> :
                 <form className='editFood__form' onSubmit={handleSubmit}>
+                    <h2 className='editFood__form-title'>{title}</h2>
                     <input
                         className='editFood__form-input'
                         type="text"
-                        name='id'
-                        value={props.id}
-                        disabled={true}
-                        onChange={handleMenuUpdate}
-                    />
-                    <input
-                        className='editFood__form-input'
-                        type="text"
-                        placeholder='Title'
+                        placeholder='Change title'
                         name='title'
                         value={updateMenu.title}
                         onChange={handleMenuUpdate}
@@ -105,7 +65,7 @@ function EditFood({ props, onClose, state }) {
                     <input
                         className='editFood__form-input'
                         type="text"
-                        placeholder='Price'
+                        placeholder='Change price'
                         name='price'
                         value={updateMenu.price}
                         onChange={handleMenuUpdate}

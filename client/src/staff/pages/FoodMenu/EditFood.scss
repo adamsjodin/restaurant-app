@@ -18,6 +18,28 @@
             background-color: rgba(255, 255, 255, .2);
         }
     }
+    .add-form {
+        * {
+            margin: .5rem 0
+        }
+        padding: 2rem;
+        margin: auto;
+        text-align: center;
+        select, option, input {
+            color: black
+        }
+        button {
+            margin: auto;
+            border: 1px solid white;
+        }
+        .add-ingredients {
+            @include flexSpaceBetween(row);
+        button {
+            font-size: 0.8em;
+            padding: 0.5em 1em;
+        }
+        }
+    }
 }
 
 .editFood {

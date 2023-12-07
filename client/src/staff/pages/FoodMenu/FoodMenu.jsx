@@ -2,6 +2,7 @@ import ProductCard from '../../../pages/Home/Components/ProductCard/ProductCard'
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import EditFood from './EditFood';
+import AddToMenu from './AddToMenu';
 
 function FoodMenu() {
 
@@ -18,9 +19,10 @@ function FoodMenu() {
             {
                 getMenu.map((data, i) => (
                     <ProductCard key={i} props={data} className='staff' editFood={<EditFood />}/>
-                ))
-            }
+                    ))
+                }
             </ul>
+                <AddToMenu /> 
         </section>
      );
 }

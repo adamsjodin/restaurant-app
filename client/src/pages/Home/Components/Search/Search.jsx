@@ -15,7 +15,7 @@ const Search = ({ menuItems, isSearching, actions }) => {
       // Check if any prop contains the search term
       return (
         item.id.toString().includes(searchTerm) ||
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.title.includes(searchTerm.toLowerCase()) ||
         item.categories.some((category) =>
           category.toLowerCase().includes(searchTerm.toLowerCase())
         ) ||

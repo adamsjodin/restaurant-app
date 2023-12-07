@@ -5,7 +5,7 @@ import EditIngredients from "./EditIngredients/EditIngredients";
 import PreCheckoutConfirmation from "./PreCheckoutConfirmation/PreCheckoutConfirmation";
 import CheckoutConfirmation from "./CheckoutConfirmation/CheckoutConfirmation";
 import AnimatedRoutes from "./Animations/AnimatedRoutes";
-import AnimatedRoutesStaff from '../staff/components/Animations/AnimatedRoutesStaff';
+import AnimatedRoutesStaff from "../staff/Components/Animations/AnimatedRoutesStaff";
 import TopBar from "./Topbar/Topbar";
 import Hours from "./Hours/Hours";
 import Footer from "./Footer/Footer";

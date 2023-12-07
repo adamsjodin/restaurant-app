@@ -1,8 +1,18 @@
 @import "../../../Styles/variables";
 @import "../../../Styles/mixins";
 
+.foodMenu.orders {
+    .product__outOfOrder {
+        color: red
+    }
+    .editFood * {
+        color: white
+    }
+}
+
 .editFood {
     background-color: rgb(74, 38, 38);
+    
     width: 20rem;
     border-radius: 10px;
     border: 1px solid white;
@@ -13,6 +23,10 @@
         flex-direction: column;
         align-items: center;
         color: black;
+        &-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
         &-input {
             color: white;
             background-color: transparent;

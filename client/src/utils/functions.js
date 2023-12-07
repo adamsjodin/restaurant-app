@@ -112,7 +112,6 @@ export async function getUserDetails(userId) {
 export async function getAllUsers() {
   try {
     const response = await axios.get("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/members")
-    console.log(response.data)
     return response.data
   } catch (error) {
     console.error("Error in getting users")
@@ -141,23 +140,23 @@ function checkRole({ data, setError, setState }) {
 }
 
 export function CheckoutTimeline(index) {
-  const [elapsedTime, setElapsedTime] = useState(0);
+  console.log("In Checkout Timeline")  // const [elapsedTime, setElapsedTime] = useState(0);
 
-  useEffect(() => {
-    const countdownInterval = setInterval(() => {
-      setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
-    }, 1000);
+  // useEffect(() => {
+  //   const countdownInterval = setInterval(() => {
+  //     setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
+  //   }, 1000);
 
-    return () => clearInterval(countdownInterval);
-  }, []);
+  //   return () => clearInterval(countdownInterval);
+  // }, []);
 
-  if (index === Math.floor(elapsedTime / 60)) {
-    return { borderColor: "rgb(0, 150, 102)" };
-  } else if (index < Math.floor(elapsedTime / 60)) {
-    return { backgroundColor: "rgb(0, 150, 102)" };
-  } else {
-    return {};
-  }
+  // if (index === Math.floor(elapsedTime / 60)) {
+  //   return { borderColor: "rgb(0, 150, 102)" };
+  // } else if (index < Math.floor(elapsedTime / 60)) {
+  //   return { backgroundColor: "rgb(0, 150, 102)" };
+  // } else {
+  //   return {};
+  // }
 }
 
 /* STATES */

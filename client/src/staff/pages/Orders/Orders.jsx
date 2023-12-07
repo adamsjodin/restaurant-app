@@ -2,16 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllOrders } from "../../../utils/functions";
 import OrdersCard from "./OrdersCard";
 import "./orders.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Orders() {
    const [orderStatus, setOrderStatus] = useState("active");
    const [changeStatus, setChangeStatus] = useState(false)
      //Fetching code
-  const { data, error, isError, isLoading} = useQuery({
+  const { data, error, isError, isLoading, refetch} = useQuery({
     queryKey: ["orders"],
     queryFn: getAllOrders,
   });
+
+  useEffect(() => {
+    refetch()
+  }, [changeStatus])
   
   const orderItems = data?.orders || [];
 

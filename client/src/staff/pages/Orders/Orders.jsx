@@ -47,11 +47,8 @@ export default function Orders() {
     ));
   }
    
-   const date = "<- 2023-11-30 ->"
-   
    return (
       <article className="orders">
-        <h1>{date}</h1>
         <section className="order-history__container">
           <section className="order-history__tabs">
             <p

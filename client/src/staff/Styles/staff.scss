@@ -3,5 +3,6 @@
 
 .staff-body {
   background: $bg-staff;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
 }

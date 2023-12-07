@@ -1,85 +1,86 @@
-@import './src/Styles/variables';
-@import './src/Styles/mixins';
+@import "../../Styles/variables";
+@import "../../Styles/mixins";
 
 .signup {
-    @include overlay-style;
-    display: flex;
-    flex-direction: column;
+  @include overlay-style;
+  @include flexEvenly(column);
+  justify-content: flex-start;
+  gap: 4em;
+  padding-block: 4em;
+  svg {
+    @include close-btn-position;
+  }
+  &--heading {
+    font-size: $fs-h1;
+  }
+  &--form {
+    @include flexCenter(column);
+    gap: 3em;
+    &--inputs {
+      padding-inline: 1em;
+      @include gridColumns(repeat(2, 1fr));
+      gap: 1em;
+      input {
+        margin: 0;
+        padding: 0.5rem 0;
+      }
+    }
+  }
+
+  &--errors {
+    color: $clr-btn__red;
+    font-size: 0.8rem;
+  }
+
+  &--input-text {
+    color: $clr-text;
+    border: none;
+    border-bottom: 1px white solid;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    margin: 0.3rem;
+
+    &:focus-visible {
+      outline: none;
+      border-color: green;
+    }
+  }
+
+  &--input-checkbox {
+    margin: 0 0.5rem 0 0.5rem;
+  }
+
+  &--input-container {
     text-align: center;
-    align-items: center;
-    justify-content: space-evenly;
-    z-index: 6000000;
-    svg {
-        @include close-btn-position
-    }
+    margin: 1rem;
+    padding: 0.5rem;
+  }
 
-    &--form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  &--btn {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
 
-    &--errors {
-        color: $clr-btn__red;
-        font-size: 0.8rem;
+  &--submitted {
+    color: $clr-text__green;
+    font-size: 1.5rem;
+    &--red {
+      color: $clr-btn__red;
     }
-
-    &--heading {
-        padding: 1rem;
-        font-size: 1.5rem;
-        margin: 1rem;
-    }
-
-    &--input-text {
-        color: $clr-text;
-        border: none;
-        border-bottom: 1px white solid;
-        padding: 0.5rem 1rem;
-        background-color: transparent;
-        margin: 0.3rem;
-
-        &:focus-visible {
-            outline: none;
-            border-color: green;
-          }
-    }
-
-    &--input-checkbox {
-        margin: 0 0.5rem 0 0.5rem;
-    }
- 
-    &--input-container {
-        text-align: center;
-        margin: 1rem;
-        padding: 0.5rem;
-    }
-    
-    &--btn {
-        display: flex;
-        justify-content: center;
-        margin: 1rem;
-    }
-
-    &--submitted {
-        color: $clr-text__green;
-        font-size: 1.5rem;
-        &--red {
-            color: $clr-btn__red
-        }
-    }
-
+  }
 }
 
 @media screen and (min-width: 800px) {
-    .signup {
-        background-color: $background-color--card;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 1px solid white;
-        border-radius: 20px;
-        height: 530px;
-        width: 500px;
-        z-index: 1;
-    }
+  .signup {
+    background-color: $background-color--card;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid white;
+    border-radius: 20px;
+    height: 530px;
+    width: 500px;
+    z-index: 1;
   }
+}

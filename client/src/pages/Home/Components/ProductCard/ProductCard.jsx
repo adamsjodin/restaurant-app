@@ -42,9 +42,7 @@ function ProductCard({
 
   return (
     <>
-      <div className="editFoodOverlay">
-        {showEditFood && <EditFood state={setShowOutOfOrder} props={props} onClose={handleCloseEditFood} />}
-      </div>
+      {showEditFood && <EditFood state={setShowOutOfOrder} props={props} onClose={handleCloseEditFood} />}
 
       {showInfo ? (
         <ProductInformation

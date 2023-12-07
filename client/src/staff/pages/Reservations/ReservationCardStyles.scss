@@ -2,26 +2,25 @@
 @import "../../../Styles/variables";
 
 .reservationcard {
-        padding-block: 1rem;
-        margin-bottom: 0.3rem;
-        background: rgba(185, 184, 184, 0.5);
-        position: relative;
-        height: unset;
-      @include flexSpaceAround(row);
+  & > * {
+    display: grid;
+    gap: 1em;
+  }
+  padding: 1rem;
+  margin-bottom: 0.3rem;
+  background: $background-color--staffCard;
+  position: relative;
+  height: unset;
+  @include flexSpaceBetween(row);
 
-        button {
-            font-size: .75rem;
-            padding: 0.2rem;
-            border-radius: 5px;
-            font-weight: 700;
-            color: black;
-            min-width: 4rem;
-            margin: 0.3rem auto;
-        }
+  button {
+    color: white;
+    font-size: 0.8em;
+    border-radius: 0.5em;
+    padding: 0.5em 1.5em;
+  }
 
-        p {
-            padding: 0.1rem;
-        }
-        
-      
+  p {
+    padding: 0.1rem;
+  }
 }

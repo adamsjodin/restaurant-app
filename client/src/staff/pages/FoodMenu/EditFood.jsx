@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
 
-function EditFood({ props, onClose }) {
-    console.log(props)
+function EditFood({ props, onClose, state }) {
     const [getOutOfOrder, setGetOutOfOrder] = useState(props.outOfOrder)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
 
@@ -42,6 +41,7 @@ function EditFood({ props, onClose }) {
 
     const updateMsg = () => {
         setUpdateMenuMsg(true)
+        state(getOutOfOrder)
     };
 
     const handleMenuUpdate = (e) => {
@@ -57,6 +57,7 @@ function EditFood({ props, onClose }) {
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault()
         axios.put('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu', updateMenu)
             .then(res => {
                 console.log('updated db', updateMenu);
@@ -79,6 +80,11 @@ function EditFood({ props, onClose }) {
                 <div className='editFood__form-close' onClick={handleCloseBtn}>
                     <IoMdClose />
                 </div>
+                {updateMenuMsg ? 
+                <div>
+                    <h4 className='editFood__form-msg'>Product has been updated</h4>
+                    <button className='editFood__form-btn' onClick={() => handleCloseBtn()}>Close</button>
+                </div> :
                 <form className='editFood__form' onSubmit={handleSubmit}>
                     <input
                         className='editFood__form-input'
@@ -117,8 +123,8 @@ function EditFood({ props, onClose }) {
                         <label htmlFor="outOfOrder">Out of order</label>
                     </section>
                     <button className='editFood__form-btn'>submit</button>
-                    {updateMenuMsg && <h4 className='editFood__form-msg'>Product has been updated</h4>}
                 </form>
+            }
             </section>
         </>
     );

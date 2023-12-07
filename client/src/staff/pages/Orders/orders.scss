@@ -12,22 +12,33 @@
     font-size: $fs-h2;
     font-weight: 700;
   }
+  .order-history__tabs {
+    p:not(.active) {
+      color: white;
+    }
+    p.active {
+      background-color: #fff;
+    }
+  }
+  .order-history__orders {
+    background-color: #fff;
+    min-height: 100vh;
+  }
   .order-history__card {
     padding-top: 3rem;
     background: rgba(217, 217, 217, 0.50);
     position: relative;
     height: unset;
-    @include gridColumns(repeat(3, 1fr));
-    svg:not(:first-child) {
+    @include flexSpaceBetween(row);
+    svg {
       @include close-btn-position;
-      right: 1rem;
-      left: unset;
     }
     p.red {
       color: red;
     }
     p {
       text-align: left;
+      line-height: 1.5;
       font-size: $fs-smaller;
     }
     hr {

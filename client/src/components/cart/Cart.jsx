@@ -67,13 +67,15 @@ function Cart({ setCart, cart, updateTotals, setAppState }) {
           className="secondary"
           onClick={() => oneState(setAppState, "openCart")}
         >
-          Add more
+          Add {cart.length > 0 ? "more" : "products"}
         </Button>
+      {cart.length > 0 &&
         <Button
           onClick={() => doubleStateNew(setAppState, "openCart", "openPreCheckout")}
         >
           Go to Checkout
         </Button>
+      }
       </section>
     </section>
   );

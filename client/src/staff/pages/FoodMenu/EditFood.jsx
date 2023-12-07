@@ -53,7 +53,7 @@ function EditFood({ props, onClose, state }) {
                     <button className='editFood__form-btn' onClick={() => handleCloseBtn()}>Close</button>
                 </div> :
                 <form className='editFood__form' onSubmit={handleSubmit}>
-                    <h2 className='editFood__form-title'>{title}</h2>
+                    <h2 className='editFood__form-title'>{props.title}</h2>
                     <input
                         className='editFood__form-input'
                         type="text"

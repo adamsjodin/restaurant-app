@@ -81,9 +81,7 @@ export default function OrdersCard({ order, action, state }) {
   return (
     <section className="order-history__card">
       {showInfo ? userEl : ""}
-      <div>
-        <FaCircle className={order.status === "active" ? "active" : ""} />
-      </div>
+      <FaCircle className={order.status === "active" ? "active" : ""} />
       <div>
         <p>Order number: {order.orderNr}</p>
         <hr></hr>
@@ -97,7 +95,6 @@ export default function OrdersCard({ order, action, state }) {
           className={order.status === "active" ? "add" : "third"}
         ></Button>
       </div>
-      {!showInfo && <FaInfo onClick={() => getInfo()} />}
     </section>
   );
 }

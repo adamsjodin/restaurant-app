@@ -125,11 +125,13 @@ function Home() {
         />
       ) : (
         <>
+          
           <RenderMenu
             filteredItems={filteredItems}
             editIngredients={handleEditBtnClick}
             toggleEditIngredients={handleToggleEditIngredients}
           />
+          
           {editIngredients && (
             <EditIngredients
               product={selectedProduct}

@@ -14,12 +14,13 @@ function FoodMenu() {
 
     return ( 
         <section className='foodMenu'>
-                  <h1>Menu</h1>
+                  <ul className="foodMenu__products">
             {
                 getMenu.map((data, i) => (
                     <ProductCard key={i} props={data} className='staff' editFood={<EditFood />}/>
                 ))
             }
+            </ul>
         </section>
      );
 }

@@ -1,0 +1,27 @@
+@import "../../../Styles/mixins";
+@import "../../../Styles/variables";
+
+.reservationcard {
+        padding-block: 1rem;
+        margin-bottom: 0.3rem;
+        background: rgba(185, 184, 184, 0.5);
+        position: relative;
+        height: unset;
+      @include flexSpaceAround(row);
+
+        button {
+            font-size: .75rem;
+            padding: 0.2rem;
+            border-radius: 5px;
+            font-weight: 700;
+            color: black;
+            min-width: 4rem;
+            margin: 0.3rem auto;
+        }
+
+        p {
+            padding: 0.1rem;
+        }
+        
+      
+}

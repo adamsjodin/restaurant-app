@@ -1,0 +1,55 @@
+@import "../../../Styles/mixins";
+@import "../../../Styles/variables";
+
+.orders {
+
+  *{
+    color: #007D7D;
+  }
+  h1 {
+    text-align: center;
+    padding: 2rem;
+    font-size: $fs-h2;
+    font-weight: 700;
+  }
+  .order-history__card {
+    padding-top: 3rem;
+    background: rgba(217, 217, 217, 0.50);
+    position: relative;
+    height: unset;
+    @include gridColumns(repeat(3, 1fr));
+    svg:not(:first-child) {
+      @include close-btn-position;
+      right: 1rem;
+      left: unset;
+    }
+    p.red {
+      color: red;
+    }
+    p {
+      text-align: left;
+      font-size: $fs-smaller;
+    }
+    hr {
+      opacity: .5;
+      margin: .5rem 0
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+      button {
+        font-size: .75rem;
+        border-radius: 5px;
+        font-weight: 700;
+      }
+      .button--third {
+        color: white
+      }
+    }
+    .popup--staff {
+      background-color: white;
+    }
+  }
+}

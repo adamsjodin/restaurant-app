@@ -1,0 +1,9 @@
+[
+  { "dish": "All", "imgUrl": "/images/oven.jpg" },
+  { "dish": "Pizza", "imgUrl": "/images/category_pizza.jpg" },
+  { "dish": "Burgers", "imgUrl": "/images/category_burger.jpg" },
+  { "dish": "Pasta", "imgUrl": "/images/category_pasta.jpg" },
+  { "dish": "Chicken", "imgUrl": "/images/category_chicken.jpg" },
+  { "dish": "Vego", "imgUrl": "/images/category_veg.jpg" },
+  { "dish": "Salads", "imgUrl": "/images/chicken_caesar.jpg" }
+]

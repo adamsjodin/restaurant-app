@@ -1,6 +1,13 @@
 @import '../../../../Styles/variables';
 @import '../../../../Styles/mixins';
 
+.categories__list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.categories__list::-webkit-scrollbar {
+  display: none;
+}
 .categories {
   padding-inline-start: 1em;
   color: $clr-text;
@@ -13,11 +20,11 @@
     text-align: left;
   }
 
-  .category-list {
+  &__list {
     max-width: 100%;
     @include flexCenter(row);
     justify-content: flex-start;
-    overflow: scroll;
+    overflow-x: scroll;
     gap: 1em;
     padding-block: 1em;
     

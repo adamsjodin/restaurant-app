@@ -3,9 +3,10 @@ import { getOrderHistory } from "../../utils/functions";
 import OrderHistoryCard from "./OrderHistoryCard";
 import "./order-history.scss";
 import { useState } from "react";
+import { MdClose } from 'react-icons/md';
 
 
-export default function OrderHistory() {
+export default function OrderHistory({action}) {
   const [orderStatus, setOrderStatus] = useState("active");
 
   //Fetching code
@@ -15,6 +16,7 @@ export default function OrderHistory() {
   });
 
   const orderItems = orderQuery?.data?.orders || [];
+  
 
   if (orderQuery.isLoading)
     return (
@@ -47,6 +49,7 @@ export default function OrderHistory() {
   return (
     <>
       <article className="order-history">
+      <MdClose onClick={() => action(false)} />
         <h1>My orders</h1>
         <section className="order-history__container">
           <section className="order-history__tabs">

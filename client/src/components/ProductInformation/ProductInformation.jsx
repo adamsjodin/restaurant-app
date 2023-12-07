@@ -16,12 +16,14 @@ function ProductInformation({ props, onClick, showInfo }) {
         <p>{props.description}</p>
         <h3>Allergens:</h3>
         <ul className="allergens">
-          {props.ingredients.map((ingredient, id) => (
+          {props.allergens.map((ingredient, id) => (
             <li key={id}>{ingredient}</li>
           ))}
         </ul>
+
         <Button className="add">Add +</Button>
         <h3 className="product-info__price">{props.price} kr</h3>
+        {props.outOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
       </motion.section>
       {showInfo ? <IoMdClose onClick={onClick}/> : <FaInfo onClick={onClick} />}
 

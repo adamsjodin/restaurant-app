@@ -4,6 +4,7 @@ import Home from "../../pages/Home/Home";
 import About from "../../pages/About/About";
 import Contact from "../../pages/Contact/Contact";
 import Start from '../../staff/pages/Start/Start';
+import Orders from "../../staff/pages/Orders/Orders";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -14,6 +15,7 @@ function AnimatedRoutes() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/staff" element={<Start />} />
+            <Route path="/staff/orders" element={<Orders />} />
         </Routes>
     </AnimatePresence>
   )

@@ -3,9 +3,8 @@
 
 .checkout-confirmation {
   text-align: center;
-  min-height: 100vh;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   h2 {
     font-size: $fs-h1;
@@ -24,9 +23,7 @@
   .line {
     height: 30em;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flexSpaceBetween(column);
     padding-block: 2em;
     &::before {
       content: "";
@@ -59,7 +56,7 @@
 .checkout-confirmation__timeline-content {
   border: 1px solid white;
   position: relative;
-  padding: 1rem;
+  padding: 1rem 3rem;
   border-radius: 4px;
   font-size: $fs-smaller;
   @include gridCenter;
@@ -69,12 +66,17 @@
   position: absolute;
   top: 0.7rem;
   right: 0.7rem;
+  transform: rotate(180deg);
+}
+
+.checkout-confirmation__close.open {
+  transform: rotate(0deg);
 }
 
 @media screen and (min-width: 800px) {
   .checkout-confirmation {
     min-height: unset;
-    height: 25vh;
+    max-height: 33vh;
     position: sticky;
     bottom: 0;
     h2, p {
@@ -83,7 +85,7 @@
   }
   .checkout-confirmation__timeline {
     flex-direction: column-reverse;
-    width: 80vw;
+    max-width: 80vw;
     margin: 0 auto;
     padding-inline: 4em;
     .line {

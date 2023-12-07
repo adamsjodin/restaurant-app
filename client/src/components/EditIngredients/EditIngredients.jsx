@@ -39,11 +39,14 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
       if (changedCheckboxes[ingredient]) {
         acc[ingredient] = checkboxValues[ingredient];
       }
+      
       return acc;
     }, {});
-  
+    
+    
     addToCart({ ...product, changes: changedCheckboxValues, message });
     toggleEditIngredients();
+    
   };
 
   const handleInputChange = (event) => {

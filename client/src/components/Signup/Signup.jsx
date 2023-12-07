@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import Button from '../Button/Button';
-import Input from '../Input/Input';
-import './Signup.scss';
-import { validateForm } from "../../utils/validation";
 import axios from 'axios';
+import './Signup.scss';
 import { MdClose } from 'react-icons/md';
+import { validateForm } from "../../utils/validation";
+import { Button, Input } from '../exports';
 
-function Signup(handleChange) {
+function Signup({action}) {
 
     const [formErrors, setFormErrors] = useState({});
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [termsChecked, setTermsChecked] = useState(false);
+    const [showErrorMsg, setShowErrorMsg] = useState(false)
+    const [message, setMessage] = useState("")
+
 
     const handleTermsChange = () => {
         setTermsChecked(!termsChecked);
@@ -30,11 +32,14 @@ function Signup(handleChange) {
             ...prevState,
             [name]: value,
         }));
-    };
+        setMessage("")
+        setShowErrorMsg(false)
+    }
     
     const handleSubmit = (e) => {
-        
         e.preventDefault();
+        if (termsChecked) {
+            setShowErrorMsg(false)
         const errors = validateForm(signup);
         
         if (Object.keys(errors).length === 0 && termsChecked ) {
@@ -52,10 +57,14 @@ function Signup(handleChange) {
                     
                     return res;
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    setMessage(err.response.data.message)
+                });
         } else {
             setFormSubmitted(false);
             setFormErrors(errors);
+        }} else {
+            setShowErrorMsg(true)
         }
     };
 
@@ -119,7 +128,7 @@ function Signup(handleChange) {
                                 onChange={handleTermsChange}
                             />
                             <label htmlFor="terms">I agree the terms and conditions</label>
-                            {!termsChecked && <h4 className='signup--errors'>Please agree to the terms and conditions</h4>}
+                            {showErrorMsg && <h4 className='signup--errors'>Please agree to the terms and conditions</h4>}
 
                         </div>
 
@@ -129,12 +138,14 @@ function Signup(handleChange) {
                         </div>
 
                         <div className='signup--input-checkbox-container'>
-                            <input className='signup--input-checkbox' id="info" type="checkbox" />
+                            <input className='signup--input-checkbox' id="info" type="checkbox"/>
                             <label htmlFor="info">I agree that Claddagh saving my personal information</label>
+                            
                         </div>
                         <div className='signup--btn'>
                             <Button type='submit'>Confirm sign up</Button>
                         </div>
+                        {message && <h2 className='signup--submitted signup--submitted--red'>{message}</h2>}
                         {
                             formSubmitted && 
                             <h2 className='signup--submitted'>Thank you for signing up!</h2>

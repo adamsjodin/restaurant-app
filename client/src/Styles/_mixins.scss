@@ -69,6 +69,13 @@
   min-height: 100vh;
   background: $bg-main;
 }
+@mixin overlay-style-staff {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 500000;
+  background: $bg-staff;
+}
 
 @mixin close-btn-position {
   position: absolute;

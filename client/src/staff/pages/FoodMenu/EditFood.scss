@@ -1,6 +1,15 @@
 @import "../../../Styles/variables";
 @import "../../../Styles/mixins";
 
+.foodMenu.orders {
+    .product__outOfOrder {
+        color: red
+    }
+    .editFood input, .editFood button {
+        color: white
+    }
+}
+
 .editFood {
     background-color: rgb(74, 38, 38);
     width: 20rem;

@@ -42,7 +42,7 @@ function ProductCard({
   return (
     <>
       <div className="editFoodOverlay">
-        {showEditFood && <EditFood onClose={handleCloseEditFood} />}
+        {showEditFood && <EditFood props={props} onClose={handleCloseEditFood} />}
       </div>
 
       {showInfo ? (

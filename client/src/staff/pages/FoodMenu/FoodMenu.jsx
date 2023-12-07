@@ -13,7 +13,7 @@ function FoodMenu() {
     }, [])
 
     return ( 
-        <section className='foodMenu '>
+        <section className='foodMenu orders'>
                   <h1>Menu</h1>
             {
                 getMenu.map((data, i) => (

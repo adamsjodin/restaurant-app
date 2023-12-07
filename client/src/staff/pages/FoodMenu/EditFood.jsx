@@ -3,24 +3,25 @@ import { useState, useEffect } from 'react';
 import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
 
-function EditFood({ onClose }) {
-    const [getOutOfOrder, setGetOutOfOrder] = useState(false)
+function EditFood({ props, onClose }) {
+    console.log(props)
+    const [getOutOfOrder, setGetOutOfOrder] = useState(props.outOfOrder)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
 
-    useEffect(() => {
-        fetchData();
-      }, [updateMenuMsg]);
+    // useEffect(() => {
+    //     fetchData();
+    //   }, [updateMenuMsg]);
       
 
-      const fetchData = async () => {
-        try {
-          const response = await axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu');
-          const data = response.data.menu[1].outOfOrder;
-          setGetOutOfOrder(data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu');
+    //       const data = response.data.menu[1].outOfOrder;
+    //       setGetOutOfOrder(data);
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   };
 
     //  {
     //     getMenu && getMenu.map((data) => (
@@ -32,9 +33,9 @@ function EditFood({ onClose }) {
     //price and title gets removed if not entered
 
     const [updateMenu, setUpdateMenu] = useState({
-        id: '5oo9fRt0t644ZbX7djtGZ',
-        title: 'Quattro Formaggi',
-        price: '120',
+        id: props.id,
+        title: props.title,
+        price: props.price,
         outOfOrder: getOutOfOrder
     });
 
@@ -82,9 +83,9 @@ function EditFood({ onClose }) {
                     <input
                         className='editFood__form-input'
                         type="text"
-                        placeholder='ID'
                         name='id'
-                        value='id'
+                        value={props.id}
+                        disabled={true}
                         onChange={handleMenuUpdate}
                     />
                     <input

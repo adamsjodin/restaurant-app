@@ -89,6 +89,18 @@ functions:
       - httpApi: 
           path: '/api/history'
           method: POST
+  addHours:
+    handler: functions/hoursFunctions/addHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: POST
+  getHours:
+    handler: functions/hoursFunctions/getHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: GET
 
 
 resources: 
@@ -138,4 +150,15 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+    hoursDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: hoursDb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
         BillingMode: PAY_PER_REQUEST

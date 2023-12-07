@@ -10,7 +10,6 @@ const memberQuery = useQuery({
 });
 
 const memberItems = memberQuery?.data?.menu || [];
-console.log(memberItems)
 
 if (memberQuery.isLoading)
  return (

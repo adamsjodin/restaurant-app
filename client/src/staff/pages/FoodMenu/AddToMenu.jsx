@@ -44,6 +44,19 @@ export default function AddToMenu() {
             Add
           </Button>
         </div>
+        <section className='allergens-container'>
+          <h3>Allergens:</h3>
+          <div>
+            <input type='checkbox' name="allergen" id="lactose"></input>
+            <label htmlFor="lactose">Lactose</label>
+            <input type='checkbox' name="allergen" id="tomatoe"></input>
+            <label htmlFor="tomatoe">Tomatoe</label>
+            <input type='checkbox' name="allergen" id="gluten"></input>
+            <label htmlFor="gluten">Gluten</label>
+            <input type='checkbox' name="allergen" id="nuts"></input>
+            <label htmlFor="nuts">Nuts</label>
+          </div>
+        </section>
         <Button>Add to menu</Button>
       </form>
     </section>

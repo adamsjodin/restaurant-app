@@ -9,10 +9,6 @@ import {
   Hours,
   Footer,
 } from "./components/exports";
-import EditFood from "./staff/pages/FoodMenu/EditFood";
-import ProductCard from "./pages/Home/Components/ProductCard/ProductCard";
-import Home from "./pages/Home/Home";
-import FoodMenu from "./staff/pages/FoodMenu/FoodMenu";
 
 function App() {
   const [showSplash, setShowSplash] = useState(
@@ -43,8 +39,7 @@ function App() {
             <TopBar />
           </header>
           <main>
-          <FoodMenu />
-            {/* <AnimatedRoutes /> */}
+            <AnimatedRoutes />
           </main>
           {window.innerWidth < 600 ? <Hours /> : <Footer />}
         </>

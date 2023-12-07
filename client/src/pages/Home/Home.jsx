@@ -3,8 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import { CiSearch } from "react-icons/ci";
 
 import { getProducts, booleanStates, oneState } from "../../utils/functions";
-import { CartButton, Categories, Offers, RenderMenu, Search } from "./Components/HomeExports";
-import { Cart, EditIngredients, PreCheckoutConfirmation, CheckoutConfirmation } from "../../components/exports";
+import {
+  CartButton,
+  Categories,
+  Offers,
+  RenderMenu,
+  Search,
+} from "./Components/HomeExports";
+import {
+  Cart,
+  EditIngredients,
+  PreCheckoutConfirmation,
+  CheckoutConfirmation,
+} from "../../components/exports";
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -126,7 +137,9 @@ function Home() {
               toggleEditIngredients={handleToggleEditIngredients}
             />
           )}
-          {state.openCheckout && <CheckoutConfirmation />}
+          {state.openCheckout && (
+            <CheckoutConfirmation setAppState={setState} appState={state} />
+          )}
           {state.openPreCheckout && (
             <PreCheckoutConfirmation
               setCart={setCart}

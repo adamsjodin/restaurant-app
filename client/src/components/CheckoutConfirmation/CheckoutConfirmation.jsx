@@ -1,8 +1,7 @@
-import { useState } from "react";
 import "./CheckoutConfirmationStyles.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion } from "framer-motion";
-import { booleanStates, oneState, overlayVariants, CheckoutTimeline } from "../../utils/functions";
+import { oneState, overlayVariants, CheckoutTimeline } from "../../utils/functions";
 
 const checkoutSteps = [
   "Order accepted",
@@ -14,21 +13,19 @@ const checkoutSteps = [
 
 const screenWidth = window.innerWidth;
 
-function CheckoutConfirmation() {
-  const [state, setState] = useState(booleanStates());
+function CheckoutConfirmation({ setAppState, appState }) {
   
 
   return (
     <motion.article className={"checkout-confirmation " + (screenWidth > 600 ? "bg__black-reverse" : "background-color__black")}
       variants={overlayVariants}
-      animate={state.checkoutOpen ? "open" : "closed" }
+      animate={appState.checkoutOpen ? "open" : "closed" }
       transition={{ duration: 1 }}
     >
       <IoIosArrowDown
-        className={"checkout-confirmation__close " + (state.checkoutOpen ? "open" : "")}
-        onClick={() => oneState(setState, 'checkoutOpen')}
+        className={"checkout-confirmation__close " + (appState.checkoutOpen ? "open" : "")}
+        onClick={() => oneState(setAppState, 'checkoutOpen')}
       />
-      {state.checkoutOpen ? 
         <>
           <h2>Thank You!</h2>
           <p>
@@ -50,7 +47,6 @@ function CheckoutConfirmation() {
             </div>
           </ol>
         </>
-      : null }
     </motion.article>
   );
 }

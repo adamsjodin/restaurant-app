@@ -106,7 +106,7 @@ function ProductCard({
                         :
                         !outOfOrder &&
                         <Button
-                          className="add"
+                          className={"add" + (outOfOrder ? " out" : "")}
                           onClick={() => {
                             onClick(props);
                             toggleEditIngredients();

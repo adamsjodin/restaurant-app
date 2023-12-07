@@ -18,13 +18,14 @@ function ProductCard({
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
+  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder, id } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
   const changesEntries = changes ? Object.entries(changes) : [];
 
   const [showInfo, setShowInfo] = useState(false);
   const [showEditFood, setShowEditFood] = useState(false);
   const cardRef = useRef(null);
+  console.log();
 
 
   const handleShowEditFood = () => {
@@ -42,7 +43,7 @@ function ProductCard({
   return (
     <>
       <div className="editFoodOverlay">
-        {showEditFood && <EditFood onClose={handleCloseEditFood} />}
+        {showEditFood && <EditFood id={id} title={title} onClose={handleCloseEditFood} />}
       </div>
 
       {showInfo ? (
@@ -101,8 +102,9 @@ function ProductCard({
                         >
                           Edit
                         </Button>
-                        :
 
+                        :
+                        !outOfOrder &&
                         <Button
                           className="add"
                           onClick={() => {

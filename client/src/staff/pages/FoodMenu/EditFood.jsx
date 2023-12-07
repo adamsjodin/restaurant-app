@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
 
-function EditFood({ onClose }) {
+function EditFood({ onClose, title, id }) {
 
     const [getOutOfOrder, setGetOutOfOrder] = useState('')
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
@@ -11,27 +11,21 @@ function EditFood({ onClose }) {
     useEffect(() => {
         axios.get('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu')
             .then(res => {
-                setGetOutOfOrder(res.data.menu[1].outOfOrder);
+                setGetOutOfOrder(res.data.menu.outOfOrder);
             })
             .catch(err => console.error(err))
     }, [updateMenuMsg])
 
-    //  {
-    //     getMenu && getMenu.map((data) => (
-    //         setGetOutOfOrder(data.getOutOfOrder)
-    //     ))
-    // } 
     console.log(getOutOfOrder);
 
     //price and title gets removed if not entered
 
     const [updateMenu, setUpdateMenu] = useState({
-        id: '5oo9fRt0t644ZbX7djtGZ',
-        title: 'Quattro Formaggi',
-        price: '120',
+        id: id,
+        title: '',
+        price: '',
         outOfOrder: getOutOfOrder
     });
-
 
     const updateMsg = () => {
         setUpdateMenuMsg(true)
@@ -39,8 +33,10 @@ function EditFood({ onClose }) {
 
     const handleMenuUpdate = (e) => {
         const { name, value, type, checked } = e.target;
-        const updatedValue = type === 'checkbox' ? checked : value;
+        const updatedValue = type === 'checkbox' ? checked : e.target.value;
 
+        console.log('Updated Value:', updatedValue);
+        setGetOutOfOrder(updatedValue)
         setUpdateMenu({ ...updateMenu, [name]: updatedValue })
     };
 
@@ -48,7 +44,7 @@ function EditFood({ onClose }) {
         onClose();
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         axios.put('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu', updateMenu)
             .then(res => {
                 console.log('updated db', updateMenu);
@@ -72,18 +68,11 @@ function EditFood({ onClose }) {
                     <IoMdClose />
                 </div>
                 <form className='editFood__form' onSubmit={handleSubmit}>
+                    <h2 className='editFood__form-title'>{title}</h2>
                     <input
                         className='editFood__form-input'
                         type="text"
-                        placeholder='ID'
-                        name='id'
-                        value='id'
-                        onChange={handleMenuUpdate}
-                    />
-                    <input
-                        className='editFood__form-input'
-                        type="text"
-                        placeholder='Title'
+                        placeholder='Change title'
                         name='title'
                         value={updateMenu.title}
                         onChange={handleMenuUpdate}
@@ -91,7 +80,7 @@ function EditFood({ onClose }) {
                     <input
                         className='editFood__form-input'
                         type="text"
-                        placeholder='Price'
+                        placeholder='Change price'
                         name='price'
                         value={updateMenu.price}
                         onChange={handleMenuUpdate}
@@ -103,7 +92,6 @@ function EditFood({ onClose }) {
                             placeholder='Out of order'
                             name='outOfOrder'
                             checked={updateMenu.outOfOrder}
-                            value={updateMenu.outOfOrder}
                             onChange={handleMenuUpdate}
                             id='outOfOrder'
                         />

@@ -10,7 +10,7 @@
     background: black;
     z-index: 100000;
     @include gridCenter;
-    align-content: space-evenly;
+    align-content: space-between;
     text-align: center;
     padding-block: 2em;
 

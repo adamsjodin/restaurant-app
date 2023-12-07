@@ -6,6 +6,10 @@
   @include button-styles;
   transition: all .5s ease;
 }
+.btn.out {
+  opacity: .5;
+  pointer-events: none;
+}
 .button--primary {
     background-color: $clr-btn__primary;
   

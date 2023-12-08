@@ -8,7 +8,7 @@
     text-align: center;
     align-items: center;
     justify-content: space-evenly;
-    z-index: 6000000;
+    z-index: 600;
     svg {
         @include close-btn-position
     }
@@ -46,12 +46,14 @@
 
     &--input-checkbox {
         margin: 0 0.5rem 0 0.5rem;
+        line-height: 1.5rem;
     }
  
     &--input-container {
         text-align: center;
         margin: 1rem;
         padding: 0.5rem;
+        line-height: 1.5rem
     }
     
     &--btn {
@@ -67,10 +69,9 @@
             color: $clr-btn__red
         }
     }
-
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
     .signup {
         background-color: $background-color--card;
         top: 50%;
@@ -78,8 +79,10 @@
         transform: translate(-50%, -50%);
         border: 1px solid white;
         border-radius: 20px;
-        height: 530px;
-        width: 500px;
         z-index: 1;
+        svg {
+            @include close-btn-position;
+            font-size: 2rem;
+        }
     }
   }

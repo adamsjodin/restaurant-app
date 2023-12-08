@@ -9,6 +9,7 @@
         color: white
     }
 }
+
 .foodMenu {
     &__products {
         display: grid;
@@ -19,13 +20,17 @@
         }
     }
     .add-form {
+        @include gridColumns(repeat(2, 1fr));
         * {
             margin: .5rem 0
+        }
+        section {
+            border: 1px solid white
         }
         padding: 2rem;
         margin: auto;
         text-align: center;
-        select, option, input {
+        select, option, input, textarea {
             color: black
         }
         button {
@@ -33,7 +38,7 @@
             border: 1px solid white;
         }
         .add-ingredients {
-            @include flexSpaceBetween(row);
+           
         button {
             font-size: 0.8em;
             padding: 0.5em 1em;
@@ -98,4 +103,9 @@
             padding: 0.5rem
         }
     }
+}
+
+.addFood {
+    width: unset;
+
 }

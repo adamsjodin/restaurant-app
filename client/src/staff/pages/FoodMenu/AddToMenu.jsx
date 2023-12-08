@@ -1,65 +1,97 @@
 import { useState } from 'react';
 import { Button } from '../../../components/exports';
 import categories from '../../../testdata/categories.json';
+import axios from "axios";
 
 //In progress
+//TODO: 
+//Remove All from categories
+//Make sure state is updated before sending
+//Move functions
+//Fix styling
+
 
 export default function AddToMenu() {
   const [ingredients, setIngredients] = useState([]);
   const [ingrValue, setIngrValue] = useState('');
-
+  const [categoriesList, setCategoriesList] = useState(["All"])
+  const [allergensList, setAllergensList] = useState([])
+  const [newItem, setNewItem] = useState({
+    title: "",
+    description: "",
+    price: 0,
+    imgUrl: "",
+    categories: [],
+    ingredients: [],
+    allergens: []
+  })
+  
   const categoryOptions = categories.map((category, i) => (
-    <option className={category.dish} key={i}>
-      {category.dish}
-    </option>
-  ));
+    <div key={i}>
+      <input type='checkbox' name="category" id={category.dish} onChange={(e) => addToList(e)}></input>
+      <label htmlFor={category.dish}>{category.dish}</label>
+    </div>
+  ))
 
   function addIngredient(e) {
     e.preventDefault();
-    setIngredients((prevIngredients) => [...prevIngredients, ingrValue]);
-    setIngrValue('');
+    if (ingrValue.length > 2) {
+      setIngredients((prevIngredients) => [...prevIngredients, ingrValue]);
+      setIngrValue('');
+      }
+      setNewItem({ ...newItem, ingredients: ingredients })
   }
 
   const ingredientList = ingredients.map((ingredient, i) => (
     <li key={i}>{ingredient}</li>
   ));
 
-  const newItem = {
-    id: id,
-    title: item.title,
-    description: item.description,
-    price: item.price,
-    imgUrl: item.imgUrl,
-    categories: item.categories,
-    ingredients: ingredients,
-    allergens: allergens,
+function addToList(e) {
+  if (e.target.name === "allergen"){
+    e.target.checked && !allergensList.includes(e.target.id) ? setAllergensList(prev => [...prev, e.target.id]) : console.log("not added") }
+  else if (e.target.name === "category") {
+    e.target.checked && !categoriesList.includes(e.target.id) ? setCategoriesList(prev => [...prev, e.target.id]) : console.log("not added")
+  } 
+  setNewItem({...newItem, categories: categoriesList, allergens: allergensList})
   }
-
-const addNewItem = async () => {
+  
+const addNewItem = async (item, e) => {
+  if (ingredients > 1) {
     await axios
       .post(
         "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
-        newItem
+        item
       )
       .then((res) => {
         console.log(res.data);
       })
       .catch((err) => {
         console.error(err);
-      });
+      });}
   };
+
+  const handleSetDish = (e) => {
+    const { name } = e.target;
+    const updatedValue = e.target.value;
+    setNewItem({ ...newItem, [name]: updatedValue })
+    console.log(newItem)
+};
   
 
   return (
-    <section className="editFood">
-      <form className="add-form">
-        <input type="text" placeholder="Title"></input>
-        <input type="text" placeholder="Description"></input>
-        <input type="text" placeholder="Image Url"></input>
-        <input type="number" placeholder="Price"></input>
-        <select placeholder="add categories">{categoryOptions}</select>
-        {ingredients.length > 0 && <ul>{ingredientList}</ul>}
-        <div className="add-ingredients">
+    <section className="addFood editFood">
+      <form className="add-form" onSubmit={(e) => addNewItem(newItem, e)}>
+        <section className='add-info'>
+          <p>Add info:</p>
+          <input required type="text" name="title" placeholder="Title" onChange={handleSetDish}></input>
+          <input required type="text" name="imgUrl" placeholder="Image Url" onChange={handleSetDish}></input>
+          <textarea required type="text" name="description" placeholder="Description" onChange={handleSetDish}></textarea>
+          <input required type="number" name="price" placeholder="Price" onChange={handleSetDish}></input>
+        </section>
+
+        
+        <section className="add-ingredients">
+        <p>Add ingredients:</p>
           <input
             type="text"
             placeholder="add ingredient"
@@ -69,21 +101,35 @@ const addNewItem = async () => {
           <Button className={'add'} onClick={(e) => addIngredient(e)}>
             Add
           </Button>
-        </div>
-        <section className='allergens-container'>
-          <h3>Allergens:</h3>
+          {ingredients.length > 0 && <ul>{ingredientList}</ul>}
+          {ingredients.length > 1 ? "" : "Add at least 2 ingredients"}
+        </section>
+
+        <section className='add-categories'>
+          <p>Add categories:</p>
+          {categoryOptions}
+        </section>
+
+        <section className='add-allergens'>
+          <p>Add allergens:</p>
           <div>
-            <input type='checkbox' name="allergen" id="lactose"></input>
+            <input type='checkbox' name="allergen" id="lactose" onChange={(e) => addToList(e)}></input>
             <label htmlFor="lactose">Lactose</label>
-            <input type='checkbox' name="allergen" id="tomatoe"></input>
+          </div>
+          <div>
+            <input type='checkbox' name="allergen" id="tomatoe" onChange={(e) => addToList(e)}></input>
             <label htmlFor="tomatoe">Tomatoe</label>
-            <input type='checkbox' name="allergen" id="gluten"></input>
+          </div>
+          <div>  
+            <input type='checkbox' name="allergen" id="gluten" onChange={(e) => addToList(e)}></input>
             <label htmlFor="gluten">Gluten</label>
-            <input type='checkbox' name="allergen" id="nuts"></input>
+          </div>  
+          <div>
+            <input type='checkbox' name="allergen" id="nuts" onChange={(e) => addToList(e)}></input>
             <label htmlFor="nuts">Nuts</label>
           </div>
         </section>
-        <Button>Add to menu</Button>
+        <Button type="submit">Add to menu</Button>
       </form>
     </section>
   );

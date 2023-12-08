@@ -21,15 +21,15 @@ function CheckoutConfirmation({ setAppState, appState }) {
       variants={overlayVariants}
       animate={appState.checkoutOpen ? "open" : "closed" }
       transition={{ duration: 1 }}
+      onClick={() => oneState(setAppState, 'checkoutOpen')}
     >
       <IoIosArrowDown
         className={"checkout-confirmation__close " + (appState.checkoutOpen ? "open" : "")}
-        onClick={() => oneState(setAppState, 'checkoutOpen')}
       />
         <>
-          <h2>Thank You!</h2>
+          <h2 className={ appState.checkoutOpen ? "" : "closed"}>Thank You!</h2>
           <p>
-            Your order will be ready soon! <br></br>
+            Your order will be ready soon! { screenWidth > 600 ? <br></br> : null }
             Check the progress below...
           </p>
           <ol className="checkout-confirmation__timeline">

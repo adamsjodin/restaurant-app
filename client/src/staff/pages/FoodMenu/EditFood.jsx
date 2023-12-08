@@ -34,7 +34,6 @@ function EditFood({ props, onClose, state }) {
         e.preventDefault()
         axios.put('https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu', updateMenu)
             .then(res => {
-                console.log('updated db', updateMenu);
                 updateMsg();
                 return res;
             })
@@ -74,13 +73,13 @@ function EditFood({ props, onClose, state }) {
                         <input
                             className='editFood__form-input'
                             type="checkbox"
-                            placeholder='Out of order'
+                            placeholder='Out of Stock'
                             name='outOfOrder'
                             checked={getOutOfOrder}
                             onChange={handleMenuUpdate}
                             id='outOfOrder'
                         />
-                        <label htmlFor="outOfOrder">Out of order</label>
+                        <label htmlFor="outOfOrder">Out of Stock</label>
                     </section>
                     <button className='editFood__form-btn'>submit</button>
                 </form>

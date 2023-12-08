@@ -2,6 +2,7 @@ import { FaCircle } from "react-icons/fa";
 
 
 export default function OrderHistoryCard({ order }) {
+  console.log(order)
   const convertedDate = new Date(order.TimeStamp * 1000).toString();
 
   return (

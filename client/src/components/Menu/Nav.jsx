@@ -89,7 +89,7 @@ function Nav() {
               className="nav--icon"
               onClick={() => oneState(setState, 'showSettings')}
             />
-            <h5>{userName && JSON.parse(userName)}</h5>
+            <h5>{userName && userName}</h5>
             <IoLogOutOutline
               className="nav--icon"
               onClick={() => doubleState(setState, 'showLogoutConf')}

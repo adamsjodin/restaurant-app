@@ -56,7 +56,7 @@ function addToList(e) {
   }
   
 const addNewItem = async (item, e) => {
-  if (ingredients > 1) {
+  if (ingredients.length > 1) {
     await axios
       .post(
         "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
@@ -67,14 +67,15 @@ const addNewItem = async (item, e) => {
       })
       .catch((err) => {
         console.error(err);
-      });}
+      });} else {
+        e.preventDefault()
+      }
   };
 
   const handleSetDish = (e) => {
     const { name } = e.target;
     const updatedValue = e.target.value;
     setNewItem({ ...newItem, [name]: updatedValue })
-    console.log(newItem)
 };
   
 

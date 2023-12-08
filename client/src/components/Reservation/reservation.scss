@@ -4,10 +4,11 @@
 .reservation {
   @include overlay-style;
   @include gridCenter;
-  justify-items: center;
   gap: 1em;
+  justify-items: center;
   text-align: center;
   padding: 1rem;
+  border: 1px white solid;
   
   .form__inputs {
     & > * {
@@ -95,4 +96,18 @@
 
 .react-calendar__navigation button:disabled {
   background-color: transparent !important;
+}
+
+@media screen and (min-width: 800px) {
+  .reservation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%);
+    border-radius: 20px;
+    svg {
+      @include close-btn-position;
+      font-size: 2rem;
+    }
+  }
 }

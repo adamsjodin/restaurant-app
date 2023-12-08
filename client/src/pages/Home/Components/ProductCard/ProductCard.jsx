@@ -84,7 +84,7 @@ function ProductCard({
                   {description}
                 </Truncate>
               )}
-              {showOutOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
+              {showOutOfOrder && <h4 className="product__outOfOrder">Out of Stock</h4>}
               <section className="product__info--bottom">
                 {cartInfo ? (
                   <h3>{totalPrice} kr</h3>

@@ -6,7 +6,6 @@ import { oneState, doubleStateNew, postOrder } from "../../utils/functions";
 
 function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
   const [isCountdownActive, setIsCountdownActive] = useState(true);
-
   const handleButtonClick = () => {
     setIsCountdownActive(false);
     doubleStateNew(setAppState, "openPreCheckout", "openCheckout");
@@ -45,11 +44,13 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
             <p>{item.quantity}</p>
             <p>{item.title}</p>
             <p>{item.price}</p>
-            {Object.entries(item.changes || {}).map(([ingredient, changed]) => (
-              <p className="changes" key={ingredient}>
-                {changed ? "Add" : "Remove"} {ingredient}
-              </p>
-            ))}
+            {item.changes > 0 ? (
+  item.changes.map(([ingredient, changed]) => (
+    <p className="changes" key={ingredient}>
+      {changed ? "Add" : "Remove"} {ingredient}
+    </p>
+  ))
+) : null}
           </section>
         ))}
       </div>

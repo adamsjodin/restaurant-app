@@ -5,8 +5,7 @@ import axios from "axios";
 
 //In progress
 //TODO: 
-//Remove All from categories
-//Make sure state is updated before sending
+//Make sure state is updated before sending - HOW!??!  
 //Move functions
 //Fix styling
 
@@ -26,7 +25,7 @@ export default function AddToMenu() {
     allergens: []
   })
   
-  const categoryOptions = categories.map((category, i) => (
+  const categoryOptions = categories.slice(1).map((category, i) => (
     <div key={i}>
       <input type='checkbox' name="category" id={category.dish} onChange={(e) => addToList(e)}></input>
       <label htmlFor={category.dish}>{category.dish}</label>
@@ -39,7 +38,7 @@ export default function AddToMenu() {
       setIngredients((prevIngredients) => [...prevIngredients, ingrValue]);
       setIngrValue('');
       }
-      setNewItem({ ...newItem, ingredients: ingredients })
+      setNewItem({...newItem, categories: categoriesList, allergens: allergensList, ingredients: ingredients})
   }
 
   const ingredientList = ingredients.map((ingredient, i) => (
@@ -52,11 +51,13 @@ function addToList(e) {
   else if (e.target.name === "category") {
     e.target.checked && !categoriesList.includes(e.target.id) ? setCategoriesList(prev => [...prev, e.target.id]) : console.log("not added")
   } 
-  setNewItem({...newItem, categories: categoriesList, allergens: allergensList})
+  setNewItem({...newItem, categories: categoriesList, allergens: allergensList, ingredients: ingredients})
   }
   
 const addNewItem = async (item, e) => {
+  
   if (ingredients.length > 1) {
+    
     await axios
       .post(
         "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",

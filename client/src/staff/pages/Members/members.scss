@@ -1,6 +1,39 @@
+@import "../../../Styles/variables";
+@import "../../../Styles/mixins";
+
+
 .members {
   .order-history__card {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: start;
+    padding: 0 1rem;
 
   }
+
+  .order-history__tabs p.active {
+    background-color: white;
+  }
+
+  .order-history__tabs p:not(.active) {
+    color: white;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .members {
+    .order-history__card {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+  .members {
+    .order-history__card {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
 }

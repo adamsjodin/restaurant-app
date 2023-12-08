@@ -24,6 +24,32 @@ export default function AddToMenu() {
     <li key={i}>{ingredient}</li>
   ));
 
+  const newItem = {
+    id: id,
+    title: item.title,
+    description: item.description,
+    price: item.price,
+    imgUrl: item.imgUrl,
+    categories: item.categories,
+    ingredients: ingredients,
+    allergens: allergens,
+  }
+
+const addNewItem = async () => {
+    await axios
+      .post(
+        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
+        newItem
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  
+
   return (
     <section className="editFood">
       <form className="add-form">

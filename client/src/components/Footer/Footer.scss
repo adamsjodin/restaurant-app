@@ -1,5 +1,5 @@
-@import './src/Styles/variables';
-@import './src/Styles/mixins';
+@import '../../Styles/variables';
+@import '../../Styles/mixins';
 
 .footer--desktop {
     display: none;
@@ -15,38 +15,40 @@
     }
 
     .footer--desktop {
-        display: block;
+        display: grid;
         margin-top: auto;
         border-top: 1px solid white;
         color: $clr-text;
-        @include flexSpaceAround(row);
-        align-items: center;
-
-        &--hours {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem
+        &--top {
+            @include flexSpaceAround(row);
+            align-items: center;
+            &--hours {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem
+            }
+    
+            &--heading {
+                text-align: center;
+                margin: 0.5rem;
+            }
+    
+            &--lists {
+                @include flexCenter(row);
+                gap: 1rem;
+            }
+    
+            &--interest ul li {
+                list-style-type: none;
+            }
+    
+            &--social {
+                font-size: 2rem;
+                display: flex;
+                gap: 1rem;
+            }
         }
 
-        &--heading {
-            text-align: center;
-            margin: 0.5rem;
-        }
-
-        &--lists {
-            @include flexCenter(row);
-            gap: 1rem;
-        }
-
-        &--interest ul li {
-            list-style-type: none;
-        }
-
-        &--social {
-            font-size: 2rem;
-            display: flex;
-            gap: 1rem;
-        }
 
         &--copyright {
             display: flex;

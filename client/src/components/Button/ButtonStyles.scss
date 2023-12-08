@@ -60,12 +60,3 @@
       color: $clr-btn__primary;
     }
   }
-  @media screen and (min-width: 600px) {
-    .button--cart {
-      background: $clr-btn__primary;
-      position: absolute;
-      bottom: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }

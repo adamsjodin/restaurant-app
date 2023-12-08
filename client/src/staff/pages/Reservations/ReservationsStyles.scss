@@ -7,16 +7,27 @@
     text-align: center;
   }
 
-  .reservations__tabs {
-    @include flexSpaceAround(row);
-  }
+  &__tabs {
+    @include flexSpaceBetween(row);
 
-  p {
-    padding: 1rem 3rem;
-    border-radius: 20px 20px 0 0;
-    background-color: transparent;
+    p {
+      padding: 1rem 3rem;
+      border-radius: 20px 20px 0 0;
+      background-color: transparent;
+    }
+    p:not(.active) {
+      color: white;
+    }
+    p.active {
+      background-color: white;
+    }
   }
-  p.seated, p.waiting, p.done {
-    background-color: rgba(185, 184, 184, 0.5);
+  &__cards {
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
   }
 }

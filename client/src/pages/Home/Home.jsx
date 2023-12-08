@@ -117,19 +117,31 @@ function Home() {
         <CiSearch />
       </div>
 
-      {state.isSearching ? (
+      {state.isSearching && !state.openCart ? (
+        <>
         <Search
           menuItems={menuItems}
           isSearching={state.isSearching}
-          actions={addToCart}
+          editIngredients={handleEditBtnClick}
+          toggleEditIngredients={handleToggleEditIngredients}
         />
+        {editIngredients && (
+            <EditIngredients
+              product={selectedProduct}
+              addToCart={addToCart}
+              toggleEditIngredients={handleToggleEditIngredients}
+            />
+          )}
+          </>
       ) : (
         <>
+          
           <RenderMenu
             filteredItems={filteredItems}
             editIngredients={handleEditBtnClick}
             toggleEditIngredients={handleToggleEditIngredients}
           />
+          
           {editIngredients && (
             <EditIngredients
               product={selectedProduct}
@@ -148,7 +160,7 @@ function Home() {
               appState={state}
             />
           )}
-          {state.openCart && (
+          {state.openCart && cart.length > 0 && (
             <Cart
               setCart={setCart}
               cart={cart}

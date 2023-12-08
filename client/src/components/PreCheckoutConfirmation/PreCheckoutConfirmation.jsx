@@ -4,10 +4,8 @@ import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
 import { oneState, doubleStateNew, postOrder } from "../../utils/functions";
 
-
 function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
   const [isCountdownActive, setIsCountdownActive] = useState(true);
-  
   const handleButtonClick = () => {
     setIsCountdownActive(false);
     doubleStateNew(setAppState, "openPreCheckout", "openCheckout");
@@ -16,8 +14,8 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
 
   const handleEditClick = () => {
     setIsCountdownActive(false);
-    doubleStateNew(setAppState, 'openPreCheckout', 'openCart');
-  }
+    doubleStateNew(setAppState, "openPreCheckout", "openCart");
+  };
 
   useEffect(() => {
     if (appState.openPreCheckout) {
@@ -57,21 +55,27 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
         ))}
       </div>
       <div className="pre-checkout__btns">
-        <Button onClick={handleButtonClick}>Looks good</Button>
-        <Button
-          className="secondary"
-          onClick={handleEditClick}
-        >
-          Edit my order{" "}
-          <Countdown
-            onTimeout={() => {
-              oneState(setAppState, "openPreCheckout");
-              postOrder(setCart);
-            }}
-            isCountdownActive={isCountdownActive}
-            duration={1}
-          />
-        </Button>
+        {appState.openCheckout ? (
+          <>
+            <p style={{ fontSize: "1.5em", color: "limegreen" }}>Previous order in progress...</p>
+            <Button className="secondary" onClick={handleEditClick}>Back to cart</Button>
+          </>
+        ) : (
+          <>
+            <Button onClick={handleButtonClick}>Looks good</Button>
+            <Button className="secondary" onClick={handleEditClick}>
+              Edit my order{" "}
+              <Countdown
+                onTimeout={() => {
+                  oneState(setAppState, "openPreCheckout");
+                  postOrder(setCart);
+                }}
+                isCountdownActive={isCountdownActive}
+                duration={1}
+              />
+            </Button>
+          </>
+        )}
       </div>
     </article>
   );

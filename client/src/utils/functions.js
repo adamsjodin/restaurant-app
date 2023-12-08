@@ -140,23 +140,23 @@ function checkRole({ data, setError, setState }) {
 }
 
 export function CheckoutTimeline(index) {
-  console.log("In Checkout Timeline")  // const [elapsedTime, setElapsedTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
 
-  // useEffect(() => {
-  //   const countdownInterval = setInterval(() => {
-  //     setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
-  //   }, 1000);
+  useEffect(() => {
+    const countdownInterval = setInterval(() => {
+      setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
+    }, 1000);
 
-  //   return () => clearInterval(countdownInterval);
-  // }, []);
+    return () => clearInterval(countdownInterval);
+  }, []);
 
-  // if (index === Math.floor(elapsedTime / 60)) {
-  //   return { borderColor: "rgb(0, 150, 102)" };
-  // } else if (index < Math.floor(elapsedTime / 60)) {
-  //   return { backgroundColor: "rgb(0, 150, 102)" };
-  // } else {
-  //   return {};
-  // }
+  if (index === Math.floor(elapsedTime / 60)) {
+    return { borderColor: "rgb(0, 150, 102)" };
+  } else if (index < Math.floor(elapsedTime / 60)) {
+    return { backgroundColor: "rgb(0, 150, 102)" };
+  } else {
+    return {};
+  }
 }
 
 /* STATES */

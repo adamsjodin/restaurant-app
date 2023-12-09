@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../../../components/exports';
 import categories from '../../../testdata/categories.json';
 import axios from "axios";
 
 //In progress
 //TODO: 
-//Make sure state is updated before sending - HOW!??!  
 //Move functions
 //Fix styling
 
@@ -24,6 +23,15 @@ export default function AddToMenu() {
     ingredients: [],
     allergens: []
   })
+
+  useEffect(() => {
+    setNewItem({
+      ...newItem,
+      categories: categoriesList,
+      allergens: allergensList,
+      ingredients: ingredients,
+    });
+  }, [ingredients, categoriesList, allergensList]);
   
   const categoryOptions = categories.slice(1).map((category, i) => (
     <div key={i}>
@@ -94,15 +102,17 @@ const addNewItem = async (item, e) => {
         
         <section className="add-ingredients">
         <p>Add ingredients:</p>
-          <input
-            type="text"
-            placeholder="add ingredient"
-            onChange={(e) => setIngrValue(e.target.value)}
-            value={ingrValue}
-          />
-          <Button className={'add'} onClick={(e) => addIngredient(e)}>
-            Add
-          </Button>
+          <div>
+            <input
+              type="text"
+              placeholder="add ingredient"
+              onChange={(e) => setIngrValue(e.target.value)}
+              value={ingrValue}
+            />
+            <Button className={'add'} onClick={(e) => addIngredient(e)}>
+              Add
+            </Button>
+          </div>
           {ingredients.length > 0 && <ul>{ingredientList}</ul>}
           {ingredients.length > 1 ? "" : "Add at least 2 ingredients"}
         </section>

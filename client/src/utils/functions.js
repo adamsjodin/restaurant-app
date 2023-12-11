@@ -30,7 +30,7 @@ export async function getAllOrders() {
 
 export async function getOrderHistory() {
   try {
-    const userID = localStorage.getItem("userId");
+    const userID = localStorage.getItem("userId")
     const response = await axios.post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
       { userID: userID }
@@ -125,8 +125,8 @@ function checkRole({ data, setError, setState }) {
       setError(false)
       let userInfo = JSON.parse(data.body)
       if (userInfo.role === "member") {
-          localStorage.setItem("userId", JSON.stringify(userInfo.id))
-          localStorage.setItem("userName", JSON.stringify(userInfo.name))
+          localStorage.setItem("userId", userInfo.id)
+          localStorage.setItem("userName", userInfo.name)
       } else if (userInfo.role === "staff") {
           setState((prevState) => {
             return toggleState(prevState, 'staffLogin');

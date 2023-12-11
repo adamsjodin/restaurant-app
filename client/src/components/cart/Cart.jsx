@@ -45,7 +45,7 @@ function Cart({ setCart, cart, updateTotals, setAppState }) {
       );
     }
   }
-
+console.log(cart);
   return (
     <section className="cart">
       <h1>Your order:</h1>

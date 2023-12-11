@@ -60,22 +60,31 @@
 
 @media screen and (min-width: 55em) {
   .pre-checkout {
-    display: flex;
-    justify-content: space-between;
-    padding: 4rem 5rem 2rem;
+    padding: 1rem 5rem 1rem;
     position: absolute;
     bottom: 0;
     width: 100vw;
     max-height: 35vh;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    &__top {
+      display: flex;
+      align-items: baseline;
+      padding: 0 0 1em;
+      gap: 1em;
+    }
+
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   .pre-checkout__items-wrapper {
-    overflow: scroll;
-  }
-
-  .pre-checkout__top {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    overflow: auto;
+    width: 100%;
   }
 
   .pre-checkout__items {

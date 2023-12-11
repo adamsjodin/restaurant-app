@@ -1,7 +1,4 @@
 .hours-wrapper__staff {
-  * {
-    color: #007d7d;
-  }
 
   .hours--lists {
     padding: 2rem;
@@ -17,14 +14,11 @@
   }
 
   input {
-    color: #007d7d;
-    border-bottom: 1px #007d7d solid;
     padding: 0;
     margin: 0;
   }
 
   textarea {
-    color-scheme: light;
     min-width: 80%;
     padding: 1rem;
     text-align: center;

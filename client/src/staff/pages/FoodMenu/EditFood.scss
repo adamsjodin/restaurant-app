@@ -77,3 +77,15 @@
         }
     }
 }
+
+@media screen and (min-width: 800px) {
+    .foodMenu {
+        &__products {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .product-info {
+            background-color: #007d7d;
+        }
+    }
+  }
+  

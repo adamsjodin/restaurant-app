@@ -38,6 +38,7 @@ export default function OrderHistory({action}) {
           ? activeOrders.push(order)
           : doneOrders.push(order)
       );
+      
     activeEl = activeOrders.map((order) => (
       <OrderHistoryCard key={order.orderNr} order={order} />
     ));

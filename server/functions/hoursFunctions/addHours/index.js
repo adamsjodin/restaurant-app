@@ -12,8 +12,7 @@ exports.handler = async (event) => {
             Item: {
                 id: id,
                 days: hours.day,
-                openHours: hours.open,
-                closingHours: hours.close,
+                hours: hours.hours, 
                 notes: hours.note
             }
         }).promise();

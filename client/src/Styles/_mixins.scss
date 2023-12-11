@@ -94,7 +94,7 @@
   padding: 2rem;
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  z-index: 20;
+  z-index: 200000000;
   max-width: 20rem;
   @include gridCenter;
   gap: 1em;

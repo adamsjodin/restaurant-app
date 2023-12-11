@@ -6,6 +6,7 @@ import "./ProductCard.scss";
 
 import EditFood from "../../../../staff/pages/FoodMenu/EditFood";
 import { Button, ProductInformation } from "../../../../components/exports";
+import { booleanStates, oneState } from "../../../../utils/functions";
 
 
 function ProductCard({
@@ -18,11 +19,11 @@ function ProductCard({
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder, id } = props;
+  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
   const changesEntries = changes ? Object.entries(changes) : [];
   const [showOutOfOrder, setShowOutOfOrder] = useState(outOfOrder)
-  const [showInfo, setShowInfo] = useState(false);
+  const [state, setState] = useState(booleanStates());
   const [showEditFood, setShowEditFood] = useState(false);
   const cardRef = useRef(null);
   console.log();
@@ -36,20 +37,18 @@ function ProductCard({
     setShowEditFood(false)
   };
 
-  const handleClick = () => {
-    setShowInfo(!showInfo);
-  };
-
   return (
     <>
       {showEditFood && <EditFood state={setShowOutOfOrder} props={props} onClose={handleCloseEditFood} />}
 
-      {showInfo ? (
+      {state.showInfo ? (
         <ProductInformation
           className="productInformation"
           props={props}
-          onClick={handleClick}
-          showInfo={showInfo}
+          actions={onClick}
+          toggleEditIngredients={toggleEditIngredients}
+          showInfo={state.showInfo}
+          toggleInfo={() => oneState(setState, 'showInfo')}
         />
       ) : (
         <motion.article className={dynamicStyle} ref={cardRef}>
@@ -118,7 +117,7 @@ function ProductCard({
                 )}
               </section>
             </motion.section>
-            {cartInfo ? <></> : <FaInfo onClick={handleClick} />}
+            {cartInfo ? <></> : <FaInfo onClick={() => oneState(setState, 'showInfo')} />}
           </>
         </motion.article>
       )}

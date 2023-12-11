@@ -89,7 +89,7 @@ const addNewItem = async (item, e) => {
   
 
   return (
-    <section className="addFood editFood">
+    <section className="addFood">
       <form className="add-form" onSubmit={(e) => addNewItem(newItem, e)}>
         <section className='add-info'>
           <p>Add info:</p>

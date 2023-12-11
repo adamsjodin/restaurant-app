@@ -5,7 +5,7 @@ import EditFood from './EditFood';
 import AddToMenu from './AddToMenu';
 
 function FoodMenu() {
-
+    const [showAddToMenu, setShowAddToMenu] = useState(false)
     const [getMenu, setGetMenu] = useState([]);
 
     useEffect(() => {
@@ -15,14 +15,19 @@ function FoodMenu() {
 
     return ( 
         <section className='foodMenu'>
-                  <ul className="foodMenu__products">
-            {
-                getMenu.map((data, i) => (
-                    <ProductCard key={i} props={data} className='staff' editFood={<EditFood />}/>
-                    ))
-                }
-            </ul>
-                <AddToMenu /> 
+            <section className="order-history__tabs">
+                <p className={!showAddToMenu && 'active'} onClick={() => setShowAddToMenu(!showAddToMenu)}>Menu</p>
+                <p className={showAddToMenu && 'active'}  onClick={() => setShowAddToMenu(!showAddToMenu)}>Add new dish</p>
+            </section>
+            { showAddToMenu ? <AddToMenu /> : 
+                <ul className="foodMenu__products">
+                    { 
+                        getMenu.map((data, i) => (
+                            <ProductCard key={i} props={data} className='staff' editFood={<EditFood />}/>
+                        ))
+                    }
+                </ul>
+            }
         </section>
      );
 }

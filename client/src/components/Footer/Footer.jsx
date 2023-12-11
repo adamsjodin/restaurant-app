@@ -5,12 +5,14 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 
+const screenWidth = window.innerWidth;
+
 function Footer() {
   return (
     <>
-      <section className="footer--mobile">
-        <Hours />
-      </section>
+    { screenWidth < 800 ?
+      <Hours />
+      : 
       <section className="footer--desktop">
         <div className="footer--desktop--top">
           <section className="footer--desktop--top--hours">
@@ -56,6 +58,7 @@ function Footer() {
           <p> Furious Sheriffs 2023</p>
         </div>
       </section>
+    }
     </>
   );
 }

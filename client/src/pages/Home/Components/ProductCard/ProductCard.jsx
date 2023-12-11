@@ -20,8 +20,8 @@ function ProductCard({
 }) {
   const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
-  const changesEntries = changes ? Object.entries(changes) : [];
-  const [showOutOfOrder, setShowOutOfOrder] = useState(outOfOrder)
+  const changesArray = Array.isArray(changes) ? changes : [];
+  const [showOutOfOrder, setShowOutOfOrder] = useState(outOfOrder);
   const [state, setState] = useState(booleanStates());
   const [showEditFood, setShowEditFood] = useState(false);
   const cardRef = useRef(null);
@@ -74,7 +74,7 @@ function ProductCard({
                     </Button>{" "}
                   </div>
                   <div className="cart-changes">
-                    {changesEntries.map(([ingredient, changed]) => (
+                    {changesArray.map(({ ingredient, changed }) => (
                       <p key={ingredient}>
                         {changed ? "Add" : "Remove"} {ingredient}
                       </p>

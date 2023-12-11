@@ -47,6 +47,7 @@
     align-items: center;
     gap: 2em;
     padding: 1em;
+    position: relative;
 
     svg {
       fill: red;
@@ -69,7 +70,6 @@
       z-index: 1;
       svg {
           @include close-btn-position;
-          font-size: 2rem;
       }
   }
 }

@@ -63,9 +63,7 @@ function addToList(e) {
   }
   
 const addNewItem = async (item, e) => {
-  
   if (ingredients.length > 1) {
-    
     await axios
       .post(
         "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",

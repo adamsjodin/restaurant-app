@@ -35,6 +35,12 @@ functions:
       - httpApi:
           path: '/api/menu'
           method: PUT
+  deleteFromMenu:
+    handler: functions/menuFunctions/deleteFromMenu/index.handler
+    events: 
+      - httpApi:
+          path: '/api/staff/delete'
+          method: DELETE
   addUser:
     handler: functions/userFunctions/addUser/index.handler
     events: 

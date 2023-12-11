@@ -40,13 +40,13 @@ body {
 
 @media screen and (min-width: 55em) {
   main {
-    max-width: 70vw;
+    max-width: 85vw;
     margin: 0 auto;
   }
   .offers {
-    overflow-x: unset;
+    justify-content: center;
   }
-  .categories .category-list {
-    overflow: unset;
+  .categories {
+    @include gridCenter;
   }
 }

@@ -30,7 +30,7 @@ export async function getAllOrders() {
 
 export async function getOrderHistory() {
   try {
-    const userID = JSON.parse(localStorage.getItem("userId"))
+    const userID = localStorage.getItem("userId");
     const response = await axios.post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
       { userID: userID }
@@ -145,7 +145,7 @@ export function CheckoutTimeline(index) {
   useEffect(() => {
     const countdownInterval = setInterval(() => {
       setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(countdownInterval);
   }, []);

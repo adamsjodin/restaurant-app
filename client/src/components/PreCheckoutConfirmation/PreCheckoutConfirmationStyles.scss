@@ -62,8 +62,14 @@
   .pre-checkout {
     display: flex;
     justify-content: space-between;
-    padding: 4rem 5rem 0;
-    position: unset;
+    padding: 4rem 5rem 2rem;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    max-height: 35vh;
+  }
+  .pre-checkout__items-wrapper {
+    overflow: scroll;
   }
 
   .pre-checkout__top {

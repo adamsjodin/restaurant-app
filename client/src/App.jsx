@@ -6,7 +6,6 @@ import {
   AnimatedRoutes,
   AnimatedRoutesStaff,
   TopBar,
-  Hours,
   Footer,
 } from "./components/exports";
 
@@ -41,7 +40,7 @@ function App() {
           <main>
             <AnimatedRoutes />
           </main>
-          {window.innerWidth < 600 ? <Hours /> : <Footer />}
+          <Footer />
         </>
       )}
     </>

@@ -77,8 +77,10 @@
   .checkout-confirmation {
     min-height: unset;
     max-height: 35vh;
-    position: sticky;
+    width: 100vw !important;
+    position: absolute;
     bottom: 0;
+    overflow: hidden;
     h2,
     p {
       padding: 1rem;
@@ -92,7 +94,7 @@
     }
     &__timeline {
       flex-direction: column-reverse;
-      max-width: 80vw;
+      max-width: 95vw;
       margin: 0 auto;
       padding-inline: 4em;
       .line {

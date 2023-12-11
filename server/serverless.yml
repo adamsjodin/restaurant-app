@@ -101,6 +101,12 @@ functions:
       - httpApi: 
           path: '/api/staff/hours'
           method: GET
+  updateHours:
+    handler: functions/hoursFunctions/updateHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: PUT
 
 
 resources: 

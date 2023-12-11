@@ -145,7 +145,7 @@ export function CheckoutTimeline(index) {
   useEffect(() => {
     const countdownInterval = setInterval(() => {
       setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(countdownInterval);
   }, []);

@@ -73,7 +73,7 @@ function Cart({ setCart, cart, updateTotals, setAppState }) {
         <Button
           onClick={() => doubleStateNew(setAppState, "openCart", "openPreCheckout")}
         >
-          Go to Checkout
+          Checkout
         </Button>
       </section>
     </section>

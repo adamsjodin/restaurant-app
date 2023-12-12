@@ -4,6 +4,7 @@ import { FaRegCopyright } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
+import HoursList from "../Hours/HoursList";
 
 const screenWidth = window.innerWidth;
 
@@ -18,27 +19,8 @@ function Footer() {
           <section className="footer--desktop--top--hours">
             <h2 className="footer--desktop--top--heading">Open Hours:</h2>
             <section className="footer--desktop--top--lists">
-              <ul className="hours--ul">
-                <li>Monday:</li>
-                <li>Tuesday:</li>
-                <li>Wednesday:</li>
-                <li>Thursday:</li>
-                <li>Friday:</li>
-                <li>Saturday:</li>
-                <li>Sunday:</li>
-              </ul>
-
-              <ul className="hours--ul">
-                <li>2pm - 10pm*</li>
-                <li>2pm - 10pm*</li>
-                <li>2pm - 10pm*</li>
-                <li>2pm - 10pm*</li>
-                <li>2pm - 10pm*</li>
-                <li>2pm - 10pm*</li>
-                <li>Closed </li>
-              </ul>
+             <HoursList/>
             </section>
-            <p>*Please note that the kitchen closing 30 minutes earlier. </p>
           </section>
           <section className="footer--desktop--top--interest">
             <ul>

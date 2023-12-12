@@ -33,20 +33,23 @@ function OpeningHours() {
       })
       .catch((err) => console.error(err));
   }, []);
-
-// kan inte skicka hela listan utan ett obj i taget
-
-  const handleSubmit = () => {
-    axios
-      .put(
-        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/hours",
-        hours
-      )
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => console.error(err));
-  };
+const handleSubmit = () => {
+  const updatePromises = [];
+  hours.forEach((hour) => {
+    console.log(hour);
+    const updatePromise = axios.put(
+      "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/hours",
+      hour 
+    );
+    updatePromises.push(updatePromise);
+  });
+  Promise.all(updatePromises)
+    .then((responses) => {
+    })
+    .catch((error) => {
+      console.error('Error:', error.message);
+    });
+};
 
   const handleEditClick = () => {
     if (editMode) {

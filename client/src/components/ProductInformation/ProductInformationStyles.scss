@@ -27,7 +27,7 @@
   &__info {
     padding-bottom: 3em;
     & > ul {
-      @include gridColumns(repeat(3, 1fr));
+      @include flexEvenly(row);
       gap: 1em;
       list-style: none;
       font-size: $fs-smaller;
@@ -58,9 +58,11 @@
 
 @media  screen and (min-width: 800px){
   .product-info {
+    min-width: 500px;
     position: absolute;
-    top: 35%;
-    left: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     background-color: $background-color--popup;
     border: 1px white solid;

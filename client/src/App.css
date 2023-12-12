@@ -19,7 +19,14 @@ picture,
 svg,
 video {
   display: block;
+  max-width: 100%;
+}
+.topbar__staff__img {
   max-width: 50%;
+}
+.topbar__staff svg {
+  width: 1em;
+  height: 1em;
 }
 
 @media screen and (min-width: 800px) {
@@ -28,6 +35,13 @@ video {
   svg,
   video {
     max-width: 100%;
+  }
+  .topbar__staff__img {
+    max-width: 100%;
+  }
+  .topbar__staff svg {
+    width: 1.2em;
+    height: 1.2em;
   }
   
 }

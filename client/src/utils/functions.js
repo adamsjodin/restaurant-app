@@ -176,6 +176,7 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
+    showInfo: false
   };
 }
 
@@ -241,6 +242,23 @@ export const overlayVariants = {
     height: "100vh",
     width: "100%",
     zIndex: "1000000",
+  },
+};
+
+export const hoursVariants = {
+  open: {
+    height: "300px",
+    padding: "1rem 2rem",
+  },
+  closed: {
+    height: "0px",
+    padding: "0",
+  },
+  shown: {
+    opacity: 1,
+  },
+  hidden: {
+    opacity: 0,
   },
 };
 

@@ -5,54 +5,10 @@ import HoursIcon from "./HoursIcon";
 import { motion } from "framer-motion";
 import axios from "axios";
 import HoursList from "./HoursList";
+import { hoursVariants } from "../../utils/functions";
 
 function Hours() {
   const [openHours, setOpenHours] = useState(false);
-  const [hours, setHours] = useState([]);
-  const [note, setNote] = useState("");
-  const daysOrder = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
-  ];
-  const sortedHours = hours
-    .slice()
-    .sort((a, b) => daysOrder.indexOf(a.days) - daysOrder.indexOf(b.days));
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/hours"
-      )
-      .then((res) => {
-        setHours(res.data.hours);
-        if (res.data.hours.some((item) => item.notes)) {
-          setNote(res.data.hours.find((item) => item.notes).notes);
-        }
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  const hoursVariants = {
-    open: {
-      height: "300px",
-      padding: "1rem 2rem",
-    },
-    closed: {
-      height: "0px",
-      padding: "0",
-    },
-    shown: {
-      opacity: 1,
-    },
-    hidden: {
-      opacity: 0,
-    },
-  };
 
   return (
     <div className="hours-wrapper" onClick={() => setOpenHours(!openHours)}>

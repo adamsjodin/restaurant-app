@@ -1,9 +1,8 @@
 import "./Hours.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import HoursIcon from "./HoursIcon";
 import { motion } from "framer-motion";
-import axios from "axios";
 import HoursList from "./HoursList";
 import { hoursVariants } from "../../utils/functions";
 

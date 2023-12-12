@@ -15,17 +15,32 @@ export function getProducts() {
     });
 }
 
+export async function addNewItem(ingredients, item, e) {
+  if (ingredients.length > 1) {
+    await axios
+      .post(
+        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
+        item
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });} else {
+        e.preventDefault()
+      }
+  };
+
 export async function deleteProduct(id) {
   try {
     const response = await axios.delete("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/delete", {
-      data: { id: id } // Använd "data" för att skicka data med en DELETE-förfrågan i Axios
+      data: { id: id } 
     });
-
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error, product not deleted: ", error);
-    throw error; // Kasta om felet för att hantera det på andra ställen om det behövs
+    throw error;
   }
 }
 

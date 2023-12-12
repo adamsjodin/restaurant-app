@@ -30,9 +30,7 @@ function EditFood({ props, onClose, state }) {
     };
 
     function handleRemove() {
-        // deleteProduct(props.id)
-        
-      
+        deleteProduct(props.id)
         onClose()
         setShowPopup(!showPopup) //VARFÖR FUNKAR DET INTE??
         console.log(showPopup)
@@ -57,6 +55,10 @@ function EditFood({ props, onClose, state }) {
                 <div className='editFood__form-close' onClick={handleCloseBtn}>
                     <IoMdClose />
                 </div>
+                {showPopup ? <section className='popup'>
+                    <h3>Item removed from menu</h3>
+                    <button onClick={() => setShowPopup(!showPopup)}>Got it! </button>
+                </section> : ""}
                 {updateMenuMsg ? 
                 <div>
                     <h4 className='editFood__form-msg'>Product has been updated</h4>
@@ -100,10 +102,7 @@ function EditFood({ props, onClose, state }) {
                 </>
             }
             </section>
-            {showPopup ? <section className='popup'>
-                <h3>Item removed from menu</h3>
-                <button onClick={() => setShowPopup(!showPopup)}>Got it! </button>
-            </section> : ""}
+
         </>
     );
 }

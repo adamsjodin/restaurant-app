@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '../../../components/exports';
 import categories from '../../../testdata/categories.json';
 import axios from "axios";
+import { addNewItem } from '../../../utils/functions';
 
 //In progress
 //TODO: 
@@ -62,22 +63,7 @@ function addToList(e) {
   setNewItem({...newItem, categories: categoriesList, allergens: allergensList, ingredients: ingredients})
   }
   
-const addNewItem = async (item, e) => {
-  if (ingredients.length > 1) {
-    await axios
-      .post(
-        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
-        item
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });} else {
-        e.preventDefault()
-      }
-  };
+
 
   const handleSetDish = (e) => {
     const { name } = e.target;
@@ -88,7 +74,7 @@ const addNewItem = async (item, e) => {
 
   return (
     <section className="addFood">
-      <form className="add-form" onSubmit={(e) => addNewItem(newItem, e)}>
+      <form className="add-form" onSubmit={(e) => addNewItem(ingredients, newItem, e)}>
         <section className='add-info'>
           <p>Add info:</p>
           <input required type="text" name="title" placeholder="Title" onChange={handleSetDish}></input>

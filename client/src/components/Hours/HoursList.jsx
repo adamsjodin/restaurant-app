@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 function HoursList() {
-    const [hours, setHours] = useState([]);
+  const [hours, setHours] = useState([]);
   const [note, setNote] = useState("");
   const daysOrder = [
     "monday",
@@ -29,21 +29,18 @@ function HoursList() {
       })
       .catch((err) => console.error(err));
   }, []);
-    return ( 
-        <><ul className="hours--ul">
-            {sortedHours.map((hour, index) => (
-              <li key={hour.id}>
-                {hour.hours !== undefined ? (
-                  <label htmlFor={hour.id} key={hour.id}>
-                    {hour.days + ": " + hour.hours}
-                  </label>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-          <p>{note} </p>
-     </>
-     );
+  return (
+    <>
+      <ul className="hours--ul">
+        {sortedHours.map((hour) =>
+          hour.hours !== undefined ? (
+            <li key={hour.id}>{hour.days + ": " + hour.hours}</li>
+          ) : null
+        )}
+      </ul>
+      <p>{note} </p>
+    </>
+  );
 }
 
 export default HoursList;

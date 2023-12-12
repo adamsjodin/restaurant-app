@@ -15,6 +15,20 @@ export function getProducts() {
     });
 }
 
+export async function deleteProduct(id) {
+  try {
+    const response = await axios.delete("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/delete", {
+      data: { id: id } // Använd "data" för att skicka data med en DELETE-förfrågan i Axios
+    });
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error, product not deleted: ", error);
+    throw error; // Kasta om felet för att hantera det på andra ställen om det behövs
+  }
+}
+
 export async function getAllOrders() {
   return axios
     .get(

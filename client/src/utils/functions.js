@@ -161,8 +161,12 @@ function checkRole({ data, setError, setState }) {
             return toggleState(prevState, 'staffLogin');
           })
           localStorage.setItem("role", "staff")
-          window.location.reload()
       }
+      setState((prevState) => {
+        return toggleState(prevState, 'showLogin');
+      })
+      window.location.reload();
+
   } else {
     setError(true);
   }
@@ -185,6 +189,12 @@ export function CheckoutTimeline(index) {
     return { backgroundColor: "rgb(0, 150, 102)" };
   } else {
     return {};
+  }
+}
+
+export const handleEnterPress = (event) => {
+  if (event.keyCode === 13 || event.which === 13) {
+    handleLogin()
   }
 }
 

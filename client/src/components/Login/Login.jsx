@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Login.scss";
-import { handleLogin, booleanStates, doubleStateNew, oneState } from "../../utils/functions";
+import { handleLogin, booleanStates, doubleStateNew, oneState, handleEnterPress } from "../../utils/functions";
+
 
 function Login({ appState, setAppState }) {
   const [loginObj, setLoginObj] = useState({
@@ -9,10 +10,10 @@ function Login({ appState, setAppState }) {
   });
   const [error, setError] = useState(false);
   const [state, setState] = useState(booleanStates());
-
-  function loginFunction() {
-    handleLogin({ setError, loginObj, setState });
-    oneState(setAppState, 'showLogin');
+  
+  function loginFunction(event) {
+      event.preventDefault();
+      handleLogin({ setError, loginObj, setState });
   }
 
   return (
@@ -24,7 +25,8 @@ function Login({ appState, setAppState }) {
           className="login--input"
           placeholder="Email"
           onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value })}
-        />
+          onKeyPress={handleEnterPress}
+          />
         <input
           type="password"
           className="login--input"
@@ -32,10 +34,11 @@ function Login({ appState, setAppState }) {
           onChange={(e) =>
             setLoginObj({ ...loginObj, password: e.target.value })
           }
-        />
+          onKeyPress={handleEnterPress}
+          />
         {error && <p>Something went wrong, try again!</p>}
         <section className="login--btns">
-          <button className="login--btn" onClick={() => loginFunction()}>
+          <button className="login--btn" onClick={(event) => loginFunction(event)}>
             Log in
           </button>
           <p

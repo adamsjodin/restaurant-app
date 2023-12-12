@@ -79,7 +79,6 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
             value={message}
             onChange={handleInputChange}
           />
-          <input type="checkbox" className="editCard__ingredient" />
         </div>
       </div>
       <Button onClick={handleAddToCart}>Add to Cart</Button>

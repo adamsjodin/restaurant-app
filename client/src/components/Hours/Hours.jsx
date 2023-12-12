@@ -17,7 +17,7 @@ function Hours() {
         animate={openHours ? "open" : "closed"}
         transition={{ duration: 0.5 }}
       >
-        <HoursList />
+        {openHours ? <HoursList /> : null }
       </motion.section>
       <HoursIcon openHours={openHours} />
     </div>

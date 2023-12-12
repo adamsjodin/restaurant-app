@@ -1,16 +1,6 @@
 @import "../../Styles/variables";
 @import "../../Styles/mixins";
 
-.container {
-  border-radius: 20px;
-  padding: 2rem;
-  background-color: black;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: auto;
-}
-
 .editCard {
   color: white;
   max-height: 15rem;
@@ -19,6 +9,17 @@
   overflow: auto;
   width: 100%;
   min-width: 240px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    li {
+      list-style: none;
+    }
+  }
 }
 
 .editCard::-webkit-scrollbar {
@@ -47,8 +48,4 @@
   background-color: transparent;
   border-bottom: 1px solid #fff;
   padding: 0.2em 0;
-}
-
-li {
-  list-style: none;
 }

@@ -9,6 +9,7 @@ import axios from "axios";
 
 export default function OrdersCard({ order, action, state }) {
   const { mutate } = useMutation(updateOrderStatus);
+  // const changesArray = Array.isArray(changes) ? changes : [];
 
   async function updateOrderStatus() {
     try {
@@ -28,12 +29,12 @@ export default function OrdersCard({ order, action, state }) {
 
   function checkChanges(changes) {
     let changesEl = "";
-    if (!changes || Object.keys(changes).length === 0) {
+    if (!changes || changes.length === 0) {
       changesEl = "";
     } else {
       changesEl = (
         <div>
-          {Object.entries(changes).map(([key, value]) => (
+          {changes.map((key, value) => (
             <p className="red" key={key}>
               {value === true ? `Added ${key}` : `Removed ${key}`}
             </p>

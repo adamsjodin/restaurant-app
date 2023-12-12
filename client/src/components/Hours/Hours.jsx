@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import HoursIcon from "./HoursIcon";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { hoursVariants } from "../../utils/functions";
 
 function Hours() {
   const [openHours, setOpenHours] = useState(false);
@@ -35,23 +36,8 @@ function Hours() {
       })
       .catch((err) => console.error(err));
   }, []);
+  
 
-  const hoursVariants = {
-    open: {
-      height: "300px",
-      padding: "1rem 2rem",
-    },
-    closed: {
-      height: "0px",
-      padding: "0",
-    },
-    shown: {
-      opacity: 1,
-    },
-    hidden: {
-      opacity: 0,
-    },
-  };
 
   return (
     <div className="hours-wrapper" onClick={() => setOpenHours(!openHours)}>
@@ -67,15 +53,9 @@ function Hours() {
           animate={openHours ? "shown" : "hidden"}
         >
           <ul className="hours--ul">
-            {sortedHours.map((hour, index) => (
-              <li key={hour.id}>
-                {hour.hours !== undefined ? (
-                  <label htmlFor={hour.id} key={hour.id}>
-                    {hour.days + ": " + hour.hours}
-                  </label>
-                ) : null}
-              </li>
-            ))}
+            {sortedHours.map((hour) => hour.hours !== undefined ? (
+              <li key={hour.id}>{hour.days + ": " + hour.hours}</li>
+            ): null )}
           </ul>
         </motion.section>
         <p>{note} </p>

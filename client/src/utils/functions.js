@@ -245,4 +245,21 @@ export const overlayVariants = {
   },
 };
 
+export const hoursVariants = {
+  open: {
+    height: "300px",
+    padding: "1rem 2rem",
+  },
+  closed: {
+    height: "0px",
+    padding: "0",
+  },
+  shown: {
+    opacity: 1,
+  },
+  hidden: {
+    opacity: 0,
+  },
+};
+
 /*  */

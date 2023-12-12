@@ -33,28 +33,18 @@ function OpeningHours() {
       })
       .catch((err) => console.error(err));
   }, []);
-
-// kan inte skicka hela listan utan ett
-
 const handleSubmit = () => {
-  // Create an array to store promises for each PUT request
   const updatePromises = [];
-
-  // Iterate over each hour object and create a separate PUT request for each
   hours.forEach((hour) => {
     console.log(hour);
     const updatePromise = axios.put(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/hours",
-      hour // Send only the current hour object in an array
+      hour 
     );
     updatePromises.push(updatePromise);
   });
-
-  // Wait for all PUT requests to complete
   Promise.all(updatePromises)
     .then((responses) => {
-      // Handle responses if needed
-      console.log(responses);
     })
     .catch((error) => {
       console.error('Error:', error.message);

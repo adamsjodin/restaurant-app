@@ -12,14 +12,13 @@
   padding-inline-start: 1em;
   color: $clr-text;
   font-family: $font-family;
-
-
+  
   & h3 {
     font-size: $fs-h3;
     font-weight: 600;
     text-align: left;
   }
-
+  
   &__list {
     max-width: 100%;
     @include flexCenter(row);
@@ -29,6 +28,7 @@
     padding-block: 1em;
     
     .category {
+      cursor: pointer;
       font-size: $fs-smaller;
 
       &__image {

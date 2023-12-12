@@ -36,6 +36,8 @@
         select, option, input, textarea {
             color: black;
             padding: .5rem;
+            cursor: pointer;
+
         }
         button {
             margin: auto;
@@ -47,6 +49,7 @@
         button {
             font-size: 0.8em;
             padding: 0.5em 1em;
+            cursor: pointer;
         }
         }
     }
@@ -70,6 +73,7 @@
         flex-direction: column;
         align-items: center;
         color: black;
+
         &-title {
             font-size: 1.2rem;
             font-weight: 500;
@@ -80,6 +84,7 @@
             margin: 0.5rem;
             border: none;
             border-bottom: 1px solid white;
+            cursor: pointer;
 
             &:focus-visible {
                 outline: none;
@@ -97,6 +102,8 @@
             color: rgb(255, 255, 255);
             background-color: $clr-btn__primary;
             border: 1px solid white;
+            cursor: pointer;
+
         }
         &-close {
             cursor: pointer;

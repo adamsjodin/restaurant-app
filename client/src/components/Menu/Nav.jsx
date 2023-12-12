@@ -43,7 +43,11 @@ function Nav() {
   function handleLogout() {
     localStorage.setItem("userId", "");
     localStorage.setItem("userName", "");
+    localStorage.removeItem("cart");
     setState({ ...state, showLogoutConf: false });
+
+    window.location.reload();
+
   }
 
   return (
@@ -83,6 +87,7 @@ function Nav() {
             <Link to={"/about"}>About</Link>
           </li>
         </ul>
+
         {userName ? (
           <div className="nav--footer">
             <IoSettingsOutline

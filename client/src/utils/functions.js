@@ -15,6 +15,35 @@ export function getProducts() {
     });
 }
 
+export async function addNewItem(ingredients, item, e) {
+  if (ingredients.length > 1) {
+    await axios
+      .post(
+        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
+        item
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });} else {
+        e.preventDefault()
+      }
+  };
+
+export async function deleteProduct(id) {
+  try {
+    const response = await axios.delete("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/delete", {
+      data: { id: id } 
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error, product not deleted: ", error);
+    throw error;
+  }
+}
+
 export async function getAllOrders() {
   return axios
     .get(
@@ -30,7 +59,7 @@ export async function getAllOrders() {
 
 export async function getOrderHistory() {
   try {
-    const userID = JSON.parse(localStorage.getItem("userId"))
+    const userID = localStorage.getItem("userId")
     const response = await axios.post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/history",
       { userID: userID }
@@ -125,15 +154,19 @@ function checkRole({ data, setError, setState }) {
       setError(false)
       let userInfo = JSON.parse(data.body)
       if (userInfo.role === "member") {
-          localStorage.setItem("userId", JSON.stringify(userInfo.id))
-          localStorage.setItem("userName", JSON.stringify(userInfo.name))
+          localStorage.setItem("userId", userInfo.id)
+          localStorage.setItem("userName", userInfo.name)
       } else if (userInfo.role === "staff") {
           setState((prevState) => {
             return toggleState(prevState, 'staffLogin');
           })
           localStorage.setItem("role", "staff")
-          window.location.reload()
       }
+      setState((prevState) => {
+        return toggleState(prevState, 'showLogin');
+      })
+      window.location.reload();
+
   } else {
     setError(true);
   }
@@ -145,7 +178,7 @@ export function CheckoutTimeline(index) {
   useEffect(() => {
     const countdownInterval = setInterval(() => {
       setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(countdownInterval);
   }, []);
@@ -156,6 +189,12 @@ export function CheckoutTimeline(index) {
     return { backgroundColor: "rgb(0, 150, 102)" };
   } else {
     return {};
+  }
+}
+
+export const handleEnterPress = (event) => {
+  if (event.keyCode === 13 || event.which === 13) {
+    handleLogin()
   }
 }
 
@@ -176,6 +215,7 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
+    showInfo: false
   };
 }
 
@@ -241,6 +281,23 @@ export const overlayVariants = {
     height: "100vh",
     width: "100%",
     zIndex: "1000000",
+  },
+};
+
+export const hoursVariants = {
+  open: {
+    height: "300px",
+    padding: "1rem 2rem",
+  },
+  closed: {
+    height: "0px",
+    padding: "0",
+  },
+  shown: {
+    opacity: 1,
+  },
+  hidden: {
+    opacity: 0,
   },
 };
 

@@ -45,31 +45,33 @@ function Home() {
   }, [cart]);
 
   const addToCart = (item) => {
-    const existingItemIndex = cart.findIndex(
-      (cartItem) => cartItem.id === item.id
-    );
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
     const updatedCart = [...cart];
-    let foundItemWithoutChanges = false;
-
-    if (existingItemIndex !== -1 && Object.keys(item.changes).length > 0) {
-      setCart([...cart, { ...item, quantity: 1 }]);
-    } else {
-      updatedCart.forEach((cartItem, index) => {
-        if (
-          cartItem.id === item.id &&
-          (!cartItem.changes || Object.keys(cartItem.changes).length === 0)
-        ) {
-          foundItemWithoutChanges = true;
-          updatedCart[index].quantity += 1;
-        }
-      });
-
-      if (!foundItemWithoutChanges) {
-        setCart([...cart, { ...item, quantity: 1 }]);
+  
+    if (existingItemIndex !== -1) {
+      const existingItem = updatedCart[existingItemIndex];
+      if (Object.keys(item.changes).length > 0) {
+        const changesArray = Object.entries(item.changes).map(([ingredient, changed]) => ({
+          ingredient,
+          changed,
+        }));
+        existingItem.changes = changesArray;
+        existingItem.quantity += 1;
       } else {
-        setCart(updatedCart);
+        existingItem.quantity += 1;
       }
+    } else {
+      updatedCart.push({
+        ...item,
+        quantity: 1,
+        changes: Object.entries(item.changes).map(([ingredient, changed]) => ({
+          ingredient,
+          changed,
+        })),
+      });
     }
+  
+    setCart(updatedCart);
   };
 
   const handleEditBtnClick = (product) => {
@@ -117,12 +119,22 @@ function Home() {
         <CiSearch />
       </div>
 
-      {state.isSearching ? (
+      {state.isSearching && !state.openCart ? (
+        <>
         <Search
           menuItems={menuItems}
           isSearching={state.isSearching}
-          actions={addToCart}
+          editIngredients={handleEditBtnClick}
+          toggleEditIngredients={handleToggleEditIngredients}
         />
+        {editIngredients && (
+            <EditIngredients
+              product={selectedProduct}
+              addToCart={addToCart}
+              toggleEditIngredients={handleToggleEditIngredients}
+            />
+          )}
+          </>
       ) : (
         <>
           
@@ -150,7 +162,7 @@ function Home() {
               appState={state}
             />
           )}
-          {state.openCart && (
+          {state.openCart && cart.length > 0 && (
             <Cart
               setCart={setCart}
               cart={cart}

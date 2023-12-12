@@ -38,7 +38,6 @@
     border-bottom: 1px white solid;
     padding: 0.5rem 1rem;
     background-color: transparent;
-    margin: 0.3rem;
 
     &:focus-visible {
       outline: none;
@@ -46,16 +45,11 @@
     }
   }
 
-  &--input-checkbox {
-    margin: 0 0.5rem 0 0.5rem;
-  }
-
   &--input-container {
-    text-align: center;
-    margin: 1rem;
-    padding: 0.5rem;
+    padding: 1rem 4rem;
+    @include flexStart(column);
+    gap: 1em;
   }
-
   &--btn {
     display: flex;
     justify-content: center;
@@ -70,6 +64,10 @@
     }
   }
 }
+.signup--input-checkbox-container {
+  display: flex;
+  gap: 1em;
+}
 
 @media screen and (min-width: 800px) {
   .signup {
@@ -79,8 +77,11 @@
     transform: translate(-50%, -50%);
     border: 1px solid white;
     border-radius: 20px;
-    height: 530px;
-    width: 500px;
+    min-height: unset;
     z-index: 1;
+    justify-content: center;
+    &--form--inputs {
+      padding: 0;
+    }
   }
 }

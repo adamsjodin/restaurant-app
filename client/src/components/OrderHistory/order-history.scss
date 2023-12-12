@@ -47,6 +47,7 @@
     align-items: center;
     gap: 2em;
     padding: 1em;
+    position: relative;
 
     svg {
       fill: red;
@@ -54,5 +55,21 @@
     svg.active {
       fill: limegreen;
     }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .order-history {
+      background-color: $background-color--card;
+      width: 32rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid white;
+      border-radius: 20px;
+      z-index: 1;
+      svg {
+          @include close-btn-position;
+      }
   }
 }

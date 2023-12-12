@@ -6,7 +6,7 @@ import "./ProductCard.scss";
 
 import EditFood from "../../../../staff/pages/FoodMenu/EditFood";
 import { Button, ProductInformation } from "../../../../components/exports";
-
+import { booleanStates, oneState } from "../../../../utils/functions";
 
 function ProductCard({
   props,
@@ -18,38 +18,40 @@ function ProductCard({
   decrease,
   totalPrice,
 }) {
-  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder, id } = props;
+  const { title, description, price, imgUrl, quantity, changes, message, outOfOrder } = props;
   const dynamicStyle = className ? `product product--${className}` : "product";
-  const changesEntries = changes ? Object.entries(changes) : [];
-  const [showOutOfOrder, setShowOutOfOrder] = useState(outOfOrder)
-  const [showInfo, setShowInfo] = useState(false);
+  const changesArray = Array.isArray(changes) ? changes : [];
+  const [showOutOfOrder, setShowOutOfOrder] = useState(outOfOrder);
+  const [state, setState] = useState(booleanStates());
   const [showEditFood, setShowEditFood] = useState(false);
   const cardRef = useRef(null);
-  console.log();
-
 
   const handleShowEditFood = () => {
-    setShowEditFood(!showEditFood)
+    setShowEditFood(!showEditFood);
   };
 
   const handleCloseEditFood = () => {
-    setShowEditFood(false)
-  };
-
-  const handleClick = () => {
-    setShowInfo(!showInfo);
+    setShowEditFood(false);
   };
 
   return (
     <>
-      {showEditFood && <EditFood state={setShowOutOfOrder} props={props} onClose={handleCloseEditFood} />}
+      {showEditFood && (
+        <EditFood
+          state={setShowOutOfOrder}
+          props={props}
+          onClose={handleCloseEditFood}
+        />
+      )}
 
-      {showInfo ? (
+      {state.showInfo ? (
         <ProductInformation
           className="productInformation"
           props={props}
-          onClick={handleClick}
-          showInfo={showInfo}
+          actions={onClick}
+          toggleEditIngredients={toggleEditIngredients}
+          showInfo={state.showInfo}
+          toggleInfo={() => oneState(setState, 'showInfo')}
         />
       ) : (
         <motion.article className={dynamicStyle} ref={cardRef}>
@@ -69,9 +71,10 @@ function ProductCard({
                     <p>Quantity:{" " + quantity}</p>{" "}
                     <Button className="add" onClick={increase}>
                       +
-                    </Button>{" "}</div>
+                    </Button>{" "}
+                  </div>
                   <div className="cart-changes">
-                    {Object.entries(changesEntries)?.map(([ingredient, changed]) => (
+                    {changesArray.map(({ ingredient, changed }) => (
                       <p key={ingredient}>
                         {changed ? "Add" : "Remove"} {ingredient}
                       </p>
@@ -84,25 +87,21 @@ function ProductCard({
                   {description}
                 </Truncate>
               )}
-              {showOutOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
+              {showOutOfOrder && (
+                <h4 className="product__outOfOrder">Out of Stock</h4>
+              )}
               <section className="product__info--bottom">
                 {cartInfo ? (
                   <h3>{totalPrice} kr</h3>
                 ) : (
                   <>
                     <h3>{price} kr</h3>
-                    {
-                      className === 'staff' ?
-                      
-                        <Button
-                          className="add"
-                          onClick={handleShowEditFood}
-                        >
-                          Edit
-                        </Button>
-
-                        :
-                        !outOfOrder &&
+                    {className === "staff" ? (
+                      <Button className="add" onClick={handleShowEditFood}>
+                        Edit
+                      </Button>
+                    ) : (
+                      !outOfOrder && (
                         <Button
                           className={"add" + (outOfOrder ? " out" : "")}
                           onClick={() => {
@@ -112,13 +111,13 @@ function ProductCard({
                         >
                           Add +
                         </Button>
-                    }
-
+                      )
+                    )}
                   </>
                 )}
               </section>
             </motion.section>
-            {cartInfo ? <></> : <FaInfo onClick={handleClick} />}
+            {cartInfo ? <></> : <FaInfo onClick={() => oneState(setState, 'showInfo')} />}
           </>
         </motion.article>
       )}

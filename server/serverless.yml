@@ -35,6 +35,12 @@ functions:
       - httpApi:
           path: '/api/menu'
           method: PUT
+  deleteFromMenu:
+    handler: functions/menuFunctions/deleteFromMenu/index.handler
+    events: 
+      - httpApi:
+          path: '/api/staff/delete'
+          method: DELETE
   addUser:
     handler: functions/userFunctions/addUser/index.handler
     events: 
@@ -89,6 +95,24 @@ functions:
       - httpApi: 
           path: '/api/history'
           method: POST
+  addHours:
+    handler: functions/hoursFunctions/addHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: POST
+  getHours:
+    handler: functions/hoursFunctions/getHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: GET
+  updateHours:
+    handler: functions/hoursFunctions/updateHours/index.handler
+    events: 
+      - httpApi: 
+          path: '/api/staff/hours'
+          method: PUT
 
 
 resources: 
@@ -138,4 +162,15 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+        BillingMode: PAY_PER_REQUEST
+    hoursDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: hoursDb
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
         BillingMode: PAY_PER_REQUEST

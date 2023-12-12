@@ -43,7 +43,11 @@ function Nav() {
   function handleLogout() {
     localStorage.setItem("userId", "");
     localStorage.setItem("userName", "");
+    localStorage.removeItem("cart");
     setState({ ...state, showLogoutConf: false });
+
+    window.location.reload();
+
   }
 
   return (
@@ -83,13 +87,14 @@ function Nav() {
             <Link to={"/about"}>About</Link>
           </li>
         </ul>
+
         {userName ? (
           <div className="nav--footer">
             <IoSettingsOutline
               className="nav--icon"
               onClick={() => oneState(setState, 'showSettings')}
             />
-            <h5>{userName && JSON.parse(userName)}</h5>
+            <h5>{userName && userName}</h5>
             <IoLogOutOutline
               className="nav--icon"
               onClick={() => doubleState(setState, 'showLogoutConf')}
@@ -103,7 +108,7 @@ function Nav() {
         )}
       </motion.div>
 
-      {state.showLogin && <Login loginState={() => oneState(setState, 'showLogin')} />}
+      {state.showLogin && <Login appState={state} setAppState={setState} />}
       {state.showSignup && <Signup action={() => oneState(setState, 'showSignup')} />}
       {state.showOrderHistory && (
         <OrderHistory action={() => oneState(setState, 'showOrderHistory')} />

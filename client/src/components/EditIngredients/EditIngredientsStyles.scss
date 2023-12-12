@@ -1,55 +1,52 @@
-@import 'src/styles/_variables';   
-@import 'src/styles/_mixins';   
+@import "../../Styles/variables";
+@import "../../Styles/mixins";
 
 .container {
-    border-radius: 20px;
-    padding: 2rem;
-    background-color: black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    // height: 15%;
-    margin: auto;
+  border-radius: 20px;
+  padding: 2rem;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
 }
 
 .editCard {
-    color: white;
-    max-height: 15rem;
-    @include gridCenter;
-    text-align: start;
-    
-      overflow: auto;
-      margin-bottom: 1.5rem;
+  color: white;
+  max-height: 15rem;
+  @include gridCenter;
+  text-align: start;
+  overflow: auto;
 }
 
 .editCard::-webkit-scrollbar {
-    width: 0.4rem;
-  }
+  width: 0.4rem;
+}
 
-  .editCard::-webkit-scrollbar-thumb {
-    background-color: white;
-  }
+.editCard::-webkit-scrollbar-thumb {
+  background-color: white;
+}
 
-  .editCard::-webkit-scrollbar-thumb:hover {
-    background-color: #999999;
-  }
+.editCard::-webkit-scrollbar-thumb:hover {
+  background-color: #999999;
+}
 
-  .editCard::-webkit-scrollbar-track {
-    border: 1px solid white;
-  }
+.editCard::-webkit-scrollbar-track {
+  border: 1px solid white;
+}
 
-.editCard__ingredient{
-    margin: 0.4rem;
+.editCard__ingredient {
+  margin: 0.4rem;
 }
 
 .editCard__input {
-    color: white;
-    border: none;
-    background-color:transparent;
-    border-bottom: 1px solid #fff;
-    padding: .2em 0;
+  color: white;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+  padding: 0.2em 0;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }

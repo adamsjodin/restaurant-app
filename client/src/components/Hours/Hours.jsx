@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import HoursIcon from "./HoursIcon";
 import { motion } from "framer-motion";
 import axios from "axios";
+import HoursList from "./HoursList";
 
 function Hours() {
   const [openHours, setOpenHours] = useState(false);
@@ -66,19 +67,9 @@ function Hours() {
           variants={hoursVariants}
           animate={openHours ? "shown" : "hidden"}
         >
-          <ul className="hours--ul">
-            {sortedHours.map((hour, index) => (
-              <li key={hour.id}>
-                {hour.hours !== undefined ? (
-                  <label htmlFor={hour.id} key={hour.id}>
-                    {hour.days + ": " + hour.hours}
-                  </label>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+          <HoursList/>
         </motion.section>
-        <p>{note} </p>
+        
       </motion.section>
       <HoursIcon openHours={openHours} />
     </div>

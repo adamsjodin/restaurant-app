@@ -14,10 +14,11 @@
 .editCard {
   color: white;
   max-height: 15rem;
-  @include gridCenter;
+  display: grid;
   text-align: start;
   overflow: auto;
   width: 100%;
+  min-width: 240px;
 }
 
 .editCard::-webkit-scrollbar {

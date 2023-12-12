@@ -20,7 +20,7 @@
         }
     }
     .add-form {
-        @include gridColumns(repeat(2, 1fr));
+        
         * {
             margin: .5rem 0
         }
@@ -112,5 +112,14 @@
 
 .addFood {
     width: unset;
+}
 
+.staff-body .foodMenu svg {
+    display: none;
+}
+
+@media screen and (min-width: 800px) {
+    .foodMenu .add-form {
+        @include gridColumns(repeat(2, 1fr));
+    }    
 }

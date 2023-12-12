@@ -2,10 +2,12 @@ import axios from 'axios'
 import { useState, useEffect } from 'react';
 import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
+import { deleteProduct } from '../../../utils/functions';
 
 function EditFood({ props, onClose, state }) {
     const [getOutOfOrder, setGetOutOfOrder] = useState(props.outOfOrder)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
+    const [showPopup, setShowPopup] = useState(false)
 
     const [updateMenu, setUpdateMenu] = useState({
         id: props.id,
@@ -27,6 +29,13 @@ function EditFood({ props, onClose, state }) {
         setGetOutOfOrder(updatedValue)
     };
 
+    function handleRemove() {
+        deleteProduct(props.id)
+        onClose()
+        setShowPopup(!showPopup) //VARFÖR FUNKAR DET INTE??
+        console.log(showPopup)
+    }
+
     const handleCloseBtn = () => {
         onClose();
     };
@@ -46,11 +55,16 @@ function EditFood({ props, onClose, state }) {
                 <div className='editFood__form-close' onClick={handleCloseBtn}>
                     <IoMdClose />
                 </div>
+                {showPopup ? <section className='popup'>
+                    <h3>Item removed from menu</h3>
+                    <button onClick={() => setShowPopup(!showPopup)}>Got it! </button>
+                </section> : ""}
                 {updateMenuMsg ? 
                 <div>
                     <h4 className='editFood__form-msg'>Product has been updated</h4>
                     <button className='editFood__form-btn' onClick={() => handleCloseBtn()}>Close</button>
                 </div> :
+                <>
                 <form className='editFood__form' onSubmit={handleSubmit}>
                     <h2 className='editFood__form-title'>{props.title}</h2>
                     <input
@@ -82,9 +96,13 @@ function EditFood({ props, onClose, state }) {
                         <label htmlFor="outOfOrder">Out of Stock</label>
                     </section>
                     <button className='editFood__form-btn'>submit</button>
+                    
                 </form>
+                <button onClick={() => handleRemove()} className='editFood__form-btn red'>Remove</button>
+                </>
             }
             </section>
+
         </>
     );
 }

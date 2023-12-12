@@ -15,6 +15,35 @@ export function getProducts() {
     });
 }
 
+export async function addNewItem(ingredients, item, e) {
+  if (ingredients.length > 1) {
+    await axios
+      .post(
+        "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/menu",
+        item
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });} else {
+        e.preventDefault()
+      }
+  };
+
+export async function deleteProduct(id) {
+  try {
+    const response = await axios.delete("https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/staff/delete", {
+      data: { id: id } 
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error, product not deleted: ", error);
+    throw error;
+  }
+}
+
 export async function getAllOrders() {
   return axios
     .get(

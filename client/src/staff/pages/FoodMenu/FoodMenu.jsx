@@ -16,8 +16,8 @@ function FoodMenu() {
     return ( 
         <section className='foodMenu'>
             <section className="order-history__tabs">
-                <p className={!showAddToMenu && 'active'} onClick={() => setShowAddToMenu(!showAddToMenu)}>Menu</p>
-                <p className={showAddToMenu && 'active'}  onClick={() => setShowAddToMenu(!showAddToMenu)}>Add new dish</p>
+                <p className={!showAddToMenu ? 'active' : undefined} onClick={() => setShowAddToMenu(!showAddToMenu)}>Menu</p>
+                <p className={showAddToMenu ? 'active' : undefined}  onClick={() => setShowAddToMenu(!showAddToMenu)}>Add new dish</p>
             </section>
             { showAddToMenu ? <AddToMenu /> : 
                 <ul className="foodMenu__products">

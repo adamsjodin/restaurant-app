@@ -215,7 +215,8 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
-    showInfo: false
+    showInfo: false,
+    showRemoveConf: false
   };
 }
 

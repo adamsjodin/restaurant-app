@@ -40,10 +40,10 @@ export default function Orders() {
           : doneOrders.push(order)
       );
     activeEl = activeOrders.map((order) => (
-      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} changes={order.changes} state={changeStatus}/>
+      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
     doneEl = doneOrders.map((order) => (
-      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} changes={order.changes} state={changeStatus}/>
+      <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
   }
    

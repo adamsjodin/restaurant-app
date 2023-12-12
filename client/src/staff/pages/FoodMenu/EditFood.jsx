@@ -1,13 +1,13 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './EditFood.scss'
 import { IoMdClose } from "react-icons/io";
-import { deleteProduct } from '../../../utils/functions';
+import { deleteProduct, booleanStates } from '../../../utils/functions';
 
-function EditFood({ props, onClose, state }) {
+function EditFood({ props, onClose, action }) {
     const [getOutOfOrder, setGetOutOfOrder] = useState(props.outOfOrder)
     const [updateMenuMsg, setUpdateMenuMsg] = useState(false);
-    const [showPopup, setShowPopup] = useState(false)
+    const [state, setState] = useState(booleanStates())
 
     const [updateMenu, setUpdateMenu] = useState({
         id: props.id,
@@ -18,7 +18,7 @@ function EditFood({ props, onClose, state }) {
 
     const updateMsg = () => {
         setUpdateMenuMsg(true)
-        state(getOutOfOrder)
+        action(getOutOfOrder)
     };
 
     const handleMenuUpdate = (e) => {
@@ -31,12 +31,13 @@ function EditFood({ props, onClose, state }) {
 
     function handleRemove() {
         deleteProduct(props.id)
-        setShowPopup(prev => !prev) //VARFÖR FUNKAR DET INTE??
-        console.log(showPopup)
-        onClose()
-
+        setState({showRemoveConf: true});
     }
 
+    function handleCloseConf() {
+        setState({showRemoveConf: false})
+        window.location.reload()
+    }
 
     const handleCloseBtn = () => {
         onClose();
@@ -57,10 +58,10 @@ function EditFood({ props, onClose, state }) {
                 <div className='editFood__form-close' onClick={handleCloseBtn}>
                     <IoMdClose />
                 </div>
-                {showPopup ?    
+                {state.showRemoveConf ?    
                     <section className='popup'>
                         <h3>Item removed from menu</h3>
-                    <button onClick={() => setShowPopup(!showPopup)}>Got it! </button>
+                    <button onClick={() => handleCloseConf()}>Got it! </button>
                 </section> : ""}
                 {updateMenuMsg ? 
                 <div>
@@ -101,7 +102,7 @@ function EditFood({ props, onClose, state }) {
                     <button className='editFood__form-btn'>submit</button>
                     
                 </form>
-                <button onClick={() => handleRemove()} className='editFood__form-btn red'>Remove</button>
+                <button onClick={() => handleRemove()} className='editFood__form-btn editFood__form-btn--remove'>Remove</button>
                 </>
             }
             </section>

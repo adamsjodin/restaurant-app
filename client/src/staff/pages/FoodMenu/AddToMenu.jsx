@@ -4,10 +4,6 @@ import categories from '../../../testdata/categories.json';
 import axios from "axios";
 import { addNewItem } from '../../../utils/functions';
 
-//In progress
-//TODO: 
-//Move functions
-//Fix styling
 
 
 export default function AddToMenu() {

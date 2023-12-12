@@ -9,7 +9,7 @@ import axios from "axios";
 
 export default function OrdersCard({ order, action, state }) {
   const { mutate } = useMutation(updateOrderStatus);
-  // const changesArray = Array.isArray(changes) ? changes : [];
+  
 
   async function updateOrderStatus() {
     try {
@@ -28,15 +28,16 @@ export default function OrdersCard({ order, action, state }) {
   }
 
   function checkChanges(changes) {
+    console.log(changes)
     let changesEl = "";
     if (!changes || changes.length === 0) {
       changesEl = "";
     } else {
       changesEl = (
         <div>
-          {changes.map((key, value) => (
-            <p className="red" key={key}>
-              {value === true ? `Added ${key}` : `Removed ${key}`}
+          {changes.map((change, i) => (
+            <p className="red" key={i}>
+              {change.changed === true ? `Added ${change.ingredient}` : `Removed ${change.ingredient}`}
             </p>
           ))}
         </div>
@@ -83,6 +84,7 @@ export default function OrdersCard({ order, action, state }) {
     <section className="order-history__card">
       {showInfo ? userEl : ""}
       <FaCircle className={order.status === "active" ? "active" : ""} />
+      {order.userID != "guest" && <FaInfo onClick={() => {getInfo()}} /> }
       <div>
         <p>Order number: {order.orderNr}</p>
         <hr></hr>

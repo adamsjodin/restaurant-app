@@ -27,6 +27,7 @@ function Contact() {
             </Map>
           </div>
         </APIProvider>
+        {/* <img src="/images/maps.png" alt="google maps" /> */}
 
       </section>
       <section className='contact--info'>

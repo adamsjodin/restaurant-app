@@ -17,14 +17,7 @@ function Hours() {
         animate={openHours ? "open" : "closed"}
         transition={{ duration: 0.5 }}
       >
-        <motion.section
-          className="hours--lists"
-          variants={hoursVariants}
-          animate={openHours ? "shown" : "hidden"}
-        >
-          <HoursList/>
-        </motion.section>
-        
+        {openHours ? <HoursList /> : null }
       </motion.section>
       <HoursIcon openHours={openHours} />
     </div>

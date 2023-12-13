@@ -1,13 +1,9 @@
 @import "../../../Styles/variables";
 @import "../../../Styles/mixins";
 
-.foodMenu.orders {
-    .product__outOfOrder {
-        color: red
-    }
-    .editFood * {
-        color: white
-    }
+
+.staff-body .foodMenu .product--staff svg {
+    display: none;
 }
 
 .foodMenu {
@@ -33,7 +29,7 @@
         padding: 2rem;
         margin: auto;
         text-align: center;
-        select, option, input, textarea {
+        input, textarea {
             color: black;
             padding: .5rem;
             cursor: pointer;
@@ -62,12 +58,22 @@
     transform: translate(-50%, -50%);
     z-index: 10;
     background-color: rgb(74, 38, 38);
-    
-    width: 20rem;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 20rem;
+    width: 100%;
     border-radius: 10px;
     border: 1px solid white;
     background-color: $clr-btn__primary;
-    
+    .popup {
+        background-color: $clr-text__staff;
+        padding: 7rem;
+        button {
+            background-color: transparent;
+        }
+    }
     &__form {
         display: flex;
         flex-direction: column;
@@ -103,7 +109,9 @@
             background-color: $clr-btn__primary;
             border: 1px solid white;
             cursor: pointer;
-
+            &--remove {
+                color: $clr-text__red;
+            }
         }
         &-close {
             cursor: pointer;
@@ -115,15 +123,16 @@
             padding: 0.5rem
         }
     }
+    svg {
+        @include close-btn-position;
+    }
 }
 
 .addFood {
     width: unset;
 }
 
-.staff-body .foodMenu svg {
-    display: none;
-}
+
 
 @media screen and (min-width: 800px) {
     .foodMenu .add-form {

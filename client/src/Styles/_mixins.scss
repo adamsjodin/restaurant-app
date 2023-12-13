@@ -48,7 +48,7 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
   font-family: "Quicksand", sans-serif;
   color: white;
@@ -85,16 +85,18 @@
 
 @mixin popup-style {
   position: absolute;
-  inset: 2em;
-  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: max-content;
   background-color: $background-color--popup;
   color: $clr-text;
   font-family: $font-family;
-  padding: 2rem;
+  padding: 2em 1em;
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   z-index: 200000000;
+  min-width: 80vw;
   max-width: 20rem;
   @include gridCenter;
   gap: 1em;

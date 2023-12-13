@@ -16,6 +16,7 @@ function Login({ appState, setAppState }) {
       handleLogin({ setError, loginObj, setState });
   }
 
+  
   return (
     <>
       <section className="login background-color__black">
@@ -24,8 +25,7 @@ function Login({ appState, setAppState }) {
           type="text"
           className="login--input"
           placeholder="Email"
-          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value })}
-          onKeyPress={handleEnterPress}
+          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value.toLowerCase() })}
           />
         <input
           type="password"
@@ -34,7 +34,7 @@ function Login({ appState, setAppState }) {
           onChange={(e) =>
             setLoginObj({ ...loginObj, password: e.target.value })
           }
-          onKeyPress={handleEnterPress}
+          onKeyDown={(event) => handleEnterPress(event, loginFunction)}
           />
         {error && <p>Something went wrong, try again!</p>}
         <section className="login--btns">

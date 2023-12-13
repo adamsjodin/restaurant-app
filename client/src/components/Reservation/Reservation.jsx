@@ -27,7 +27,7 @@ export default function Reservation({ action }) {
         <MdClose onClick={() => action(false)} />
         <img src="./logos/claddagh.png"></img>
         <p>For reservations more than ten people please send us an email.</p>
-        {/*insert new form here*/}
+        
 
         <Calendar onChange={showDate} value={date.toDateString()} />
         <form autoComplete="on" className="form">

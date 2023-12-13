@@ -50,16 +50,38 @@ function Home() {
   
     if (existingItemIndex !== -1) {
       const existingItem = updatedCart[existingItemIndex];
+  
+      // Handle adding changes
       if (Object.keys(item.changes).length > 0) {
         const changesArray = Object.entries(item.changes).map(([ingredient, changed]) => ({
           ingredient,
           changed,
         }));
-        existingItem.changes = changesArray;
-        existingItem.quantity += 1;
-      } else {
-        existingItem.quantity += 1;
+        existingItem.changes = existingItem.changes.concat(changesArray);
       }
+  
+      // Handle removing changes
+      const removeChanges = Object.keys(item.changes).filter(ingredient => !item.changes[ingredient]);
+  
+      // Log some information to debug
+      console.log('existingItem.changes before removal:', existingItem.changes);
+  
+      // Build a new changes array from scratch
+      const newChangesArray = existingItem.changes
+        .filter(change => !removeChanges.includes(change.ingredient))
+        .concat(
+          removeChanges.map(ingredient => ({
+            ingredient,
+            changed: false,
+          }))
+        );
+  
+      existingItem.changes = newChangesArray;
+  
+      // Log some information to debug
+      console.log('existingItem.changes after removal:', existingItem.changes);
+  
+      existingItem.quantity += 1;
     } else {
       updatedCart.push({
         ...item,
@@ -71,9 +93,12 @@ function Home() {
       });
     }
   
+    // Log some information to debug
+    console.log('updatedCart:', updatedCart);
+  
     setCart(updatedCart);
   };
-
+console.log(cart);
   const handleEditBtnClick = (product) => {
     setSelectedProduct(product);
   };

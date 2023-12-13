@@ -101,7 +101,7 @@ function ProductCard({
                         Edit
                       </Button>
                     ) : (
-                      !outOfOrder && (
+                      !showOutOfOrder && (
                         <Button
                           className={"add" + (outOfOrder ? " out" : "")}
                           onClick={() => {

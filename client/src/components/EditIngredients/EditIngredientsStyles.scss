@@ -1,6 +1,11 @@
 @import "../../Styles/variables";
 @import "../../Styles/mixins";
 
+.popup:has(.editCard) svg {
+  left: unset;
+  top: .5rem;
+  right: .5rem;
+}
 .editCard {
   color: white;
   max-height: 15em;

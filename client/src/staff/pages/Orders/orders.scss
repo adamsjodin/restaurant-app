@@ -2,9 +2,8 @@
 @import "../../../Styles/variables";
 
 .orders {
-
-  *{
-    color: #007D7D;
+  * {
+    color: $clr-text__staff;
   }
   h1 {
     text-align: center;

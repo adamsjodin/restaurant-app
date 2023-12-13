@@ -10,7 +10,6 @@
   svg {
     @include close-btn-position;
     cursor: pointer;
-
   }
   &--heading {
     font-size: $fs-h1;

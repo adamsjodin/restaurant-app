@@ -37,7 +37,7 @@ function ProductInformation({
       ) : (
         <FaInfo onClick={toggleInfo} />
       )}
-
+      
       <Button
         className="add"
         onClick={() => {

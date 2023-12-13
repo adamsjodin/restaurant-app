@@ -18,6 +18,7 @@
         margin: 0.5rem;
         padding: 0.5rem 1rem;
         background-color: transparent;
+        cursor: pointer;
         &:focus-visible {
             outline: none;
             border-color: green;
@@ -45,6 +46,11 @@
     &--paragraph {
         color: $clr-text__red;
         margin: 1rem;
+        cursor: pointer;
+
+    }
+    & > p {
+        cursor: pointer;
     }
 }
 

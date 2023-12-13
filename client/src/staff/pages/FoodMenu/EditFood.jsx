@@ -26,7 +26,6 @@ function EditFood({ props, onClose, action }) {
         const updatedValue = type === 'checkbox' ? checked : e.target.value
         if (type === 'checkbox') {setGetOutOfOrder(updatedValue)}
         setUpdateMenu({ ...updateMenu, [name]: updatedValue })
-        console.log(name, type, checked, e.target.value, updatedValue);
     };
 
     function handleRemove() {

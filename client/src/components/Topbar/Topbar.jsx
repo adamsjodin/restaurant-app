@@ -15,7 +15,7 @@ function TopBar({ showlogo }) {
                 <div className="topbar--nav">
                     <Nav />
                     {usNa !== null && (
-                        <h4 onClick={() => oneState(setState, "showOrderHistory")}>
+                        <h4 className="topbar--userName" onClick={() => oneState(setState, "showOrderHistory")}>
                             {usNa}
                         </h4>
                     )}

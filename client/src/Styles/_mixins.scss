@@ -110,3 +110,29 @@
     font-weight: 600;
   }
 }
+
+@mixin popup-new {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 70%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: $background-color--popup;
+  color: $clr-text;
+  font-family: $font-family;
+  padding: 2em 1em;
+  box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  svg {
+    @include close-btn-position;
+  }
+  h3 {
+    font-size: $fs-h3;
+    font-weight: 600;
+  }
+}

@@ -87,6 +87,12 @@ export async function handleLogin({ setError, loginObj, setState }) {
     });
 }
 
+export const handleEnterPress = (event, loginFunction) => {
+  if (event.keyCode === 13) {
+    loginFunction(event)
+  }
+}
+
 export const postOrder = async (setCart) => {
   const order = JSON.parse(localStorage.getItem("cart")) || [];
   const userID = localStorage.getItem("userId");
@@ -189,12 +195,6 @@ export function CheckoutTimeline(index) {
     return { backgroundColor: "rgb(0, 150, 102)" };
   } else {
     return {};
-  }
-}
-
-export const handleEnterPress = (event) => {
-  if (event.keyCode === 13 || event.which === 13) {
-    handleLogin()
   }
 }
 

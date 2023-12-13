@@ -25,7 +25,7 @@ function Login({ appState, setAppState }) {
           type="text"
           className="login--input"
           placeholder="Email"
-          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value })}
+          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value.toLowerCase() })}
           />
         <input
           type="password"

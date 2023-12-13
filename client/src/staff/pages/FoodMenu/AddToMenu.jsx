@@ -9,7 +9,7 @@ import { addNewItem } from '../../../utils/functions';
 export default function AddToMenu() {
   const [ingredients, setIngredients] = useState([]);
   const [ingrValue, setIngrValue] = useState('');
-  const [categoriesList, setCategoriesList] = useState(["All"])
+  const [categoriesList, setCategoriesList] = useState(["all"])
   const [allergensList, setAllergensList] = useState([])
   const [newItem, setNewItem] = useState({
     title: "",
@@ -32,7 +32,7 @@ export default function AddToMenu() {
   
   const categoryOptions = categories.slice(1).map((category, i) => (
     <div key={i}>
-      <input type='checkbox' name="category" id={category.dish} onChange={(e) => addToList(e)}></input>
+      <input type='checkbox' name="category" id={category.dish.toLowerCase()} onChange={(e) => addToList(e)}></input>
       <label htmlFor={category.dish}>{category.dish}</label>
     </div>
   ))

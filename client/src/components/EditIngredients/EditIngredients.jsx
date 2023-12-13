@@ -1,6 +1,7 @@
 import "./EditIngredientsStyles.scss";
 import { useState } from "react";
 import Button from "../Button/Button";
+import { MdClose } from "react-icons/md";
 
 function EditIngredients({ product, addToCart, toggleEditIngredients }) {
   const { ingredients } = product;
@@ -56,6 +57,10 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
 
   return (
     <div className="popup">
+      <MdClose onClick={() => {
+        toggleEditIngredients()
+      }}
+       />
       <div className="editCard">
         <ul>
           {totalList.map((ingredient, index) => (

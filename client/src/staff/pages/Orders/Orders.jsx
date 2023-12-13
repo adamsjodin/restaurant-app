@@ -39,10 +39,12 @@ export default function Orders() {
           ? activeOrders.push(order)
           : doneOrders.push(order)
       );
-    activeEl = activeOrders.map((order) => (
+      const sortedActiveOrders = activeOrders.sort((a, b) => a.TimeStamp - b.TimeStamp)
+    activeEl = sortedActiveOrders.map((order) => (
       <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
-    doneEl = doneOrders.map((order) => (
+    const sortedDoneOrders = doneOrders.sort((a, b) => b.TimeStamp - a.TimeStamp)
+    doneEl = sortedDoneOrders.map((order) => (
       <OrdersCard key={order.orderNr} order={order} action={setChangeStatus} state={changeStatus}/>
     ));
   }

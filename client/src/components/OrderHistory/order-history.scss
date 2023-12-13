@@ -5,7 +5,7 @@
 .order-history {
   min-height: 100vh;
   width: 100%;
-  @include gridCenter;
+  display: grid;
   color: $clr-text;
   background: $bg-main;
   padding-inline: 1em;
@@ -19,9 +19,13 @@
     font-size: $fs-h1;
     padding: 2rem
   }
+  & > svg {
+    @include close-btn-position;
+  }
   &__tabs {
     @include gridColumns(repeat(2, 1fr));
     background-color: transparent;
+    cursor: pointer;
     p {
       background-color: transparent;
       padding: 1rem 3rem;
@@ -34,12 +38,13 @@
   &__orders {
     min-height: 490px;
     background-color: rgba(255, 255, 255, 0.1);
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 1em;
     padding: 1em;
   }
   &__card {
-    height: 142px;
+    height: max-content;
     background-color: $background-color--popup;
     @include gridCenter;
     grid-template-columns: repeat(2, 1fr);

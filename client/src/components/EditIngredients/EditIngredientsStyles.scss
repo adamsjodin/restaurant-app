@@ -1,6 +1,11 @@
 @import "../../Styles/variables";
 @import "../../Styles/mixins";
 
+.popup:has(.editCard) svg {
+  left: unset;
+  top: .5rem;
+  right: .5rem;
+}
 .editCard {
   color: white;
   max-height: 15em;
@@ -13,37 +18,21 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    gap: .4em;
 
     li {
       list-style: none;
     }
   }
-}
 
-.editCard::-webkit-scrollbar {
-  width: 0.4rem;
-}
-
-.editCard::-webkit-scrollbar-thumb {
-  background-color: white;
-}
-
-.editCard::-webkit-scrollbar-thumb:hover {
-  background-color: #999999;
-}
-
-.editCard::-webkit-scrollbar-track {
-  border: 1px solid white;
-}
-
-.editCard__ingredient {
-  margin: 0.4rem;
-}
-
-.editCard__input {
-  color: white;
-  border: none;
-  background-color: transparent;
-  border-bottom: 1px solid #fff;
-  padding: 0.2em 0;
+  &__ingredient {
+    margin-left: 0.4rem;
+  }
+  &__input {
+    color: white;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #fff;
+    padding: 0.2em 0;
+  }
 }

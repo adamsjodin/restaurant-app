@@ -9,6 +9,7 @@
   padding-block: 4em;
   svg {
     @include close-btn-position;
+    cursor: pointer;
   }
   &--heading {
     font-size: $fs-h1;
@@ -49,6 +50,8 @@
     padding: 1rem 4rem;
     @include flexStart(column);
     gap: 1em;
+    cursor: pointer;
+
   }
   &--btn {
     display: flex;
@@ -67,6 +70,7 @@
 .signup--input-checkbox-container {
   display: flex;
   gap: 1em;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 800px) {

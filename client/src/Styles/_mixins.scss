@@ -81,6 +81,9 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
 }
 
 @mixin popup-style {
@@ -96,8 +99,7 @@
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   z-index: 200000000;
-  min-width: 80vw;
-  max-width: 20rem;
+  min-width: 23rem;
   @include gridCenter;
   gap: 1em;
   svg {

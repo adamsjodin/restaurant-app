@@ -2,10 +2,23 @@ import { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import "./PreCheckoutConfirmationStyles.scss";
 import Countdown from "./Countdown/Countdown";
-import { oneState, doubleStateNew, postOrder } from "../../utils/functions";
+import {
+  oneState,
+  doubleStateNew,
+  postOrder,
+  handleEnterPress,
+} from "../../utils/functions";
+import Input from "../Input/Input";
 
 function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
   const [isCountdownActive, setIsCountdownActive] = useState(true);
+  const [looksGood, setLooksGood] = useState(false);
+  console.log(looksGood);
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+  });
   const handleButtonClick = () => {
     setIsCountdownActive(false);
     doubleStateNew(setAppState, "openPreCheckout", "openCheckout");
@@ -65,9 +78,46 @@ function PreCheckoutConfirmation({ cart, setAppState, appState, setCart }) {
                 Back to cart
               </Button>
             </>
+          ) : looksGood ? (
+            <>
+              <Input
+                type="text"
+                className="login--input"
+                placeholder="Name"
+                onChange={(e) =>
+                  setCustomerInfo({ ...customerInfo, name: e.target.value })
+                }
+                onKeyPress={handleEnterPress}
+              />
+              <Input
+                type="text"
+                className="login--input"
+                placeholder="E-mail"
+                onChange={(e) =>
+                  setCustomerInfo({ ...customerInfo, email: e.target.value })
+                }
+                onKeyPress={handleEnterPress}
+              />
+              <Input
+                type="number"
+                className="login--input"
+                placeholder="Phonenumber"
+                onChange={(e) =>
+                  setCustomerInfo({
+                    ...customerInfo,
+                    phoneNumber: e.target.value,
+                  })
+                }
+                onKeyPress={handleEnterPress}
+              />
+              <Button onClick={handleButtonClick}>Send order</Button>
+              <Button className="secondary" onClick={handleEditClick}>Go back</Button>
+            </>
           ) : (
             <>
-              <Button onClick={handleButtonClick}>Looks good</Button>
+              <Button onClick={() => setLooksGood(!looksGood)}>
+                Looks good
+              </Button>
               <Button className="secondary" onClick={handleEditClick}>
                 Edit my order{" "}
                 <Countdown

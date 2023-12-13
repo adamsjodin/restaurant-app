@@ -1,6 +1,6 @@
 import "./Nav.scss";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -24,21 +24,8 @@ import LogoutConf from "./LogoutConf";
 import Settings from "../Settings/Settings";
 
 function Nav() {
-  const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState(null);
+  const userName = localStorage.getItem("userName") || null;
   const [state, setState] = useState(booleanStates());
-
-  useEffect(() => {
-    const usId = localStorage.getItem("userId");
-    const usNa = localStorage.getItem("userName");
-    if (usId && usNa) {
-      setUserId(usId);
-      setUserName(usNa);
-    } else {
-      setUserId(null);
-      setUserName(null);
-    }
-  }, [state]);
 
   function handleLogout() {
     localStorage.setItem("userId", "");
@@ -94,7 +81,7 @@ function Nav() {
               className="nav--icon"
               onClick={() => oneState(setState, 'showSettings')}
             />
-            <h5>{userName && userName}</h5>
+            <h5>{userName}</h5>
             <IoLogOutOutline
               className="nav--icon"
               onClick={() => doubleState(setState, 'showLogoutConf')}

@@ -38,7 +38,7 @@ function ProductCard({
     <>
       {showEditFood && (
         <EditFood
-          state={setShowOutOfOrder}
+          action={setShowOutOfOrder}
           props={props}
           onClose={handleCloseEditFood}
         />
@@ -101,7 +101,7 @@ function ProductCard({
                         Edit
                       </Button>
                     ) : (
-                      !outOfOrder && (
+                      !showOutOfOrder && (
                         <Button
                           className={"add" + (outOfOrder ? " out" : "")}
                           onClick={() => {

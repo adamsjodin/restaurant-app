@@ -17,12 +17,15 @@
     margin: 0 auto;
     @include bgImage;
     border-radius: 1rem;
+
   }
 
   & > svg {
     position: absolute;
     top: 0.625em;
     right: 0.625em;
+    cursor: pointer;
+
   }
   &__info {
     padding-bottom: 3em;

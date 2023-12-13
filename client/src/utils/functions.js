@@ -87,6 +87,12 @@ export async function handleLogin({ setError, loginObj, setState }) {
     });
 }
 
+export const handleEnterPress = (event, loginFunction) => {
+  if (event.keyCode === 13) {
+    loginFunction(event)
+  }
+}
+
 export const postOrder = async (setCart) => {
   const order = JSON.parse(localStorage.getItem("cart")) || [];
   const userID = localStorage.getItem("userId");
@@ -192,12 +198,6 @@ export function CheckoutTimeline(index) {
   }
 }
 
-export const handleEnterPress = (event) => {
-  if (event.keyCode === 13 || event.which === 13) {
-    handleLogin()
-  }
-}
-
 /* STATES */
 
 export function booleanStates() {
@@ -215,7 +215,8 @@ export function booleanStates() {
     openCheckout: false,
     checkoutOpen: true,
     staffLogin: false,
-    showInfo: false
+    showInfo: false,
+    showRemoveConf: false
   };
 }
 

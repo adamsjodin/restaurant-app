@@ -11,7 +11,9 @@
     align-items: center;
     justify-content: space-evenly;
     svg {
-        @include close-btn-position
+        @include close-btn-position;
+        cursor: pointer;
+        
     }
     &--info {
         display: flex;
@@ -42,6 +44,7 @@
         display: flex;
         justify-content: center;
         margin: 1rem;
+        cursor: pointer;
     }
 
     &--cardInfo {
@@ -62,6 +65,8 @@
             background-color: transparent;
             margin: 0.3rem;
             width: 100px;
+            cursor: pointer;
+
        &:focus-visible {
            outline: none;
            border-color: green;

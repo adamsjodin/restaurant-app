@@ -39,4 +39,12 @@
 .search__icon #search {
   width: 2em;
   height: 2em;
+  cursor: pointer;
+
+}
+
+@media screen and (min-width: 768px) {
+  .search__icon {
+    right: 2em;
+  }
 }

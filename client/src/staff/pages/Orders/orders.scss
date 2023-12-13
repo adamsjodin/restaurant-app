@@ -3,9 +3,6 @@
 
 .orders {
 
-  *{
-    color: #007D7D;
-  }
   h1 {
     text-align: center;
     padding: 2rem;
@@ -18,6 +15,7 @@
     }
     p.active {
       background-color: #fff;
+      color: $clr-text__staff;
     }
   }
   .order-history__orders {
@@ -29,9 +27,18 @@
     background: rgba(217, 217, 217, 0.50);
     position: relative;
     height: unset;
+    & * {
+      color: $clr-text__staff !important;
+    }
     @include flexSpaceBetween(row);
     svg {
       @include close-btn-position;
+      width: 1rem;
+      height: 1rem;
+    }
+    svg:nth-of-type(2) {
+      left: unset;
+      right: 1rem;
     }
     p.red {
       color: red;

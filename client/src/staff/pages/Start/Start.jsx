@@ -12,7 +12,6 @@ function Start() {
         <Link to="/staff/hours"><button className='start--btn'>Opening hours</button></Link>
         <Link to="/staff/members"><button className='start--btn'>Members</button></Link>
       </section>
-
     </section>
   );
 }

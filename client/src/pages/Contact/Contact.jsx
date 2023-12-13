@@ -6,8 +6,14 @@ import { FaTwitter } from "react-icons/fa";
 
 import { Map, APIProvider, AdvancedMarker } from '@vis.gl/react-google-maps';
 
-const apiKeyGoogle = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
-const apiIdGoogle = import.meta.env.VITE_REACT_APP_GOOGLE_MAPS_MAPS_ID;
+
+let apiKeyGoogle, apiIdGoogle;
+
+(async () => {
+  const { VITE_REACT_APP_GOOGLE_MAPS_API_KEY, VITE_REACT_APP_GOOGLE_MAPS_MAPS_ID } = await import.meta.env;
+  apiKeyGoogle = VITE_REACT_APP_GOOGLE_MAPS_API_KEY;
+  apiIdGoogle = VITE_REACT_APP_GOOGLE_MAPS_MAPS_ID;
+})();
 
 function Contact() {
 

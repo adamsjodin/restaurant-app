@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./Login.scss";
 import { handleLogin, booleanStates, doubleStateNew, oneState, handleEnterPress } from "../../utils/functions";
 
 
 function Login({ appState, setAppState }) {
+  const navigate = useNavigate()
   const [loginObj, setLoginObj] = useState({
     email: "",
     password: "",
@@ -13,7 +15,7 @@ function Login({ appState, setAppState }) {
   
   function loginFunction(event) {
       event.preventDefault();
-      handleLogin({ setError, loginObj, setState });
+      handleLogin({ setError, loginObj, setState, navigate });
   }
 
   

@@ -26,6 +26,10 @@
         display: flex;
         gap: 1rem;
     }
+    .about__picture {
+        height: 500px;
+        width: 500px;
+    }
 }
 
 @media screen and (min-width: 800px) {

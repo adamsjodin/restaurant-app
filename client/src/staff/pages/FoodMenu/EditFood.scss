@@ -1,141 +1,153 @@
 @import "../../../Styles/variables";
 @import "../../../Styles/mixins";
 
-
 .staff-body .foodMenu .product--staff svg {
-    display: none;
+  display: none;
 }
 
 .foodMenu {
-    &__products {
-        display: grid;
-        gap: 1em;
-        padding: 1em;
-        article {
-            background-color: rgba(255, 255, 255, .2);
-        }
+  &__products {
+    background-color: white;
+    display: grid;
+    gap: 1em;
+    padding: 1em;
+    article {
+      background-color: rgba(0, 0, 0, 0.4);
     }
-    .add-form {
-        
-        * {
-            margin: .5rem 0
-        }
-        section {
-            border: 1px solid white;
-            display: flex;
-            flex-direction: column;
-            padding: 1rem 2rem;
-        }
-        padding: 2rem;
-        margin: auto;
-        text-align: center;
-        input, textarea {
-            color: black;
-            padding: .5rem;
-            cursor: pointer;
-
-        }
-        button {
-            margin: auto;
-            border: 1px solid white;
-            grid-column: span 2;
-        }
-        .add-ingredients {
-           
-        button {
-            font-size: 0.8em;
-            padding: 0.5em 1em;
-            cursor: pointer;
-        }
-        }
-    }
+  }
 }
 
 .editFood {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    background-color: rgb(74, 38, 38);
-    padding: 1em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: rgb(74, 38, 38);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid white;
+  background-color: $clr-btn__primary;
+  .popup {
+    background-color: $clr-text__staff;
+    padding: 7rem;
+    button {
+      background-color: transparent;
+    }
+  }
+  &__form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 20rem;
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid white;
-    background-color: $clr-btn__primary;
-    .popup {
-        background-color: $clr-text__staff;
-        padding: 7rem;
-        button {
-            background-color: transparent;
-        }
-    }
-    &__form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: black;
+    color: black;
 
-        &-title {
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        &-input {
-            color: white;
-            background-color: transparent;
-            margin: 0.5rem;
-            border: none;
-            border-bottom: 1px solid white;
-            cursor: pointer;
-
-            &:focus-visible {
-                outline: none;
-                border-color: green;
-              }
-
-            &::placeholder {
-                color: rgb(99, 95, 95);
-            }
-        }
-        &-btn {           
-            padding: 0.2rem 1rem; 
-            margin: 0.5rem;
-            border: none;
-            color: rgb(255, 255, 255);
-            background-color: $clr-btn__primary;
-            border: 1px solid white;
-            cursor: pointer;
-            &--remove {
-                color: $clr-text__red;
-            }
-        }
-        &-close {
-            cursor: pointer;
-            padding: 0.5rem 0rem 0rem 0.5rem;
-            font-size: 1.1rem;
-        }
-        &-msg {
-            color: $clr-text__red;
-            padding: 0.5rem
-        }
+    &-title {
+      font-size: 1.2rem;
+      font-weight: 500;
     }
-    svg {
-        @include close-btn-position;
+    &-input {
+      color: white;
+      background-color: transparent;
+      margin: 0.5rem;
+      border: none;
+      border-bottom: 1px solid white;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: none;
+        border-color: green;
+      }
+
+      &::placeholder {
+        color: rgb(99, 95, 95);
+      }
     }
+    &-btn {
+      padding: 0.2rem 1rem;
+      margin: 0.5rem;
+      border: none;
+      color: rgb(255, 255, 255);
+      background-color: $clr-btn__primary;
+      border: 1px solid white;
+      cursor: pointer;
+      &--remove {
+        color: $clr-text__red;
+      }
+    }
+    &-close {
+      cursor: pointer;
+      padding: 0.5rem 0rem 0rem 0.5rem;
+      font-size: 1.1rem;
+    }
+    &-msg {
+      color: $clr-text__red;
+      padding: 0.5rem;
+    }
+  }
+  svg {
+    @include close-btn-position;
+  }
 }
 
 .addFood {
-    width: unset;
+  width: unset;
+  background-color: white;
+  .addForm {
+    @include gridColumns(100%);
+    padding: 2rem;
+    & > * {
+      background: $background-color--main;
+      text-align: center;
+    }
+    & > *:not(button) {
+      display: flex;
+      flex-direction: column;
+      padding-inline: 4em;
+      gap: 0.5em;
+      padding: 1rem 2rem;
+
+      ul {
+        @include gridColumns(repeat(2, 1fr));
+        gap: 0.5em;
+        padding-inline: 3em;
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+            gap: .5em;
+        }
+      }
+    }
+    input,
+    textarea {
+      color: black;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    button {
+      margin: 1em auto 0;
+    }
+    &__ingredients {
+      gap: 1em !important;
+      button {
+        font-size: 0.8em;
+        padding: 0.5em 1em;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-
-
 @media screen and (min-width: 800px) {
-    .foodMenu .add-form {
-        @include gridColumns(repeat(2, 1fr));
-    }    
+  .addFood .addForm {
+    grid-template-columns: repeat(2, 1fr);
+    button {
+      grid-column: span 2;
+    }
+  }
 }

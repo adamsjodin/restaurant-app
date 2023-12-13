@@ -87,7 +87,7 @@ const handleSubmit = () => {
           {sortedHours.map((hour, index) => (
            <li key={hour.id}>
            {editMode && hour.hours !== undefined ? (
-             <div key={`edit-${hour.id}`}>
+             <div className="hours-div" key={`edit-${hour.id}`}>
                <label htmlFor={`hoursInput-${hour.id}`} key={`label-${hour.id}`}>
                  {hour.days}:
                </label>

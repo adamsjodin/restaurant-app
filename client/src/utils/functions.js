@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
 /* QUERY FUNCTIONS */
 
 export function wait(duration) {
@@ -71,7 +72,7 @@ export async function getOrderHistory() {
     }
 }
 
-export async function handleLogin({ setError, loginObj, setState }) {
+export async function handleLogin({ setError, loginObj, setState, navigate }) {
   await axios
     .post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/login",
@@ -79,7 +80,7 @@ export async function handleLogin({ setError, loginObj, setState }) {
     )
     .then((res) => {
       const data = res.data;
-      checkRole({ data, setError, setState });
+      checkRole({ data, setError, setState, navigate });
     })
     .catch((error) => {
       setError(true);
@@ -101,14 +102,12 @@ export const postOrder = async (setCart) => {
     status: "active",
     products: order,
   };
-  console.log(orderObj);
   await axios
     .post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/cart",
       orderObj
     )
     .then((res) => {
-      console.log(res.data);
       setCart([]);
     })
 
@@ -155,7 +154,7 @@ export async function getAllUsers() {
 
 /*  */
 
-function checkRole({ data, setError, setState }) {
+function checkRole({ data, setError, setState, navigate }) {
   if (data.success) {
       setError(false)
       let userInfo = JSON.parse(data.body)
@@ -167,12 +166,12 @@ function checkRole({ data, setError, setState }) {
             return toggleState(prevState, 'staffLogin');
           })
           localStorage.setItem("role", "staff")
+          navigate("/")
       }
       setState((prevState) => {
         return toggleState(prevState, 'showLogin');
       })
       window.location.reload();
-
   } else {
     setError(true);
   }
@@ -277,11 +276,13 @@ export const sideBarVariants = {
 export const overlayVariants = {
   closed: {
     height: "4vh",
+    overflow: "hidden",
   },
   open: {
     height: "100vh",
     width: "100%",
     zIndex: "1000000",
+    overflow: "unset"
   },
 };
 

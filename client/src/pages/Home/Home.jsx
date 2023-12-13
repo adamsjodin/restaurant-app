@@ -98,7 +98,7 @@ function Home() {
   
     setCart(updatedCart);
   };
-console.log(cart);
+
   const handleEditBtnClick = (product) => {
     setSelectedProduct(product);
   };

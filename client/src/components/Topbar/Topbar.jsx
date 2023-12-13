@@ -19,7 +19,7 @@ function TopBar({ showlogo }) {
                             {usNa}
                         </h4>
                     )}
-                    {showlogo ? <img className="topbar--img" src="logos/claddagh.png" alt="claddagh" /> : null}
+                    {showlogo ? <img className="topbar--img" src={`${"https://main.d3fwnezvh2vvf4.amplifyapp.com/"}logos/claddagh.png`} alt="claddagh" /> : null}
                 </div>
             </section>
             {state.showOrderHistory && (

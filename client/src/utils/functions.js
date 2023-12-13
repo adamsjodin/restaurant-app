@@ -101,14 +101,12 @@ export const postOrder = async (setCart) => {
     status: "active",
     products: order,
   };
-  console.log(orderObj);
   await axios
     .post(
       "https://khmfpjooy4.execute-api.eu-north-1.amazonaws.com/api/cart",
       orderObj
     )
     .then((res) => {
-      console.log(res.data);
       setCart([]);
     })
 

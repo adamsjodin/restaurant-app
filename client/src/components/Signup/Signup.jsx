@@ -95,7 +95,7 @@ function Signup({ action }) {
               type="text"
               placeholder="Email"
               name="email"
-              value={signup.email}
+              value={signup.email.toLowerCase()}
               onChange={handleChange}
               errorMessage={formErrors.email}
             />

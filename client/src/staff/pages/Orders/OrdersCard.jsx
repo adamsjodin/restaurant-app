@@ -28,7 +28,6 @@ export default function OrdersCard({ order, action, state }) {
   }
 
   function checkChanges(changes) {
-    console.log(changes)
     let changesEl = "";
     if (!changes || changes.length === 0) {
       changesEl = "";

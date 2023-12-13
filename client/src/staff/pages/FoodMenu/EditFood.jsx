@@ -22,11 +22,11 @@ function EditFood({ props, onClose, action }) {
     };
 
     const handleMenuUpdate = (e) => {
-        const { name, value, type, checked } = e.target;
-        const updatedValue = type === 'checkbox' ? checked : e.target.value;
-        setGetOutOfOrder(updatedValue)
+        const { name, type, checked } = e.target;
+        const updatedValue = type === 'checkbox' ? checked : e.target.value
+        if (type === 'checkbox') {setGetOutOfOrder(updatedValue)}
         setUpdateMenu({ ...updateMenu, [name]: updatedValue })
-        setGetOutOfOrder(updatedValue)
+        console.log(name, type, checked, e.target.value, updatedValue);
     };
 
     function handleRemove() {

@@ -38,7 +38,14 @@ body {
   background: linear-gradient($background-color--main, white);
 }
 
+.popup {
+  @include popup-new;
+}
+
 @media screen and (min-width: 55em) {
+  .popup {
+    width: 50%;
+  }
   main {
     max-width: 85vw;
     margin: 0 auto;

@@ -39,10 +39,15 @@
     &__products {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1em;
+      gap: .5em;
       padding-inline: 2em;
-      overflow-y: scroll;
-      max-height: 105px;
+      overflow-y: auto;
+      max-height: 150px;
+      
+      .cart-changes {
+        max-height: 30px;
+        overflow: auto;
+      }
     }
 
     &__actions {

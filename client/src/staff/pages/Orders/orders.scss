@@ -33,6 +33,10 @@
     svg {
       @include close-btn-position;
     }
+    svg:nth-of-type(2) {
+      left: unset;
+      right: 1rem;
+    }
     p.red {
       color: red;
     }

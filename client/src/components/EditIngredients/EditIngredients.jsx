@@ -69,9 +69,6 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
               />
             </li>
           ))}
-        </ul>
-
-        <div>
           <input
             type="text"
             placeholder="Add message"
@@ -79,7 +76,7 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
             value={message}
             onChange={handleInputChange}
           />
-        </div>
+        </ul>
       </div>
       <Button onClick={handleAddToCart}>Add to Cart</Button>
     </div>

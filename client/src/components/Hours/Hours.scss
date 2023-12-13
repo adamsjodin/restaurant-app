@@ -1,5 +1,5 @@
-@import './src/Styles/variables';
-@import './src/Styles/mixins';
+@import '../../Styles/variables';
+@import '../../Styles/mixins';
 
 .hours-wrapper {
     position: sticky;
@@ -14,13 +14,6 @@
     background-color: black;
     
     @include flexSpaceBetween(column);
-    
-    &--lists {
-        margin: 1rem;
-        gap: 2rem;
-        display: flex;
-        justify-content: center;
-    }
     
     &--ul {
         list-style-type: none;

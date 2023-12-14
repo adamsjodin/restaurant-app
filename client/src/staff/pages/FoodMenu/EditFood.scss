@@ -150,4 +150,18 @@
       grid-column: span 2;
     }
   }
+  .foodMenu__products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .foodMenu__products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .addFood .addForm {
+    grid-template-columns: repeat(4, 1fr);
+    button {
+      grid-column: span 4;
+    }
+  }
 }

@@ -26,7 +26,7 @@ export default function OrderHistory({action}) {
     return <pre>{JSON.stringify(orderQuery.error)}</pre>;
   }
 
-  //Sorting active/done - can probably be refactored a lot!
+
   const activeOrders = [];
   const doneOrders = [];
   let activeEl = "";
@@ -38,12 +38,13 @@ export default function OrderHistory({action}) {
           ? activeOrders.push(order)
           : doneOrders.push(order)
       );
-      
-    activeEl = activeOrders.map((order) => (
-      <OrderHistoryCard key={order.orderNr} order={order} />
-    ));
-    doneEl = doneOrders.map((order) => (
-      <OrderHistoryCard key={order.orderNr} order={order} />
+      const sortedActiveOrders = activeOrders.sort((b, a) => a.TimeStamp - b.TimeStamp)
+      activeEl = sortedActiveOrders.map((order) => (
+        <OrderHistoryCard key={order.orderNr} order={order} />
+      ));
+      const sortedDoneOrders = doneOrders.sort((a, b) => b.TimeStamp - a.TimeStamp)
+      doneEl = sortedDoneOrders.map((order) => (
+        <OrderHistoryCard key={order.orderNr} order={order} />
     ));
   }
 

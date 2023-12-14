@@ -99,9 +99,11 @@
     left: 50%;
     transform: translate( -50%, -50%);
     border-radius: 20px;
+    .popup {
+      padding: 3em 1em 2em 1em
+    }
     svg {
       @include close-btn-position;
-      font-size: 2rem;
     }
   }
 }

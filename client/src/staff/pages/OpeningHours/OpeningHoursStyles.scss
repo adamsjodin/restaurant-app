@@ -2,6 +2,16 @@
 
   .hours--lists {
     padding: 2rem;
+    max-width: fit-content;
+    margin: auto;
+    .hours-div {
+      display: flex;
+      justify-content: space-between;
+      ::placeholder {
+        text-align: center;
+        color: rgba(245, 245, 245, 0.699);
+      }
+    }
   }
 
   p {

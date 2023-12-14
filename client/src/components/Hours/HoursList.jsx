@@ -30,7 +30,7 @@ function HoursList() {
       .catch((err) => console.error(err));
   }, []);
   return (
-    <>
+    <section className="hours--wrapper">
       <ul className="hours--ul">
         {sortedHours.map((hour) =>
           hour.hours !== undefined ? (
@@ -39,7 +39,7 @@ function HoursList() {
         )}
       </ul>
       <p>{note} </p>
-    </>
+    </section>
   );
 }
 

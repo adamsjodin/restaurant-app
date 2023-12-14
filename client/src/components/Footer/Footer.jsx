@@ -11,36 +11,34 @@ const screenWidth = window.innerWidth;
 function Footer() {
   return (
     <>
-    { screenWidth < 800 ?
-      <Hours />
-      : 
-      <section className="footer--desktop">
-        <div className="footer--desktop--top">
-          <section className="footer--desktop--top--hours">
-            <h2 className="footer--desktop--top--heading">Open Hours:</h2>
-            <section className="footer--desktop--top--lists">
-             <HoursList/>
+      {screenWidth < 800 ? (
+        <Hours />
+      ) : (
+        <section className="footer--desktop">
+          <div className="footer--desktop--top">
+            <section className="footer--desktop--top--hours">
+              <h2 className="footer--desktop--top--heading">Open Hours:</h2>
+              <HoursList/>
             </section>
-          </section>
-          <section className="footer--desktop--top--interest">
-            <ul>
-              <li>FAQ</li>
-              <li>Security</li>
-              <li>Private Policy</li>
-            </ul>
-          </section>
-          <section className="footer--desktop--top--social">
-            <FaFacebook />
-            <FaInstagram />
-            <FaTwitter />
-          </section>
-        </div>
-        <div className="footer--desktop--copyright">
-          <FaRegCopyright />
-          <p> Furious Sheriffs 2023</p>
-        </div>
-      </section>
-    }
+            <section className="footer--desktop--top--interest">
+              <ul>
+                <li>FAQ</li>
+                <li>Security</li>
+                <li>Private Policy</li>
+              </ul>
+            </section>
+            <section className="footer--desktop--top--social">
+              <FaFacebook />
+              <FaInstagram />
+              <FaTwitter />
+            </section>
+          </div>
+          <div className="footer--desktop--copyright">
+            <FaRegCopyright />
+            <p> Furious Sheriffs 2023</p>
+          </div>
+        </section>
+      )}
     </>
   );
 }

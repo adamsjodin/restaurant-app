@@ -8,15 +8,14 @@
     overflow: hidden;
 }
 .hours {
-    color: $clr-text;
-    padding: 1rem 2rem;
-    font-family: $font-family;
     background-color: black;
-    
-    @include flexSpaceBetween(column);
+    @include flexSpaceAround(column);
+   
     
     &--ul {
         list-style-type: none;
+        text-align: center;
+        padding-bottom: 1em;
     }
 }
     p {

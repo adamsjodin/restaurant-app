@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CiSearch } from "react-icons/ci";
 
-import { getProducts, booleanStates, oneState } from "../../utils/functions";
+import { getProducts, booleanStates, oneState, addToCart } from "../../utils/functions";
 import {
   CartButton,
   Categories,
@@ -26,7 +26,7 @@ function Home() {
   const [state, setState] = useState(booleanStates());
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
-  );
+  )
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -34,58 +34,32 @@ function Home() {
     const newTotalQuantity = cart.reduce(
       (sum, item) => sum + (item.quantity || 0),
       0
-    );
+    )
     const newTotalPrice = cart.reduce(
       (sum, item) => sum + (item.quantity * item.price || 0),
       0
-    );
+    )
 
     setTotalQuantity(newTotalQuantity);
     setTotalPrice(newTotalPrice);
   }, [cart]);
 
-  const addToCart = (item) => {
-    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
-    const updatedCart = [...cart];
-  
-    if (existingItemIndex !== -1) {
-      const existingItem = updatedCart[existingItemIndex];
-      if (Object.keys(item.changes).length > 0) {
-        const changesArray = Object.entries(item.changes).map(([ingredient, changed]) => ({
-          ingredient,
-          changed,
-        }));
-        existingItem.changes = changesArray;
-        existingItem.quantity += 1;
-      } else {
-        existingItem.quantity += 1;
-      }
-    } else {
-      updatedCart.push({
-        ...item,
-        quantity: 1,
-        changes: Object.entries(item.changes).map(([ingredient, changed]) => ({
-          ingredient,
-          changed,
-        })),
-      });
-    }
-  
-    setCart(updatedCart);
-  };
+  const handleCart = (item) => {
+    addToCart(item, cart, setCart);
+  }
 
   const handleEditBtnClick = (product) => {
     setSelectedProduct(product);
-  };
+  }
 
   const handleToggleEditIngredients = () => {
     toggleEditIngredients(!editIngredients);
-  };
+  }
 
   const menuQuery = useQuery({
     queryKey: ["menu"],
     queryFn: getProducts,
-  });
+  })
 
   const menuItems = menuQuery?.data?.menu || [];
 
@@ -130,7 +104,7 @@ function Home() {
         {editIngredients && (
             <EditIngredients
               product={selectedProduct}
-              addToCart={addToCart}
+              addToCart={handleCart}
               toggleEditIngredients={handleToggleEditIngredients}
             />
           )}
@@ -147,7 +121,7 @@ function Home() {
           {editIngredients && (
             <EditIngredients
               product={selectedProduct}
-              addToCart={addToCart}
+              addToCart={handleCart}
               toggleEditIngredients={handleToggleEditIngredients}
             />
           )}

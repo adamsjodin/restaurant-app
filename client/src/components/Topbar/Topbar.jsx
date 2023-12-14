@@ -15,11 +15,11 @@ function TopBar({ showlogo }) {
                 <div className="topbar--nav">
                     <Nav />
                     {usNa !== null && (
-                        <h4 onClick={() => oneState(setState, "showOrderHistory")}>
+                        <h4 className="topbar--userName" onClick={() => oneState(setState, "showOrderHistory")}>
                             {usNa}
                         </h4>
                     )}
-                    {showlogo ? <img className="topbar--img" src="logos/claddagh.png" alt="claddagh" /> : null}
+                    {showlogo ? <img className="topbar--img" src={`${"https://main.d3fwnezvh2vvf4.amplifyapp.com/"}logos/claddagh.png`} alt="claddagh" /> : null}
                 </div>
             </section>
             {state.showOrderHistory && (

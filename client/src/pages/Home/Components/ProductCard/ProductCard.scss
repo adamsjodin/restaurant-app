@@ -88,7 +88,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
     .product--cart {
-        max-height: 120px;
         figure {
             height: 100%;
         }
@@ -108,10 +107,6 @@
 
 }
 
-.product--cart {
-    margin: 1rem;
-}
-
 .cart-wrapper {
     @include flexCenter(column);
     gap: 0.5em;
@@ -121,7 +116,6 @@
         height: 1.2rem;
         border-radius: 50%;
         font-size: 0.6rem;
-        margin: 0;
     }
 
     .cart-quantity {

@@ -28,16 +28,15 @@ function ProductInformation({
           ))}
         </ul>
 
-        <Button className="add">Add +</Button>
         <h3 className="product-info__price">{price} kr</h3>
-        {outOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
+        {outOfOrder && <h4 className="product__outOfOrder">Out of stock</h4>}
       </motion.section>
       {showInfo ? (
         <IoMdClose onClick={toggleInfo} />
       ) : (
         <FaInfo onClick={toggleInfo} />
       )}
-      
+      {!outOfOrder && 
       <Button
         className="add"
         onClick={() => {
@@ -48,6 +47,7 @@ function ProductInformation({
       >
         Add +
       </Button>
+      }
       <h3 className="product-info__price">{price} kr</h3>
     </motion.article>
   );

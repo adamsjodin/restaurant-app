@@ -38,7 +38,8 @@
   &__orders {
     min-height: 490px;
     background-color: rgba(255, 255, 255, 0.1);
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 1em;
     padding: 1em;
   }
@@ -72,6 +73,8 @@
       border: 1px solid white;
       border-radius: 20px;
       z-index: 1;
+      max-height: 100%;
+      overflow: auto;
       svg {
           @include close-btn-position;
       }

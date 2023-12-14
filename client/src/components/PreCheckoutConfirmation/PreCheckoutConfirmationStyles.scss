@@ -5,15 +5,13 @@
   display: none;
 }
 .pre-checkout {
-  background-color: black;
-  z-index: 1000;
-  border-top: 2px solid white;
+  background: $bg-main-reverse;
+  z-index: 50;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
-  min-height: 70%;
   padding-bottom: 1rem;
 }
 
@@ -65,7 +63,7 @@
     position: absolute;
     bottom: 0;
     width: 100vw;
-    max-height: 35vh;
+    height: 35vh;
     
     h2 {
       font-size: 1.5rem;

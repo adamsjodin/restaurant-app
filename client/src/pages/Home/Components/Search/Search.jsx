@@ -34,7 +34,7 @@ function Search ({menuItems, isSearching, editIngredients, toggleEditIngredients
       <AnimatePresence>
         {isSearching && (
           <motion.div
-            className="search-input-container"
+            className="search__container"
             initial={{ opacity: 0, x: "-100%" }}
             animate={{ opacity: 1, x: "100%" }}
             exit={{ opacity: 0, x: "-100%" }}

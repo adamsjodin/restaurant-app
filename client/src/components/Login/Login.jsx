@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import "./Login.scss";
 import { handleLogin, booleanStates, doubleStateNew, oneState, handleEnterPress } from "../../utils/functions";
 
 
 function Login({ appState, setAppState }) {
+  const navigate = useNavigate()
   const [loginObj, setLoginObj] = useState({
     email: "",
     password: "",
@@ -13,9 +15,10 @@ function Login({ appState, setAppState }) {
   
   function loginFunction(event) {
       event.preventDefault();
-      handleLogin({ setError, loginObj, setState });
+      handleLogin({ setError, loginObj, setState, navigate });
   }
 
+  
   return (
     <>
       <section className="login background-color__black">
@@ -24,8 +27,7 @@ function Login({ appState, setAppState }) {
           type="text"
           className="login--input"
           placeholder="Email"
-          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value })}
-          onKeyPress={handleEnterPress}
+          onChange={(e) => setLoginObj({ ...loginObj, email: e.target.value.toLowerCase() })}
           />
         <input
           type="password"
@@ -34,7 +36,7 @@ function Login({ appState, setAppState }) {
           onChange={(e) =>
             setLoginObj({ ...loginObj, password: e.target.value })
           }
-          onKeyPress={handleEnterPress}
+          onKeyDown={(event) => handleEnterPress(event, loginFunction)}
           />
         {error && <p>Something went wrong, try again!</p>}
         <section className="login--btns">

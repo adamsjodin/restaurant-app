@@ -36,18 +36,15 @@ function EditIngredients({ product, addToCart, toggleEditIngredients }) {
   };
 
   const handleAddToCart = () => {
-    const changedCheckboxValues = Object.keys(changedCheckboxes).reduce((acc, ingredient) => {
-      if (changedCheckboxes[ingredient]) {
+    const changedCheckboxValues = Object.keys(checkboxValues).reduce((acc, ingredient) => {
+      if (checkboxValues[ingredient] !== ingredients.includes(ingredient)) {
         acc[ingredient] = checkboxValues[ingredient];
       }
-      
       return acc;
     }, {});
-    
-    
+  
     addToCart({ ...product, changes: changedCheckboxValues, message });
     toggleEditIngredients();
-    
   };
 
   const handleInputChange = (event) => {

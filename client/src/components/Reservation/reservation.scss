@@ -8,7 +8,6 @@
   justify-items: center;
   text-align: center;
   padding: 1rem;
-  
   .form__inputs {
     & > * {
       max-width: 45%;
@@ -61,10 +60,6 @@
   }
 }
 
-.popup {
-  @include popup-style;
-}
-
 .reservation:has(.popup)>*:not(.popup) {
   pointer-events: none;
   opacity: .5;
@@ -104,10 +99,11 @@
     left: 50%;
     transform: translate( -50%, -50%);
     border-radius: 20px;
-    max-width: 34rem;
+    .popup {
+      padding: 3em 1em 2em 1em
+    }
     svg {
       @include close-btn-position;
-      font-size: 2rem;
     }
   }
 }

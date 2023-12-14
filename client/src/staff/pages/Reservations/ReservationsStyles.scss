@@ -2,11 +2,11 @@
 @import "../../../Styles/variables";
 
 .reservations {
-  * {
+  
+  & * {
     color: #007d7d;
     text-align: center;
   }
-
   &__tabs {
     @include flexSpaceBetween(row);
 

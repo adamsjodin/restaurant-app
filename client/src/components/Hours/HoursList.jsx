@@ -4,13 +4,13 @@ function HoursList() {
   const [hours, setHours] = useState([]);
   const [note, setNote] = useState("");
   const daysOrder = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ];
   const sortedHours = hours
     .slice()

@@ -29,7 +29,7 @@ function ProductInformation({
         </ul>
 
         <h3 className="product-info__price">{price} kr</h3>
-        {outOfOrder && <h4 className="product__outOfOrder">Out of order</h4>}
+        {outOfOrder && <h4 className="product__outOfOrder">Out of stock</h4>}
       </motion.section>
       {showInfo ? (
         <IoMdClose onClick={toggleInfo} />

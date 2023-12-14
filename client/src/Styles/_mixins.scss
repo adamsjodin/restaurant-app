@@ -132,6 +132,7 @@
   padding: 2em 1em;
   box-shadow: 0 0 4px 3px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
+  z-index: 10;
   svg {
     @include close-btn-position;
   }

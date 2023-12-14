@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Search.scss";
 import ProductCard from "../ProductCard/ProductCard";
 
 function Search ({menuItems, isSearching, editIngredients, toggleEditIngredients }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const searchInputRef = useRef(null)
+
+  useEffect(() => {
+    if(isSearching) searchInputRef.current.focus();
+  }, [isSearching])
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -45,6 +50,7 @@ function Search ({menuItems, isSearching, editIngredients, toggleEditIngredients
               value={searchTerm}
               onChange={handleSearch}
               className="search__input"
+              ref={searchInputRef}
             />
           </motion.div>
         )}
